@@ -1,0 +1,6 @@
+framework module Pods_ScribeUITests {
+  umbrella header "Pods-ScribeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
