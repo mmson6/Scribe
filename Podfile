@@ -6,6 +6,8 @@ target 'Scribe' do
   use_frameworks!
 
   # Pods for Scribe
+  pod 'Alamofire', '~> 4.4'
+  pod 'SwiftyJSON', '~> 3.1'
 
   target 'ScribeTests' do
     inherit! :search_paths
