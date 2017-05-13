@@ -8,6 +8,8 @@ target 'Scribe' do
   # Pods for Scribe
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON', '~> 3.1'
+  pod 'Firebase', '~> 2.5'
+  pod 'FontAwesomeKit', '~> 2.2'
 
   target 'ScribeTests' do
     inherit! :search_paths

@@ -24,8 +24,8 @@ class ContactInfoCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    public func initializeCellWith(subTitle: String, andInfo infoText: String) {
-        self.subTitleLabel.text = subTitle
-        self.infoLabel.text = infoText
+    internal func populate(with model: ContactVO) {
+        self.subTitleLabel.text = "Name"
+        self.infoLabel.text = model.name
     }
 }

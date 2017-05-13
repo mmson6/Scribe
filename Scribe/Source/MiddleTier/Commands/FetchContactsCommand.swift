@@ -11,6 +11,8 @@ import Foundation
 public class FetchContactsCommand: ScribeCommand<ObjectDataSource<Any>> {
     
     public override func main() {
+        
+        
         let contactVer: Int64 = 1
         let fetchContactRequest = FetchContactsRequest(contactVer: contactVer)
         

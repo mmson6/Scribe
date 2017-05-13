@@ -13,10 +13,18 @@
 		270F1B021EC0258F00232D2F /* ContactImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F1B011EC0258F00232D2F /* ContactImageCell.swift */; };
 		270F1B041EC026D300232D2F /* FetchContactDetailCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F1B031EC026D300232D2F /* FetchContactDetailCommand.swift */; };
 		270F1B061EC0271F00232D2F /* FetchContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F1B051EC0271F00232D2F /* FetchContactDetailRequest.swift */; };
+		2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA6E1EC3C6E1003D6D64 /* ContactCell.swift */; };
+		2719EA731EC582EA003D6D64 /* UIColor+ScribeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA721EC582EA003D6D64 /* UIColor+ScribeAdditions.swift */; };
+		2719EA761EC5883E003D6D64 /* ContactVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA751EC5883E003D6D64 /* ContactVO.swift */; };
+		2719EA781EC5F19A003D6D64 /* ContactList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2719EA771EC5F19A003D6D64 /* ContactList.storyboard */; };
+		2719EA7A1EC5F58D003D6D64 /* ContactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */; };
+		2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */; };
+		2719EA7F1EC66A2C003D6D64 /* ContactGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA7E1EC66A2C003D6D64 /* ContactGroupViewController.swift */; };
+		2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */; };
+		2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */; };
 		275201AA1EB990C7002C469B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201A91EB990C7002C469B /* AppDelegate.swift */; };
 		275201AC1EB990C7002C469B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201AB1EB990C7002C469B /* ViewController.swift */; };
 		275201AF1EB990C7002C469B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275201AD1EB990C7002C469B /* Main.storyboard */; };
-		275201B11EB990C7002C469B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275201B01EB990C7002C469B /* Assets.xcassets */; };
 		275201B41EB990C7002C469B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275201B21EB990C7002C469B /* LaunchScreen.storyboard */; };
 		275201BF1EB990C7002C469B /* ScribeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201BE1EB990C7002C469B /* ScribeTests.swift */; };
 		275201CA1EB990C7002C469B /* ScribeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201C91EB990C7002C469B /* ScribeUITests.swift */; };
@@ -30,7 +38,7 @@
 		275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201E51EB991D8002C469B /* SPRTableViewController.swift */; };
 		275201F11EB991D8002C469B /* SPRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201E61EB991D8002C469B /* SPRViewController.swift */; };
 		275201F21EB991D8002C469B /* SPRViewControllerFSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201E81EB991D8002C469B /* SPRViewControllerFSM.swift */; };
-		275201F81EB99748002C469B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201F71EB99748002C469B /* ContactsViewController.swift */; };
+		275201F81EB99748002C469B /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201F71EB99748002C469B /* ContactListViewController.swift */; };
 		275201FB1EB997C0002C469B /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275201FA1EB997C0002C469B /* Contacts.storyboard */; };
 		275201FF1EB99879002C469B /* FetchContactsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201FE1EB99879002C469B /* FetchContactsCommand.swift */; };
 		275202011EB9997C002C469B /* ScribeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275202001EB9997C002C469B /* ScribeCommand.swift */; };
@@ -38,6 +46,8 @@
 		275202081EB99BCE002C469B /* FetchContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275202071EB99BCE002C469B /* FetchContactsRequest.swift */; };
 		2752020B1EB99D59002C469B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752020A1EB99D59002C469B /* Constants.swift */; };
 		27D191BF1EC03830002C7346 /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D191BE1EC03830002C7346 /* ContactInfoCell.swift */; };
+		27EB3EC81EC6E39900BB292B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27EB3EC71EC6E39900BB292B /* Assets.xcassets */; };
+		27EB3ECA1EC77D1F00BB292B /* DataAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */; };
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
 		9F204964B580F76BFE3C7596 /* Pods_ScribeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -67,11 +77,19 @@
 		270F1B011EC0258F00232D2F /* ContactImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactImageCell.swift; path = Source/ViewTier/Views/ContactImageCell.swift; sourceTree = "<group>"; };
 		270F1B031EC026D300232D2F /* FetchContactDetailCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactDetailCommand.swift; path = Source/MiddleTier/Commands/FetchContactDetailCommand.swift; sourceTree = "<group>"; };
 		270F1B051EC0271F00232D2F /* FetchContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactDetailRequest.swift; path = Source/DomainTier/Models/FetchContactDetailRequest.swift; sourceTree = "<group>"; };
+		2719EA6E1EC3C6E1003D6D64 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactCell.swift; path = Source/ViewTier/Views/ContactCell.swift; sourceTree = "<group>"; };
+		2719EA721EC582EA003D6D64 /* UIColor+ScribeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+ScribeAdditions.swift"; path = "Source/ViewTier/Application/Assets/Colors/UIColor+ScribeAdditions.swift"; sourceTree = "<group>"; };
+		2719EA751EC5883E003D6D64 /* ContactVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactVO.swift; path = Source/ViewTier/ValueObjects/ContactVO.swift; sourceTree = "<group>"; };
+		2719EA771EC5F19A003D6D64 /* ContactList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactList.storyboard; path = "Resource Files/Storyboards/ContactList.storyboard"; sourceTree = "<group>"; };
+		2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsCoordinator.swift; path = Source/ViewTier/ViewControllers/ContactsCoordinator.swift; sourceTree = "<group>"; };
+		2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactGroup.storyboard; path = "Resource Files/Storyboards/ContactGroup.storyboard"; sourceTree = "<group>"; };
+		2719EA7E1EC66A2C003D6D64 /* ContactGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupViewController.swift; path = Source/ViewTier/ViewControllers/ContactGroupViewController.swift; sourceTree = "<group>"; };
+		2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupCell.swift; path = Source/ViewTier/Views/ContactGroupCell.swift; sourceTree = "<group>"; };
+		2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCollectionViewController.swift; path = Source/ViewTier/ViewControllers/TestCollectionViewController.swift; sourceTree = "<group>"; };
 		275201A61EB990C7002C469B /* Scribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275201A91EB990C7002C469B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		275201AB1EB990C7002C469B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		275201AE1EB990C7002C469B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		275201B01EB990C7002C469B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		275201B31EB990C7002C469B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		275201B51EB990C7002C469B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275201BA1EB990C7002C469B /* ScribeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScribeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +108,7 @@
 		275201E51EB991D8002C469B /* SPRTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRTableViewController.swift; sourceTree = "<group>"; };
 		275201E61EB991D8002C469B /* SPRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRViewController.swift; sourceTree = "<group>"; };
 		275201E81EB991D8002C469B /* SPRViewControllerFSM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRViewControllerFSM.swift; sourceTree = "<group>"; };
-		275201F71EB99748002C469B /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsViewController.swift; path = Source/ViewTier/ViewControllers/ContactsViewController.swift; sourceTree = "<group>"; };
+		275201F71EB99748002C469B /* ContactListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactListViewController.swift; path = Source/ViewTier/ViewControllers/ContactListViewController.swift; sourceTree = "<group>"; };
 		275201FA1EB997C0002C469B /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contacts.storyboard; path = "Resource Files/Storyboards/Contacts.storyboard"; sourceTree = "<group>"; };
 		275201FE1EB99879002C469B /* FetchContactsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactsCommand.swift; path = Source/MiddleTier/Commands/FetchContactsCommand.swift; sourceTree = "<group>"; };
 		275202001EB9997C002C469B /* ScribeCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScribeCommand.swift; sourceTree = "<group>"; };
@@ -98,6 +116,8 @@
 		275202071EB99BCE002C469B /* FetchContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactsRequest.swift; path = Source/DomainTier/Models/FetchContactsRequest.swift; sourceTree = "<group>"; };
 		2752020A1EB99D59002C469B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Source/ViewTier/Application/Constants.swift; sourceTree = "<group>"; };
 		27D191BE1EC03830002C7346 /* ContactInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoCell.swift; path = Source/ViewTier/Views/ContactInfoCell.swift; sourceTree = "<group>"; };
+		27EB3EC71EC6E39900BB292B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataAccessor.swift; path = Source/DomainTier/Connectors/DataAccessor.swift; sourceTree = "<group>"; };
 		337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scribe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scribe/Pods-Scribe.debug.xcconfig"; sourceTree = "<group>"; };
 		58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E94256574C2F12CE4BB17 /* Pods-ScribeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,8 +160,35 @@
 			children = (
 				270F1B011EC0258F00232D2F /* ContactImageCell.swift */,
 				27D191BE1EC03830002C7346 /* ContactInfoCell.swift */,
+				2719EA6E1EC3C6E1003D6D64 /* ContactCell.swift */,
+				2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2719EA701EC5826E003D6D64 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				27EB3EC71EC6E39900BB292B /* Assets.xcassets */,
+				2719EA711EC5827A003D6D64 /* Colors */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		2719EA711EC5827A003D6D64 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				2719EA721EC582EA003D6D64 /* UIColor+ScribeAdditions.swift */,
+			);
+			name = Colors;
+			sourceTree = "<group>";
+		};
+		2719EA741EC58825003D6D64 /* ValueObjects */ = {
+			isa = PBXGroup;
+			children = (
+				2719EA751EC5883E003D6D64 /* ContactVO.swift */,
+			);
+			name = ValueObjects;
 			sourceTree = "<group>";
 		};
 		2752019D1EB990C7002C469B = {
@@ -172,12 +219,8 @@
 			children = (
 				275201F41EB99298002C469B /* Source */,
 				275201F31EB99290002C469B /* Resource Files */,
-				275201A91EB990C7002C469B /* AppDelegate.swift */,
 				275201AB1EB990C7002C469B /* ViewController.swift */,
-				275201AD1EB990C7002C469B /* Main.storyboard */,
-				275201B01EB990C7002C469B /* Assets.xcassets */,
 				275201B21EB990C7002C469B /* LaunchScreen.storyboard */,
-				275201B51EB990C7002C469B /* Info.plist */,
 			);
 			path = Scribe;
 			sourceTree = "<group>";
@@ -294,6 +337,7 @@
 		275201F51EB9929E002C469B /* ViewTier */ = {
 			isa = PBXGroup;
 			children = (
+				2719EA741EC58825003D6D64 /* ValueObjects */,
 				270F1B001EC0251A00232D2F /* Views */,
 				275202091EB99D37002C469B /* Application */,
 				275201F61EB992B5002C469B /* ViewControllers */,
@@ -304,8 +348,11 @@
 		275201F61EB992B5002C469B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				275201F71EB99748002C469B /* ContactsViewController.swift */,
+				275201F71EB99748002C469B /* ContactListViewController.swift */,
 				270F1AFE1EC0231E00232D2F /* ContactDetailViewController.swift */,
+				2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */,
+				2719EA7E1EC66A2C003D6D64 /* ContactGroupViewController.swift */,
+				2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -313,8 +360,11 @@
 		275201F91EB997A2002C469B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				275201AD1EB990C7002C469B /* Main.storyboard */,
 				275201FA1EB997C0002C469B /* Contacts.storyboard */,
 				270F1AFA1EC0227E00232D2F /* ContactDetail.storyboard */,
+				2719EA771EC5F19A003D6D64 /* ContactList.storyboard */,
+				2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -350,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				275202041EB999F1002C469B /* ScribeClient.swift */,
+				27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */,
 			);
 			name = Connectors;
 			sourceTree = "<group>";
@@ -367,6 +418,9 @@
 			isa = PBXGroup;
 			children = (
 				2752020A1EB99D59002C469B /* Constants.swift */,
+				275201A91EB990C7002C469B /* AppDelegate.swift */,
+				275201B51EB990C7002C469B /* Info.plist */,
+				2719EA701EC5826E003D6D64 /* Assets */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -516,8 +570,10 @@
 				275201B41EB990C7002C469B /* LaunchScreen.storyboard in Resources */,
 				270F1AFB1EC0227E00232D2F /* ContactDetail.storyboard in Resources */,
 				275201FB1EB997C0002C469B /* Contacts.storyboard in Resources */,
-				275201B11EB990C7002C469B /* Assets.xcassets in Resources */,
 				275201AF1EB990C7002C469B /* Main.storyboard in Resources */,
+				27EB3EC81EC6E39900BB292B /* Assets.xcassets in Resources */,
+				2719EA781EC5F19A003D6D64 /* ContactList.storyboard in Resources */,
+				2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,16 +736,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */,
+				2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */,
 				270F1B021EC0258F00232D2F /* ContactImageCell.swift in Sources */,
 				275201E91EB991D8002C469B /* AsyncCommand.swift in Sources */,
 				270F1B061EC0271F00232D2F /* FetchContactDetailRequest.swift in Sources */,
 				27D191BF1EC03830002C7346 /* ContactInfoCell.swift in Sources */,
 				275202011EB9997C002C469B /* ScribeCommand.swift in Sources */,
 				270F1AFF1EC0231E00232D2F /* ContactDetailViewController.swift in Sources */,
-				275201F81EB99748002C469B /* ContactsViewController.swift in Sources */,
+				275201F81EB99748002C469B /* ContactListViewController.swift in Sources */,
 				275201F11EB991D8002C469B /* SPRViewController.swift in Sources */,
 				275202051EB999F1002C469B /* ScribeClient.swift in Sources */,
 				275202081EB99BCE002C469B /* FetchContactsRequest.swift in Sources */,
+				2719EA731EC582EA003D6D64 /* UIColor+ScribeAdditions.swift in Sources */,
 				275201EA1EB991D8002C469B /* AsyncResult.swift in Sources */,
 				275201EB1EB991D8002C469B /* ArrayObjectDataSource.swift in Sources */,
 				275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */,
@@ -699,9 +758,14 @@
 				275201FF1EB99879002C469B /* FetchContactsCommand.swift in Sources */,
 				275201AC1EB990C7002C469B /* ViewController.swift in Sources */,
 				275201EC1EB991D8002C469B /* ErrorObjectDataSource.swift in Sources */,
+				2719EA7F1EC66A2C003D6D64 /* ContactGroupViewController.swift in Sources */,
 				270F1B041EC026D300232D2F /* FetchContactDetailCommand.swift in Sources */,
+				2719EA7A1EC5F58D003D6D64 /* ContactsCoordinator.swift in Sources */,
+				27EB3ECA1EC77D1F00BB292B /* DataAccessor.swift in Sources */,
 				275201AA1EB990C7002C469B /* AppDelegate.swift in Sources */,
+				2719EA761EC5883E003D6D64 /* ContactVO.swift in Sources */,
 				275201F21EB991D8002C469B /* SPRViewControllerFSM.swift in Sources */,
+				2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */,
 				2752020B1EB99D59002C469B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

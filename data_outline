@@ -1,0 +1,18 @@
+Core {
+    Contacts {
+            Global_Ver: Int
+            Contact_Data {
+                        UserId: Int
+                        Name: String
+                        Address: String
+                        Mobile: String
+                        District: Int
+                        Birthday: String
+                        Spiritual_Birthday: String
+                        Email: String
+                        Contact_Ver: Int
+
+            }
+
+    }
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aOX-yQ-1jx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L3N-MJ-6tV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,54 +9,108 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Contacts-->
+        <!--Table View Controller-->
         <scene sceneID="9rp-Hh-7RT">
             <objects>
-                <tableViewController id="Dqh-mk-q53" customClass="ContactsViewController" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q7X-J0-ZPB">
+                <tableViewController id="Dqh-mk-q53" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="q7X-J0-ZPB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="x2W-zG-PEb">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2W-zG-PEb" id="XuU-Cb-7UD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="wt8-hu-HTe" kind="show" id="9rj-Bp-GRz"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Dqh-mk-q53" id="uXf-tE-T3x"/>
                             <outlet property="delegate" destination="Dqh-mk-q53" id="Wbx-ed-rR3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="fCY-A5-zbF">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="cF7-Ri-F7v"/>
+                    <navigationItem key="navigationItem" id="fCY-A5-zbF">
+                        <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="cF7-Ri-F7v"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="2ct-mq-bdW">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                        </segmentedControl>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ft5-3x-x7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="-172.26386806596702"/>
+            <point key="canvasLocation" x="1764" y="-172"/>
         </scene>
-        <!--ContactDetail-->
-        <scene sceneID="lkU-xy-61F">
+        <!--Contacts Coordinator-->
+        <scene sceneID="Rc4-tB-rJZ">
             <objects>
-                <viewControllerPlaceholder storyboardName="ContactDetail" id="wt8-hu-HTe" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cg3-la-24J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hYR-JO-qqt" customClass="ContactsCoordinator" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JNH-hv-hXy"/>
+                        <viewControllerLayoutGuide type="bottom" id="ieY-YF-sjN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cGG-1c-vl6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BA-BX-x9S">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <segue destination="JVt-fJ-Qnq" kind="embed" id="R5S-XX-rx5"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIM-eY-L7s">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <segue destination="DgF-Ni-q4O" kind="embed" id="Cfd-ve-pNS"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ieY-YF-sjN" firstAttribute="top" secondItem="sIM-eY-L7s" secondAttribute="bottom" id="4qX-QS-zvb"/>
+                            <constraint firstAttribute="trailing" secondItem="sIM-eY-L7s" secondAttribute="trailing" id="4vn-WY-BCh"/>
+                            <constraint firstItem="8BA-BX-x9S" firstAttribute="top" secondItem="JNH-hv-hXy" secondAttribute="bottom" id="Lh9-iS-Axv"/>
+                            <constraint firstItem="sIM-eY-L7s" firstAttribute="top" secondItem="JNH-hv-hXy" secondAttribute="bottom" id="MhA-aY-Vhl"/>
+                            <constraint firstItem="ieY-YF-sjN" firstAttribute="top" secondItem="8BA-BX-x9S" secondAttribute="bottom" id="SyV-pN-KU7"/>
+                            <constraint firstAttribute="trailing" secondItem="8BA-BX-x9S" secondAttribute="trailing" id="WGp-5x-CYh"/>
+                            <constraint firstItem="sIM-eY-L7s" firstAttribute="leading" secondItem="cGG-1c-vl6" secondAttribute="leading" id="ocT-l5-sOD"/>
+                            <constraint firstItem="8BA-BX-x9S" firstAttribute="leading" secondItem="cGG-1c-vl6" secondAttribute="leading" id="sMm-UJ-obA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nxZ-iQ-orP">
+                        <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="2Xj-e4-pJl"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="m0G-AA-Y8c">
+                            <rect key="frame" x="72.5" y="7" width="230" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="List"/>
+                                <segment title="By Group"/>
+                            </segments>
+                            <connections>
+                                <action selector="toggleContactDisplayType:" destination="hYR-JO-qqt" eventType="valueChanged" id="4lE-aN-9ie"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="contactGroupView" destination="8BA-BX-x9S" id="PJI-OH-xGq"/>
+                        <outlet property="contactListView" destination="sIM-eY-L7s" id="M5O-DA-XCO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tMD-eW-sTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2793" y="-173"/>
+            <point key="canvasLocation" x="3698.4000000000001" y="-170.46476761619192"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Contacts-->
         <scene sceneID="xOz-wK-iGk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aOX-yQ-1jx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contacts" id="soF-02-Wal"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5rg-ZX-jt8">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5rg-ZX-jt8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -68,6 +122,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0t-ET-HbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="976.79999999999995" y="-172.26386806596702"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="9js-z8-S25">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L3N-MJ-6tV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contacts" id="2Bp-m9-K1t"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ecC-gc-uHQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hYR-JO-qqt" kind="relationship" relationship="rootViewController" id="yz8-4h-kx6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oxi-pu-fA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3141" y="-173"/>
+        </scene>
+        <!--ContactGroup-->
+        <scene sceneID="h0F-Dx-TOg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ContactGroup" id="JVt-fJ-Qnq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xem-Q5-pv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4221" y="-58"/>
+        </scene>
+        <!--ContactList-->
+        <scene sceneID="6SP-hq-03h">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ContactList" id="DgF-Ni-q4O" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IgU-cB-aED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4221" y="-336"/>
         </scene>
     </scenes>
 </document>

@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Firebase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FontAwesomeKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Scribe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>73E012C087AD2DE60E89E38695099679</key>
+		<key>4982F3084B981C1E6DCF8B3A064BA2DB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83A8A75559B28BE012D7CC131702CAAC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E0DC0A89DF43816BFF979923773B5F8</key>
+		<key>A8E1DFAA9703A5C068D915A4C272EA21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE4792A8380E17A2D6226AB88AF13191</key>
 		<dict>
 			<key>primary</key>
 			<true/>
