@@ -21,7 +21,9 @@ class ContactsCoordinator: UIViewController {
     
     @IBOutlet weak var contactListView: UIView!
     @IBOutlet weak var contactGroupView: UIView!
+    @IBOutlet weak var groupButton: UIButton!
     
+    @IBOutlet weak var toggleButton: UIBarButtonItem!
     internal var contactType: ContactType = .list
     
     // MARK: UIViewController 
@@ -31,7 +33,7 @@ class ContactsCoordinator: UIViewController {
         self.initializeTabBarItems()
     }
     
-    // MARK: Private Init Method
+    // MARK: Private Functions
     
     private func initializeTabBarItems() {
         let settingsIcon = FAKIonIcons.iosSettingsIcon(withSize: 30)
@@ -42,22 +44,72 @@ class ContactsCoordinator: UIViewController {
         }
     }
     
-    
     // MARK : IBAction Methods
     
-    @IBAction func toggleContactDisplayType(_ sender: Any) {
-        guard let segmentedControl = sender as? UISegmentedControl else { return }
+    @IBAction func groupButtonTapped(_ sender: Any) {
+        guard
+            let button = sender as? UIButton
+            else {
+                return
+        }
         
-        let selectedIndex = segmentedControl.selectedSegmentIndex
+        button.isSelected = !button.isSelected
         
-        if selectedIndex == defaultContatIndex {
+        print(button.state)
+        if !button.isSelected {
+            UIView.animate(withDuration: 0.5, animations: {
+//                self.navigationController?.navigationBar.barTintColor = UIColor.white
+//                self.navigationController?.navigationBar.layoutIfNeeded()
+//                self.navigationController?.navigationBar.tintColor = UIColor.scribeColorNavigationBlue
+            })
+            
             self.contactType = .list
             self.contactGroupView.isHidden = true
             self.contactListView.isHidden = false
+            
         } else {
+            UIView.animate(withDuration: 0.5, animations: {
+//                self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorBackgroundBeige
+//                self.navigationController?.navigationBar.layoutIfNeeded()
+//                UINavigationBar.appearance().barTintColor = UIColor.scribeColorBackgroundBeige
+//                self.navigationController?.navigationBar.tintColor = UIColor.gray
+            })
+            
             self.contactType = .group
+            
             self.contactGroupView.isHidden = false
             self.contactListView.isHidden = true
         }
     }
+    @IBAction func toggleTapped(_ sender: Any) {
+       
+    }
+//    @IBAction func toggleContactDisplayType(_ sender: Any) {
+//        guard let segmentedControl = sender as? UISegmentedControl else { return }
+//        
+//        let selectedIndex = segmentedControl.selectedSegmentIndex
+//        
+//        if selectedIndex == defaultContatIndex {
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.navigationController?.navigationBar.tintColor = UIColor.scribeColorNavigationBlue
+////                self.navigationController?.navigationBar.barTintColor = UIColor.white
+//            })
+//            
+//            self.contactType = .list
+//            self.contactGroupView.isHidden = true
+//            self.contactListView.isHidden = false
+////            self.tabBarController?.tabBar.tintColor = UIColor.scribeColorNavigationBlue
+//            
+//        } else {
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.navigationController?.navigationBar.tintColor = UIColor.gray
+////                self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorNavigationBlue
+//            })
+//            
+//            self.contactType = .group
+////            self.tabBarController?.tabBar.tintColor = UIColor.cyan
+//            self.contactGroupView.isHidden = false
+//            self.contactListView.isHidden = true
+//        }
+//    }
 }

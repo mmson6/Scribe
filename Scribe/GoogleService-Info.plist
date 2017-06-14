@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>593185892185-nn5l6ro494bf02jljhrqqmjm2fg4rbh5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.593185892185-nn5l6ro494bf02jljhrqqmjm2fg4rbh5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBB0lXuONR_KJYMLkmDNAbevrdlgZVXJlI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>593185892185</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jbcc.Scribe</string>
+	<key>PROJECT_ID</key>
+	<string>scribe-4ed24</string>
+	<key>STORAGE_BUCKET</key>
+	<string>scribe-4ed24.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:593185892185:ios:702c9c41d7b5f87c</string>
+	<key>DATABASE_URL</key>
+	<string>https://scribe-4ed24.firebaseio.com</string>
+</dict>
+</plist>

@@ -8,6 +8,8 @@
 
 import UIKit
 
+import FontAwesomeKit
+
 public class ContactImageCell: UITableViewCell {
 
     @IBOutlet weak var contactAvatarView: UIImageView!
@@ -15,13 +17,12 @@ public class ContactImageCell: UITableViewCell {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
+        self.contactAvatarView.image = contactImage?.image(with: CGSize(width: 100, height: 100))
     }
 
-    override public func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    public func populate(with model: ContactInfoVOM) {
+        self.nameLabel.text = model.value
     }
-
 }

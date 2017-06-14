@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Hne-wy-0dW">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Group Contact ListVC-->
+        <scene sceneID="jnY-0P-d6A">
+            <objects>
+                <tableViewController id="Hne-wy-0dW" customClass="GroupContactListVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="KsG-Vp-Ijs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" id="Heu-Dv-fct" customClass="ContactCell" customModule="Scribe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Heu-Dv-fct" id="ZNg-Pu-3yN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uve-we-eYU">
+                                            <rect key="frame" x="14" y="2" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Mzb-iQ-Wuy"/>
+                                                <constraint firstAttribute="width" constant="40" id="qFj-AR-NWm"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eA-A1-IHH">
+                                            <rect key="frame" x="70" y="12" width="200" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="200" id="OBh-rF-L0p"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8eA-A1-IHH" firstAttribute="centerY" secondItem="uve-we-eYU" secondAttribute="centerY" id="6Ae-P4-8x0"/>
+                                        <constraint firstItem="uve-we-eYU" firstAttribute="leading" secondItem="ZNg-Pu-3yN" secondAttribute="leading" constant="14" id="Bcn-hi-gy1"/>
+                                        <constraint firstItem="uve-we-eYU" firstAttribute="centerY" secondItem="ZNg-Pu-3yN" secondAttribute="centerY" id="GS1-dW-Tls"/>
+                                        <constraint firstItem="8eA-A1-IHH" firstAttribute="leading" secondItem="uve-we-eYU" secondAttribute="trailing" constant="16" id="wbG-fU-Jo8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="avatarImageView" destination="uve-we-eYU" id="UIU-fO-4h3"/>
+                                    <outlet property="nameLabel" destination="8eA-A1-IHH" id="x2X-LA-eVj"/>
+                                    <segue destination="Xbb-wj-WoL" kind="show" id="ZJg-FG-m0F"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Hne-wy-0dW" id="oTS-ZG-mDO"/>
+                            <outlet property="delegate" destination="Hne-wy-0dW" id="VDW-vd-yCC"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LfR-AO-BZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="192"/>
+        </scene>
+        <!--ContactDetail-->
+        <scene sceneID="r5T-zR-QxU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ContactDetail" id="Xbb-wj-WoL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mif-Lx-4UF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="930" y="191"/>
+        </scene>
+    </scenes>
+</document>

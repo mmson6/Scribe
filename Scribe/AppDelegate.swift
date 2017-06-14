@@ -8,6 +8,9 @@
 
 import UIKit
 
+import Firebase
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        FirebaseApp.configure()
         self.setAppAttributes()
         return true
     }
@@ -45,15 +49,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setAppAttributes() {
         
+//        let barFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
 //        let barButtonFont = UIFont(name: "RobotoCondensed-Regular", size: 17) ?? UIFont.boldSystemFont(ofSize: 17.0)
-        let barButtonAttributes: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.scribeNavigationColor
+//        let barButtonAttributes: [String: Any] = [
+//            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue
 //            NSFontAttributeName: barButtonFont
+//        ]
+        
+        let navBarFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
+        let navBarAttributes: [String: Any] = [
+//            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
+            NSForegroundColorAttributeName: UIColor.scribeColorDarkGray,
+            NSFontAttributeName: navBarFont
         ]
         
-        UITabBar.appearance().tintColor = UIColor.scribeNavigationColor
-        UINavigationBar.appearance().tintColor = UIColor.scribeNavigationColor
-        UINavigationBar.appearance().titleTextAttributes = barButtonAttributes
+        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
+        
+//        let tabBarFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
+//        let tabBarAttributes: [String: Any] = [
+//            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
+//            NSFontAttributeName: navBarFont
+//        ]
+        
+//        let ha = UITabBar.appearance()
+        
+//        UITabBar.appearance().titleTextAttributes = navBarAttributes
+//
+        UITabBar.appearance().tintColor = UIColor.scribeColorDarkGray
+        UINavigationBar.appearance().tintColor = UIColor.scribeColorDarkGray
+        
+//        UINavigationBar.appearance().tintColor = UIColor.red
+//        UINavigationBar.appearance().barTintColor = UIColor.red
+//        ha.barTintColor
+        
+//        UINavigationBar.appearance().titleTextAttributes = barButtonAttributes
+//        
+//        let navBarFont = UIFont(name: "RobotoCondensed-Bold", size: 19) ?? UIFont.boldSystemFont(ofSize: 19.0)
+//        let navBarAttributes: [String: Any] = [
+//            NSForegroundColorAttributeName: UIColor.xoobaPrimary,
+//            NSFontAttributeName: navBarFont
+//        ]
+//        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
+        
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+//        UINavigationBar.appearance().shadowImage = UIImage()
         
     }
 

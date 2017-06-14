@@ -8,16 +8,13 @@
 
 import Foundation
 
-internal let sharedScribeClient = NetworkScribeClient()
 internal let sharedDataAccessor = DataAccessor()
 
 public class ScribeCommand<T>: AsyncCommand<T> {
     
-    internal let client: ScribeClient
     internal let accessor: DataAccessor
     
-    init(client: ScribeClient = sharedScribeClient, accessor: DataAccessor = sharedDataAccessor) {
-        self.client = client
+    init(accessor: DataAccessor = sharedDataAccessor) {
         self.accessor = accessor
     }
 }

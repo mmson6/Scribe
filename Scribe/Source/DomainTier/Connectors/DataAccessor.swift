@@ -8,10 +8,100 @@
 
 import Foundation
 
+import FirebaseDatabase
+
+public typealias DataAccessorCallback<T> = (AsyncResult<T>) -> Void
+
 
 public final class DataAccessor {
     
-    internal func loadContacts() {
-        
+    private let scribeClient = NetworkScribeClient(baseURL: AppConfiguration.baseURL)
+    var rootRef: DatabaseReference!
+    
+    internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorCallback<ContactInfoDM>) {
+        let client = self.scribeClient
+        client.fetchContactDetail(request) { result in
+            switch result {
+            case .success(let array):
+                callback(.success(array))
+            case .failure(let error):
+                callback(.failure(error))
+            }
+        }
+    }
+    
+    internal func loadContactGroups(callback: @escaping DataAccessorCallback<[ContactGroupDM]>) {
+        let client = self.scribeClient
+        client.fetchContactGroups { result in
+            switch result {
+            case .success(let array):
+                callback(.success(array))
+            case .failure(let error):
+                callback(.failure(error))
+            }
+        }
+    }
+    
+    internal func loadContacts(callback: @escaping DataAccessorCallback<[ContactDM]>) {
+        let client = self.scribeClient
+        client.fetchContacts { result in
+            switch result {
+            case .success(let array):
+                callback(.success(array))
+            case .failure(let error):
+                callback(.failure(error))
+            }
+        }    }
+    
+    internal func loadGroupContacts(_ request: FetchGroupContactsRequest, callback: @escaping DataAccessorCallback<[ContactDM]>) {
+        let client = self.scribeClient
+        client.fetchGroupContacts(request) { result in
+            switch result {
+            case .success(let array):
+                callback(.success(array))
+            case .failure(let error):
+                callback(.failure(error))
+            }
+        }
+        //
+        ////        var contactArray = [ContactVOM]()
+        //
+        //        let obj1 = ContactVOM(id: 1, name: "Mike")
+        //        let obj2 = ContactVOM(id: 1,name: "Daniel")
+        //        let obj3 = ContactVOM(id: 1,name: "Roy")
+        //        let obj4 = ContactVOM(id: 1,name: "Paul")
+        //        let obj5 = ContactVOM(id: 1,name: "Andrew")
+        //        contactArray.append(obj1)
+        //        contactArray.append(obj2)
+        //        contactArray.append(obj3)
+        //        contactArray.append(obj4)
+        //        contactArray.append(obj5)
+        //        
+        //        return contactArray
+    }
+    
+    
+    internal func populateDatabase() {
+//        var ref: reference
+//        var myRootRef = Database
+        //        var myRootRef = Firebase(url: "https://scribe-4ed24.firebaseio.com/Core/")
+        //
+        ////        myRootRef?.setValue("Do you have data? You'll love Firebase.")
+        //
+        ////        myRootRef.observe
+        //
+        //        myRootRef?.child(byAppendingPath: "Contacts/Global_Ver").observeSingleEvent(of: .value, with: { snapshot in
+        //            if let snapshot = snapshot {
+        //                print("\(snapshot)")
+        //            }
+        //
+        //            let value = snapshot?.value as? NSDictionary
+        //            print("\(value)")
+        //        })
+        ////        myRootRef?.observe(.value, with: { snapshot in
+        ////            if let snapshot = snapshot {
+        ////                print("\(snapshot.key) -> \(snapshot.value)")
+        ////            }
+        ////        })
     }
 }

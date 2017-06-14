@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-94" y="-48"/>
         </scene>
-        <!--Contacts-->
+        <!--ContactsCoordinator-->
         <scene sceneID="5JC-xb-PXg">
             <objects>
-                <viewControllerPlaceholder storyboardName="Contacts" id="dWQ-t3-ez9" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="ContactsCoordinator" id="dWQ-t3-ez9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Contacts" id="6ar-zz-TiR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9k-BT-PDX" userLabel="First Responder" sceneMemberID="firstResponder"/>

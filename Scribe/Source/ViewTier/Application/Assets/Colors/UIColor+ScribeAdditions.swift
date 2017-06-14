@@ -9,8 +9,18 @@
 import UIKit
 
 extension UIColor {
-    class var scribeNavigationColor: UIColor {
+    class var scribeColorNavigation: UIColor {
         return UIColor(red: 84.0/255.0, green: 193.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+    }
+    
+    class var scribeColorNavigationBlue: UIColor {
+//        return UIColor(red: 92.0/255.0, green: 160.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+//        return UIColor(red: 97.0/255.0, green: 187.0/255.0, blue: 223.0/255.0, alpha: 1.0)
+        return UIColor(red: 84.0/255.0, green: 193.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+    }
+    
+    class var scribeColorBackgroundBeige: UIColor {
+        return UIColor(red: 242.0/255.0, green: 239.0/255.0, blue: 231.0/255.0, alpha: 1.0)
     }
     
     class var scribeGrey1: UIColor {
@@ -82,4 +92,37 @@ extension UIColor {
         return UIColor(white: 0.0, alpha: 0.36)
     }
 
+    // MARK: Contact Group Color
+    
+    class var scribeColorGroup1: UIColor { // green
+        return UIColor(red: 153.0 / 255.0, green: 195.0 / 255.0, blue: 85.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorGroup2: UIColor { // bluish green
+        return UIColor(red: 133.0 / 255.0, green: 190.0 / 255.0, blue: 174.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorGroup3: UIColor { // blue
+        return UIColor(red: 64.0 / 255.0, green: 125.0 / 255.0, blue: 180.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorGroup4: UIColor { // yellow
+        return UIColor(red: 222.0 / 255.0, green: 182.0 / 255.0, blue: 70.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorGroup5: UIColor { // red
+        return UIColor(red: 211.0 / 255.0, green: 122.0 / 255.0, blue: 92.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorGroup6: UIColor { // purple
+        return UIColor(red: 155.0 / 255.0, green: 96.0 / 255.0, blue: 165.0 / 255.0, alpha: 1)
+    }
+    
+    // MARK: Gray Color
+    
+    class var scribeColorGray: UIColor {
+        return UIColor(white: 110.0 / 255.0, alpha: 1.0)
+    }
+    class var scribeColorDarkGray: UIColor {
+        return UIColor(white: 80.0 / 255.0, alpha: 1.0)
+    }
+    
+//    class var scribeColorGroup1: UIColor {
+//        return UIColor(red: 153.0 / 255.0, green: 195.0 / 255.0, blue: 85.0 / 255.0, alpha: 1)
+//    }
 }

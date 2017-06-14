@@ -8,42 +8,23 @@
 
 import UIKit
 
+import FontAwesomeKit
+
 class ContactCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    private func commonInit() {
+    public var lookupKey: Any?
+    
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
+        self.avatarImageView.image = contactImage?.image(with: CGSize(width: 100, height: 100))
+    }
+    
+    internal func commonInit() {
         nameLabel.textColor = UIColor.scribeGrey1
     }
-    
-    // MARK : UITableViewCell
-    
-//    override func prepareForReuse() {
-//        <#code#>
-//    }
-
-//    override var isSelected: Bool {
-//        
-//    }
-    
-    // MARK : Private Methods
-    
-    internal func populateCell(with model: ContactVO) {
-        self.commonInit()
-        self.nameLabel.text = model.name
-    }
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
-
 }

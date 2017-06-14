@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Firebase.xcscheme</key>
+		<key>FontAwesomeKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FontAwesomeKit.xcscheme</key>
+		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,17 +42,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00103D6C821BE85971C563025527BA5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>085FC7BD4E0FCBA72FE7DA1931DB1C01</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4982F3084B981C1E6DCF8B3A064BA2DB</key>
+		<key>09D0D4ADBE0CAFF4FB1FADA51A822C47</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83A8A75559B28BE012D7CC131702CAAC</key>
+		<key>64A3BB527D76280018165C61A1F003CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,11 +73,6 @@
 			<true/>
 		</dict>
 		<key>A8E1DFAA9703A5C068D915A4C272EA21</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BE4792A8380E17A2D6226AB88AF13191</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,41 +8,59 @@
 
 import Foundation
 
-public class FetchContactDetailCommand: ScribeCommand<ObjectDataSource<Any>> {
+public class FetchContactDetailCommand: ScribeCommand<[ContactInfoVOM]> {
+    
+    public var lookupKey: Any?
     
     public override func main() {
-        let contactVer: Int64 = 1
-        let fetchContactDetailRequest = FetchContactDetailRequest(contactVer: contactVer)
-        
-        let completionHandler = self.handleFetchContactDetailResult(_:)
-        self.client.performFetchContactDetail(fetchContactDetailRequest, completion: completionHandler)
-    }
-    
-    private func handleFetchContactDetailResult(_ result: AsyncResult<Any>) {
-        switch result {
-        case .failure(let error):
-            break;
-        case .success:
-            var models:JSONObject = [:]
-            models["spiritual birthday"] = "May 15, 2010"
-            models["birthday"] = "February 18, 1991"
-            models["address"] = "507 Yosemite Trail \nRoselle IL 60172 \nUnited States"
-            models["mobile"] = "(618) 977-2661"
-            models["Name"] = "Mike Son"
-            
-            
-            
-            
-            let arrayModels = Array(models)
-            let ods: ObjectDataSource<Any> = ArrayObjectDataSource(objects: arrayModels)
-            self.completedWith(value: ods)
-            break;
+        guard let id = lookupKey as? Int64 else { return }
+        let request = FetchContactDetailRequest(id: id, contactVer: 0)
+        self.accessor.loadContactDetails(request) { result in
+            switch result {
+            case .success(let dm):
+                let sortedModels =  self.populate(dm: dm)
+//                let models = dmArray.flatMap({ (contactDM) -> ContactInfoVOM? in
+//                    let model = ContactInfoVOM(model: contactDM)
+//                    return model
+//                })
+//                let ods = ArrayObjectDataSource<Any>(objects: models)
+                self.completedWith(value: sortedModels)
+            case .failure(let error):
+                print(error)
+                
+            }
         }
     }
     
-    private func saveContacts() {
+    private func populate(dm: ContactInfoDM) -> [ContactInfoVOM] {
+        var sortedModels: [ContactInfoVOM] = []
         
+        if let nameEng = dm.nameEng, let nameKor = dm.nameKor {
+            if let model = ContactInfoVOM(jsonObj: ["label": "name", "value": nameEng], nameKor) {
+                sortedModels.append(model)
+            }
+        }
+        if let address = dm.address {
+            if let model = ContactInfoVOM(jsonObj: ["label": "address", "value": address]) {
+                sortedModels.append(model)
+            }
+        }
+        if let phone = dm.phone {
+            if let model = ContactInfoVOM(jsonObj: ["label": "phone", "value": phone]) {
+                sortedModels.append(model)
+            }
+        }
+        if let group = dm.group {
+            if let model = ContactInfoVOM(jsonObj: ["label": "group", "value": group]) {
+                sortedModels.append(model)
+            }
+        }
+        if let district = dm.district {
+            if let model = ContactInfoVOM(jsonObj: ["label": "district", "value": district]) {
+                sortedModels.append(model)
+            }
+        }
+        
+        return sortedModels
     }
-    
-    
 }

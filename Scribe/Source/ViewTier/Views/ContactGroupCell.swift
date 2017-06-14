@@ -8,23 +8,31 @@
 
 import UIKit
 
+public enum ContactGroups {
+    case Fathers
+    case Mothers
+    case YoungAdults
+    case Teachers
+    case Choir
+}
+
 class ContactGroupCell: UICollectionViewCell {
+    
+    public var lookupKey: Any?
     
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var cellBackgroundImage: UIImageView!
+    @IBOutlet weak var countLabel: UILabel!
     
-    private func commonInit() {
-        self.layer.cornerRadius = 10
-        self.cellBackgroundImage.image = UIImage(named: "YA_Group_Image")
-//        groupNameLabel.textColor = UIColor.scribeGrey1
-//        let overlay = CALayer()
-//        overlay.backgroundColor = UIColor(red: 10.0, green: 10.0, blue: 10.0, alpha: 1.0).cgColor
-        //        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-//        cellBackgroundImage.layer.addSublayer(overlay)
-    }
-    
-    internal func populateCell(with model: contactGroupVO) {
-        self.commonInit()
-        self.groupNameLabel.text = model.name
+    public func commonInit() {
+        self.layer.cornerRadius = 3
+        self.layer.borderWidth = 0.0
+        self.layer.borderColor = UIColor.scribeGrey1.cgColor
+        
+        self.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.5
+        self.layer.masksToBounds = false
     }
 }
