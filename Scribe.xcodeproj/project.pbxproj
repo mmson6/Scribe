@@ -67,6 +67,7 @@
 		8AAE33181EF09DC100374794 /* License_OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8AAE32F91EF09DC100374794 /* License_OFL.txt */; };
 		8AAE33191EF09DC100374794 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AAE32FA1EF09DC100374794 /* Montserrat-Bold.ttf */; };
 		8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */; };
+		8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB6791C1EF1C2B700123A32 /* GradationView.swift */; };
 		9F204964B580F76BFE3C7596 /* Pods_ScribeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +159,7 @@
 		8AAE32FA1EF09DC100374794 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		8AAE331B1EF09EB200374794 /* FallingSkyLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FallingSkyLight.otf; sourceTree = "<group>"; };
+		8AB6791C1EF1C2B700123A32 /* GradationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradationView.swift; path = Source/ViewTier/Application/Assets/Colors/GradationView.swift; sourceTree = "<group>"; };
 		938469FEC9FD537E77C547D1 /* Pods-ScribeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DB000DE59DAAB7767194D2 /* Pods_Scribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				2719EA721EC582EA003D6D64 /* UIColor+ScribeAdditions.swift */,
+				8AB6791C1EF1C2B700123A32 /* GradationView.swift */,
 			);
 			name = Colors;
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				2719EA761EC5883E003D6D64 /* ContactVOM.swift in Sources */,
 				275201F21EB991D8002C469B /* SPRViewControllerFSM.swift in Sources */,
 				2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */,
+				8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */,
 				2752020B1EB99D59002C469B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

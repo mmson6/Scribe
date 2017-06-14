@@ -57,9 +57,7 @@
                                 <connections>
                                     <outlet property="avatarImageView" destination="YX4-k2-7Dp" id="3D6-Sh-KuV"/>
                                     <outlet property="nameLabel" destination="13K-06-WQx" id="JCl-Ce-LGy"/>
-                                    <segue destination="e3F-d1-Ga5" kind="show" id="TT1-gx-PLi">
-                                        <nil key="action"/>
-                                    </segue>
+                                    <segue destination="e3F-d1-Ga5" kind="show" id="uhU-lg-fkZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

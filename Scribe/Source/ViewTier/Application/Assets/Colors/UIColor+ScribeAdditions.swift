@@ -112,6 +112,21 @@ extension UIColor {
     class var scribeColorGroup6: UIColor { // purple
         return UIColor(red: 155.0 / 255.0, green: 96.0 / 255.0, blue: 165.0 / 255.0, alpha: 1)
     }
+    class var scribeColorGroup7: UIColor { // orange
+        return UIColor(red: 244.0 / 255.0, green: 143.0 / 255.0, blue: 50.0 / 255.0, alpha: 1)
+    }
+    
+    // MARK: Contact Detail VC Color
+    
+    class var scribeColorCDImageBackground: UIColor {
+        return UIColor(red: 208.0 / 255.0, green: 81.0 / 255.0, blue: 75.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorCDNavBarBackground: UIColor {
+        return UIColor(red: 214.0 / 255.0, green: 103.0 / 255.0, blue: 99.0 / 255.0, alpha: 1)
+    }
+    class var scribeColorCDCellBackground: UIColor {
+        return UIColor(red: 247.0/255.0, green: 244.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+    }
     
     // MARK: Gray Color
     

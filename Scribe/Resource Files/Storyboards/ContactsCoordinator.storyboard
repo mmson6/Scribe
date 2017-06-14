@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Contacts Coordinator-->
+        <!--Contacts-->
         <scene sceneID="Rc4-tB-rJZ">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="hYR-JO-qqt" customClass="ContactsCoordinator" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,17 +18,17 @@
                         <viewControllerLayoutGuide type="bottom" id="ieY-YF-sjN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cGG-1c-vl6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BA-BX-x9S">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <connections>
                                     <segue destination="JVt-fJ-Qnq" kind="embed" id="R5S-XX-rx5"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIM-eY-L7s">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <connections>
                                     <segue destination="DgF-Ni-q4O" kind="embed" id="Cfd-ve-pNS"/>
                                 </connections>
@@ -46,27 +46,26 @@
                             <constraint firstItem="8BA-BX-x9S" firstAttribute="leading" secondItem="cGG-1c-vl6" secondAttribute="leading" id="sMm-UJ-obA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nxZ-iQ-orP">
-                        <nil key="title"/>
-                        <barButtonItem key="backBarButtonItem" title=" " id="2Xj-e4-pJl"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="uoW-gj-sCQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dgO-10-ucz">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Contacts" id="Bh5-71-knY">
+                        <barButtonItem key="backBarButtonItem" title=" " id="PQJ-3C-a8D"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="wdx-AV-WSg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Eaf-zg-uUO">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Group"/>
                                 <connections>
-                                    <action selector="groupButtonTapped:" destination="hYR-JO-qqt" eventType="touchUpInside" id="YCL-kC-8Cg"/>
+                                    <action selector="groupButtonTapped:" destination="hYR-JO-qqt" eventType="touchUpInside" id="B1Z-Ws-vfh"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="contactGroupView" destination="8BA-BX-x9S" id="PJI-OH-xGq"/>
                         <outlet property="contactListView" destination="sIM-eY-L7s" id="M5O-DA-XCO"/>
-                        <outlet property="groupButton" destination="dgO-10-ucz" id="qqV-zg-XCB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMD-eW-sTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -80,7 +79,7 @@
                     <tabBarItem key="tabBarItem" title="Contacts" id="2Bp-m9-K1t"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ecC-gc-uHQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ecC-gc-uHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

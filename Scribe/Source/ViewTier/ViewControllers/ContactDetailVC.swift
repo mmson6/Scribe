@@ -29,6 +29,8 @@ public class ContactDetailVC: UITableViewController {
 //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
 //        UINavigationBar.appearance().shadowImage = UIImage()
         
+        self.tableView.backgroundColor = UIColor.scribeColorCDCellBackground
+        self.tableView.separatorStyle = .none
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 60
         self.loadDataSource()
@@ -36,14 +38,21 @@ public class ContactDetailVC: UITableViewController {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.tintColor = UIColor.scribeColorNavigationBlue
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorGroup7
+        self.navigationController?.navigationBar.tintColor = UIColor.scribeColorCDNavBarBackground
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
+//        UIView.animate(withDuration: 0.1, animations: {
+//            self.navigationController?.navigationBar.barTintColor = UIColor.white
+//            self.navigationController?.navigationBar.layoutIfNeeded()
+//        })
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.scribeColorDarkGray
+//        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
+//        self.navigationController?.navigationBar.shadowImage = nil
     }
     // MARK: Private Funcitons
     
@@ -92,9 +101,9 @@ public class ContactDetailVC: UITableViewController {
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.infoDataSource[indexPath.row]
         switch model.label {
-        case "address":
+        case "Address":
             self.presentAlertForAddress(with: model.value)
-        case "phone":
+        case "Phone":
             self.presentAlertForPhone(with: model.value)
         default:
             break
@@ -107,12 +116,12 @@ public class ContactDetailVC: UITableViewController {
         let model = self.infoDataSource[indexPath.row]
         
         switch model.label {
-        case "address":
+        case "Address":
             return 110
-        case "name":
+        case "Name":
             return 220
         default:
-            return 60
+            return 70
         }
     }
     
@@ -199,10 +208,21 @@ public class ContactDetailVC: UITableViewController {
         cell.subTitleLabel.text = model.label
         cell.infoLabel.text = model.value
         
-        if model.label == "address" {
+        switch model.label {
+        case "Address":
+            cell.isUserInteractionEnabled = true
+            
             let address = model.value
             cell.initializeMapKit(with: address)
+        case "Phone":
+            cell.isUserInteractionEnabled = true
+        default:
+            break
         }
+//        if model.label == "address" {
+//            let address = model.value
+//            cell.initializeMapKit(with: address)
+//        }
     }
     
     private func populate(_ cell: ContactImageCell, with model: ContactInfoVOM) {

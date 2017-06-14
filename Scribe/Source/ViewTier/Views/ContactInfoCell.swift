@@ -27,10 +27,13 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
     
     private func commonInit() {
         self.mapCoverView.isUserInteractionEnabled = false
+        self.subTitleLabel.textColor = UIColor.scribeColorCDNavBarBackground
+        self.backgroundColor = UIColor.scribeColorCDCellBackground
     }
     
     override func prepareForReuse() {
         self.mapView.isHidden = true
+        self.isUserInteractionEnabled = false
     }
     
     // MARK: Custom Functions
@@ -66,5 +69,7 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
         
         self.mapView.isHidden = false
         self.mapView.layer.cornerRadius = 5
+        self.mapView.layer.borderWidth = 2
+        self.mapView.layer.borderColor = UIColor.scribeColorDarkGray.cgColor
     }
 }

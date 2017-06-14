@@ -36,27 +36,27 @@ public class FetchContactDetailCommand: ScribeCommand<[ContactInfoVOM]> {
         var sortedModels: [ContactInfoVOM] = []
         
         if let nameEng = dm.nameEng, let nameKor = dm.nameKor {
-            if let model = ContactInfoVOM(jsonObj: ["label": "name", "value": nameEng], nameKor) {
+            if let model = ContactInfoVOM(jsonObj: ["label": "Name", "value": nameEng], nameKor) {
                 sortedModels.append(model)
             }
         }
         if let address = dm.address {
-            if let model = ContactInfoVOM(jsonObj: ["label": "address", "value": address]) {
+            if let model = ContactInfoVOM(jsonObj: ["label": "Address", "value": address]) {
                 sortedModels.append(model)
             }
         }
         if let phone = dm.phone {
-            if let model = ContactInfoVOM(jsonObj: ["label": "phone", "value": phone]) {
+            if let model = ContactInfoVOM(jsonObj: ["label": "Phone", "value": phone]) {
                 sortedModels.append(model)
             }
         }
         if let group = dm.group {
-            if let model = ContactInfoVOM(jsonObj: ["label": "group", "value": group]) {
+            if let model = ContactInfoVOM(jsonObj: ["label": "Group", "value": group]) {
                 sortedModels.append(model)
             }
         }
         if let district = dm.district {
-            if let model = ContactInfoVOM(jsonObj: ["label": "district", "value": district]) {
+            if let model = ContactInfoVOM(jsonObj: ["label": "District", "value": district]) {
                 sortedModels.append(model)
             }
         }

@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            NSFontAttributeName: barButtonFont
 //        ]
         
-        let navBarFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
+        let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
         let navBarAttributes: [String: Any] = [
 //            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
             NSForegroundColorAttributeName: UIColor.scribeColorDarkGray,
