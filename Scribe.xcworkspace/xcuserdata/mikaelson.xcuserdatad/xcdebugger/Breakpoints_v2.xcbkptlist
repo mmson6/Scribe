@@ -9,46 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/ViewTier/ViewControllers/ContactListVC.swift"
-            timestampString = "519165224.18154"
+            filePath = "Scribe/Source/ViewTier/Views/ContactInfoCell.swift"
+            timestampString = "519171130.05344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "loadObjectDataSource(_:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "initializeMapKit(with:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Scribe.ContactListVC.loadObjectDataSource ((Scribe.AsyncResult&lt;Scribe.ObjectDataSource&lt;Any&gt;&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Scribe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/ViewTier/ViewControllers/ContactListVC.swift"
-                  timestampString = "519165225.266604"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "66">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Scribe.ContactListVC.(loadObjectDataSource ((Scribe.AsyncResult&lt;Scribe.ObjectDataSource&lt;Any&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "Scribe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/ViewTier/ViewControllers/ContactListVC.swift"
-                  timestampString = "519165225.268258"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

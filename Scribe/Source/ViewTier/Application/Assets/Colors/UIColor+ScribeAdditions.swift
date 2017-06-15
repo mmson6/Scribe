@@ -127,6 +127,9 @@ extension UIColor {
     class var scribeColorCDCellBackground: UIColor {
         return UIColor(red: 247.0/255.0, green: 244.0/255.0, blue: 240.0/255.0, alpha: 1.0)
     }
+    class var scribeColorCDMapBorder: UIColor {
+        return UIColor(red: 104.0/255.0, green: 182.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+    }
     
     // MARK: Gray Color
     

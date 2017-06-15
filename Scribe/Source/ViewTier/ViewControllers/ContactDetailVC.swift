@@ -116,12 +116,12 @@ public class ContactDetailVC: UITableViewController {
         let model = self.infoDataSource[indexPath.row]
         
         switch model.label {
-        case "Address":
-            return 110
         case "Name":
-            return 220
+            return 270
+        case "Address":
+            return 140
         default:
-            return 70
+            return 85
         }
     }
     
@@ -207,6 +207,7 @@ public class ContactDetailVC: UITableViewController {
         cell.mapView.isHidden = true
         cell.subTitleLabel.text = model.label
         cell.infoLabel.text = model.value
+        cell.setShadowEffect()
         
         switch model.label {
         case "Address":
@@ -227,6 +228,11 @@ public class ContactDetailVC: UITableViewController {
     
     private func populate(_ cell: ContactImageCell, with model: ContactInfoVOM) {
         cell.nameLabel.text = model.value
+        
+        if model.extra != "" {
+            cell.smallNameLabel.text = model.extra
+            cell.smallNameLabel.isHidden = false
+        }
     }
 
     

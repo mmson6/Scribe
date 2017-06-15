@@ -58,6 +58,9 @@
 		8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */; };
 		8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */; };
 		8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */; };
+		8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BACCC1EF1ED83006721F8 /* Login.storyboard */; };
+		8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */; };
+		8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */; };
 		8AAE32CD1EEFB1D600374794 /* FetchContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */; };
 		8AAE32CE1EEFB1D600374794 /* FetchContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */; };
 		8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */; };
@@ -149,6 +152,9 @@
 		8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoDM.swift; path = Source/DomainTier/DomainModels/ContactInfoDM.swift; sourceTree = "<group>"; };
 		8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDM.swift; path = Source/DomainTier/DomainModels/ContactDM.swift; sourceTree = "<group>"; };
 		8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupDM.swift; path = Source/DomainTier/DomainModels/ContactGroupDM.swift; sourceTree = "<group>"; };
+		8A8BACCC1EF1ED83006721F8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = "Resource Files/Storyboards/Login.storyboard"; sourceTree = "<group>"; };
+		8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Source/ViewTier/ViewControllers/LoginVC.swift; sourceTree = "<group>"; };
+		8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTextField.swift; path = Source/ViewTier/Views/LoginTextField.swift; sourceTree = "<group>"; };
 		8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchContactDetailRequest.swift; sourceTree = "<group>"; };
 		8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchContactsRequest.swift; sourceTree = "<group>"; };
 		8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchGroupContactsRequest.swift; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 				27D191BE1EC03830002C7346 /* ContactInfoCell.swift */,
 				2719EA6E1EC3C6E1003D6D64 /* ContactCell.swift */,
 				2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */,
+				8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -397,6 +404,7 @@
 				275201F71EB99748002C469B /* ContactListVC.swift */,
 				2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */,
 				274A83541ED39EBF002DA226 /* GroupContactListVC.swift */,
+				8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */,
 				2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */,
 				27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */,
 			);
@@ -412,6 +420,7 @@
 				2719EA771EC5F19A003D6D64 /* ContactList.storyboard */,
 				2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */,
 				274A83521ED39E17002DA226 /* GroupContacts.storyboard */,
+				8A8BACCC1EF1ED83006721F8 /* Login.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -627,7 +636,7 @@
 				TargetAttributes = {
 					275201A51EB990C7002C469B = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 37ULEAE2B7;
+						DevelopmentTeam = 75P4343CY2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -674,6 +683,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */,
 				275201B41EB990C7002C469B /* LaunchScreen.storyboard in Resources */,
 				8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */,
 				8AAE32FC1EF09DC100374794 /* FallingSky.otf in Resources */,
@@ -853,7 +863,9 @@
 			files = (
 				2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */,
 				274A83511ED39C4E002DA226 /* FetchContactsCommand.swift in Sources */,
+				8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */,
 				8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */,
+				8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */,
 				2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */,
 				270F1B021EC0258F00232D2F /* ContactImageCell.swift in Sources */,
 				275201E91EB991D8002C469B /* AsyncCommand.swift in Sources */,
@@ -1046,7 +1058,7 @@
 			baseConfigurationReference = 337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 37ULEAE2B7;
+				DEVELOPMENT_TEAM = 75P4343CY2;
 				INFOPLIST_FILE = Scribe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1061,7 +1073,7 @@
 			baseConfigurationReference = 258597442F4AF3C36A5F75C5 /* Pods-Scribe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 37ULEAE2B7;
+				DEVELOPMENT_TEAM = 75P4343CY2;
 				INFOPLIST_FILE = Scribe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

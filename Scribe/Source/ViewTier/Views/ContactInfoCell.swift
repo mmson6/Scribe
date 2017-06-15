@@ -15,8 +15,8 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var mapCoverView: UIView!
+    @IBOutlet weak var cellLayoutView: UIView!
     
     // MARK: UITableViewCell
     
@@ -29,6 +29,14 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
         self.mapCoverView.isUserInteractionEnabled = false
         self.subTitleLabel.textColor = UIColor.scribeColorCDNavBarBackground
         self.backgroundColor = UIColor.scribeColorCDCellBackground
+    }
+    
+    public func setShadowEffect() {
+        self.cellLayoutView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        self.cellLayoutView.layer.shadowColor = UIColor.black.cgColor
+        self.cellLayoutView.layer.shadowRadius = 3
+        self.cellLayoutView.layer.shadowOpacity = 0.25
+        self.cellLayoutView.layer.masksToBounds = false
     }
     
     override func prepareForReuse() {
@@ -69,7 +77,7 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
         
         self.mapView.isHidden = false
         self.mapView.layer.cornerRadius = 5
-        self.mapView.layer.borderWidth = 2
+        self.mapView.layer.borderWidth = 1
         self.mapView.layer.borderColor = UIColor.scribeColorDarkGray.cgColor
     }
 }

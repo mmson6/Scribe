@@ -15,10 +15,15 @@ public class ContactImageCell: UITableViewCell {
     @IBOutlet weak var contactAvatarView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userBackgroundView: UIView!
+    @IBOutlet weak var smallNameLabel: UILabel!
     
     override public func awakeFromNib() {
         super.awakeFromNib()
         self.commonInit()
+    }
+    
+    public override func prepareForReuse() {
+        self.smallNameLabel.isHidden = true
     }
     
     private func commonInit() {
@@ -26,6 +31,7 @@ public class ContactImageCell: UITableViewCell {
         self.backgroundColor = UIColor.scribeColorCDCellBackground
         
 //        self.nameLabel.textColor = UIColor.white
+        self.contactAvatarView.backgroundColor = UIColor.black
         
 //        self.userBackgroundView.backgroundColor = UIColor.scribeColorImageBackground
         self.contactAvatarView.backgroundColor = UIColor.white
