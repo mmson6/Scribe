@@ -59,11 +59,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
         let navBarAttributes: [String: Any] = [
 //            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
-            NSForegroundColorAttributeName: UIColor.scribeColorDarkGray,
+            NSForegroundColorAttributeName: UIColor.scribeDarkGray,
             NSFontAttributeName: navBarFont
         ]
-        
+        UINavigationBar.appearance().tintColor = UIColor.scribePintInfoTitleColor
         UINavigationBar.appearance().titleTextAttributes = navBarAttributes
+        UINavigationBar.appearance().barTintColor = UIColor.scribePintNavBarColor
         
 //        let tabBarFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
 //        let tabBarAttributes: [String: Any] = [
@@ -75,8 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        UITabBar.appearance().titleTextAttributes = navBarAttributes
 //
-        UITabBar.appearance().tintColor = UIColor.scribeColorDarkGray
-        UINavigationBar.appearance().tintColor = UIColor.scribeColorDarkGray
+        UITabBar.appearance().tintColor = UIColor.scribePintTabbarColor
+        UITabBar.appearance().unselectedItemTintColor = UIColor.scribePintInfoTitleColor
+        UITabBar.appearance().barTintColor = UIColor.white
+//        ha.barTintColor =
+        
         
 //        UINavigationBar.appearance().tintColor = UIColor.red
 //        UINavigationBar.appearance().barTintColor = UIColor.red

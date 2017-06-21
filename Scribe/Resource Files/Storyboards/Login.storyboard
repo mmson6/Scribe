@@ -29,11 +29,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIQ-kP-zJJ" customClass="GradientView" customModule="Scribe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" red="0.94117647058823528" green="0.60784313725490191" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="value" red="0.94117647059999998" green="0.60784313729999995" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                                         <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,21 +49,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eb5-GJ-arg">
                                 <rect key="frame" x="22.5" y="443" width="330" height="175"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDB-cU-C71" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="nDB-cU-C71" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="47"/>
                                         <color key="backgroundColor" red="0.79647842639593902" green="0.79647842639593902" blue="0.79647842639593902" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kJj-8j-Bql" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="kJj-8j-Bql" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="64" width="330" height="47"/>
                                         <color key="backgroundColor" red="0.79647842639999999" green="0.79647842639999999" blue="0.79647842639999999" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90f-Rt-2ex">
                                         <rect key="frame" x="0.0" y="128" width="330" height="47"/>
@@ -76,7 +76,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="x1S-gf-IB7" kind="presentation" modalTransitionStyle="crossDissolve" id="ST7-sc-UYw"/>
+                                            <action selector="loginButtonTapped:" destination="7Ie-VL-0Xg" eventType="touchUpInside" id="JT8-eg-ntJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -85,13 +85,18 @@
                                     <constraint firstItem="kJj-8j-Bql" firstAttribute="height" secondItem="90f-Rt-2ex" secondAttribute="height" id="9mS-oW-mrT"/>
                                     <constraint firstItem="nDB-cU-C71" firstAttribute="width" secondItem="kJj-8j-Bql" secondAttribute="width" id="GJo-GT-xV3"/>
                                     <constraint firstItem="nDB-cU-C71" firstAttribute="height" secondItem="kJj-8j-Bql" secondAttribute="height" id="RJ3-bL-agL"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" priority="750" constant="280" id="jwn-aT-z0T"/>
                                     <constraint firstItem="nDB-cU-C71" firstAttribute="width" secondItem="90f-Rt-2ex" secondAttribute="width" id="kCL-pr-Dj6"/>
                                     <constraint firstAttribute="trailing" secondItem="90f-Rt-2ex" secondAttribute="trailing" id="mim-Md-ztC"/>
                                     <constraint firstItem="90f-Rt-2ex" firstAttribute="leading" secondItem="Eb5-GJ-arg" secondAttribute="leading" id="xaS-3x-Bat"/>
                                     <constraint firstItem="nDB-cU-C71" firstAttribute="height" secondItem="90f-Rt-2ex" secondAttribute="height" id="yU6-17-Ktr"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwX-YZ-bmp">
+                                <rect key="frame" x="240" y="238" width="88" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.56534538154659564" green="0.6636597870986628" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -109,16 +114,18 @@
                         <outlet property="emailTextField" destination="nDB-cU-C71" id="b6c-qE-ODe"/>
                         <outlet property="loginButton" destination="90f-Rt-2ex" id="bi2-hx-HOw"/>
                         <outlet property="passwordTextField" destination="kJj-8j-Bql" id="KbM-AC-Gzy"/>
+                        <segue destination="x1S-gf-IB7" kind="showDetail" id="y16-aV-X1e"/>
+                        <segue destination="x1S-gf-IB7" kind="presentation" identifier="loginToLanding" modalTransitionStyle="crossDissolve" id="6HA-Sw-oU1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7k-Yw-Paq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="837.60000000000002" y="-80.50974512743629"/>
         </scene>
-        <!--Main-->
+        <!--Loading-->
         <scene sceneID="LKl-vI-bgz">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="x1S-gf-IB7" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Loading" id="x1S-gf-IB7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSU-Mz-w3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1524" y="-92"/>
@@ -127,4 +134,7 @@
     <resources>
         <image name="login_bg" width="385" height="538"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="6HA-Sw-oU1"/>
+    </inferredMetricsTieBreakers>
 </document>

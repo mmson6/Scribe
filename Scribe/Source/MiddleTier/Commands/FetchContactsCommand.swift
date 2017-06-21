@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class FetchContactsCommand: ScribeCommand<ObjectDataSource<Any>> {
+public class FetchContactsCommand: ScribeCommand<[ContactVOM]> {
 
     public override func main() {
         self.accessor.loadContacts { result in
@@ -18,8 +18,9 @@ public class FetchContactsCommand: ScribeCommand<ObjectDataSource<Any>> {
                     let model = ContactVOM(model: contactDM)
                     return model
                 })
-                let ods = ArrayObjectDataSource<Any>(objects: models)
-                self.completedWith(value: ods)
+                self.completedWith(value: models)
+//                let ods = ArrayObjectDataSource<Any>(objects: models)
+//                self.completedWith(value: ods)
             case .failure(let error):
                 print(error)
                 

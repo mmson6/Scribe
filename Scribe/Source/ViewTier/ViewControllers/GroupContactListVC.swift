@@ -10,22 +10,35 @@ import UIKit
 
 class GroupContactListVC: SPRTableViewController {
     
+    public var contactDataSource: [ContactVOM]?
     public var lookupKey: Any?
     
     // MARK : SPRTableViewController
     
+    override func viewDidLoad() {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
+    
     override public func loadObjectDataSource(_ callback: @escaping (AsyncResult<ObjectDataSource<Any>>) -> Void) {
-        let cmd = FetchGroupContactsCommand()
-        cmd.lookupKey = self.lookupKey
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let array):
-                callback(.success(array))
-            case .failure(let error):
-                callback(.failure(error))
+        
+        if let contacts = self.contactDataSource {
+            if contacts.count > 0 {
+                let ods = ArrayObjectDataSource<Any>(objects: contacts)
+                callback(.success(ods))
             }
+        } else {
+            let cmd = FetchGroupContactsCommand()
+            cmd.lookupKey = self.lookupKey
+            cmd.onCompletion { result in
+                switch result {
+                case .success(let array):
+                    callback(.success(array))
+                case .failure(let error):
+                    callback(.failure(error))
+                }
+            }
+            cmd.execute()
         }
-        cmd.execute()
     }
     
     override public func renderCell(inTableView tableView: UITableView, withModel model: Any, at indexPath: IndexPath) -> UITableViewCell {
@@ -42,6 +55,13 @@ class GroupContactListVC: SPRTableViewController {
         
         return cell
     }
+    
+    // MARK: Lifecycle Functions
+    
+    @IBAction func unwindToGroupContactListView(segue: UIStoryboardSegue) {
+        
+    }
+    
     
     // MARK: Helper Functions
     
@@ -61,6 +81,7 @@ class GroupContactListVC: SPRTableViewController {
                 return
         }
         
+        vc.parentVC = "GroupContactListVC"
         vc.lookupKey = cell.lookupKey
     }
     

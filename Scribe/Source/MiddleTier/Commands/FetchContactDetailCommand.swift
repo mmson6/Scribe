@@ -36,31 +36,30 @@ public class FetchContactDetailCommand: ScribeCommand<[ContactInfoVOM]> {
         var sortedModels: [ContactInfoVOM] = []
         
         if let nameEng = dm.nameEng, let nameKor = dm.nameKor {
-            if let model = ContactInfoVOM(jsonObj: ["label": "Name", "value": nameEng], nameKor) {
+            if let model = ContactInfoVOM(jsonObj: ["label": "NAME", "value": nameEng], nameKor) {
                 sortedModels.append(model)
             }
         }
-        if let address = dm.address {
-            if let model = ContactInfoVOM(jsonObj: ["label": "Address", "value": address]) {
+        if let phone = dm.phone, phone != "" {
+            if let model = ContactInfoVOM(jsonObj: ["label": "PHONE", "value": phone]) {
                 sortedModels.append(model)
             }
         }
-        if let phone = dm.phone {
-            if let model = ContactInfoVOM(jsonObj: ["label": "Phone", "value": phone]) {
+        if let address = dm.address, address != "" {
+            if let model = ContactInfoVOM(jsonObj: ["label": "ADDRESS", "value": address]) {
                 sortedModels.append(model)
             }
         }
-        if let group = dm.group {
-            if let model = ContactInfoVOM(jsonObj: ["label": "Group", "value": group]) {
+        if let district = dm.district, district != "" {
+            if let model = ContactInfoVOM(jsonObj: ["label": "DISTRICT", "value": district]) {
                 sortedModels.append(model)
             }
         }
-        if let district = dm.district {
-            if let model = ContactInfoVOM(jsonObj: ["label": "District", "value": district]) {
+        if let group = dm.group, group != "" {
+            if let model = ContactInfoVOM(jsonObj: ["label": "GROUP", "value": group]) {
                 sortedModels.append(model)
             }
         }
-        
         return sortedModels
     }
 }

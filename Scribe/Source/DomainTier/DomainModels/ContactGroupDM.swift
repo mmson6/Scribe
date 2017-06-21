@@ -32,6 +32,10 @@ public struct ContactGroupDM: JSONTransformable {
             self.type = ContactGroups.Teachers
         case "Choir":
             self.type = ContactGroups.Choir
+        case "Church School":
+            self.type = ContactGroups.ChurchSchool
+        case "Translators":
+            self.type = ContactGroups.Translators
         default:
             self.type = ContactGroups.YoungAdults
         }

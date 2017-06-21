@@ -59,12 +59,16 @@ internal class NetworkScribeClient: ScribeClient {
         let obj3 = ContactGroupDM(from: ["groupType": "Fathers Group"])
         let obj4 = ContactGroupDM(from: ["groupType": "Teachers"])
         let obj5 = ContactGroupDM(from: ["groupType": "Choir"])
+        let obj6 = ContactGroupDM(from: ["groupType": "Church School"])
+        let obj7 = ContactGroupDM(from: ["groupType": "Translators"])
         
         contactGroupArray.append(obj1)
         contactGroupArray.append(obj2)
         contactGroupArray.append(obj3)
         contactGroupArray.append(obj4)
         contactGroupArray.append(obj5)
+        contactGroupArray.append(obj6)
+        contactGroupArray.append(obj7)
         
         callback(.success(contactGroupArray))
     }
@@ -135,6 +139,10 @@ internal class NetworkScribeClient: ScribeClient {
             return "Teachers"
         case .YoungAdults:
             return "Young Adult"
+        case .ChurchSchool:
+            return "Church School"
+        case .Translators:
+            return "Translators"
         }
     }
  }

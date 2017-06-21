@@ -15,6 +15,7 @@ import Firebase
 public class ContactDetailVC: UITableViewController {
     
     public var lookupKey: Any?
+    public var parentVC: String?
     private var infoDataSource: [ContactInfoVOM] = []
     
     public override func viewDidLoad() {
@@ -50,7 +51,7 @@ public class ContactDetailVC: UITableViewController {
 //            self.navigationController?.navigationBar.layoutIfNeeded()
 //        })
         
-        self.navigationController?.navigationBar.tintColor = UIColor.scribeColorDarkGray
+        self.navigationController?.navigationBar.tintColor = UIColor.scribeDarkGray
 //        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
 //        self.navigationController?.navigationBar.shadowImage = nil
     }
@@ -101,9 +102,9 @@ public class ContactDetailVC: UITableViewController {
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.infoDataSource[indexPath.row]
         switch model.label {
-        case "Address":
+        case "ADDRESS":
             self.presentAlertForAddress(with: model.value)
-        case "Phone":
+        case "PHONE":
             self.presentAlertForPhone(with: model.value)
         default:
             break
@@ -116,12 +117,12 @@ public class ContactDetailVC: UITableViewController {
         let model = self.infoDataSource[indexPath.row]
         
         switch model.label {
-        case "Name":
-            return 270
-        case "Address":
-            return 140
+        case "NAME":
+            return 300
+        case "ADDRESS":
+            return 110
         default:
-            return 85
+            return 82
         }
     }
     
@@ -205,21 +206,28 @@ public class ContactDetailVC: UITableViewController {
 
     private func populate(_ cell: ContactInfoCell, with model: ContactInfoVOM) {
         cell.mapView.isHidden = true
-        cell.subTitleLabel.text = model.label
+        cell.titleLabel.text = model.label
         cell.infoLabel.text = model.value
-        cell.setShadowEffect()
+//        cell.setShadowEffect()
         
         switch model.label {
-        case "Address":
+        case "ADDRESS":
             cell.isUserInteractionEnabled = true
+            cell.iconLabel.text = "\u{f2b9}"
             
             let address = model.value
             cell.initializeMapKit(with: address)
-        case "Phone":
+        case "PHONE":
             cell.isUserInteractionEnabled = true
+            cell.iconLabel.text = "\u{f095}"
+        case "DISTRICT":
+            cell.iconLabel.text = "\u{f0f7}"
+        case "GROUP":
+            cell.iconLabel.text = "\u{f0c0}"
         default:
             break
         }
+        
 //        if model.label == "address" {
 //            let address = model.value
 //            cell.initializeMapKit(with: address)
@@ -244,8 +252,32 @@ public class ContactDetailVC: UITableViewController {
     }
     
     private func presentAlertForPhone(with phone: Any?) {
-        if let alert = createPhoneOptionsAlert(with: phone) {
-            present(alert, animated: true, completion: nil)
+        if let number = phone as? String {
+            let url = URL(string: "telprompt://\(number)")!
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
+//        if let alert = createPhoneOptionsAlert(with: phone) {
+//            present(alert, animated: true, completion: nil)
+//        }
+    }
+    
+    // MARK: IBAction Functions
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        guard let parentVC = self.parentVC else { return }
+        
+        switch parentVC {
+        case "ContactListVC":
+            performSegue(withIdentifier: "unwindToContactListView", sender: nil)
+        case "GroupContactListVC":
+            performSegue(withIdentifier: "unwindToGroupContactListView", sender: nil)
+        default:
+            return
         }
     }
     

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FallingSkyLight.otf">
+        <array key="FallingSky-Light.otf">
             <string>FallingSkyLight</string>
         </array>
     </customFonts>
@@ -18,46 +18,46 @@
         <scene sceneID="Mf4-He-IEq">
             <objects>
                 <tableViewController id="7yN-3w-Eao" customClass="ContactListVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="gkR-Wd-TuE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" id="gkR-Wd-TuE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.97254901960784312" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" id="sTU-OP-r0G" customClass="ContactCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="55"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sTU-OP-r0G" id="EZj-SN-ZoP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YX4-k2-7Dp">
-                                            <rect key="frame" x="14" y="7" width="40" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="6cT-zO-j5n"/>
-                                                <constraint firstAttribute="width" constant="40" id="CtA-JK-01m"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13K-06-WQx">
-                                            <rect key="frame" x="70" y="16.5" width="200" height="21.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="Ton-3y-6my"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="17"/>
-                                            <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xwH-pp-R0j">
+                                            <rect key="frame" x="14" y="7" width="162" height="50"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YX4-k2-7Dp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="6cT-zO-j5n"/>
+                                                        <constraint firstAttribute="width" constant="50" id="CtA-JK-01m"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joshua Allison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13K-06-WQx">
+                                                    <rect key="frame" x="66" y="15" width="96" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="16"/>
+                                                    <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="13K-06-WQx" firstAttribute="leading" secondItem="YX4-k2-7Dp" secondAttribute="trailing" constant="16" id="4aS-Yb-Pjp"/>
-                                        <constraint firstItem="13K-06-WQx" firstAttribute="centerY" secondItem="YX4-k2-7Dp" secondAttribute="centerY" id="4tf-wz-ykm"/>
-                                        <constraint firstItem="YX4-k2-7Dp" firstAttribute="centerY" secondItem="EZj-SN-ZoP" secondAttribute="centerY" id="FUU-Hq-gc8"/>
-                                        <constraint firstItem="YX4-k2-7Dp" firstAttribute="leading" secondItem="EZj-SN-ZoP" secondAttribute="leading" constant="14" id="pno-FE-OTk"/>
+                                        <constraint firstItem="xwH-pp-R0j" firstAttribute="leading" secondItem="EZj-SN-ZoP" secondAttribute="leading" constant="14" id="4qb-zD-R2c"/>
+                                        <constraint firstItem="xwH-pp-R0j" firstAttribute="centerY" secondItem="EZj-SN-ZoP" secondAttribute="centerY" id="7p5-01-QkX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatarImageView" destination="YX4-k2-7Dp" id="3D6-Sh-KuV"/>
                                     <outlet property="nameLabel" destination="13K-06-WQx" id="JCl-Ce-LGy"/>
-                                    <segue destination="e3F-d1-Ga5" kind="show" id="uhU-lg-fkZ"/>
+                                    <segue destination="e3F-d1-Ga5" kind="presentation" modalTransitionStyle="coverVertical" id="GHb-sw-iTs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

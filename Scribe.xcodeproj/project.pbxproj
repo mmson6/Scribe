@@ -16,7 +16,7 @@
 		2719EA731EC582EA003D6D64 /* UIColor+ScribeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA721EC582EA003D6D64 /* UIColor+ScribeAdditions.swift */; };
 		2719EA761EC5883E003D6D64 /* ContactVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA751EC5883E003D6D64 /* ContactVOM.swift */; };
 		2719EA781EC5F19A003D6D64 /* ContactList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2719EA771EC5F19A003D6D64 /* ContactList.storyboard */; };
-		2719EA7A1EC5F58D003D6D64 /* ContactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */; };
+		2719EA7A1EC5F58D003D6D64 /* ContactsCoordinatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA791EC5F58D003D6D64 /* ContactsCoordinatorVC.swift */; };
 		2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */; };
 		2719EA7F1EC66A2C003D6D64 /* ContactGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA7E1EC66A2C003D6D64 /* ContactGroupVC.swift */; };
 		2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */; };
@@ -41,26 +41,37 @@
 		275201F11EB991D8002C469B /* SPRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201E61EB991D8002C469B /* SPRViewController.swift */; };
 		275201F21EB991D8002C469B /* SPRViewControllerFSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201E81EB991D8002C469B /* SPRViewControllerFSM.swift */; };
 		275201F81EB99748002C469B /* ContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201F71EB99748002C469B /* ContactListVC.swift */; };
-		275201FB1EB997C0002C469B /* ContactsCoordinator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275201FA1EB997C0002C469B /* ContactsCoordinator.storyboard */; };
+		275201FB1EB997C0002C469B /* ContactsCoordinatorVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275201FA1EB997C0002C469B /* ContactsCoordinatorVC.storyboard */; };
 		275201FF1EB99879002C469B /* FetchContactGroupCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275201FE1EB99879002C469B /* FetchContactGroupCommand.swift */; };
 		275202011EB9997C002C469B /* ScribeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275202001EB9997C002C469B /* ScribeCommand.swift */; };
 		275202051EB999F1002C469B /* ScribeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275202041EB999F1002C469B /* ScribeClient.swift */; };
 		2752020B1EB99D59002C469B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752020A1EB99D59002C469B /* Constants.swift */; };
 		276078271ED6495200389D42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276078261ED6495200389D42 /* GoogleService-Info.plist */; };
 		27D191BF1EC03830002C7346 /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D191BE1EC03830002C7346 /* ContactInfoCell.swift */; };
-		27EB3EC81EC6E39900BB292B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27EB3EC71EC6E39900BB292B /* Assets.xcassets */; };
 		27EB3ECA1EC77D1F00BB292B /* DataAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */; };
 		27EB3ECC1EC7807800BB292B /* ContactGroupVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */; };
 		27EB3ECE1EC7936300BB292B /* ContactInfoVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */; };
 		27EB3ED01EC9EB9E00BB292B /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */; };
 		27EB3ED21ECBB45600BB292B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EB3ED11ECBB45600BB292B /* MapKit.framework */; };
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
+		8A2B6ECA1EF393B200425B61 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B6EC91EF393B200425B61 /* MainVC.swift */; };
+		8A2B6ECC1EF394E600425B61 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */; };
 		8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */; };
 		8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */; };
 		8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */; };
+		8A60163C1EFA685A00283491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163B1EFA685A00283491 /* Assets.xcassets */; };
+		8A6016401EFA6ECB00283491 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */; };
+		8A6016411EFA6FF300283491 /* FallingSky-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016371EF8950E00283491 /* FallingSky-Light.otf */; };
+		8A6016421EFA6FF600283491 /* FallingSky-Bulk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163A1EF8951B00283491 /* FallingSky-Bulk.otf */; };
+		8A6016431EFA6FF800283491 /* FallingSky-Bold+.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016381EF8951200283491 /* FallingSky-Bold+.otf */; };
+		8A6016441EFA6FFA00283491 /* FallingSky-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016391EF8951600283491 /* FallingSky-Bold.otf */; };
 		8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BACCC1EF1ED83006721F8 /* Login.storyboard */; };
 		8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */; };
 		8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */; };
+		8A8BADA91EF338E9006721F8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BADA81EF338E9006721F8 /* Settings.storyboard */; };
+		8A8BADAD1EF33A45006721F8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BADAC1EF33A45006721F8 /* SettingsVC.swift */; };
+		8A8BADAF1EF39090006721F8 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BADAE1EF39090006721F8 /* Loading.storyboard */; };
+		8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BADB01EF390B7006721F8 /* LoadingVC.swift */; };
 		8AAE32CD1EEFB1D600374794 /* FetchContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */; };
 		8AAE32CE1EEFB1D600374794 /* FetchContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */; };
 		8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */; };
@@ -102,7 +113,7 @@
 		2719EA721EC582EA003D6D64 /* UIColor+ScribeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+ScribeAdditions.swift"; path = "Source/ViewTier/Application/Assets/Colors/UIColor+ScribeAdditions.swift"; sourceTree = "<group>"; };
 		2719EA751EC5883E003D6D64 /* ContactVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactVOM.swift; path = Source/ViewTier/ValueObjects/ContactVOM.swift; sourceTree = "<group>"; };
 		2719EA771EC5F19A003D6D64 /* ContactList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactList.storyboard; path = "Resource Files/Storyboards/ContactList.storyboard"; sourceTree = "<group>"; };
-		2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsCoordinator.swift; path = Source/ViewTier/ViewControllers/ContactsCoordinator.swift; sourceTree = "<group>"; };
+		2719EA791EC5F58D003D6D64 /* ContactsCoordinatorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsCoordinatorVC.swift; path = Source/ViewTier/ViewControllers/ContactsCoordinatorVC.swift; sourceTree = "<group>"; };
 		2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactGroup.storyboard; path = "Resource Files/Storyboards/ContactGroup.storyboard"; sourceTree = "<group>"; };
 		2719EA7E1EC66A2C003D6D64 /* ContactGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupVC.swift; path = Source/ViewTier/ViewControllers/ContactGroupVC.swift; sourceTree = "<group>"; };
 		2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupCell.swift; path = Source/ViewTier/Views/ContactGroupCell.swift; sourceTree = "<group>"; };
@@ -133,14 +144,13 @@
 		275201E61EB991D8002C469B /* SPRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRViewController.swift; sourceTree = "<group>"; };
 		275201E81EB991D8002C469B /* SPRViewControllerFSM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRViewControllerFSM.swift; sourceTree = "<group>"; };
 		275201F71EB99748002C469B /* ContactListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactListVC.swift; path = Source/ViewTier/ViewControllers/ContactListVC.swift; sourceTree = "<group>"; };
-		275201FA1EB997C0002C469B /* ContactsCoordinator.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactsCoordinator.storyboard; path = "Resource Files/Storyboards/ContactsCoordinator.storyboard"; sourceTree = "<group>"; };
+		275201FA1EB997C0002C469B /* ContactsCoordinatorVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactsCoordinatorVC.storyboard; path = "Resource Files/Storyboards/ContactsCoordinatorVC.storyboard"; sourceTree = "<group>"; };
 		275201FE1EB99879002C469B /* FetchContactGroupCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactGroupCommand.swift; path = Source/MiddleTier/Commands/FetchContactGroupCommand.swift; sourceTree = "<group>"; };
 		275202001EB9997C002C469B /* ScribeCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScribeCommand.swift; sourceTree = "<group>"; };
 		275202041EB999F1002C469B /* ScribeClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScribeClient.swift; path = Source/DomainTier/Connectors/ScribeClient.swift; sourceTree = "<group>"; };
 		2752020A1EB99D59002C469B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Source/ViewTier/Application/Constants.swift; sourceTree = "<group>"; };
 		276078261ED6495200389D42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27D191BE1EC03830002C7346 /* ContactInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoCell.swift; path = Source/ViewTier/Views/ContactInfoCell.swift; sourceTree = "<group>"; };
-		27EB3EC71EC6E39900BB292B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataAccessor.swift; path = Source/DomainTier/Connectors/DataAccessor.swift; sourceTree = "<group>"; };
 		27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupVOM.swift; path = Source/ViewTier/ValueObjects/ContactGroupVOM.swift; sourceTree = "<group>"; };
 		27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoVOM.swift; path = Source/ViewTier/ValueObjects/ContactInfoVOM.swift; sourceTree = "<group>"; };
@@ -149,12 +159,25 @@
 		337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scribe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scribe/Pods-Scribe.debug.xcconfig"; sourceTree = "<group>"; };
 		58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E94256574C2F12CE4BB17 /* Pods-ScribeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A2B6EC91EF393B200425B61 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainVC.swift; path = Source/ViewTier/ViewControllers/MainVC.swift; sourceTree = "<group>"; };
+		8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarVC.swift; path = Source/ViewTier/ViewControllers/MainTabBarVC.swift; sourceTree = "<group>"; };
 		8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoDM.swift; path = Source/DomainTier/DomainModels/ContactInfoDM.swift; sourceTree = "<group>"; };
 		8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDM.swift; path = Source/DomainTier/DomainModels/ContactDM.swift; sourceTree = "<group>"; };
 		8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupDM.swift; path = Source/DomainTier/DomainModels/ContactGroupDM.swift; sourceTree = "<group>"; };
+		8A6016371EF8950E00283491 /* FallingSky-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Light.otf"; sourceTree = "<group>"; };
+		8A6016381EF8951200283491 /* FallingSky-Bold+.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bold+.otf"; sourceTree = "<group>"; };
+		8A6016391EF8951600283491 /* FallingSky-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bold.otf"; sourceTree = "<group>"; };
+		8A60163A1EF8951B00283491 /* FallingSky-Bulk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bulk.otf"; sourceTree = "<group>"; };
+		8A60163B1EFA685A00283491 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		8A60163F1EFA6B4C00283491 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		8A8BACCC1EF1ED83006721F8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = "Resource Files/Storyboards/Login.storyboard"; sourceTree = "<group>"; };
 		8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Source/ViewTier/ViewControllers/LoginVC.swift; sourceTree = "<group>"; };
 		8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTextField.swift; path = Source/ViewTier/Views/LoginTextField.swift; sourceTree = "<group>"; };
+		8A8BADA81EF338E9006721F8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = "Resource Files/Storyboards/Settings.storyboard"; sourceTree = "<group>"; };
+		8A8BADAC1EF33A45006721F8 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Source/ViewTier/ViewControllers/SettingsVC.swift; sourceTree = "<group>"; };
+		8A8BADAE1EF39090006721F8 /* Loading.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Loading.storyboard; path = "Resource Files/Storyboards/Loading.storyboard"; sourceTree = "<group>"; };
+		8A8BADB01EF390B7006721F8 /* LoadingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingVC.swift; path = Source/ViewTier/ViewControllers/LoadingVC.swift; sourceTree = "<group>"; };
 		8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchContactDetailRequest.swift; sourceTree = "<group>"; };
 		8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchContactsRequest.swift; sourceTree = "<group>"; };
 		8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchGroupContactsRequest.swift; sourceTree = "<group>"; };
@@ -164,7 +187,6 @@
 		8AAE32F91EF09DC100374794 /* License_OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License_OFL.txt; sourceTree = "<group>"; };
 		8AAE32FA1EF09DC100374794 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		8AAE331B1EF09EB200374794 /* FallingSkyLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FallingSkyLight.otf; sourceTree = "<group>"; };
 		8AB6791C1EF1C2B700123A32 /* GradationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradationView.swift; path = Source/ViewTier/Application/Assets/Colors/GradationView.swift; sourceTree = "<group>"; };
 		938469FEC9FD537E77C547D1 /* Pods-ScribeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +238,7 @@
 		2719EA701EC5826E003D6D64 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				27EB3EC71EC6E39900BB292B /* Assets.xcassets */,
+				8A60163B1EFA685A00283491 /* Assets.xcassets */,
 				2719EA711EC5827A003D6D64 /* Colors */,
 				8AAE32D91EF09DC100374794 /* Fonts */,
 			);
@@ -270,7 +292,6 @@
 			children = (
 				275201F41EB99298002C469B /* Source */,
 				275201F31EB99290002C469B /* Resource Files */,
-				275201B21EB990C7002C469B /* LaunchScreen.storyboard */,
 				275201CB1EB990C7002C469B /* Info.plist */,
 				276078261ED6495200389D42 /* GoogleService-Info.plist */,
 			);
@@ -378,9 +399,9 @@
 		275201F41EB99298002C469B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				275202021EB999D1002C469B /* DomainTier */,
-				275201FC1EB9983B002C469B /* MiddleTier */,
 				275201F51EB9929E002C469B /* ViewTier */,
+				275201FC1EB9983B002C469B /* MiddleTier */,
+				275202021EB999D1002C469B /* DomainTier */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -388,10 +409,10 @@
 		275201F51EB9929E002C469B /* ViewTier */ = {
 			isa = PBXGroup;
 			children = (
-				2719EA741EC58825003D6D64 /* ValueObjects */,
-				270F1B001EC0251A00232D2F /* Views */,
 				275202091EB99D37002C469B /* Application */,
+				2719EA741EC58825003D6D64 /* ValueObjects */,
 				275201F61EB992B5002C469B /* ViewControllers */,
+				270F1B001EC0251A00232D2F /* Views */,
 			);
 			name = ViewTier;
 			sourceTree = "<group>";
@@ -402,11 +423,15 @@
 				270F1AFE1EC0231E00232D2F /* ContactDetailVC.swift */,
 				2719EA7E1EC66A2C003D6D64 /* ContactGroupVC.swift */,
 				275201F71EB99748002C469B /* ContactListVC.swift */,
-				2719EA791EC5F58D003D6D64 /* ContactsCoordinator.swift */,
+				2719EA791EC5F58D003D6D64 /* ContactsCoordinatorVC.swift */,
 				274A83541ED39EBF002DA226 /* GroupContactListVC.swift */,
+				8A8BADB01EF390B7006721F8 /* LoadingVC.swift */,
 				8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */,
+				8A8BADAC1EF33A45006721F8 /* SettingsVC.swift */,
 				2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */,
 				27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */,
+				8A2B6EC91EF393B200425B61 /* MainVC.swift */,
+				8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -414,13 +439,16 @@
 		275201F91EB997A2002C469B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				275201AD1EB990C7002C469B /* Main.storyboard */,
-				275201FA1EB997C0002C469B /* ContactsCoordinator.storyboard */,
+				275201FA1EB997C0002C469B /* ContactsCoordinatorVC.storyboard */,
 				270F1AFA1EC0227E00232D2F /* ContactDetail.storyboard */,
 				2719EA771EC5F19A003D6D64 /* ContactList.storyboard */,
 				2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */,
 				274A83521ED39E17002DA226 /* GroupContacts.storyboard */,
+				275201B21EB990C7002C469B /* LaunchScreen.storyboard */,
+				8A8BADAE1EF39090006721F8 /* Loading.storyboard */,
 				8A8BACCC1EF1ED83006721F8 /* Login.storyboard */,
+				275201AD1EB990C7002C469B /* Main.storyboard */,
+				8A8BADA81EF338E9006721F8 /* Settings.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -496,6 +524,15 @@
 			name = DomainModels;
 			sourceTree = "<group>";
 		};
+		8A60163D1EFA6B3D00283491 /* FontAwesome */ = {
+			isa = PBXGroup;
+			children = (
+				8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */,
+				8A60163F1EFA6B4C00283491 /* FontAwesome.otf */,
+			);
+			name = FontAwesome;
+			sourceTree = "<group>";
+		};
 		8AAE32C91EEFB1D600374794 /* RequestModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +547,7 @@
 		8AAE32D91EF09DC100374794 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				8A60163D1EFA6B3D00283491 /* FontAwesome */,
 				8AAE32DA1EF09DC100374794 /* FallingSky */,
 				8AAE32F71EF09DC100374794 /* kineticplasma-fonts_falling-sky */,
 				8AAE32F81EF09DC100374794 /* Montserrat */,
@@ -522,7 +560,10 @@
 			isa = PBXGroup;
 			children = (
 				8AAE32DB1EF09DC100374794 /* FallingSky.otf */,
-				8AAE331B1EF09EB200374794 /* FallingSkyLight.otf */,
+				8A6016371EF8950E00283491 /* FallingSky-Light.otf */,
+				8A60163A1EF8951B00283491 /* FallingSky-Bulk.otf */,
+				8A6016381EF8951200283491 /* FallingSky-Bold+.otf */,
+				8A6016391EF8951600283491 /* FallingSky-Bold.otf */,
 				8AAE32F51EF09DC100374794 /* FONTLOG.txt */,
 				8AAE32F61EF09DC100374794 /* SIL Open Font License.txt */,
 			);
@@ -636,7 +677,7 @@
 				TargetAttributes = {
 					275201A51EB990C7002C469B = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 75P4343CY2;
+						DevelopmentTeam = 37ULEAE2B7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -683,21 +724,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8BADAF1EF39090006721F8 /* Loading.storyboard in Resources */,
 				8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */,
+				8A8BADA91EF338E9006721F8 /* Settings.storyboard in Resources */,
 				275201B41EB990C7002C469B /* LaunchScreen.storyboard in Resources */,
 				8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */,
 				8AAE32FC1EF09DC100374794 /* FallingSky.otf in Resources */,
 				270F1AFB1EC0227E00232D2F /* ContactDetail.storyboard in Resources */,
 				8AAE33161EF09DC100374794 /* FONTLOG.txt in Resources */,
+				8A6016421EFA6FF600283491 /* FallingSky-Bulk.otf in Resources */,
 				276078271ED6495200389D42 /* GoogleService-Info.plist in Resources */,
 				8AAE33191EF09DC100374794 /* Montserrat-Bold.ttf in Resources */,
-				275201FB1EB997C0002C469B /* ContactsCoordinator.storyboard in Resources */,
+				275201FB1EB997C0002C469B /* ContactsCoordinatorVC.storyboard in Resources */,
 				274A83531ED39E17002DA226 /* GroupContacts.storyboard in Resources */,
+				8A6016411EFA6FF300283491 /* FallingSky-Light.otf in Resources */,
 				275201AF1EB990C7002C469B /* Main.storyboard in Resources */,
-				27EB3EC81EC6E39900BB292B /* Assets.xcassets in Resources */,
 				2719EA781EC5F19A003D6D64 /* ContactList.storyboard in Resources */,
+				8A6016431EFA6FF800283491 /* FallingSky-Bold+.otf in Resources */,
+				8A6016441EFA6FFA00283491 /* FallingSky-Bold.otf in Resources */,
 				8AAE33171EF09DC100374794 /* SIL Open Font License.txt in Resources */,
 				2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */,
+				8A60163C1EFA685A00283491 /* Assets.xcassets in Resources */,
+				8A6016401EFA6ECB00283491 /* fontawesome-webfont.ttf in Resources */,
 				8AAE33181EF09DC100374794 /* License_OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,7 +910,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */,
+				8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */,
 				274A83511ED39C4E002DA226 /* FetchContactsCommand.swift in Sources */,
+				8A2B6ECA1EF393B200425B61 /* MainVC.swift in Sources */,
 				8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */,
 				8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */,
 				8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */,
@@ -885,6 +935,7 @@
 				275201EB1EB991D8002C469B /* ArrayObjectDataSource.swift in Sources */,
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,
+				8A2B6ECC1EF394E600425B61 /* MainTabBarVC.swift in Sources */,
 				275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */,
 				275201EF1EB991D8002C469B /* SPRCollectionViewController.swift in Sources */,
 				275201EE1EB991D8002C469B /* ObjectDataSource.swift in Sources */,
@@ -894,9 +945,10 @@
 				8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */,
 				275201EC1EB991D8002C469B /* ErrorObjectDataSource.swift in Sources */,
 				27EB3ECE1EC7936300BB292B /* ContactInfoVOM.swift in Sources */,
+				8A8BADAD1EF33A45006721F8 /* SettingsVC.swift in Sources */,
 				2719EA7F1EC66A2C003D6D64 /* ContactGroupVC.swift in Sources */,
 				270F1B041EC026D300232D2F /* FetchContactDetailCommand.swift in Sources */,
-				2719EA7A1EC5F58D003D6D64 /* ContactsCoordinator.swift in Sources */,
+				2719EA7A1EC5F58D003D6D64 /* ContactsCoordinatorVC.swift in Sources */,
 				27EB3ECA1EC77D1F00BB292B /* DataAccessor.swift in Sources */,
 				275201AA1EB990C7002C469B /* AppDelegate.swift in Sources */,
 				2719EA761EC5883E003D6D64 /* ContactVOM.swift in Sources */,
@@ -1058,11 +1110,11 @@
 			baseConfigurationReference = 337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 75P4343CY2;
+				DEVELOPMENT_TEAM = 37ULEAE2B7;
 				INFOPLIST_FILE = Scribe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jbcc.Scribe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jbcc.app.Scribe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1073,11 +1125,11 @@
 			baseConfigurationReference = 258597442F4AF3C36A5F75C5 /* Pods-Scribe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 75P4343CY2;
+				DEVELOPMENT_TEAM = 37ULEAE2B7;
 				INFOPLIST_FILE = Scribe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jbcc.Scribe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jbcc.app.Scribe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

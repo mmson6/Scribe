@@ -20,5 +20,15 @@ final class LoginTextField: UITextField {
         self.tintColor = UIColor.white
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 0));
         self.leftViewMode = .always
+
+        if let clearButton = self.value(forKey: "_clearButton") as? UIButton {
+            // Create a template copy of the original button image
+            let templateImage =  clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+//            let templateImage =  clearButton.imageView?.image?.imageWithRenderingMode(.AlwaysTemplate)
+            // Set the template image copy as the button image
+            clearButton.setImage(templateImage, for: .normal)
+            // Finally, set the image color
+            clearButton.tintColor = UIColor.white
+        }
     }
 }

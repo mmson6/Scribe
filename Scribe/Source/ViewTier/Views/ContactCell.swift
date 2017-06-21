@@ -25,6 +25,17 @@ class ContactCell: UITableViewCell {
     }
     
     internal func commonInit() {
-        nameLabel.textColor = UIColor.scribeGrey1
+        self.layer.backgroundColor = UIColor.scribePintCellColor.cgColor
+        nameLabel.textColor = UIColor.scribeDarkGray
     }
+//    
+//    internal func setShadowEffect() {
+//        self.cellLayoutView.layer.cornerRadius = 3
+//        self.cellLayoutView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+//        self.cellLayoutView.layer.shadowColor = UIColor.black.cgColor
+//        self.cellLayoutView.layer.shadowRadius = 3
+//        self.cellLayoutView.layer.shadowOpacity = 0.15
+//        self.cellLayoutView.layer.masksToBounds = false
+//    }
+    
 }

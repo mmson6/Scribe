@@ -17,6 +17,8 @@ fileprivate let itemsPerRow: CGFloat = 2
 
 class ContactGroupVC: SPRCollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    public var contactDataSource: [ContactVOM]?
+    
     // MARK: SPRCollectionViewController
     
     override public func loadObjectDataSource(_ callback: @escaping (AsyncResult<ObjectDataSource<Any>>) -> Void) {
@@ -26,15 +28,20 @@ class ContactGroupVC: SPRCollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func renderCell(inCollectionView collectionView: UICollectionView, withModel model: Any, at indexPath: IndexPath) -> UICollectionViewCell {
+        
+        var contacts: [ContactVOM] = []
+        if let dataSource = self.contactDataSource {
+            contacts = dataSource
+        }
+        
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContactGroupCell", for: indexPath) as? ContactGroupCell,
             let groupModel = model as? ContactGroupVOM
         else {
             return UICollectionViewCell()
         }
-        
-        
-        self.populate(cell, with: groupModel)
+                
+        self.populate(cell, with: groupModel, and: contacts)
         
         return cell
     }
@@ -52,41 +59,110 @@ class ContactGroupVC: SPRCollectionViewController, UICollectionViewDelegateFlowL
 
     // MARK: Helper Functions
     
-    private func populate(_ cell: ContactGroupCell, with model:ContactGroupVOM) {
+    private func populate(_ cell: ContactGroupCell, with model:ContactGroupVOM, and contacts:[ContactVOM]) {
         cell.lookupKey = model.type
         cell.commonInit()
         print(model.type)
         switch model.type {
         case .Fathers:
             cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup1
-            cell.groupNameLabel.textColor = UIColor.scribeColorGray
+            cell.groupNameLabel.textColor = UIColor.scribeGray
             cell.groupNameLabel.text = GroupName.Fathers_Group
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                if vom.group != GroupName.Fathers_Group {
+                    return false
+                } else {
+                    return true
+                }
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
             break
         case .YoungAdults:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup2
-            cell.groupNameLabel.textColor = UIColor.scribeColorGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup5
+            cell.groupNameLabel.textColor = UIColor.scribeGray
             cell.groupNameLabel.text = GroupName.YA_Group
 //            cell.cellBackgroundImage.image = UIImage(named: "YA_Group_Image")
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                if vom.group != GroupName.YA_Group {
+                    return false
+                } else {
+                    return true
+                }
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
             break
         case .Mothers:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup3
-            cell.groupNameLabel.textColor = UIColor.scribeColorDarkGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup4
+            cell.groupNameLabel.textColor = UIColor.scribeGray
             cell.groupNameLabel.text = GroupName.Mothers_Group
 //            cell.cellBackgroundImage.image = UIImage(named: "Mothers_Group_Image")
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                if vom.group != GroupName.Mothers_Group {
+                    return false
+                } else {
+                    return true
+                }
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
             break
         case .Teachers:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup4
-            cell.groupNameLabel.textColor = UIColor.scribeColorGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup2
+            cell.groupNameLabel.textColor = UIColor.scribeGray
             cell.groupNameLabel.text = GroupName.Teachers_Group
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                let result = vom.teacher ? true : false
+                return result
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
             break
         case .Choir:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup5
-            cell.groupNameLabel.textColor = UIColor.scribeColorGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup6
+            cell.groupNameLabel.textColor = UIColor.scribeGray
             cell.groupNameLabel.text = GroupName.Choir_Group
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                let result = vom.choir ? true : false
+                return result
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
+            break
+        case .ChurchSchool:
+            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup3
+            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.groupNameLabel.text = GroupName.Church_School
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                if vom.group != GroupName.Church_School {
+                    return false
+                } else {
+                    return true
+                }
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
+            break
+        case .Translators:
+            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup7
+            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.groupNameLabel.text = GroupName.Translators_Group
+            
+            let filtered = contacts.filter({ (vom) -> Bool in
+                let result = vom.translator ? true : false
+                return result
+            })
+            cell.countLabel.text = "\(filtered.count)"
+            cell.contacts = filtered
             break
         }
-        
-        cell.countLabel.text = "7"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,6 +173,7 @@ class ContactGroupVC: SPRCollectionViewController, UICollectionViewDelegateFlowL
             return
         }
         
+        vc.contactDataSource = cell.contacts
         vc.lookupKey = cell.lookupKey
     }
 }

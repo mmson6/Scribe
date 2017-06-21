@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3AF-yZ-gu9">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SettingsVC-->
+        <scene sceneID="4qs-Gi-OtF">
+            <objects>
+                <viewController id="72R-11-2lb" customClass="SettingsVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lbh-7Z-i1v"/>
+                        <viewControllerLayoutGuide type="bottom" id="Igt-AO-u4m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W0B-TG-Nza">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfW-Lu-PDR">
+                                <rect key="frame" x="10" y="466" width="355" height="60"/>
+                                <color key="backgroundColor" red="0.90083677030456855" green="0.42041140337443039" blue="0.39259136990455179" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="gM5-HI-z0n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="72R-11-2lb" eventType="touchUpInside" id="OXl-ds-d8x"/>
+                                    <segue destination="8gd-mk-pSR" kind="unwind" unwindAction="unwindToLandingViewWithSegue:" id="4ae-Zj-Arf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nfW-Lu-PDR" secondAttribute="trailing" constant="10" id="K5a-yv-2Bk"/>
+                            <constraint firstItem="nfW-Lu-PDR" firstAttribute="centerX" secondItem="W0B-TG-Nza" secondAttribute="centerX" id="TxS-I5-lJJ"/>
+                            <constraint firstItem="Igt-AO-u4m" firstAttribute="top" secondItem="nfW-Lu-PDR" secondAttribute="bottom" constant="92" id="W16-nd-NB9"/>
+                            <constraint firstItem="nfW-Lu-PDR" firstAttribute="leading" secondItem="W0B-TG-Nza" secondAttribute="leading" constant="10" id="f7j-UL-7ih"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6jf-6e-b4R"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="nfW-Lu-PDR" id="TBa-lP-fNN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="djW-OL-G9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8gd-mk-pSR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="985" y="70"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="0iz-9b-Ytn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3AF-yZ-gu9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="aIa-xz-sSh"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UYi-gv-EDW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="72R-11-2lb" kind="relationship" relationship="rootViewController" id="9Ij-0g-kQo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nge-5f-27a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="149.5" y="70.5"/>
+        </scene>
+    </scenes>
+</document>

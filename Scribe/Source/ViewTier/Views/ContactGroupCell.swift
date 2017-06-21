@@ -14,11 +14,14 @@ public enum ContactGroups {
     case YoungAdults
     case Teachers
     case Choir
+    case ChurchSchool
+    case Translators
 }
 
 class ContactGroupCell: UICollectionViewCell {
     
     public var lookupKey: Any?
+    public var contacts: [ContactVOM]?
     
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var cellBackgroundImage: UIImageView!

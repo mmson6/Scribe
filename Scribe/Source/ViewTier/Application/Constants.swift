@@ -16,11 +16,13 @@ fileprivate let pBaseURL = "https://scribe-4ed24.firebaseio.com/"
 // MARK: Contacts Group Names
 
 internal struct GroupName {
-    static let YA_Group = "Young Adults"
-    static let Fathers_Group = "Fathers Group"
-    static let Mothers_Group = "Mothers Group"
+    static let YA_Group = "Young Adult"
+    static let Fathers_Group = "Fathers"
+    static let Mothers_Group = "Mothers"
     static let Teachers_Group = "Teachers"
     static let Choir_Group = "Choir"
+    static let Church_School = "Church School"
+    static let Translators_Group = "Translator"
 }
 //public typealias YA_Group = "Young Adults"
 //public typealias Fathers_Group = "Fathers Group"

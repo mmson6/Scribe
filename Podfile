@@ -8,6 +8,7 @@ target 'Scribe' do
   # Pods for Scribe
   pod 'Alamofire', '~> 4.4'
   pod 'Firebase', '~> 4.0'
+  pod 'Firebase/Auth', '~>4.0'
   pod 'Firebase/Database', '~> 4.0'
   pod 'FontAwesomeKit', '~> 2.2'
   pod 'SwiftyJSON', '~> 3.1'

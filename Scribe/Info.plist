@@ -25,12 +25,16 @@
 		<string>Montserrat-Bold.ttf</string>
 		<string>Montserrat-Regular.ttf</string>
 		<string>FallingSky.otf</string>
-		<string>FallingSkyLight.otf</string>
+		<string>FallingSky-Light.otf</string>
+		<string>FallingSky-Bold.otf</string>
+		<string>FallingSky-Bold+.otf</string>
+		<string>FallingSky-Bulk.otf</string>
+		<string>fontawesome-webfont.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Login</string>
+	<string>Loading</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

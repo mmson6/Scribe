@@ -9,6 +9,31 @@
 import UIKit
 
 extension UIColor {
+    
+    // MARK: Pinterest design
+    
+    class var scribePintTabbarColor: UIColor {
+        return UIColor(red: 85.0/255.0, green: 192.0/255.0, blue: 249.0/255.0, alpha: 1.0)
+    }
+    
+    class var scribePintCellColor: UIColor {
+        return UIColor(red: 245.0/255.0, green: 248.0/255.0, blue: 249.0/255.0, alpha: 1.0)
+    }
+    
+    class var scribePintNavBarColor: UIColor {
+        return UIColor(red: 251.0/255.0, green: 254.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+    }
+    
+    class var scribePintNavBarItemColor: UIColor {
+        return UIColor(red: 110.0/255.0, green: 132.0/255.0, blue: 155.0/255.0, alpha: 1.0)
+    }
+    
+    class var scribePintInfoTitleColor: UIColor {
+        return UIColor(red: 153.0/255.0, green: 168.0/255.0, blue: 185.0/255.0, alpha: 1.0)
+    }
+    
+    // MARK: Colors
+    
     class var scribeColorNavigation: UIColor {
         return UIColor(red: 84.0/255.0, green: 193.0/255.0, blue: 244.0/255.0, alpha: 1.0)
     }
@@ -101,19 +126,23 @@ extension UIColor {
         return UIColor(red: 133.0 / 255.0, green: 190.0 / 255.0, blue: 174.0 / 255.0, alpha: 1)
     }
     class var scribeColorGroup3: UIColor { // blue
-        return UIColor(red: 64.0 / 255.0, green: 125.0 / 255.0, blue: 180.0 / 255.0, alpha: 1)
+        return UIColor(red: 74.0 / 255.0, green: 135.0 / 255.0, blue: 190.0 / 255.0, alpha: 1)
     }
     class var scribeColorGroup4: UIColor { // yellow
-        return UIColor(red: 222.0 / 255.0, green: 182.0 / 255.0, blue: 70.0 / 255.0, alpha: 1)
+//        return UIColor(red: 222.0 / 255.0, green: 182.0 / 255.0, blue: 70.0 / 255.0, alpha: 1)
+//        return UIColor(red: 228.0 / 255.0, green: 223.0 / 255.0, blue: 70.0 / 255.0, alpha: 1)
+        return UIColor(red: 231.0 / 255.0, green: 229.0 / 255.0, blue: 76.0 / 255.0, alpha: 1)
     }
     class var scribeColorGroup5: UIColor { // red
-        return UIColor(red: 211.0 / 255.0, green: 122.0 / 255.0, blue: 92.0 / 255.0, alpha: 1)
+//        return UIColor(red: 251.0 / 255.0, green: 122.0 / 255.0, blue: 92.0 / 255.0, alpha: 1)
+        return UIColor(red: 239.0 / 255.0, green: 114.0 / 255.0, blue: 107.0 / 255.0, alpha: 1)
     }
     class var scribeColorGroup6: UIColor { // purple
-        return UIColor(red: 155.0 / 255.0, green: 96.0 / 255.0, blue: 165.0 / 255.0, alpha: 1)
+        return UIColor(red: 175.0 / 255.0, green: 116.0 / 255.0, blue: 185.0 / 255.0, alpha: 1)
     }
     class var scribeColorGroup7: UIColor { // orange
-        return UIColor(red: 244.0 / 255.0, green: 143.0 / 255.0, blue: 50.0 / 255.0, alpha: 1)
+//        return UIColor(red: 244.0 / 255.0, green: 123.0 / 255.0, blue: 40.0 / 255.0, alpha: 1)
+        return UIColor(red: 244.0 / 255.0, green: 159.0 / 255.0, blue: 59.0 / 255.0, alpha: 1)
     }
     
     // MARK: Contact Detail VC Color
@@ -133,10 +162,10 @@ extension UIColor {
     
     // MARK: Gray Color
     
-    class var scribeColorGray: UIColor {
+    class var scribeGray: UIColor {
         return UIColor(white: 110.0 / 255.0, alpha: 1.0)
     }
-    class var scribeColorDarkGray: UIColor {
+    class var scribeDarkGray: UIColor {
         return UIColor(white: 80.0 / 255.0, alpha: 1.0)
     }
     
