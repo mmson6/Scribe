@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -17,7 +17,7 @@
         <!--Contacts-->
         <scene sceneID="Rc4-tB-rJZ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hYR-JO-qqt" customClass="ContactsCoordinatorVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hYR-JO-qqt" customClass="ContactsCoordinatorVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JNH-hv-hXy"/>
                         <viewControllerLayoutGuide type="bottom" id="ieY-YF-sjN"/>
@@ -82,7 +82,7 @@
         <!--Contacts-->
         <scene sceneID="9js-z8-S25">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L3N-MJ-6tV" sceneMemberID="viewController">
+                <navigationController id="L3N-MJ-6tV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Contacts" id="2Bp-m9-K1t"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

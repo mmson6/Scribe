@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scribe/Source/ViewTier/ViewControllers/LoadingVC.swift"
-            timestampString = "519518766.388113"
+            timestampString = "519776280.325185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "runLifeCycle()"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,7 +154,7 @@
                   moduleName = "Scribe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/MiddleTier/Commands/FetchContactDetailCommand.swift"
-                  timestampString = "519731068.952456"
+                  timestampString = "520964446.381832"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -169,7 +169,7 @@
                   moduleName = "Scribe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/MiddleTier/Commands/FetchContactDetailCommand.swift"
-                  timestampString = "519731068.954085"
+                  timestampString = "520964446.383489"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -240,6 +240,22 @@
             startingLineNumber = "50"
             endingLineNumber = "50"
             landmarkName = "commonInit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scribe/Source/ViewTier/ViewControllers/LoadingVC.swift"
+            timestampString = "519776280.325185"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "fetchContactDataSource()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

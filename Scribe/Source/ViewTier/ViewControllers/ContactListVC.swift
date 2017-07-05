@@ -11,50 +11,57 @@ import UIKit
 import FirebaseDatabase
 
 
-public class ContactListVC: SPRTableViewController {
+public class ContactListVC: UITableViewController {
     
-    public var contactDataSource: [ContactVOM]?
+    public var contactDataSource = [ContactVOM]()
+    private var filteredDataSource = [ContactVOM]()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     // MARK : SPRTableViewController
     
     public override func viewDidLoad() {
-//        self.initObservers()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        let animator = UIDynamicAnimator(referenceView: self.tableView)
-        
-//        let behav = UIAttachmentBehavior(
-//        let elasticityBehavior: UIDynamicItemBehavior = UIDynamicItemBehavior
-//        UIDynamicItemBehavior *elasticityBehavior =
-//            [[UIDynamicItemBehavior alloc] initWithItems:@[self.redSquare]];
-//        elasticityBehavior.elasticity = 0.7f;
+        self.initializeSearchController()
+        self.fetchContacts()
     }
     
-    override public func loadObjectDataSource(_ callback: @escaping (AsyncResult<ObjectDataSource<Any>>) -> Void) {
-        if let contacts = self.contactDataSource {
-            if contacts.count > 0 {
-                let ods = ArrayObjectDataSource<Any>(objects: contacts)
-                callback(.success(ods))
+    private func fetchContacts() {
+        if self.contactDataSource.count <= 0 {
+            self.loadObjectDataSource()
+        }
+    }
+    private func loadObjectDataSource() {
+        let cmd = FetchContactsCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                self.contactDataSource = array
+            case .failure(let error):
+                NSLog("error occurred: \(error)")
             }
+        }
+        cmd.execute()
+    }
+    
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.filteredDataSource.count > 0 {
+            return self.filteredDataSource.count
         } else {
-            let cmd = FetchContactsCommand()
-            cmd.onCompletion { result in
-                switch result {
-                case .success(let array):
-                    let ods = ArrayObjectDataSource<Any>(objects: array)
-                    callback(.success(ods))
-                case .failure(let error):
-                    callback(.failure(error))
-                }
-            }
-                cmd.execute()
+            return self.contactDataSource.count
         }
     }
     
-    override public func renderCell(inTableView tableView: UITableView, withModel model: Any, at indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let contactModel: ContactVOM
+        if self.filteredDataSource.count > 0 {
+            contactModel = self.filteredDataSource[indexPath.row]
+        } else {
+            contactModel = self.contactDataSource[indexPath.row]
+        }
         
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as? ContactCell,
-            let contactModel = model as? ContactVOM
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as? ContactCell
         else {
             return UITableViewCell()
         }
@@ -63,25 +70,20 @@ public class ContactListVC: SPRTableViewController {
         
         return cell
     }
-//    
-//    public override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        cell.isHidden = true
+//    override public func renderCell(inTableView tableView: UITableView, withModel model: Any, at indexPath: IndexPath) -> UITableViewCell {
 //        
-////        cell.frame = CGRect(x: cell.frame.size.width, y: cell.frame.origin.y, width: cell.frame.size.width, height: cell.frame.size.height)
-////        cell.frame = CGRectMake(cell.frame.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)
-////        
-//        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.6, options: .curveEaseIn, animations: {
-//            cell.isHidden = false
-////            cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: cell.frame.size.width, height: cell.frame.size.height)
-//        }, completion: nil)
+//        guard
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as? ContactCell,
+//            let contactModel = model as? ContactVOM
+//        else {
+//            return UITableViewCell()
+//        }
 //        
-////        UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-////            cell.frame = CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)
-////        }, completion: { finished in
-////            
-////        })
+//        self.populate(cell, with: contactModel)
+//        
+//        return cell
 //    }
-    
+
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
@@ -89,6 +91,7 @@ public class ContactListVC: SPRTableViewController {
             cell?.layoutIfNeeded()
         }, completion: nil)
     }
+    
     // MARK: Helper Functions
     
     private func populate(_ cell: ContactCell, with model: ContactVOM) {
@@ -115,40 +118,52 @@ public class ContactListVC: SPRTableViewController {
         
     }
     
-    // MARK: Firebase Related Functions
-//    
-//    private func initObservers() {
-//        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-//        let contactRef = ref.child("contacts")
+    // MARK: Search Controller Functions
+    
+    private func initializeSearchController() {
+        // Setup the Search Controller
+        self.searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.definesPresentationContext = true
+//        self.searchController.dimsBackgroundDuringPresentation = false
+        
+        self.searchController.searchBar.placeholder = "Search here..."
+        self.searchController.searchBar.delegate = self
+        self.searchController.searchBar.sizeToFit()
+        
+        // Setup the Scope Bar
+//        self.searchController.searchBar.scopeButtonTitles = ["All", "Chocolate", "Hard", "Other"]
+        tableView.tableHeaderView = self.searchController.searchBar
+    }
+}
+
+extension ContactListVC: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    
+    public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        <#code#>
+    }
+    
+    public func updateSearchResults(for searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
 //        
-//        contactRef.observe(.childAdded, with: { snap in
-//            guard
-//                let json = snap.value as? JSONObject
-//                else {
-//                    return
-//            }
+//        // Filter the data array and get only those countries that match the search text.
+//        self
+//        filteredArray = dataArray.filter({ (country) -> Bool in
+//            let countryText: NSString = country
 //            
-//            let contactsNameRef = ref.child("contacts_name")
-//            let group = json["group"] as? String
-//            let teacher = json["teacher"] as? Bool
-//            let choir = json["choir"] as? Bool
-//            let translator = json["translator"] as? Bool
-//            let engName = json["name_eng"] as? String
-//            let korName = json["name_kor"] as? String
-//            contactsNameRef.child(snap.key).setValue(
-//                ["name_eng": engName as Any,
-//                 "name_kor": korName as Any,
-//                 "group": group as Any,
-//                 "teacher": teacher as Any,
-//                 "choir": choir as Any,
-//                 "translator": translator as Any
-//                 ])
-//            
+//            return (countryText.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
 //        })
 //        
-//        contactRef.observe(.childRemoved, with: { snap in
-//            let contactsNameRef = ref.child("contacts_name")
-//            contactsNameRef.child(snap.key).removeValue()
-//        })
-//    }
+//        // Reload the tableview.
+//        tblSearchResults.reloadData()
+//        
+//        
+//        let searchBar = searchController.searchBar
+//        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+//        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+    public func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+//        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
 }

@@ -56,18 +56,20 @@ class ContactsCoordinatorVC: UIViewController {
     }
     
     private func fetchContactDataSource() {
-        let cmd = FetchContactsCommand()
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let array):
-//                callback(.success(array))
-                break
-            case .failure(let error):
-//                callback(.failure(error))
-                break
-            }
-        }
-        cmd.execute()
+        
+//        
+//        let cmd = FetchContactsCommand()
+//        cmd.onCompletion { result in
+//            switch result {
+//            case .success(let array):
+////                callback(.success(array))
+//                break
+//            case .failure(let error):
+////                callback(.failure(error))
+//                break
+//            }
+//        }
+//        cmd.execute()
     }
     
     // MARK : IBAction Methods
@@ -137,12 +139,13 @@ class ContactsCoordinatorVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "coordinatorToContactList" {
             guard
-                let vc = segue.destination as? ContactListVC
+                let vc = segue.destination as? ContactListVC,
+                let dataSource = self.contactDataSource
                 else {
                     return
             }
             
-            vc.contactDataSource = self.contactDataSource
+            vc.contactDataSource = dataSource
         }
         else if segue.identifier == "coordinatorToContactGroup" {
             guard
