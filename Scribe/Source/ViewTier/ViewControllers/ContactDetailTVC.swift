@@ -2,17 +2,18 @@
 //  ContactDetailVC.swift
 //  Scribe
 //
-//  Created by Mikael Son on 7/7/17.
+//  Created by Mikael Son on 5/7/17.
 //  Copyright © 2017 Mikael Son. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
+import Firebase
 
-class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+public class ContactDetailVC: UITableViewController {
     
-    @IBOutlet weak var tableView: UITableView!
     public var lookupKey: Any?
     public var parentVC: String?
     private var infoDataSource: [ContactInfoVOM] = []
@@ -22,36 +23,36 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.panGestureRecognizer.addTarget(self, action: #selector(ContactDetailVC.handleGesture(_:)))
+        self.tableView.panGestureRecognizer.addTarget(self, action: "handleGesture:")
         
         self.tableView.backgroundColor = UIColor.white
         self.tableView.separatorStyle = .none
-        //        self.tableView.rowHeight = UITableViewAutomaticDimension
-        //        self.tableView.estimatedRowHeight = 60
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        self.tableView.estimatedRowHeight = 60
         
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
-        customView.backgroundColor = UIColor.white
-        self.tableView.tableFooterView = customView
+//        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
+//        customView.backgroundColor = UIColor.scribeColorCDCellBackground
+//        self.tableView.tableFooterView = customView
         
         self.loadDataSource()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
-        //        self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorGroup7
+//        self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorGroup7
         self.navigationController?.navigationBar.tintColor = UIColor.scribeColorCDNavBarBackground
-        //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        //        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
-        //        UIView.animate(withDuration: 0.1, animations: {
-        //            self.navigationController?.navigationBar.barTintColor = UIColor.white
-        //            self.navigationController?.navigationBar.layoutIfNeeded()
-        //        })
+//        UIView.animate(withDuration: 0.1, animations: {
+//            self.navigationController?.navigationBar.barTintColor = UIColor.white
+//            self.navigationController?.navigationBar.layoutIfNeeded()
+//        })
         
         self.navigationController?.navigationBar.tintColor = UIColor.scribeDarkGray
-        //        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
-        //        self.navigationController?.navigationBar.shadowImage = nil
+//        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
+//        self.navigationController?.navigationBar.shadowImage = nil
     }
     // MARK: Private Funcitons
     
@@ -72,7 +73,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: UITableViewDelegate & UITableViewDataSource
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.infoDataSource[indexPath.row]
         
         switch indexPath.row {
@@ -97,7 +98,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.infoDataSource[indexPath.row]
         switch model.label {
         case "ADDRESS":
@@ -107,11 +108,11 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         default:
             break
         }
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = self.infoDataSource[indexPath.row]
         
         switch model.label {
@@ -124,7 +125,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.infoDataSource.count
     }
     
@@ -201,12 +202,12 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         return alertController
     }
-    
+
     private func populate(_ cell: ContactInfoCell, with model: ContactInfoVOM) {
         cell.mapCoverView.isHidden = true
         cell.titleLabel.text = model.label
         cell.infoLabel.text = model.value
-        //        cell.setShadowEffect()
+//        cell.setShadowEffect()
         
         switch model.label {
         case "ADDRESS":
@@ -226,10 +227,10 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             break
         }
         
-        //        if model.label == "address" {
-        //            let address = model.value
-        //            cell.initializeMapKit(with: address)
-        //        }
+//        if model.label == "address" {
+//            let address = model.value
+//            cell.initializeMapKit(with: address)
+//        }
     }
     
     private func populate(_ cell: ContactImageCell, with model: ContactInfoVOM) {
@@ -240,7 +241,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.smallNameLabel.isHidden = false
         }
     }
-    
+
     
     private func presentAlertForAddress(with address: Any?) {
         if let alert = createMapOptionsAlert(with: address) {
@@ -259,9 +260,9 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         }
         
-        //        if let alert = createPhoneOptionsAlert(with: phone) {
-        //            present(alert, animated: true, completion: nil)
-        //        }
+//        if let alert = createPhoneOptionsAlert(with: phone) {
+//            present(alert, animated: true, completion: nil)
+//        }
     }
     
     // MARK: IBAction Functions
@@ -324,8 +325,8 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
-    
-        let percentThreshold:CGFloat = 0.15
+        
+        let percentThreshold:CGFloat = 0.1
         
         // convert y-position to downward pull progress (percentage)
         let translation = sender.translation(in: view)
@@ -335,11 +336,9 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         guard
             let interactor = interactor,
             let originView = sender.view
-            else {
-                return
+        else {
+            return
         }
-        
-        let velocity = sender.velocity(in: self.view).y
         
         // Only let the table view dismiss the modal only if we're at the top.
         // If the user is in the middle of the table, let him scroll.
@@ -356,24 +355,16 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         switch sender.state {
         case .began:
-            print(1)
             interactor.hasStarted = true
-            
+            dismiss(animated: true, completion: nil)
         case .changed:
-            print(2)
             interactor.shouldFinish = progress > percentThreshold
             interactor.update(progress)
         case .cancelled:
-            print(3)
             interactor.hasStarted = false
             interactor.cancel()
         case .ended:
-            print(4)
             interactor.hasStarted = false
-            if progress > percentThreshold || velocity > 1500.0 {
-                self.dismiss(animated: true, completion: nil)
-            }
-            
             interactor.shouldFinish
                 ? interactor.finish()
                 : interactor.cancel()

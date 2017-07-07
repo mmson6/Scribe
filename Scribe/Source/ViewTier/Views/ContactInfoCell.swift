@@ -12,6 +12,7 @@ import CoreLocation
 
 class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
 
+    @IBOutlet weak var layoutView: UIView!
     @IBOutlet weak var iconLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
@@ -42,7 +43,7 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
     }
     
     override func prepareForReuse() {
-        self.mapView.isHidden = true
+        self.mapCoverView.isHidden = true
         self.isUserInteractionEnabled = false
     }
     
@@ -80,7 +81,6 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
                 }
             }
             
-            self.mapView.isHidden = false
             self.mapView.layer.cornerRadius = 5
             self.mapView.layer.borderWidth = 1
             self.mapView.layer.borderColor = UIColor.scribeDarkGray.cgColor

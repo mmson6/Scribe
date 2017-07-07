@@ -33,7 +33,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" red="0.94117647059999998" green="0.60784313729999995" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                                         <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,7 +43,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="HfZ-l6-SY4">
+                            <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg2" translatesAutoresizingMaskIntoConstraints="NO" id="HfZ-l6-SY4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-se-odl">
@@ -94,9 +94,9 @@
                             <constraint firstAttribute="trailing" secondItem="HfZ-l6-SY4" secondAttribute="trailing" id="1OU-3T-gon"/>
                             <constraint firstItem="bcU-se-odl" firstAttribute="width" secondItem="mt2-kV-9f1" secondAttribute="width" multiplier="88%" id="2hs-Va-64i"/>
                             <constraint firstItem="bcU-se-odl" firstAttribute="centerX" secondItem="mt2-kV-9f1" secondAttribute="centerX" id="3Xs-qg-lkz"/>
-                            <constraint firstItem="l8u-J1-kCw" firstAttribute="top" secondItem="HfZ-l6-SY4" secondAttribute="bottom" id="CDN-d4-7hN"/>
+                            <constraint firstItem="l8u-J1-kCw" firstAttribute="top" secondItem="HfZ-l6-SY4" secondAttribute="bottom" id="8BL-hy-HdA"/>
                             <constraint firstItem="HfZ-l6-SY4" firstAttribute="top" secondItem="mt2-kV-9f1" secondAttribute="top" id="OpN-zt-qBa"/>
-                            <constraint firstItem="l8u-J1-kCw" firstAttribute="top" secondItem="bcU-se-odl" secondAttribute="bottom" constant="49" id="PLC-Ur-HKy"/>
+                            <constraint firstItem="l8u-J1-kCw" firstAttribute="top" secondItem="bcU-se-odl" secondAttribute="bottom" constant="49" id="a9V-ka-7jl"/>
                             <constraint firstItem="HfZ-l6-SY4" firstAttribute="leading" secondItem="mt2-kV-9f1" secondAttribute="leading" id="pqs-eI-CW5"/>
                         </constraints>
                         <variation key="default">
@@ -132,6 +132,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="login_bg" width="385" height="538"/>
+        <image name="login_bg2" width="1512" height="2016"/>
     </resources>
 </document>

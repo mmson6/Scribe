@@ -12,6 +12,7 @@ import FontAwesomeKit
 
 public class ContactImageCell: UITableViewCell {
 
+    @IBOutlet weak var layoutView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var contactAvatarView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

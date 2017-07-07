@@ -13,6 +13,8 @@ class GroupContactListVC: SPRTableViewController {
     public var contactDataSource: [ContactVOM]?
     public var lookupKey: Any?
     
+    let interactor = Interactor()
+    
     // MARK : SPRTableViewController
     
     override func viewDidLoad() {
@@ -83,6 +85,21 @@ class GroupContactListVC: SPRTableViewController {
         
         vc.parentVC = "GroupContactListVC"
         vc.lookupKey = cell.lookupKey
+        
+        
+        if let destinationViewController = segue.destination as? ContactDetailVC {
+            destinationViewController.transitioningDelegate = self
+            destinationViewController.interactor = interactor
+        }
+    }
+}
+
+extension GroupContactListVC: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
     }
     
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
 }

@@ -22,9 +22,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.97254901960784312" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="4GJ-y8-2EW">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="7yN-3w-Eao" id="vGZ-Dd-Ln4"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" id="sTU-OP-r0G" customClass="ContactCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sTU-OP-r0G" id="EZj-SN-ZoP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
@@ -67,8 +79,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="v8y-vL-u55"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="UWx-3C-PwA" id="Pne-so-Exc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtC-Sa-nHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="UWx-3C-PwA">
+                    <connections>
+                        <outlet property="delegate" destination="7yN-3w-Eao" id="KRU-PK-L4P"/>
+                        <outlet property="searchBar" destination="4GJ-y8-2EW" id="jXz-ch-hGd"/>
+                        <outlet property="searchContentsController" destination="7yN-3w-Eao" id="Gpc-xK-3vJ"/>
+                        <outlet property="searchResultsDataSource" destination="7yN-3w-Eao" id="xQY-LU-rVS"/>
+                        <outlet property="searchResultsDelegate" destination="7yN-3w-Eao" id="6Zb-14-zNu"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1764" y="-172"/>
         </scene>

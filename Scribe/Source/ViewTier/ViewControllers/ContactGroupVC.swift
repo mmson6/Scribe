@@ -23,7 +23,7 @@ class ContactGroupVC: SPRCollectionViewController, UICollectionViewDelegateFlowL
     
     override public func loadObjectDataSource(_ callback: @escaping (AsyncResult<ObjectDataSource<Any>>) -> Void) {
         let cmd = FetchContactGroupCommand()
-        cmd.onCompletion(do: callback)
+//        cmd.onCompletion(do: callback)
         cmd.execute()
     }
     
