@@ -81,8 +81,6 @@
 		8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */; };
 		8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB6791C1EF1C2B700123A32 /* GradationView.swift */; };
 		8AC53EF01F0FD7290053DA99 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EEF1F0FD7290053DA99 /* DismissAnimator.swift */; };
-		8AC53EF21F0FDF7C0053DA99 /* ContactSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF11F0FDF7C0053DA99 /* ContactSearchBar.swift */; };
-		8AC53EF41F0FE2F60053DA99 /* ContactSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF31F0FE2F60053DA99 /* ContactSearchController.swift */; };
 		8AC53EF61F0FF3EA0053DA99 /* ContactDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */; };
 		8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF71F1028150053DA99 /* SettingsVC.swift */; };
 		8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */; };
@@ -191,8 +189,6 @@
 		8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		8AB6791C1EF1C2B700123A32 /* GradationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradationView.swift; path = Source/ViewTier/Application/Assets/Colors/GradationView.swift; sourceTree = "<group>"; };
 		8AC53EEF1F0FD7290053DA99 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissAnimator.swift; path = Source/ViewTier/Views/DismissAnimator.swift; sourceTree = "<group>"; };
-		8AC53EF11F0FDF7C0053DA99 /* ContactSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactSearchBar.swift; path = Source/ViewTier/Views/ContactSearchBar.swift; sourceTree = "<group>"; };
-		8AC53EF31F0FE2F60053DA99 /* ContactSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactSearchController.swift; path = Source/ViewTier/ViewControllers/ContactSearchController.swift; sourceTree = "<group>"; };
 		8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailVC.swift; path = Source/ViewTier/ViewControllers/ContactDetailVC.swift; sourceTree = "<group>"; };
 		8AC53EF71F1028150053DA99 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Source/ViewTier/ViewControllers/SettingsVC.swift; sourceTree = "<group>"; };
 		8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDBStore.swift; path = Source/DomainTier/Data/Storage/LevelDBStore.swift; sourceTree = "<group>"; };
@@ -238,7 +234,6 @@
 				2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */,
 				270F1B011EC0258F00232D2F /* ContactImageCell.swift */,
 				27D191BE1EC03830002C7346 /* ContactInfoCell.swift */,
-				8AC53EF11F0FDF7C0053DA99 /* ContactSearchBar.swift */,
 				8AC53EEF1F0FD7290053DA99 /* DismissAnimator.swift */,
 				8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */,
 			);
@@ -441,7 +436,6 @@
 				8A2B6EC91EF393B200425B61 /* MainVC.swift */,
 				2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */,
 				27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */,
-				8AC53EF31F0FE2F60053DA99 /* ContactSearchController.swift */,
 				8AC53EF71F1028150053DA99 /* SettingsVC.swift */,
 			);
 			name = ViewControllers;
@@ -966,7 +960,6 @@
 				275201EB1EB991D8002C469B /* ArrayObjectDataSource.swift in Sources */,
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,
-				8AC53EF21F0FDF7C0053DA99 /* ContactSearchBar.swift in Sources */,
 				8A2B6ECC1EF394E600425B61 /* MainTabBarVC.swift in Sources */,
 				275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */,
 				275201EF1EB991D8002C469B /* SPRCollectionViewController.swift in Sources */,
@@ -977,7 +970,6 @@
 				8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */,
 				275201EC1EB991D8002C469B /* ErrorObjectDataSource.swift in Sources */,
 				27EB3ECE1EC7936300BB292B /* ContactInfoVOM.swift in Sources */,
-				8AC53EF41F0FE2F60053DA99 /* ContactSearchController.swift in Sources */,
 				2719EA7F1EC66A2C003D6D64 /* ContactGroupVC.swift in Sources */,
 				270F1B041EC026D300232D2F /* FetchContactDetailCommand.swift in Sources */,
 				2719EA7A1EC5F58D003D6D64 /* ContactsCoordinatorVC.swift in Sources */,

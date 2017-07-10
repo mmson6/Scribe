@@ -22,7 +22,7 @@ public enum ContactType {
 fileprivate let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 fileprivate let itemsPerRow: CGFloat = 2
 
-class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchBarDelegate, ContactSearchControllerDelegate {
+class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -46,7 +46,6 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         self.commonInit()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        self.configureCustomSearchController()
         self.initSearchControl()
         self.initializeNavBarItems()
         self.initializeTabBarItems()
@@ -206,7 +205,6 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.searchController.isActive && self.searchController.searchBar.text != "" {
-//        if self.contactSearchController.contactSearchBar.text != "" {
             return self.filteredDataSource.count
         }
         return self.contactDataSource.count
@@ -424,24 +422,6 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
             cell.contacts = filtered
             break
         }
-    }
-    
-    func configureCustomSearchController() {
-        guard let font = UIFont(name: "Futura", size: 16) else { return }
-        self.contactSearchController = ContactSearchController(searchResultsController: self, searchBarFrame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 50), searchBarFont: font, searchBarTextColor: UIColor.orange, searchBarTintColor: UIColor.black)
-        
-        self.contactSearchController.hidesNavigationBarDuringPresentation = true
-        self.contactSearchController.searchResultsUpdater = self
-        definesPresentationContext = true
-        self.contactSearchController.contactSearchBar.showsCancelButton = false
-        self.contactSearchController.dimsBackgroundDuringPresentation = false
-//        self.contactSearchController.customSearchBar.placeholder = "Search in this awesome bar..."
-        self.contactSearchController.contactSearchBar.placeholder = "Search here..."
-//        self.contactSearchController.contactSearchBar.delegate = self
-        self.contactSearchController.customDelegate = self
-        self.contactSearchController.contactSearchBar.sizeToFit()
-        
-        self.tableView.tableHeaderView = self.contactSearchController.contactSearchBar
     }
     
     private func initSearchControl() {
