@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+public typealias JSONArray = [JSONObject]
 public typealias JSONObject = [String: Any]
 
 fileprivate let pBaseURL = "https://scribe-4ed24.firebaseio.com/"

@@ -11,7 +11,7 @@ import Foundation
 import SwiftyJSON
 
 
-public struct ContactDM {
+public struct ContactDM: JSONTransformable {
     public let id: Int64
     public let name: String
     public let group: String
@@ -21,6 +21,16 @@ public struct ContactDM {
     
     private let originalJSON: JSONObject
     
+    init(from jsonObj: JSONObject) {
+        let json = JSON(jsonObj)
+        self.id = 0
+        self.name = json["name_eng"].string ?? ""
+        self.group = json["group"].string ?? ""
+        self.teacher = json["teacher"].bool ?? false
+        self.choir = json["choir"].bool ?? false
+        self.translator = json["translator"].bool ?? false
+        self.originalJSON = jsonObj
+    }
     
     public init(from jsonObj: JSONObject, with id: Int64) {
         let json = JSON(jsonObj)

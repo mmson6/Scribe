@@ -189,7 +189,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="barButton" destination="sC7-60-H7C" id="1tx-DE-HAl"/>
-                        <outlet property="collectionView" destination="V5T-XZ-lOK" id="kk1-JY-qo9"/>
+                        <outlet property="collectionView" destination="V5T-XZ-lOK" id="Y30-Au-3GY"/>
                         <outlet property="tableView" destination="Gfs-lu-DiS" id="CVq-L3-wQs"/>
                     </connections>
                 </viewController>

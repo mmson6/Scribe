@@ -41,19 +41,10 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var groupButton: UIButton!
     @IBOutlet weak var barButton: UIBarButtonItem!
     
-    // MARK: UIViewController 
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.commonInit()
-    }
+    // MARK: UIViewController
     
     override func viewDidLoad() {
+        self.commonInit()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
 //        self.configureCustomSearchController()
         self.initSearchControl()

@@ -114,7 +114,6 @@
                         <outlet property="emailTextField" destination="nDB-cU-C71" id="b6c-qE-ODe"/>
                         <outlet property="loginButton" destination="90f-Rt-2ex" id="bi2-hx-HOw"/>
                         <outlet property="passwordTextField" destination="kJj-8j-Bql" id="KbM-AC-Gzy"/>
-                        <segue destination="x1S-gf-IB7" kind="showDetail" id="y16-aV-X1e"/>
                         <segue destination="x1S-gf-IB7" kind="presentation" identifier="loginToLanding" modalTransitionStyle="crossDissolve" id="6HA-Sw-oU1"/>
                     </connections>
                 </viewController>
@@ -134,7 +133,4 @@
     <resources>
         <image name="login_bg2" width="1512" height="2016"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="6HA-Sw-oU1"/>
-    </inferredMetricsTieBreakers>
 </document>

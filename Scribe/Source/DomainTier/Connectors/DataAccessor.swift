@@ -10,15 +10,16 @@ import Foundation
 
 import FirebaseDatabase
 
-public typealias DataAccessorCallback<T> = (AsyncResult<T>) -> Void
 
+public typealias DataAccessorDMCallback<T> = (AsyncResult<T>) -> Void
 
 public final class DataAccessor {
     
     private let scribeClient = NetworkScribeClient(baseURL: AppConfiguration.baseURL)
+    private let dataStore = LevelDBStore()
     var rootRef: DatabaseReference!
     
-    internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorCallback<ContactInfoDM>) {
+    internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
         let client = self.scribeClient
         client.fetchContactDetail(request) { result in
             switch result {
@@ -30,7 +31,7 @@ public final class DataAccessor {
         }
     }
     
-    internal func loadContactGroups(callback: @escaping DataAccessorCallback<[ContactGroupDM]>) {
+    internal func loadContactGroups(callback: @escaping DataAccessorDMCallback<[ContactGroupDM]>) {
         let client = self.scribeClient
         client.fetchContactGroups { result in
             switch result {
@@ -42,18 +43,36 @@ public final class DataAccessor {
         }
     }
     
-    internal func loadContacts(callback: @escaping DataAccessorCallback<[ContactDM]>) {
-        let client = self.scribeClient
-        client.fetchContacts { result in
-            switch result {
-            case .success(let array):
-                callback(.success(array))
-            case .failure(let error):
-                callback(.failure(error))
-            }
-        }    }
+    internal func loadContacts(callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
+        let loadFromDataStore = { (store: LevelDBStore) -> JSONArray? in
+            return store.loadContacts()
+        }
+        let loadFromScribeClient = { (client: ScribeClient, resultHandler: @escaping DataAccessorDMCallback<[ContactDM]>) in
+            client.fetchContacts(callback: resultHandler)
+        }
+        let save = { (store: LevelDBStore, array: JSONArray?) in
+            store.save(contacts: array)
+        }
+
+        self.loadDomainModelArray(
+            loadFromDataStore: loadFromDataStore,
+            loadFromScribeClient: loadFromScribeClient,
+            save: save,
+            callback: callback
+        )
+        
+//        let client = self.scribeClient
+//        client.fetchContacts { result in
+//            switch result {
+//            case .success(let array):
+//                callback(.success(array))
+//            case .failure(let error):
+//                callback(.failure(error))
+//            }
+//        }
+    }
     
-    internal func loadGroupContacts(_ request: FetchGroupContactsRequest, callback: @escaping DataAccessorCallback<[ContactDM]>) {
+    internal func loadGroupContacts(_ request: FetchGroupContactsRequest, callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
         let client = self.scribeClient
         client.fetchGroupContacts(request) { result in
             switch result {
@@ -103,5 +122,38 @@ public final class DataAccessor {
         ////                print("\(snapshot.key) -> \(snapshot.value)")
         ////            }
         ////        })
+    }
+    
+    // MARK: Private Helper Funcitons
+    
+    private func loadDomainModelArray<T: JSONTransformable>(
+        loadFromDataStore: (LevelDBStore) -> JSONArray?,
+        loadFromScribeClient: (ScribeClient, @escaping DataAccessorDMCallback<[T]>) -> Void,
+        save: @escaping (LevelDBStore, JSONArray) -> Void,
+        callback: @escaping (AsyncResult<[T]>) -> Void
+    ) {
+        let store = self.dataStore
+        let client = self.scribeClient
+        if let jsonArray = loadFromDataStore(store) {
+            let modelArray: [T] = jsonArray.map({ (jsonObject: JSONObject) -> T in
+                let domainModel = T(from: jsonObject)
+                return domainModel
+            })
+            callback(AsyncResult.success(modelArray))
+        } else {
+            loadFromScribeClient(client) { result in
+                switch result {
+                case .success(let modelArray):
+                    let jsonArray = modelArray.map({ (model: T) -> JSONObject in
+                        let jsonObject = model.asJSON()
+                        return jsonObject
+                    })
+                    save(store, jsonArray)
+                    callback(AsyncResult.success(modelArray))
+                case .failure(let error):
+                    callback(AsyncResult.failure(error))
+                }
+            }
+        }
     }
 }

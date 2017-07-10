@@ -9,14 +9,24 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/ViewTier/ViewControllers/ContactDetailViewController.swift"
-            timestampString = "521147583.512155"
+            filePath = "Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
+            timestampString = "521404445.267052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
-            landmarkName = "handleGesture(_:)"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "loadDomainModelArray(loadFromDataStore:loadFromScribeClient:save:callback:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
