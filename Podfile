@@ -12,6 +12,7 @@ target 'Scribe' do
   pod 'Firebase/Database', '~> 4.0'
   pod 'FontAwesomeKit', '~> 2.2'
   pod 'SwiftyJSON', '~> 3.1'
+  pod 'Objective-LevelDB', '~> 2.1'
 
 
   target 'ScribeTests' do

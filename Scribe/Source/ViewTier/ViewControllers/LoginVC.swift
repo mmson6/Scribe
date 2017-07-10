@@ -47,12 +47,11 @@ class LoginVC: UIViewController {
         }
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if let user = user {
-                self.performSegue(withIdentifier: "loginToLanding", sender: nil)
-            }
-            print(user)
-            print(error)
-            
+//            if let user = user {
+//                self.performSegue(withIdentifier: "loginToLanding", sender: nil)
+//            }
+//            print(user)
+//            print(error)
         }
 //        
 //        if Auth.auth().currentUser != nil {

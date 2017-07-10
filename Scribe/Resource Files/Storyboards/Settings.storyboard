@@ -155,7 +155,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="iTy-0P-Lwd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="owP-vn-XTp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="owP-vn-XTp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

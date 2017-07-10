@@ -145,8 +145,8 @@ extension ContactListVC: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-        let searchString = searchController.searchBar.text
-//        
+//        let searchString = searchController.searchBar.text
+//
 //        // Filter the data array and get only those countries that match the search text.
 //        self
 //        filteredArray = dataArray.filter({ (country) -> Bool in
