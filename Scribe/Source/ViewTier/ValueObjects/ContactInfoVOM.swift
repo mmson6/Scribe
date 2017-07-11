@@ -35,24 +35,5 @@ public struct ContactInfoVOM {
         }
         
         self.extra = extra
-        
-//        
-//        let nameData: JSONDictionary = ["name": name]
-//        let addressData: JSONDictionary = ["address": address]
-//        let districtData: JSONDictionary = ["district": district]
-//        let birthdayData: JSONDictionary = ["birthday": birthday]
-//        let sBirthdayData: JSONDictionary = ["spiritualBirthday": sBirthday]
-//        let emailData: JSONDictionary = ["email": email]
-//        
-//        var dataArray: Array<JSONDictionary> = []
-//        dataArray.append(nameData)
-//        dataArray.append(nameData)
-//        dataArray.append(addressData)
-//        dataArray.append(districtData)
-//        dataArray.append(birthdayData)
-//        dataArray.append(sBirthdayData)
-//        dataArray.append(emailData)
-//        
-//        self.contactDetailArray = dataArray
     }
 }

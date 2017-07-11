@@ -19,7 +19,7 @@
         <!--Contacts-->
         <scene sceneID="Rc4-tB-rJZ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hYR-JO-qqt" customClass="ContactsCoordinatorVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="hYR-JO-qqt" customClass="ContactsCoordinatorVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JNH-hv-hXy"/>
                         <viewControllerLayoutGuide type="bottom" id="ieY-YF-sjN"/>
@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gfs-lu-DiS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" id="f6Z-Tp-upg" customClass="ContactCell" customModule="Scribe" customModuleProvider="target">
@@ -52,25 +52,35 @@
                                                                         <constraint firstAttribute="height" constant="50" id="dYM-WI-haP"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joshua Allison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qII-A4-fnv">
-                                                                    <rect key="frame" x="66" y="15.5" width="107.5" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                    <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="c2f-MW-XmV" userLabel="Name Stack View">
+                                                                    <rect key="frame" x="66" y="6.5" width="107.5" height="37.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joshua Allison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qII-A4-fnv">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="107.5" height="19.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                            <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPZ-d3-GRP">
+                                                                            <rect key="frame" x="0.0" y="21.5" width="107.5" height="16"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                            <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="UMf-Ry-Db3" firstAttribute="centerY" secondItem="fsS-Du-7jW" secondAttribute="centerY" id="Dza-B9-sLd"/>
-                                                        <constraint firstItem="UMf-Ry-Db3" firstAttribute="centerY" secondItem="fsS-Du-7jW" secondAttribute="centerY" id="N1i-0m-bGg"/>
-                                                        <constraint firstItem="UMf-Ry-Db3" firstAttribute="leading" secondItem="fsS-Du-7jW" secondAttribute="leading" constant="14" id="P0l-sc-wL8"/>
                                                         <constraint firstItem="UMf-Ry-Db3" firstAttribute="leading" secondItem="fsS-Du-7jW" secondAttribute="leading" constant="14" id="oPK-Kg-bQK"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="avatarImageView" destination="2fa-KR-mZr" id="Xix-jd-bmg"/>
                                                     <outlet property="nameLabel" destination="qII-A4-fnv" id="BtK-gH-bgG"/>
+                                                    <outlet property="subNameLabel" destination="lPZ-d3-GRP" id="Nds-XF-kIA"/>
                                                     <segue destination="JVt-fJ-Qnq" kind="presentation" identifier="coordinatorToContactDetail" id="8Ms-m9-3cr"/>
                                                 </connections>
                                             </tableViewCell>
@@ -81,7 +91,7 @@
                                         </connections>
                                     </tableView>
                                     <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V5T-XZ-lOK">
-                                        <rect key="frame" x="0.0" y="279.5" width="375" height="279.5"/>
+                                        <rect key="frame" x="0.0" y="559" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Ji-KS-QIS">
                                             <size key="itemSize" width="100" height="100"/>
@@ -204,7 +214,7 @@
                     <tabBarItem key="tabBarItem" title="Contacts" id="2Bp-m9-K1t"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ecC-gc-uHQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ecC-gc-uHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

@@ -10,8 +10,10 @@ import Foundation
 
 public class FetchContactsCommand: ScribeCommand<[ContactVOM]> {
 
+    var contactsVer: Int64 = 0
+    
     public override func main() {
-        self.accessor.loadContacts { result in
+        self.accessor.loadContacts(with: self.contactsVer) { result in
             switch result {
             case .success(let dmArray):
                 let models = dmArray.flatMap({ (contactDM) -> ContactVOM? in

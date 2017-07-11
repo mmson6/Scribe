@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         UINavigationBar.appearance().tintColor = UIColor.scribePintInfoTitleColor
         UINavigationBar.appearance().titleTextAttributes = navBarAttributes
-        UINavigationBar.appearance().barTintColor = UIColor.scribePintNavBarColor
+        UINavigationBar.appearance().barTintColor = UIColor.white
         
 //        let tabBarFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
 //        let tabBarAttributes: [String: Any] = [

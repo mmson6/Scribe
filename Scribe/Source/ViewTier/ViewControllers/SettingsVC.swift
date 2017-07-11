@@ -32,6 +32,40 @@ class SettingsVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard
+            let cell = tableView.cellForRow(at: indexPath),
+            let identifier = cell.reuseIdentifier
+        else {
+            return
+        }
+        
+        switch identifier {
+        case "LogOutCell":
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        default:
+            break
+        }
+        
+        // TEST
+//        if Auth.auth().currentUser != nil {
+//            print("user signed in")
+//            let user = Auth.auth().currentUser
+//            if let user = user {
+//
+//                let email = user.email
+//                print(email)
+//            }
+//
+//        } else {
+//            print("no users")
+//        }
+
     }
     
     

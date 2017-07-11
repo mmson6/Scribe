@@ -43,9 +43,15 @@ public final class DataAccessor {
         }
     }
     
-    internal func loadContacts(callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
+    internal func loadContacts(with ver: Int64 ,callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
         let loadFromDataStore = { (store: LevelDBStore) -> JSONArray? in
-            return store.loadContacts()
+            let defaultsStore = UserDefaultsStore()
+            if defaultsStore.contactsNeedUpdate(ver) {
+                defaultsStore.saveContactsVer(ver)
+                return nil
+            } else {
+                return store.loadContacts()
+            }
         }
         let loadFromScribeClient = { (client: ScribeClient, resultHandler: @escaping DataAccessorDMCallback<[ContactDM]>) in
             client.fetchContacts(callback: resultHandler)

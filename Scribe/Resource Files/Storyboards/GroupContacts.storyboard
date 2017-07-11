@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,32 +26,46 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Q9j-3q-IBN">
-                                            <rect key="frame" x="22" y="8" width="111" height="50"/>
+                                            <rect key="frame" x="14" y="8" width="173.5" height="50"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uve-we-eYU">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="Mzb-iQ-Wuy"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="OvL-cZ-PID"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Stl-VG-4Ka"/>
                                                         <constraint firstAttribute="width" constant="50" id="qFj-AR-NWm"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eA-A1-IHH">
-                                                    <rect key="frame" x="66" y="0.0" width="45" height="50"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="QlQ-6t-28P">
+                                                    <rect key="frame" x="66" y="0.0" width="107.5" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joshua Allison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eA-A1-IHH">
+                                                            <rect key="frame" x="0.0" y="0.0" width="107.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                            <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OA-ki-7mg">
+                                                            <rect key="frame" x="0.0" y="20" width="107.5" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Q9j-3q-IBN" firstAttribute="leading" secondItem="ZNg-Pu-3yN" secondAttribute="leadingMargin" constant="14" id="BXd-UP-gqP"/>
-                                        <constraint firstItem="Q9j-3q-IBN" firstAttribute="centerY" secondItem="ZNg-Pu-3yN" secondAttribute="centerY" id="Q6q-D1-Bdr"/>
+                                        <constraint firstItem="Q9j-3q-IBN" firstAttribute="leading" secondItem="ZNg-Pu-3yN" secondAttribute="leading" constant="14" id="ElC-RD-UeD"/>
+                                        <constraint firstItem="Q9j-3q-IBN" firstAttribute="centerY" secondItem="ZNg-Pu-3yN" secondAttribute="centerY" id="xWi-OE-d2M"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatarImageView" destination="uve-we-eYU" id="UIU-fO-4h3"/>
                                     <outlet property="nameLabel" destination="8eA-A1-IHH" id="x2X-LA-eVj"/>
+                                    <outlet property="subNameLabel" destination="8OA-ki-7mg" id="9DF-L3-7Rk"/>
                                     <segue destination="Xbb-wj-WoL" kind="presentation" id="ZJg-FG-m0F"/>
                                 </connections>
                             </tableViewCell>

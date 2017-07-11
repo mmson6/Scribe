@@ -164,8 +164,9 @@ class LoadingVC: UIViewController {
     }
     
     private func runLifeCycle() {
+        self.performSegueToMain()
 //        if Auth.auth().currentUser != nil {
-            self.fetchContactDataSource()
+//            self.fetchContactDataSource()
 //        } else {
 //            self.performSegueToLogin()
 //        }

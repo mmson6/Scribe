@@ -14,6 +14,7 @@ class ContactCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var subNameLabel: UILabel!
     
     public var lookupKey: Any?
     
@@ -25,7 +26,9 @@ class ContactCell: UITableViewCell {
     }
     
     internal func commonInit() {
-        self.layer.backgroundColor = UIColor.scribePintCellColor.cgColor
+        self.nameLabel.isHidden = false
+        self.subNameLabel.isHidden = false
+        self.layer.backgroundColor = UIColor.scribePintNavBarColor.cgColor
         nameLabel.textColor = UIColor.scribeDarkGray
     }
 //    

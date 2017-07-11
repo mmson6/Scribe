@@ -84,6 +84,8 @@
 		8AC53EF61F0FF3EA0053DA99 /* ContactDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */; };
 		8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF71F1028150053DA99 /* SettingsVC.swift */; };
 		8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */; };
+		8AC53EFE1F1561C80053DA99 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */; };
+		8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */; };
 		9F204964B580F76BFE3C7596 /* Pods_ScribeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +194,8 @@
 		8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailVC.swift; path = Source/ViewTier/ViewControllers/ContactDetailVC.swift; sourceTree = "<group>"; };
 		8AC53EF71F1028150053DA99 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Source/ViewTier/ViewControllers/SettingsVC.swift; sourceTree = "<group>"; };
 		8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDBStore.swift; path = Source/DomainTier/Data/Storage/LevelDBStore.swift; sourceTree = "<group>"; };
+		8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsStore.swift; path = Source/DomainTier/Data/Storage/UserDefaultsStore.swift; sourceTree = "<group>"; };
+		8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageSettingsVC.swift; path = Source/ViewTier/ViewControllers/LanguageSettingsVC.swift; sourceTree = "<group>"; };
 		938469FEC9FD537E77C547D1 /* Pods-ScribeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DB000DE59DAAB7767194D2 /* Pods_Scribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -430,6 +434,7 @@
 				275201F71EB99748002C469B /* ContactListVC.swift */,
 				2719EA791EC5F58D003D6D64 /* ContactsCoordinatorVC.swift */,
 				274A83541ED39EBF002DA226 /* GroupContactListVC.swift */,
+				8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */,
 				8A8BADB01EF390B7006721F8 /* LoadingVC.swift */,
 				8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */,
 				8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */,
@@ -605,6 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */,
+				8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -948,6 +954,7 @@
 				8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */,
 				8AC53EF61F0FF3EA0053DA99 /* ContactDetailVC.swift in Sources */,
 				275201F81EB99748002C469B /* ContactListVC.swift in Sources */,
+				8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */,
 				8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */,
 				275201F11EB991D8002C469B /* SPRViewController.swift in Sources */,
 				275202051EB999F1002C469B /* ScribeClient.swift in Sources */,
@@ -957,6 +964,7 @@
 				8AAE32CE1EEFB1D600374794 /* FetchContactsRequest.swift in Sources */,
 				8AAE32CD1EEFB1D600374794 /* FetchContactDetailRequest.swift in Sources */,
 				8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */,
+				8AC53EFE1F1561C80053DA99 /* UserDefaultsStore.swift in Sources */,
 				275201EB1EB991D8002C469B /* ArrayObjectDataSource.swift in Sources */,
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,

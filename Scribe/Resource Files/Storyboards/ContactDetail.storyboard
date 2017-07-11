@@ -115,16 +115,16 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kwr-ip-TBH" userLabel="Name Stack View">
-                                                    <rect key="frame" x="111.5" y="225" width="153.5" height="33"/>
+                                                    <rect key="frame" x="104" y="225" width="169" height="30.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxI-qW-Nte" userLabel="Main Name Label">
-                                                            <rect key="frame" x="0.0" y="0.0" width="153.5" height="33"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="30.5"/>
                                                             <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="26"/>
                                                             <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWr-df-qFJ" userLabel="Sub Name Label">
-                                                            <rect key="frame" x="0.0" y="33" width="153.5" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="30.5" width="169" height="0.0"/>
                                                             <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -373,16 +373,16 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zog-iL-194" userLabel="Name Stack View">
-                                                            <rect key="frame" x="111.5" y="225" width="153.5" height="33"/>
+                                                            <rect key="frame" x="104" y="225" width="169" height="30.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRt-S1-LVc" userLabel="Main Name Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="153.5" height="33"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="169" height="30.5"/>
                                                                     <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="26"/>
                                                                     <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK4-UB-bKE" userLabel="Sub Name Label">
-                                                                    <rect key="frame" x="0.0" y="33" width="153.5" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="30.5" width="169" height="0.0"/>
                                                                     <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>

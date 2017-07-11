@@ -13,12 +13,14 @@ class GroupContactListVC: SPRTableViewController {
     public var contactDataSource: [ContactVOM]?
     public var lookupKey: Any?
     
+    let store = UserDefaultsStore()
     let interactor = Interactor()
     
     // MARK : SPRTableViewController
     
     override func viewDidLoad() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.title = self.lookupKey as? String
     }
     
     override public func loadObjectDataSource(_ callback: @escaping (AsyncResult<ObjectDataSource<Any>>) -> Void) {
@@ -70,8 +72,41 @@ class GroupContactListVC: SPRTableViewController {
     private func populate(_ cell: ContactCell, with model: ContactVOM) {
         cell.commonInit()
         cell.lookupKey = model.id
-        cell.nameLabel.text = model.name
         
+        if let mainLang = self.store.loadMainLanguage() {
+            switch mainLang {
+            case "Eng_US":
+                if model.nameEng == "" {
+                    cell.nameLabel.text = model.nameKor
+                    cell.subNameLabel.isHidden = true
+                } else {
+                    cell.nameLabel.text = model.nameEng
+                    cell.subNameLabel.text = model.nameKor
+                }
+            case "Kor":
+                if model.nameKor == "" {
+                    cell.nameLabel.text = model.nameEng
+                    cell.subNameLabel.isHidden = true
+                } else {
+                    cell.nameLabel.text = model.nameKor
+                    cell.subNameLabel.text = model.nameEng
+                }
+            default:
+                if model.nameEng == "" {
+                    cell.nameLabel.text = model.nameKor
+                } else {
+                    cell.nameLabel.text = model.nameEng
+                    cell.subNameLabel.text = model.nameKor
+                }
+            }
+        } else {
+            if model.nameEng == "" {
+                cell.nameLabel.text = model.nameKor
+            } else {
+                cell.nameLabel.text = model.nameEng
+                cell.subNameLabel.text = model.nameKor
+            }
+        }
     }
     
 

@@ -97,7 +97,8 @@ public class ContactListVC: UITableViewController {
     private func populate(_ cell: ContactCell, with model: ContactVOM) {
         cell.commonInit()
         cell.lookupKey = model.id
-        cell.nameLabel.text = model.name
+        cell.nameLabel.text = model.nameEng
+        cell.subNameLabel.text = model.nameKor
     }
     
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

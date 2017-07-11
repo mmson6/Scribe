@@ -26,38 +26,35 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    var contactSearchController: ContactSearchController!
-    var searchController = UISearchController(searchResultsController: nil)
-    
-    public var contactDataSource = [ContactVOM]()
-    internal var filteredDataSource = [ContactVOM]()
-    internal var groupDataSource = [ContactGroupVOM]()
-    internal var contactType: ContactType = .list
-    
-    let interactor = Interactor()
-    
     @IBOutlet weak var contactListView: UIView!
     @IBOutlet weak var contactGroupView: UIView!
     @IBOutlet weak var groupButton: UIButton!
     @IBOutlet weak var barButton: UIBarButtonItem!
     
+    var searchController = UISearchController(searchResultsController: nil)
+   
+    let store = UserDefaultsStore()
+    let interactor = Interactor()
+    public var contactDataSource = [ContactVOM]()
+    internal var filteredDataSource = [ContactVOM]()
+    internal var groupDataSource = [ContactGroupVOM]()
+    internal var contactType: ContactType = .list
+    
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
         self.commonInit()
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.initSearchControl()
-        self.initializeNavBarItems()
-        self.initializeTabBarItems()
-        
-        self.initObservers()
-        
         self.tableView.setContentOffset(CGPoint(x: 0, y: (self.tableView.tableHeaderView?.frame.size.height)!), animated: false)
         
-//        self.fetchContactDataSource()
+        self.fetchContactDataSource()
     }
     
     // MARK: Lifecycle Functions
+    
+    deinit {
+        self.store.clearAll()
+    }
     
     @IBAction func unwindToContactCoordinator(segue: UIStoryboardSegue) {
         
@@ -66,6 +63,12 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Private Functions
     
     private func commonInit() {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.tableView.backgroundColor = UIColor.scribePintNavBarColor
+        self.initSearchControl()
+        self.initializeNavBarItems()
+        self.initializeTabBarItems()
+        self.initObservers()
         self.fetchGroupDataSource()
     }
     
@@ -86,21 +89,19 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    private func fetchContactDataSource() {
-        
-//        
-//        let cmd = FetchContactsCommand()
-//        cmd.onCompletion { result in
-//            switch result {
-//            case .success(let array):
-////                callback(.success(array))
-//                break
-//            case .failure(let error):
-////                callback(.failure(error))
-//                break
-//            }
-//        }
-//        cmd.execute()
+    private func fetchContactDataSource(with ver: Int64 = 0) {
+        let cmd = FetchContactsCommand()
+        cmd.contactsVer = ver
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                self.contactDataSource = array
+                self.tableView.reloadData()
+            case .failure(let error):
+                NSLog("Error: \(error)")
+            }
+        }
+        cmd.execute()
     }
     
     // MARK : IBAction Methods
@@ -145,6 +146,7 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     private func initObservers() {
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
         let contactRef = ref.child("contacts")
+        let contactVerRef = ref.child("contacts_ver")
         
         contactRef.observe(.childAdded, with: { snap in
             guard
@@ -153,13 +155,14 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
                     return
             }
             
-            let contactsNameRef = ref.child("contacts_name")
             let group = json["group"] as? String
             let teacher = json["teacher"] as? Bool
             let choir = json["choir"] as? Bool
             let translator = json["translator"] as? Bool
             let engName = json["name_eng"] as? String
             let korName = json["name_kor"] as? String
+            
+            let contactsNameRef = ref.child("contacts_name")
             contactsNameRef.child(snap.key).setValue(
                 ["name_eng": engName as Any,
                  "name_kor": korName as Any,
@@ -175,11 +178,28 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
             let contactsNameRef = ref.child("contacts_name")
             contactsNameRef.child(snap.key).removeValue()
         })
+        
+        
+        contactVerRef.observe(.childChanged, with: { [weak self] snap in
+            guard let strongSelf = self else { return }
+            
+            guard
+                let ver = snap.value as? Int64
+            else {
+                return
+            }
+            
+            if strongSelf.store.contactsNeedUpdate(ver) {
+                strongSelf.fetchContactDataSource(with: ver)
+                strongSelf.store.saveContactsVer(ver)
+            }
+        })
     }
     
     // MARK: UITableViewDataSource Functions
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("\(indexPath.row)")
         let contactModel: ContactVOM
         if self.filteredDataSource.count > 0 {
             print(indexPath.row)
@@ -315,7 +335,41 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     private func populate(_ cell: ContactCell, with model: ContactVOM) {
         cell.commonInit()
         cell.lookupKey = model.id
-        cell.nameLabel.text = model.name
+        
+        if let mainLang = self.store.loadMainLanguage() {
+            switch mainLang {
+            case "Eng_US":
+                if model.nameEng == "" {
+                    cell.nameLabel.text = model.nameKor
+                    cell.subNameLabel.isHidden = true
+                } else {
+                    cell.nameLabel.text = model.nameEng
+                    cell.subNameLabel.text = model.nameKor
+                }
+            case "Kor":
+                if model.nameKor == "" {
+                    cell.nameLabel.text = model.nameEng
+                    cell.subNameLabel.isHidden = true
+                } else {
+                    cell.nameLabel.text = model.nameKor
+                    cell.subNameLabel.text = model.nameEng
+                }
+            default:
+                if model.nameEng == "" {
+                    cell.nameLabel.text = model.nameKor
+                } else {
+                    cell.nameLabel.text = model.nameEng
+                    cell.subNameLabel.text = model.nameKor
+                }
+            }
+        } else {
+            if model.nameEng == "" {
+                cell.nameLabel.text = model.nameKor
+            } else {
+                cell.nameLabel.text = model.nameEng
+                cell.subNameLabel.text = model.nameKor
+            }
+        }
     }
     
     private func populate(_ cell: ContactGroupCell, with model:ContactGroupVOM, and contacts:[ContactVOM]) {
@@ -424,6 +478,13 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    private func handleContactsName(for cell: ContactCell, with model: ContactVOM, in language: String) {
+        cell.nameLabel.text = model.nameEng
+        cell.subNameLabel.text = model.nameKor
+    }
+    
+    // MARK: Searching Related Functions
+    
     private func initSearchControl() {
         self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.delegate = self
@@ -441,27 +502,6 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.tableHeaderView = self.searchController.searchBar
     }
     
-    // MARK: ConstactSearchController Delegate Functions
-    
-    func didStartSearching() {
-        self.tableView.reloadData()
-    }
-    
-    func didTapOnCancelButton() {
-        
-    }
-    
-    func didTapOnSearchButton() {
-        
-    }
-    
-    func didChangeSearchText(searchText: String) {
-        self.filteredDataSource = self.contactDataSource.filter({ (model) -> Bool in
-            return model.name.lowercased().contains(searchText.lowercased())
-        })
-        tableView.reloadData()
-    }
-    
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
@@ -469,7 +509,8 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     func filterContentForSearchText(_ searchText: String?) {
         guard let searchKeyword = searchText else { return }
         self.filteredDataSource = self.contactDataSource.filter({ (model) -> Bool in
-            return model.name.lowercased().contains(searchKeyword.lowercased())
+            return model.nameEng.lowercased().contains(searchKeyword.lowercased()) ||
+                model.nameKor.lowercased().contains(searchKeyword.lowercased())
         })
         tableView.reloadData()
     }
