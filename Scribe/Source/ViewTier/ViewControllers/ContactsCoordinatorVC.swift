@@ -43,6 +43,25 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: UIViewController
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NotificationCenter.default.addObserver(
+            forName: mainLanguageChanged,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                strongSelf.tableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         self.commonInit()
         self.tableView.setContentOffset(CGPoint(x: 0, y: (self.tableView.tableHeaderView?.frame.size.height)!), animated: false)
@@ -54,6 +73,7 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     
     deinit {
         self.store.clearAll()
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func unwindToContactCoordinator(segue: UIStoryboardSegue) {
@@ -322,6 +342,7 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
                     return
             }
             
+            vc.modalPresentationStyle = .overCurrentContext
             vc.lookupKey = cell.lookupKey
             vc.parentVC = "ContactListVC"
         }

@@ -25,7 +25,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.panGestureRecognizer.addTarget(self, action: #selector(ContactDetailVC.handleGesture(_:)))
         
         self.tableView.backgroundColor = UIColor.white
-        self.tableView.separatorStyle = .none
+//        self.tableView.separatorStyle = .none
         //        self.tableView.rowHeight = UITableViewAutomaticDimension
         //        self.tableView.estimatedRowHeight = 60
         

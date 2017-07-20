@@ -242,8 +242,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Language" id="JyN-ae-3iy"/>
+                    <connections>
+                        <segue destination="706-VK-zRB" kind="unwind" identifier="unwindToSettingsVC" unwindAction="unwindToSettingsVCWithSegue:" id="sih-Oa-Cve"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGN-9F-dnf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="706-VK-zRB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3762" y="62"/>
         </scene>
@@ -254,7 +258,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="iTy-0P-Lwd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="owP-vn-XTp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="owP-vn-XTp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

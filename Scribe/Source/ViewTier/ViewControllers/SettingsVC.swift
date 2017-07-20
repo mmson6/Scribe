@@ -68,6 +68,12 @@ class SettingsVC: UITableViewController {
 
     }
     
+    // MARK: IBAction Functions
+    
+    @IBAction func unwindToSettingsVC(segue: UIStoryboardSegue) {
+        
+    }
+    
     
     
     // MARK: - Table view data source
@@ -129,12 +135,6 @@ class SettingsVC: UITableViewController {
 
 }
 
-
-
-
-import UIKit
-
-import FirebaseAuth
 
 //
 //class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {

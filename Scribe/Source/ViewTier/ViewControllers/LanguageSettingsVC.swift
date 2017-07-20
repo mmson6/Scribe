@@ -56,10 +56,11 @@ class LanguageSettingsVC: UITableViewController {
             title: "Change",
             style: .default,
             handler: { [weak self] action in
-//                guard let strongSelf = self else { return }
+                guard let strongSelf = self else { return }
                 let store = UserDefaultsStore()
                 store.saveMainLanguage(lang)
-//                strongSelf.dismiss(animated: true, completion: nil)
+                NotificationCenter.default.post(name: mainLanguageChanged, object: nil)
+                strongSelf.performSegue(withIdentifier: "unwindToSettingsVC", sender: nil)
         })
         
         let cancelAction = UIAlertAction(

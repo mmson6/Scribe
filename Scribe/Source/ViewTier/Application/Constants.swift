@@ -31,6 +31,9 @@ internal struct GroupName {
 //public typealias Choir_Group = "Choir"
 
 
+// MARK: Notifications
+
+let mainLanguageChanged = Notification.Name("MainLanguageChanged")
 
 
 struct AppConfiguration {

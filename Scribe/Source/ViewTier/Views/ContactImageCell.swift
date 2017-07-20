@@ -40,7 +40,7 @@ public class ContactImageCell: UITableViewCell {
         
 //        self.userBackgroundView.backgroundColor = UIColor.scribeColorImageBackground
         self.contactAvatarView.backgroundColor = UIColor.white
-        self.contactAvatarView.layer.cornerRadius = 40
+        self.contactAvatarView.layer.cornerRadius = 50
         self.contactAvatarView.layer.borderColor = UIColor.white.cgColor
         self.contactAvatarView.layer.borderWidth = 2.5
         

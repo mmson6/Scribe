@@ -21,15 +21,17 @@ class ContactCell: UITableViewCell {
     override public func awakeFromNib() {
         super.awakeFromNib()
         
-        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
-        self.avatarImageView.image = contactImage?.image(with: CGSize(width: 100, height: 100))
+//        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
+//        self.avatarImageView.image = contactImage?.image(with: CGSize(width: 100, height: 100))
     }
     
     internal func commonInit() {
         self.nameLabel.isHidden = false
+        self.nameLabel.textColor = UIColor.scribeDarkGray
+        self.avatarImageView.layer.cornerRadius = 25
         self.subNameLabel.isHidden = false
         self.layer.backgroundColor = UIColor.scribePintNavBarColor.cgColor
-        nameLabel.textColor = UIColor.scribeDarkGray
+        self.setNeedsLayout()
     }
 //    
 //    internal func setShadowEffect() {
