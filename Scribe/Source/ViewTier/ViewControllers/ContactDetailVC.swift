@@ -55,7 +55,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private func initializeAnimator() {
         self.transitioningDelegate = self.animator
         self.animator.sourceViewController = self
-//        self.tableView.panGestureRecognizer.addTarget(self, action: #selector(self.testHandle(pan:)))
         
         
         guard let parentVC = self.parentVC else { return }
@@ -68,9 +67,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         default:
             return
         }
-    }
-    func testHandle(pan: UIPanGestureRecognizer) {
-        print("testtest")
     }
     
     private func loadDataSource() {
@@ -91,9 +87,15 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: UITableViewDelegate & UITableViewDataSource
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            self.infoDataSource.count > indexPath.row
+        else {
+            return UITableViewCell()
+        }
+        
         let model = self.infoDataSource[indexPath.row]
         
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             //            ContactImageCell
             guard
@@ -130,9 +132,44 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.infoDataSource.count
+        if section > 0 {
+            return self.infoDataSource.count
+        } else {
+            return 1
+        }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section > 0 {
+            return 50
+        }
+        
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section > 0 {
+            return "Test Info"
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.rgb(red: 248, green: 248, blue: 252)
+        
+        let sectionLabel = UILabel()
+        view.addSubview(sectionLabel)
+        sectionLabel.text = "GENERAL INFO"
+        sectionLabel.textColor = .scribeDesignTwoDarkBlue
+        
+        return view
+    }
     
     // MARK: Helper Functions
     

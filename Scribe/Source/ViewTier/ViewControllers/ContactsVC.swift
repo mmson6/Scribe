@@ -31,7 +31,7 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.tableView.backgroundColor = UIColor.scribePintNavBarColor
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 60
+        self.tableView.estimatedRowHeight = 74
     }
     
     private func fetchContactDataSource(with ver: Int64 = 0) {
@@ -159,6 +159,10 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return self.contactDataSource.count
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let contactModel = self.contactDataSource[indexPath.row]

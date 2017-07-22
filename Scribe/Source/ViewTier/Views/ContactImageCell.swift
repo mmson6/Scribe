@@ -40,13 +40,13 @@ public class ContactImageCell: UITableViewCell {
         
 //        self.userBackgroundView.backgroundColor = UIColor.scribeColorImageBackground
         self.contactAvatarView.backgroundColor = UIColor.white
-        self.contactAvatarView.layer.cornerRadius = 50
+        self.contactAvatarView.layer.cornerRadius = 70
         self.contactAvatarView.layer.borderColor = UIColor.white.cgColor
         self.contactAvatarView.layer.borderWidth = 2.5
         
         self.selectionStyle = .none
         
-        self.smallNameLabel.textColor = UIColor.scribePintInfoTitleColor
+//        self.smallNameLabel.textColor = UIColor.scribePintInfoTitleColor
 
         self.closeButton.setTitle("\u{f00d}", for: .normal)
         self.setShadowEffect()

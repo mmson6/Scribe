@@ -45,13 +45,13 @@ class ContactGroupsTransitionAnimator: NSObject, UIViewControllerTransitioningDe
         containerView.addSubview(toView)
         
         
-        let animateSink = CGAffineTransform(scaleX: 0.90, y: 0.90)
+//        let animateSink = CGAffineTransform(scaleX: 0.90, y: 0.90)
         
         toView.alpha = 0.4
         
         UIView.animate(withDuration: self.animationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             fromView.alpha = 0
-            fromView.transform = animateSink
+//            fromView.transform = animateSink
             toView.alpha = 1
         }) { (success) in
             fromView.alpha = 1
@@ -71,13 +71,13 @@ class ContactGroupsTransitionAnimator: NSObject, UIViewControllerTransitioningDe
         containerView.addSubview(fromView)
         containerView.addSubview(toView)
         
-        let animateFloat = CGAffineTransform(scaleX: 1, y: 1)
+//        let animateFloat = CGAffineTransform(scaleX: 1, y: 1)
         
         toView.alpha = 0.4
         
         UIView.animate(withDuration: self.animationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             toView.alpha = 1
-            toView.transform = animateFloat
+//            toView.transform = animateFloat
             fromView.alpha = 0
         }) { (success) in
             fromView.alpha = 1
