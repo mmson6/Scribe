@@ -13,6 +13,7 @@ import FontAwesomeKit
 class ContactCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
+//    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subNameLabel: UILabel!
     
@@ -26,11 +27,12 @@ class ContactCell: UITableViewCell {
     }
     
     internal func commonInit() {
+        self.avatarImageView.layer.cornerRadius = 22.5
         self.nameLabel.isHidden = false
-        self.nameLabel.textColor = UIColor.scribeDarkGray
-        self.avatarImageView.layer.cornerRadius = 25
+        self.nameLabel.textColor = UIColor.scribeDesignTwoDarkBlue
+//        self.avatarImageView.layer.cornerRadius = 25
         self.subNameLabel.isHidden = false
-        self.layer.backgroundColor = UIColor.scribePintNavBarColor.cgColor
+//        self.layer.backgroundColor = UIColor.scribePintNavBarColor.cgColor
         self.setNeedsLayout()
     }
 //    

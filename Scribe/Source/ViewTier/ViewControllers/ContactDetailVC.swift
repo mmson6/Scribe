@@ -16,18 +16,12 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     public var lookupKey: Any?
     public var parentVC: String?
     private var infoDataSource: [ContactInfoVOM] = []
-    
-    var interactor:Interactor? = nil
+    let animator = PullDownTransitionAnimator()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.panGestureRecognizer.addTarget(self, action: #selector(ContactDetailVC.handleGesture(_:)))
-        
-        self.tableView.backgroundColor = UIColor.white
-//        self.tableView.separatorStyle = .none
-        //        self.tableView.rowHeight = UITableViewAutomaticDimension
-        //        self.tableView.estimatedRowHeight = 60
+        self.initializeAnimator()
         
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
         customView.backgroundColor = UIColor.white
@@ -37,6 +31,8 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 300
         //        self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorGroup7
         self.navigationController?.navigationBar.tintColor = UIColor.scribeColorCDNavBarBackground
         //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
@@ -53,7 +49,29 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         //        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
         //        self.navigationController?.navigationBar.shadowImage = nil
     }
+    
     // MARK: Private Funcitons
+    
+    private func initializeAnimator() {
+        self.transitioningDelegate = self.animator
+        self.animator.sourceViewController = self
+//        self.tableView.panGestureRecognizer.addTarget(self, action: #selector(self.testHandle(pan:)))
+        
+        
+        guard let parentVC = self.parentVC else { return }
+        
+        switch parentVC {
+        case "ContactsVC":
+            self.animator.parentVC = "unwindToContactsVC"
+        case "GroupContactListVC":
+            self.animator.parentVC = "unwindToGroupContactListView"
+        default:
+            return
+        }
+    }
+    func testHandle(pan: UIPanGestureRecognizer) {
+        print("testtest")
+    }
     
     private func loadDataSource() {
         let cmd = FetchContactDetailCommand()
@@ -109,19 +127,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = self.infoDataSource[indexPath.row]
-        
-        switch model.label {
-        case "NAME":
-            return 300
-        case "ADDRESS":
-            return 110
-        default:
-            return 82
-        }
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -270,8 +275,8 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         guard let parentVC = self.parentVC else { return }
         
         switch parentVC {
-        case "ContactListVC":
-            performSegue(withIdentifier: "unwindToContactCoordinator", sender: nil)
+        case "ContactsVC":
+            performSegue(withIdentifier: "unwindToContactsVC", sender: nil)
         case "GroupContactListVC":
             performSegue(withIdentifier: "unwindToGroupContactListView", sender: nil)
         default:
@@ -311,75 +316,14 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    // MARK: Dismiss Animator Functions
+    // MARK: Navigation Functions 
     
-    // Refactoring the progress calculation.
-    // In the case of dragging downward, pulling down 50, and the screen height is 500, results in 0.10
-    func progressAlongAxis(_ pointOnAxis: CGFloat, axisLength: CGFloat) -> CGFloat {
-        let movementOnAxis = pointOnAxis / axisLength
-        let positiveMovementOnAxis = fmaxf(Float(movementOnAxis), 0.0)
-        let positiveMovementOnAxisPercent = fminf(positiveMovementOnAxis, 1.0)
-        return CGFloat(positiveMovementOnAxisPercent)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.animator.operationPresenting = false
     }
     
-    
-    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
-    
-        let percentThreshold:CGFloat = 0.15
-        
-        // convert y-position to downward pull progress (percentage)
-        let translation = sender.translation(in: view)
-        // using the helper method
-        let progress = progressAlongAxis(translation.y, axisLength: view.bounds.height)
-        
-        guard
-            let interactor = interactor,
-            let originView = sender.view
-            else {
-                return
-        }
-        
-        let velocity = sender.velocity(in: self.view).y
-        
-        // Only let the table view dismiss the modal only if we're at the top.
-        // If the user is in the middle of the table, let him scroll.
-        switch originView {
-        case view:
-            break
-        case tableView:
-            if tableView.contentOffset.y > 0 {
-                return
-            }
-        default:
-            break
-        }
-        
-        switch sender.state {
-        case .began:
-            print(1)
-            interactor.hasStarted = true
-            
-        case .changed:
-            print(2)
-            interactor.shouldFinish = progress > percentThreshold
-            interactor.update(progress)
-        case .cancelled:
-            print(3)
-            interactor.hasStarted = false
-            interactor.cancel()
-        case .ended:
-            print(4)
-            interactor.hasStarted = false
-            if progress > percentThreshold || velocity > 1500.0 {
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            interactor.shouldFinish
-                ? interactor.finish()
-                : interactor.cancel()
-        default:
-            break
-        }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let gestureRecognizer = scrollView.panGestureRecognizer
     }
 }
 

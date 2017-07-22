@@ -10,7 +10,32 @@ import UIKit
 
 extension UIColor {
     
-    // MARK: Pinterest design
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1) -> UIColor {
+        return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
+    }
+    // MARK: Pinterest Design 2
+    
+    class var scribeDesignTwoDarkBlue: UIColor {
+        return rgb(red: 36, green: 75, blue: 97)
+    }
+    
+    class var scribeDesignTwoBlue: UIColor {
+        return rgb(red: 78, green: 136, blue: 168)
+    }
+    
+    class var scribeDesignTwoGray: UIColor {
+        return rgb(red: 166, green: 182, blue: 191)
+    }
+    
+    class var scribeDesignTwoGreen: UIColor {
+        return rgb(red: 138, green: 224, blue: 131)
+    }
+    
+    class var scribeDesignTwoRed: UIColor {
+        return rgb(red: 247, green: 68, blue: 68)
+    }
+    
+    // MARK: Pinterest Design 1
     
     class var scribePintTabbarColor: UIColor {
         return UIColor(red: 85.0/255.0, green: 192.0/255.0, blue: 249.0/255.0, alpha: 1.0)

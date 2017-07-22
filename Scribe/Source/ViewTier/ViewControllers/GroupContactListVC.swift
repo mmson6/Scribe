@@ -14,7 +14,6 @@ class GroupContactListVC: SPRTableViewController {
     public var lookupKey: Any?
     
     let store = UserDefaultsStore()
-    let interactor = Interactor()
     
     // MARK : SPRTableViewController
     
@@ -123,18 +122,8 @@ class GroupContactListVC: SPRTableViewController {
         
         
         if let destinationViewController = segue.destination as? ContactDetailVC {
-            destinationViewController.transitioningDelegate = self
-            destinationViewController.interactor = interactor
+//            destinationViewController.transitioningDelegate = self
+//            destinationViewController.interactor = interactor
         }
-    }
-}
-
-extension GroupContactListVC: UIViewControllerTransitioningDelegate {
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissAnimator()
-    }
-    
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil
     }
 }

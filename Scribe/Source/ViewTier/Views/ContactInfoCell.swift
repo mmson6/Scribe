@@ -12,7 +12,6 @@ import CoreLocation
 
 class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
 
-    @IBOutlet weak var layoutView: UIView!
     @IBOutlet weak var iconLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!

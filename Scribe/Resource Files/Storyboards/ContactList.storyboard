@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sTU-OP-r0G" id="EZj-SN-ZoP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xwH-pp-R0j">
@@ -53,7 +53,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joshua Allison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13K-06-WQx">
-                                                    <rect key="frame" x="66" y="15" width="96" height="20.5"/>
+                                                    <rect key="frame" x="66" y="15" width="96" height="21"/>
                                                     <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="16"/>
                                                     <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>

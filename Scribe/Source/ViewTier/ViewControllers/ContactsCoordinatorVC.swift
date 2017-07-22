@@ -34,7 +34,7 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     var searchController = UISearchController(searchResultsController: nil)
    
     let store = UserDefaultsStore()
-    let interactor = Interactor()
+    
     public var contactDataSource = [ContactVOM]()
     internal var filteredDataSource = [ContactVOM]()
     internal var groupDataSource = [ContactGroupVOM]()
@@ -342,14 +342,8 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
                     return
             }
             
-            vc.modalPresentationStyle = .overCurrentContext
             vc.lookupKey = cell.lookupKey
             vc.parentVC = "ContactListVC"
-        }
-        
-        if let destinationViewController = segue.destination as? ContactDetailVC {
-            destinationViewController.transitioningDelegate = self
-            destinationViewController.interactor = interactor
         }
     }
     
@@ -536,17 +530,4 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
 }
-
-
-extension ContactsCoordinatorVC: UIViewControllerTransitioningDelegate {
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissAnimator()
-    }
-    
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil
-    }
-}
-
-
 
