@@ -45,17 +45,17 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gfF-gg-jfg">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
-                                                            <color key="backgroundColor" red="0.22332742894812951" green="0.36630487928098143" blue="0.45919490892803816" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="0.22332742894812951" green="0.36630487928098143" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7Z-lm-213" customClass="GradientView" customModule="Scribe" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <color key="value" red="0.099692862715816746" green="0.20942253470041167" blue="0.27058823529411763" alpha="0.5157320205479452" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                                                    <color key="value" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                                                    <color key="value" red="0.38706489837804148" green="0.62615766780410054" blue="0.77532122461928932" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
                                                                     <real key="value" value="0.0"/>
@@ -63,7 +63,6 @@
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
                                                                     <real key="value" value="1"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="diagonalMode" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OM-ak-cWQ">

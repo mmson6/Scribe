@@ -54,7 +54,6 @@ class SettingsVC: UITableViewController {
         
         performSegue(withIdentifier: "unwindToLandingView", sender: nil)
         
-        Auth.auth().create
         // TEST
         if Auth.auth().currentUser != nil {
             print("user signed in")

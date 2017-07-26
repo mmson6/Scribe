@@ -1,35 +1,28 @@
 //
-//  LoginVC.swift
+//  SignUpVC.swift
 //  Scribe
 //
-//  Created by Mikael Son on 6/14/17.
+//  Created by Mikael Son on 7/26/17.
 //  Copyright © 2017 Mikael Son. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
 
+class SignUpVC: UIViewController, UITextFieldDelegate {
 
-class LoginVC: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var authenticationView: UIView!
-    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var emailTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
     @IBOutlet weak var loginButton: UIButton!
-    
-    let animator = SlowDissolveTransitionAnimator()
-    
-    
-    // MARK: UIViewController Functions
+    @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.commonInit()
+        self.addTapGesture()
+        // Do any additional setup after loading the view.
     }
 
     // MARK: Helper Functions
@@ -40,18 +33,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     private func commonInit() {
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         self.activityIndicator.isHidden = true
-        
-//        self.bgImageView.layer.opacity = 0.3
+        //        self.bgImageView.layer.opacity = 0.3
         self.setLayoutAttributes()
         self.setShadowEffect()
-        self.initTransitionAnimation()
-        self.addTapGesture()
-    }
-    private func initTransitionAnimation() {
-        self.transitioningDelegate = self.animator
     }
     
     private func hideLoadingIndicator() {
@@ -67,7 +52,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
             ])
         
-        self.loginButton.layer.cornerRadius = 25
+        self.signUpButton.layer.cornerRadius = 25
     }
     
     private func setShadowEffect() {
@@ -83,7 +68,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
     }
-
+    
     // MARK: IBAction Functions
     
     @IBAction func handleScreenTapped(_ sender: UITapGestureRecognizer) {
@@ -95,54 +80,23 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        self.showLoadingIndicator()
-        //        guard
-        //            let email = self.emailTextField.text,
-        //            let password = self.passwordTextField.text
-        //        else {
-        //            return
-        //        }
-        let email = "mson62@gmail.com"
-        let password = "123456"
-        
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
-            guard let strongSelf = self else { return }
-            
-            if let user = user {
-                strongSelf.hideLoadingIndicator()
-                strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
-            }
-        }
-        //
-        //        if Auth.auth().currentUser != nil {
-        //            print("user signed in")
-        //            let user = Auth.auth().currentUser
-        //            if let user = user {
-        //
-        //                let email = user.email
-        //                print(email)
-        //            }
-        //
-        //        } else {
-        //            print("no users")
-        //        }
-        //
-        
-        //
-        //        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-        //            print(user)
-        //            print(error)
-        //
-        //            if let user = user {
-        //                print(user.displayName)
-        //                print(user.photosysURL)
-        //            }
-        //        }
-        //
-    }
     
-    // MARK: TextField Delegate Functions
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+//        self.showLoadingIndicator()
+//        
+//        let email = "mson62@gmail.com"
+//        let password = "123456"
+//        
+//        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+//            guard let strongSelf = self else { return }
+//            
+//            if let user = user {
+//                strongSelf.hideLoadingIndicator()
+//                strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
+//            }
+//        }
+    }
+        // MARK: TextField Delegate Functions
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
@@ -158,26 +112,4 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             self.authenticationView.transform = CGAffineTransform.identity
         }, completion: nil)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let tag = textField.tag
-        switch tag {
-        case 0:
-            self.passwordTextField.becomeFirstResponder()
-        case 1:
-            self.loginButtonTapped(textField)
-            textField.resignFirstResponder()
-        default:
-            break
-        }
-        // Do not add a line break
-        return false
-    }
-    
-    // MARK: - Navigation
-
-    @IBAction func unwindToLoginView(segue: UIStoryboardSegue) {
-        
-    }
-    
 }

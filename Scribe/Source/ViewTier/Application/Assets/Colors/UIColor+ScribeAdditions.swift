@@ -15,6 +15,10 @@ extension UIColor {
     }
     // MARK: Pinterest Design 2
     
+    class var scribeDesignTwoBackground: UIColor {
+        return rgb(red: 240, green: 242, blue: 241)
+    }
+    
     class var scribeDesignTwoDarkBlue: UIColor {
         return rgb(red: 36, green: 75, blue: 97)
     }

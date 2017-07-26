@@ -23,12 +23,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initializeAnimator()
-        
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
-        customView.backgroundColor = UIColor.white
-        self.tableView.tableFooterView = customView
-        
+        self.commonInit()
         self.loadDataSource()
     }
     
@@ -69,6 +64,14 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         default:
             return
         }
+    }
+    
+    private func commonInit() {
+        self.initializeAnimator()
+        
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
+        customView.backgroundColor = UIColor.white
+        self.tableView.tableFooterView = customView
     }
     
     private func loadDataSource() {

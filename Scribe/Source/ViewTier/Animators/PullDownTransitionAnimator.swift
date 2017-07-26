@@ -25,6 +25,20 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
         }
     }
     
+    // MARK: Transition Delegate Functions
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return self
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return self.transitionDuration
     }
@@ -37,6 +51,8 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
             self.animateDismissal(with: transitionContext)
         }
     }
+    
+    // MARK: Helper Functions
     
     func animatePresentation(with transitionContext: UIViewControllerContextTransitioning) {
         guard
@@ -105,23 +121,6 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
         }) { (success) in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
-    }
-    
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return self
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self
-    }
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
-        return self
-    }
-    
-    func animationEnded(_ transitionCompleted: Bool) {
-        print(transitionCompleted)
     }
     
     func handlePan(pan: UIPanGestureRecognizer) {
