@@ -61,6 +61,8 @@
 		8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */; };
 		8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */; };
 		8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */; };
+		8A2F42011F28E5C000E6DEC5 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A2F42001F28E5C000E6DEC5 /* SignUp.storyboard */; };
+		8A301B571F26665500830815 /* ContactSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A301B561F26665500830815 /* ContactSearchBar.swift */; };
 		8A60163C1EFA685A00283491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163B1EFA685A00283491 /* Assets.xcassets */; };
 		8A6016401EFA6ECB00283491 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */; };
 		8A6016411EFA6FF300283491 /* FallingSky-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016371EF8950E00283491 /* FallingSky-Light.otf */; };
@@ -177,6 +179,8 @@
 		8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoDM.swift; path = Source/DomainTier/DomainModels/ContactInfoDM.swift; sourceTree = "<group>"; };
 		8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDM.swift; path = Source/DomainTier/DomainModels/ContactDM.swift; sourceTree = "<group>"; };
 		8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupDM.swift; path = Source/DomainTier/DomainModels/ContactGroupDM.swift; sourceTree = "<group>"; };
+		8A2F42001F28E5C000E6DEC5 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUp.storyboard; path = "Resource Files/Storyboards/SignUp.storyboard"; sourceTree = "<group>"; };
+		8A301B561F26665500830815 /* ContactSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactSearchBar.swift; path = Source/ViewTier/Views/ContactSearchBar.swift; sourceTree = "<group>"; };
 		8A6016371EF8950E00283491 /* FallingSky-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Light.otf"; sourceTree = "<group>"; };
 		8A6016381EF8951200283491 /* FallingSky-Bold+.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bold+.otf"; sourceTree = "<group>"; };
 		8A6016391EF8951600283491 /* FallingSky-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bold.otf"; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 				270F1B011EC0258F00232D2F /* ContactImageCell.swift */,
 				27D191BE1EC03830002C7346 /* ContactInfoCell.swift */,
 				8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */,
+				8A301B561F26665500830815 /* ContactSearchBar.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				8A8BACCC1EF1ED83006721F8 /* Login.storyboard */,
 				275201AD1EB990C7002C469B /* Main.storyboard */,
 				8A8BADA81EF338E9006721F8 /* Settings.storyboard */,
+				8A2F42001F28E5C000E6DEC5 /* SignUp.storyboard */,
 				8A0B83A41F2145F4004AA24E /* Contacts.storyboard */,
 				8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */,
 			);
@@ -801,6 +807,7 @@
 				8A70B02F1F21728300C9BD91 /* ReadingPlanner.storyboard in Resources */,
 				8A6016431EFA6FF800283491 /* FallingSky-Bold+.otf in Resources */,
 				8A6016441EFA6FFA00283491 /* FallingSky-Bold.otf in Resources */,
+				8A2F42011F28E5C000E6DEC5 /* SignUp.storyboard in Resources */,
 				8AAE33171EF09DC100374794 /* SIL Open Font License.txt in Resources */,
 				2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */,
 				8A60163C1EFA685A00283491 /* Assets.xcassets in Resources */,
@@ -969,6 +976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */,
+				8A301B571F26665500830815 /* ContactSearchBar.swift in Sources */,
 				8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */,
 				274A83511ED39C4E002DA226 /* FetchContactsCommand.swift in Sources */,
 				8A2B6ECA1EF393B200425B61 /* MainVC.swift in Sources */,

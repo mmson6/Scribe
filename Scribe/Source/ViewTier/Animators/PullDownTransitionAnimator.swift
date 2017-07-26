@@ -86,7 +86,7 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
                 return
         }
         
-        let containerView = transitionContext.containerView
+        var containerView = transitionContext.containerView
         containerView.addSubview(toView)
         containerView.addSubview(fromView)
         
@@ -94,7 +94,7 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
 //        let animateSink = CGAffineTransform(translationX: 0, y: 25).scaledBy(x: 0.95, y: 0.95)
 //        let animateFloat = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
         
-        toView.alpha = 0.5
+        toView.alpha = 0
 //        toView.transform = animateSink
 //        fromView.backgroundColor = .clear
         
@@ -104,7 +104,6 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
             toView.alpha = 1
         }) { (success) in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//            fromView.backgroundColor = .black
         }
     }
     
@@ -152,23 +151,19 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
                     self.sourceViewController.performSegue(withIdentifier: identifier, sender: nil)
                     self.transitionStarted = true
                 }
-//                print(pan.velocity(in: pan.view))
-//                print("checking d: \(d)")
-//                print("check translation: \(translation)")
             case .changed:
-//                print(d/4)
+//                print("check translation: \(translation)")
                 print("check translation: \(d)")
                 if self.transitionStarted {
-                    if (d/4) < 0 {
-                        self.cancel()
+                    if d < 0 {
+//                        self.cancel()
                     } else {
-                        self.update(-d/4)
+                        self.update(d/2)
                     }
-                    
                 }
             case .ended:
                 print("ended")
-                if pan.velocity(in: interactingView).y > 0 {
+                if pan.velocity(in: interactingView).y > 0 || translation.y > 100 {
                     self.finish()
                 } else {
                     self.cancel()

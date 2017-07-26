@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dhg-lf-xts">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ZK9-QM-AVt">
+            <objects>
+                <viewController id="Dhg-lf-xts" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4c0-FJ-aSL"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-90-ipp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ohL-lg-Tv1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="TpO-o1-dsb">
+                                <rect key="frame" x="22.5" y="151" width="330" height="175"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-ta-dot" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="330" height="47"/>
+                                        <color key="backgroundColor" red="0.79647842639999999" green="0.79647842639999999" blue="0.79647842639999999" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="olr-zJ-EZP" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="330" height="47"/>
+                                        <color key="backgroundColor" red="0.79647842639999999" green="0.79647842639999999" blue="0.79647842639999999" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUZ-dr-hvy">
+                                        <rect key="frame" x="0.0" y="128" width="330" height="47"/>
+                                        <color key="backgroundColor" red="0.30588235289999999" green="0.53333333329999999" blue="0.6588235294" alpha="0.79559075339999996" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47" id="1LG-WR-1bN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="SIu-ta-dot" firstAttribute="width" secondItem="olr-zJ-EZP" secondAttribute="width" id="0X5-U2-M4t"/>
+                                    <constraint firstItem="SIu-ta-dot" firstAttribute="height" secondItem="oUZ-dr-hvy" secondAttribute="height" id="9UK-QK-09V"/>
+                                    <constraint firstItem="SIu-ta-dot" firstAttribute="height" secondItem="olr-zJ-EZP" secondAttribute="height" id="AiS-dN-Asd"/>
+                                    <constraint firstItem="SIu-ta-dot" firstAttribute="width" secondItem="oUZ-dr-hvy" secondAttribute="width" id="RPR-FD-vCB"/>
+                                    <constraint firstItem="olr-zJ-EZP" firstAttribute="width" secondItem="oUZ-dr-hvy" secondAttribute="width" id="Xmn-U1-9la"/>
+                                    <constraint firstAttribute="trailing" secondItem="oUZ-dr-hvy" secondAttribute="trailing" id="biI-6Q-eMs"/>
+                                    <constraint firstItem="oUZ-dr-hvy" firstAttribute="leading" secondItem="TpO-o1-dsb" secondAttribute="leading" id="l6N-HK-1vA"/>
+                                    <constraint firstItem="olr-zJ-EZP" firstAttribute="height" secondItem="oUZ-dr-hvy" secondAttribute="height" id="y59-dk-Nib"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TpO-o1-dsb" firstAttribute="width" secondItem="ohL-lg-Tv1" secondAttribute="width" multiplier="88%" id="dyr-zN-z5n"/>
+                            <constraint firstItem="TpO-o1-dsb" firstAttribute="centerX" secondItem="ohL-lg-Tv1" secondAttribute="centerX" id="o50-w5-y1o"/>
+                            <constraint firstItem="TpO-o1-dsb" firstAttribute="top" secondItem="4c0-FJ-aSL" secondAttribute="bottom" constant="131" id="qtL-zh-KPq"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zl5-l2-8QU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="532" y="-184"/>
+        </scene>
+    </scenes>
+</document>

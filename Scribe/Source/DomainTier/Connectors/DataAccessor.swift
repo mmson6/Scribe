@@ -20,15 +20,24 @@ public final class DataAccessor {
     var rootRef: DatabaseReference!
     
     internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
-        let client = self.scribeClient
-        client.fetchContactDetail(request) { result in
-            switch result {
-            case .success(let array):
-                callback(.success(array))
-            case .failure(let error):
-                callback(.failure(error))
-            }
+        
+        let loadFromDataStore = { (store: LevelDBStore) -> JSONObject? in
+            let id = request.id as Any
+            return store.loadContact(with: id)
         }
+        let loadFromScribeClient = { (client: ScribeClient, resultHandler: @escaping DataAccessorDMCallback<ContactInfoDM>) in
+            client.fetchContactDetail(request, callback: resultHandler)
+        }
+        let save = { (store: LevelDBStore, object: JSONObject?) in
+            store.save(contact: object)
+        }
+        
+        self.loadDomainModelObject(
+            loadFromDataStore: loadFromDataStore,
+            loadFromScribeClient: loadFromScribeClient,
+            save: save,
+            callback: callback
+        )
     }
     
     internal func loadContactGroups(callback: @escaping DataAccessorDMCallback<[ContactGroupDM]>) {
@@ -47,7 +56,6 @@ public final class DataAccessor {
         let loadFromDataStore = { (store: LevelDBStore) -> JSONArray? in
             let defaultsStore = UserDefaultsStore()
             if defaultsStore.contactsNeedUpdate(ver) {
-                defaultsStore.saveContactsVer(ver)
                 return nil
             } else {
                 return store.loadContacts()
@@ -57,7 +65,16 @@ public final class DataAccessor {
             client.fetchContacts(callback: resultHandler)
         }
         let save = { (store: LevelDBStore, array: JSONArray?) in
+            if let array = array {
+                for object in array {
+                    store.save(contact: object)
+                }
+            }
             store.save(contacts: array)
+            
+            // Update Local ContactsVer
+            let defaultsStore = UserDefaultsStore()
+            defaultsStore.saveContactsVer(ver)
         }
 
         self.loadDomainModelArray(
@@ -66,16 +83,6 @@ public final class DataAccessor {
             save: save,
             callback: callback
         )
-        
-//        let client = self.scribeClient
-//        client.fetchContacts { result in
-//            switch result {
-//            case .success(let array):
-//                callback(.success(array))
-//            case .failure(let error):
-//                callback(.failure(error))
-//            }
-//        }
     }
     
     internal func loadGroupContacts(_ request: FetchGroupContactsRequest, callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
@@ -156,6 +163,31 @@ public final class DataAccessor {
                     })
                     save(store, jsonArray)
                     callback(AsyncResult.success(modelArray))
+                case .failure(let error):
+                    callback(AsyncResult.failure(error))
+                }
+            }
+        }
+    }
+    
+    private func loadDomainModelObject<T: JSONTransformable>(
+        loadFromDataStore: (LevelDBStore) -> JSONObject?,
+        loadFromScribeClient: (ScribeClient, @escaping DataAccessorDMCallback<T>) -> Void,
+        save: @escaping (LevelDBStore, JSONObject) -> Void,
+        callback: @escaping (AsyncResult<T>) -> Void
+        ) {
+        let store = self.dataStore
+        let client = self.scribeClient
+        if let jsonObject = loadFromDataStore(store) {
+            let domainModel = T(from: jsonObject)
+            callback(AsyncResult.success(domainModel))
+        } else {
+            loadFromScribeClient(client) { result in
+                switch result {
+                case .success(let modelObject):
+                    let jsonObject = modelObject.asJSON()
+                    save(store, jsonObject)
+                    callback(AsyncResult.success(modelObject))
                 case .failure(let error):
                     callback(AsyncResult.failure(error))
                 }

@@ -8,12 +8,20 @@
 
 import UIKit
 
+import FontAwesomeKit
+
+
 class MainTabBarVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        self.commonInit()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.commonInit()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,4 +37,22 @@ class MainTabBarVC: UITabBarController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+    
+    // MARK: Helper Functions
+    
+    private func commonInit() {
+        self.initializeTabBarItems()
+    }
+    
+    private func initializeTabBarItems() {
+        let settingsIcon = FAKMaterialIcons.settingsIcon(withSize: 27)
+        let contactIcon = FAKIonIcons.iosContactIcon(withSize: 30)
+        
+        if let tabBarItems = self.tabBar.items {
+            tabBarItems[0].image = contactIcon?.image(with: CGSize(width: 30, height: 30))
+            tabBarItems[1].image = settingsIcon?.image(with: CGSize(width: 30, height: 30))
+            self.view.layoutIfNeeded()
+        }
+    }
+
 }

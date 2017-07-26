@@ -34,19 +34,13 @@ public class ContactImageCell: UITableViewCell {
     private func commonInit() {
 //        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
         self.backgroundColor = UIColor.scribeColorCDCellBackground
-        
-//        self.nameLabel.textColor = UIColor.white
         self.contactAvatarView.backgroundColor = UIColor.black
-        
-//        self.userBackgroundView.backgroundColor = UIColor.scribeColorImageBackground
         self.contactAvatarView.backgroundColor = UIColor.white
         self.contactAvatarView.layer.cornerRadius = 70
         self.contactAvatarView.layer.borderColor = UIColor.white.cgColor
-        self.contactAvatarView.layer.borderWidth = 2.5
+        self.contactAvatarView.layer.borderWidth = 0.5
         
         self.selectionStyle = .none
-        
-//        self.smallNameLabel.textColor = UIColor.scribePintInfoTitleColor
 
         self.closeButton.setTitle("\u{f00d}", for: .normal)
         self.setShadowEffect()

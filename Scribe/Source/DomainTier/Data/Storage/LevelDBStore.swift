@@ -54,6 +54,26 @@ class LevelDBStore {
         self.save(value: contacts, forKey: key)
     }
     
+    // MARK: Contact Detail Related Functions
+    
+    internal func loadContact(with id: Any) -> JSONObject?{
+        let key = "contact_\(id)"
+        let object = self.loadJSONObject(forKey: key)
+        return object
+    }
+    internal func save(contact: JSONObject?) {
+        guard
+            let contactJSON = contact,
+            let id = contactJSON["id"]
+        else {
+            return
+        }
+        
+        let key = "contact_\(id)"
+        self.save(value: contact, forKey: key)
+    }
+    
+    
     // MARK: Private Helper Functions
     
     private func loadJSONArray(forKey key: String) -> JSONArray? {

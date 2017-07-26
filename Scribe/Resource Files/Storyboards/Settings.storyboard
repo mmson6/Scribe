@@ -152,7 +152,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="345" height="46.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.1502383595" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="textColor" red="0.14901960784313725" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -169,8 +169,12 @@
                     <navigationItem key="navigationItem" title="Settings" id="L0m-36-BaK">
                         <barButtonItem key="backBarButtonItem" title=" " id="OyG-7h-kQ2"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="ohn-B4-cPL" kind="unwind" identifier="unwindToLandingView" unwindAction="unwindToLandingViewWithSegue:" id="GLw-SR-0NO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLD-E4-nog" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ohn-B4-cPL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2759.1999999999998" y="69.715142428785612"/>
         </scene>
@@ -258,7 +262,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="iTy-0P-Lwd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="owP-vn-XTp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="owP-vn-XTp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

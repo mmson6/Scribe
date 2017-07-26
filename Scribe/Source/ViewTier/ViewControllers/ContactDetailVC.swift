@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import MapKit
+import PhoneNumberKit
 
 
 class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -34,7 +36,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 300
         //        self.navigationController?.navigationBar.barTintColor = UIColor.scribeColorGroup7
-        self.navigationController?.navigationBar.tintColor = UIColor.scribeColorCDNavBarBackground
+//        self.navigationController?.navigationBar.tintColor = UIColor.scribeColorCDNavBarBackground
         //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         //        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
@@ -45,7 +47,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         //            self.navigationController?.navigationBar.layoutIfNeeded()
         //        })
         
-        self.navigationController?.navigationBar.tintColor = UIColor.scribeDarkGray
+//        self.navigationController?.navigationBar.tintColor = UIColor.scribeDarkGray
         //        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
         //        self.navigationController?.navigationBar.shadowImage = nil
     }
@@ -71,8 +73,12 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     private func loadDataSource() {
         let cmd = FetchContactDetailCommand()
+        let store = UserDefaultsStore()
+        let ver = store.loadContactsVer()
         cmd.lookupKey = self.lookupKey
+        cmd.contactsVer = ver
         cmd.onCompletion { result in
+            self.tableView.backgroundColor = .clear
             switch result {
             case .success(let array):
                 self.infoDataSource = array
@@ -87,13 +93,19 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: UITableViewDelegate & UITableViewDataSource
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            self.infoDataSource.count > indexPath.row
-        else {
-            return UITableViewCell()
+//        guard
+//            self.infoDataSource.count > indexPath.row
+//        else {
+//            return UITableViewCell()
+//        }
+        
+        let model: ContactInfoVOM
+        if self.infoDataSource.count > indexPath.row {
+            model = self.infoDataSource[indexPath.row]
+        } else {
+            model = ContactInfoVOM(jsonObj: [:])
         }
         
-        let model = self.infoDataSource[indexPath.row]
         
         switch indexPath.section {
         case 0:
@@ -145,7 +157,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section > 0 {
-            return 50
+            return 45
         }
         
         return 0
@@ -160,15 +172,22 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.rgb(red: 248, green: 248, blue: 252)
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.rgb(red: 248, green: 252, blue: 252)
         
-        let sectionLabel = UILabel()
-        view.addSubview(sectionLabel)
+        let margins = headerView.layoutMarginsGuide
+        
+        let sectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        headerView.addSubview(sectionLabel)
         sectionLabel.text = "GENERAL INFO"
         sectionLabel.textColor = .scribeDesignTwoDarkBlue
+        sectionLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        return view
+        sectionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10).isActive = true
+        sectionLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        
+        return headerView
     }
     
     // MARK: Helper Functions
@@ -260,6 +279,12 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         case "PHONE":
             cell.isUserInteractionEnabled = true
             cell.iconLabel.text = "\u{f095}"
+            
+            let phoneNumberKit = PhoneNumberKit()
+            if let parsedNumber = try? phoneNumberKit.parse(model.value) {
+                let formattedNumber = phoneNumberKit.format(parsedNumber, toType: .national)
+                cell.infoLabel.text = formattedNumber
+            }
         case "DISTRICT":
             cell.iconLabel.text = "\u{f0f7}"
         case "GROUP":
@@ -361,6 +386,21 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let gestureRecognizer = scrollView.panGestureRecognizer
+    }
+}
+
+extension UIView {
+    
+    func addContraintsWithFormat(_ format: String, views: UIView...) {
+        var viewDict = [String: UIView]()
+        
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewDict[key] = view
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
 }
 

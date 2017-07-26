@@ -19,7 +19,7 @@ public struct ContactInfoVOM {
     public let extra: String?
 //    public var contactDetailArray: Array<JSONDictionary>
     
-    public init?(jsonObj: JSONObject, _ extra: String = "") {
+    public init(jsonObj: JSONObject, _ extra: String = "") {
         let json = JSON(jsonObj)
         
         if let label = json["label"].string {

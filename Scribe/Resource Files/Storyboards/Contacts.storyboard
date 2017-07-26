@@ -16,7 +16,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Contacts-->
+        <!--ContactsVC-->
         <scene sceneID="agy-r4-mOl">
             <objects>
                 <viewController id="F8C-lo-pIe" customClass="ContactsVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
@@ -103,11 +103,11 @@
                             <outlet property="delegate" destination="F8C-lo-pIe" id="PV7-aO-ntM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="4ML-GE-ieV">
+                    <navigationItem key="navigationItem" id="4ML-GE-ieV">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" title="Group" id="7HO-x9-eJn">
                             <color key="tintColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="groupButtonTapped:" destination="F8C-lo-pIe" id="H9d-80-tRQ"/>
                                 <segue destination="XWI-pB-O4u" kind="show" identifier="contactsToContactGroups" id="cgk-6l-zBD"/>
                             </connections>
                         </barButtonItem>
@@ -243,12 +243,14 @@
             </objects>
             <point key="canvasLocation" x="2827" y="130"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Contacts-->
         <scene sceneID="3Nq-OM-N7j">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pem-b4-uuH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contacts" id="WqG-1V-5CZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WCE-Hw-1gd">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WCE-Hw-1gd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

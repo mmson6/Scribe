@@ -8,135 +8,227 @@
 
 import UIKit
 
-class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import FirebaseDatabase
+
+
+class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var tableView: UITableView!
     var contactDataSource = [ContactVOM]()
+    var filteredDataSource = [ContactVOM]()
+    let customSearchBar = ContactSearchBar()
+    var contactsNeedUpdate = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        self.initObservers()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.commonInit()
-        self.fetchContactDataSource()
+        self.initializeSearchController()
+        self.checkForContactsUpdate()
     }
     
     // MARK: Helper Functions
-    
+    private func initObservers() {
+        self.initFirebaseObservers()
+//        
+//        NotificationCenter.default.addObserver(
+//            forName: mainLanguageChanged,
+//            object: nil,
+//            queue: nil
+//        ) { [weak self] _ in
+//            DispatchQueue.main.async {
+//                guard let strongSelf = self else { return }
+//                strongSelf.tableView.reloadData()
+//            }
+//        }
+
+    }
     private func commonInit() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.tableView.backgroundColor = UIColor.scribePintNavBarColor
+//        self.tableView.backgroundColor = UIColor.scribePintNavBarColor
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 74
+        
+        self.tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleScroll(gestureRecognizer:)))
+    }
+    
+    private func checkForContactsUpdate() {
+        
+        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let contactVerRef = ref.child("contacts_ver")
+        
+        contactVerRef.observe(.value, with: { [weak self] (snap) in
+            guard let strongSelf = self else { return }
+            
+            guard
+                let object = snap.value as? JSONObject,
+                let ver = object["version"] as? Int64
+            else {
+                return
+            }
+//            let ver = object["version"] as? Int64
+            
+            strongSelf.fetchContactDataSource(with: ver)
+        })
     }
     
     private func fetchContactDataSource(with ver: Int64 = 0) {
         
-        let ctd: [[String: Any]] = 	[
-            [
-                "name_kor": "안명숙",
-                "name_eng": "Myungsook Ahn",
-                "phone": "8476368041",
-                "address": "10373 Dearlove Road #3E, Glenview, IL 60025",
-                "group": "Mothers",
-                "teacher": false,
-                "choir": false,
-                "translator": false,
-                "district": "11"
-            ],
-            [
-                "name_kor": "백중현",
-                "name_eng": "John Baek",
-                "phone": "6309949989",
-                "address": "23801 Tallgrass Drive, Plainfield, IL 60658",
-                "group": "Fathers",
-                "teacher": false,
-                "choir": false,
-                "translator": false,
-                "district": "11"
-            ],
-            [
-                "name_kor": "김경민",
-                "name_eng": "Ace Bowling",
-                "phone": "8478262343",
-                "address": "265 Washington Boulevard, Hoffman Estates, IL 60169",
-                "group": "Young Adults",
-                "teacher": true,
-                "choir": false,
-                "translator": false,
-                "district": "31"
-            ],
-            [
-                "name_kor": "",
-                "name_eng": "Ryan Bowling",
-                "phone": "8478264755",
-                "address": "265 Washington Boulevard, Hoffman Estates, IL 60169",
-                "group": "Young Adults",
-                "teacher": true,
-                "choir": false,
-                "translator": false,
-                "district": "31"
-            ],
-            [
-                "name_kor": "변영희",
-                "name_eng": "Younghee Byun",
-                "phone": "2246228329",
-                "address": "1509 Summerhill Lane, Cary IL 60013",
-                "group": "Mothers",
-                "teacher": false,
-                "choir": false,
-                "translator": false,
-                "district": "21"
-            ],
-            [
-                "name_kor": "장혜숙",
-                "name_eng": "Hazel Chang",
-                "phone": "6308809345",
-                "address": "2426 North Kennicott Drive #2B, Arlington Heights, IL 60004",
-                "group": "Mothers",
-                "teacher": false,
-                "choir": false,
-                "translator": false,
-                "district": "31"
-            ],
-            [
-                "name_kor": "지시현",
-                "name_eng": "Anna Chee",
-                "phone": "2244028225",
-                "address": "813 West Springfied Avenue APT 101, Urbana, IL 61801",
-                "group": "Young Adults",
-                "teacher": false,
-                "choir": false,
-                "translator": false,
-                "district": "21"
-            ]
-        ]
-        
-        let models = ctd.enumerated().flatMap({ (index, jsonObj) -> ContactVOM? in
-            let index64 = Int64(index)
-            let dm = ContactDM(from: jsonObj, with: index64)
-            let model = ContactVOM(model: dm)
-            return model
-        })
-        
-        self.contactDataSource = models
-        self.tableView.reloadData()
+//        let ctd: [[String: Any]] = 	[
+//            [
+//                "name_kor": "안명숙",
+//                "name_eng": "Myungsook Ahn",
+//                "phone": "8476368041",
+//                "address": "10373 Dearlove Road #3E, Glenview, IL 60025",
+//                "group": "Mothers",
+//                "teacher": false,
+//                "choir": false,
+//                "translator": false,
+//                "district": "11"
+//            ],
+//            [
+//                "name_kor": "백중현",
+//                "name_eng": "John Baek",
+//                "phone": "6309949989",
+//                "address": "23801 Tallgrass Drive, Plainfield, IL 60658",
+//                "group": "Fathers",
+//                "teacher": false,
+//                "choir": false,
+//                "translator": false,
+//                "district": "11"
+//            ],
+//            [
+//                "name_kor": "김경민",
+//                "name_eng": "Ace Bowling",
+//                "phone": "8478262343",
+//                "address": "265 Washington Boulevard, Hoffman Estates, IL 60169",
+//                "group": "Young Adults",
+//                "teacher": true,
+//                "choir": false,
+//                "translator": false,
+//                "district": "31"
+//            ],
+//            [
+//                "name_kor": "",
+//                "name_eng": "Ryan Bowling",
+//                "phone": "8478264755",
+//                "address": "265 Washington Boulevard, Hoffman Estates, IL 60169",
+//                "group": "Young Adults",
+//                "teacher": true,
+//                "choir": false,
+//                "translator": false,
+//                "district": "31"
+//            ],
+//            [
+//                "name_kor": "변영희",
+//                "name_eng": "Younghee Byun",
+//                "phone": "2246228329",
+//                "address": "1509 Summerhill Lane, Cary IL 60013",
+//                "group": "Mothers",
+//                "teacher": false,
+//                "choir": false,
+//                "translator": false,
+//                "district": "21"
+//            ],
+//            [
+//                "name_kor": "장혜숙",
+//                "name_eng": "Hazel Chang",
+//                "phone": "6308809345",
+//                "address": "2426 North Kennicott Drive #2B, Arlington Heights, IL 60004",
+//                "group": "Mothers",
+//                "teacher": false,
+//                "choir": false,
+//                "translator": false,
+//                "district": "31"
+//            ],
+//            [
+//                "name_kor": "지시현",
+//                "name_eng": "Anna Chee",
+//                "phone": "2244028225",
+//                "address": "813 West Springfied Avenue APT 101, Urbana, IL 61801",
+//                "group": "Young Adults",
+//                "teacher": false,
+//                "choir": false,
+//                "translator": false,
+//                "district": "21"
+//            ]
+//        ]
 //        
-//        let cmd = FetchContactsCommand()
-//        cmd.onCompletion { result in
-//            switch result {
-//            case .success(let array):
-//                self.contactDataSource = array
-//                self.tableView.reloadData()
-//            case .failure(let error):
-//                NSLog("Error: \(error)")
+//        let models = ctd.enumerated().flatMap({ (index, jsonObj) -> ContactVOM? in
+//            let index64 = Int64(index)
+//            let dm = ContactDM(from: jsonObj, with: index64)
+//            let model = ContactVOM(model: dm)
+//            return model
+//        })
+//        
+//        self.contactDataSource = models
+//        self.tableView.reloadData()
+//
+        
+//            let test = snap.value as? JSONObject
+//            guard
+//                let object = snap.value as? JSONObject,
+//                let ver = object[0]["contacts_ver"]
+//            else {
+//                return
 //            }
-//        }
-//        cmd.execute()
+        
+        
+//        contactVerRef.observe(.childChanged, with: { [weak self] snap in
+//            guard let strongSelf = self else { return }
+//            
+//            guard
+//                let ver = snap.value as? Int64
+//                else {
+//                    return
+//            }
+//            
+//            if strongSelf.store.contactsNeedUpdate(ver) {
+//                strongSelf.fetchContactDataSource(with: ver)
+//                strongSelf.store.saveContactsVer(ver)
+//            }
+//        })
+        
+//        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
+//        let contactRef = ref.child("contacts")
+//        let query = contactRef.queryOrderedByKey().queryEqual(toValue: "\(request.id)")
+//        
+//        query.observeSingleEvent(of: .value, with: { snap in
+//            if let dataSnap = snap.children.allObjects as? [DataSnapshot] {
+//                guard let json = dataSnap.last else { return }
+//                if let jsonData = json.value as? JSONObject {
+//                    let dm = ContactInfoDM(from: jsonData)
+//                    //                    let dms = jsonData.flatMap({ (key, value) -> ContactInfoDM? in
+//                    //                        let dm = ContactInfoDM(from: ["label": key, "value": value])
+//                    //                        return dm
+//                    //                    })
+//                    callback(.success(dm))
+//                }
+//            }
+//        })
+        
+        let cmd = FetchContactsCommand()
+        cmd.contactsVer = ver
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                self.contactDataSource = array
+                self.tableView.reloadData()
+            case .failure(let error):
+                NSLog("Error: \(error)")
+            }
+        }
+        cmd.execute()
+    }
+    
+    func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
+        self.customSearchBar.resignFirstResponder()
     }
     
     private func populate(_ cell: ContactCell, with model: ContactVOM) {
@@ -146,26 +238,98 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.subNameLabel.text = model.nameKor
     }
 
-    // MARK: IBAction Functions
-    
-    @IBAction func groupButtonTapped(_ sender: UIBarButtonItem) {
+    private func applyCellSettings(to cell: ContactCell) {
+        let view = UIView()
+        view.backgroundColor = UIColor.rgb(red: 237, green: 241, blue: 244)
+        cell.selectedBackgroundView = view
     }
     
-
+    // MARK: Firebase Related Functions
+    
+    private func initFirebaseObservers() {
+        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let contactRef = ref.child("contacts")
+        let contactVerRef = ref.child("contacts_ver")
+//        
+//        contactRef.observe(.childAdded, with: { snap in
+//            guard
+//                let json = snap.value as? JSONObject
+//                else {
+//                    return
+//            }
+//            
+//            let group = json["group"] as? String
+//            let teacher = json["teacher"] as? Bool
+//            let choir = json["choir"] as? Bool
+//            let translator = json["translator"] as? Bool
+//            let engName = json["name_eng"] as? String
+//            let korName = json["name_kor"] as? String
+//            
+//            let contactsNameRef = ref.child("contacts_name")
+//            contactsNameRef.child(snap.key).setValue(
+//                ["name_eng": engName as Any,
+//                 "name_kor": korName as Any,
+//                 "group": group as Any,
+//                 "teacher": teacher as Any,
+//                 "choir": choir as Any,
+//                 "translator": translator as Any
+//                ])
+//            
+//        })
+//        
+//        contactRef.observe(.childRemoved, with: { snap in
+//            let contactsNameRef = ref.child("contacts_name")
+//            contactsNameRef.child(snap.key).removeValue()
+//        })
+        
+        
+        contactVerRef.observe(.childChanged, with: { [weak self] snap in
+            guard let strongSelf = self else { return }
+            
+            guard
+                let ver = snap.value as? Int64
+                else {
+                    return
+            }
+            
+            let store = UserDefaultsStore()
+            if store.contactsNeedUpdate(ver) {
+                strongSelf.fetchContactDataSource(with: ver)
+//                store.saveContactsVer(ver)
+            }
+        })
+    }
+    
     // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if self.customSearchBar.isFirstResponder && self.customSearchBar.text != "" {
+            return self.filteredDataSource.count
+        }
         return self.contactDataSource.count
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if self.customSearchBar.text != "" {
+            UIView.animate(withDuration: 0.5) {
+                self.customSearchBar.text = ""
+                self.customSearchBar.resignFirstResponder()
+                self.filteredDataSource = []
+                tableView.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let contactModel = self.contactDataSource[indexPath.row]
+        let contactModel: ContactVOM
+        if self.filteredDataSource.count > 0 {
+            contactModel = self.filteredDataSource[indexPath.row]
+        } else {
+            contactModel = self.contactDataSource[indexPath.row]
+        }
         
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as? ContactCell
@@ -174,46 +338,37 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
         self.populate(cell, with: contactModel)
-
+        
+        
+        self.applyCellSettings(to: cell)
+        
         return cell
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: Search Controller Functions
+    
+    private func initializeSearchController() {
+        self.customSearchBar.delegate = self
+        self.customSearchBar.placeholder = "Search here..."
+        self.customSearchBar.sizeToFit()
+        self.navigationItem.titleView = customSearchBar
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContentForSearchText(searchText)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func updateSearchResults(for searchController: UISearchController) {
+//        filterContentForSearchText(searchController.searchBar.text!)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func filterContentForSearchText(_ searchText: String) {
+        self.filteredDataSource = self.contactDataSource.filter({ (model) -> Bool in
+            return model.nameEng.lowercased().contains(searchText.lowercased()) ||
+                model.nameKor.lowercased().contains(searchText.lowercased())
+        })
+        self.tableView.reloadData()
     }
-    */
-
     
     // MARK: - Navigation
 

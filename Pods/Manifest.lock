@@ -60,6 +60,12 @@ PODS:
   - leveldb-library (1.18.3)
   - Objective-LevelDB (2.1.5):
     - leveldb-library (~> 1.18.2)
+  - PhoneNumberKit (1.2.3):
+    - PhoneNumberKit/PhoneNumberKitCore (= 1.2.3)
+    - PhoneNumberKit/UIKit (= 1.2.3)
+  - PhoneNumberKit/PhoneNumberKitCore (1.2.3)
+  - PhoneNumberKit/UIKit (1.2.3):
+    - PhoneNumberKit/PhoneNumberKitCore
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -69,6 +75,7 @@ DEPENDENCIES:
   - Firebase/Database (~> 4.0)
   - FontAwesomeKit (~> 2.2)
   - Objective-LevelDB (~> 2.1)
+  - PhoneNumberKit (~> 1.2)
   - SwiftyJSON (~> 3.1)
 
 SPEC CHECKSUMS:
@@ -84,8 +91,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   Objective-LevelDB: fa075efd9d0be645aee51847cc3ee70cdadb80ce
+  PhoneNumberKit: 1e5cca669113fc361a8c82ec1ee559c62b8cd0f7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 81ec05d46c522d1703e4fe6f6d6ba26b7adf621d
+PODFILE CHECKSUM: 5fe1d54dac01f3cdea974940515f764ae1966885
 
 COCOAPODS: 1.2.1

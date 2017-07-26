@@ -10,8 +10,10 @@ import UIKit
 import FirebaseAuth
 
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var emailTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
@@ -19,17 +21,13 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bgImageView.layer.opacity = 0.3
         
-        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 1, alpha: 0.5)
-            ])
-        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 1, alpha: 0.5)
-            ])
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        self.commonInit()
         
-        self.loginButton.layer.cornerRadius = 25
-
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleScreenTapped(_:)))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,20 +36,23 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
+        self.showLoadingIndicator()
+//        guard
+//            let email = self.emailTextField.text,
+//            let password = self.passwordTextField.text
+//        else {
+//            return
+//        }
+        let email = "mson62@gmail.com"
+        let password = "123456"
         
-        guard
-            let email = self.emailTextField.text,
-            let password = self.passwordTextField.text
-        else {
-            return
-        }
-        
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-//            if let user = user {
-//                self.performSegue(withIdentifier: "loginToLanding", sender: nil)
-//            }
-//            print(user)
-//            print(error)
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+            guard let strongSelf = self else { return }
+            
+            if let user = user {
+                strongSelf.hideLoadingIndicator()
+                strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
+            }
         }
 //        
 //        if Auth.auth().currentUser != nil {
@@ -72,7 +73,7 @@ class LoginVC: UIViewController {
 //        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
 //            print(user)
 //            print(error)
-//            
+//
 //            if let user = user {
 //                print(user.displayName)
 //                print(user.photosysURL)
@@ -80,7 +81,62 @@ class LoginVC: UIViewController {
 //        }
 //
     }
+    
+    // MARK: Helper Functions
+    
+    private func commonInit() {
+        self.activityIndicator.isHidden = true
+        self.bgImageView.layer.opacity = 0.3
+        
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [
+            NSForegroundColorAttributeName: UIColor(white: 1, alpha: 0.5)
+            ])
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [
+            NSForegroundColorAttributeName: UIColor(white: 1, alpha: 0.5)
+            ])
+        
+        self.loginButton.layer.cornerRadius = 25
+    }
+    
+    private func showLoadingIndicator() {
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
 
+    private func hideLoadingIndicator() {
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
+    }
+    
+    // MARK: IBAction Functions
+    
+    @IBAction func handleScreenTapped(_ sender: UITapGestureRecognizer) {
+        if emailTextField.isFirstResponder {
+            emailTextField.resignFirstResponder()
+        }
+        if passwordTextField.isFirstResponder {
+            passwordTextField.resignFirstResponder()
+        }
+    }
+    
+    
+    // MARK: TextField Delegate Functions
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        let moveUp = CGAffineTransform(translationX: 0, y: -self.stackView.frame.height)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.stackView.transform = moveUp
+        }, completion: nil)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.stackView.transform = CGAffineTransform.identity
+        }, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -49,7 +49,7 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
     // MARK: Custom Functions
     
     public func initializeMapKit(with address: String) {
-        if self.frame.width > 375 {
+        if self.frame.width >= 375 {
             self.mapCoverView.isHidden = false
             
             let locationManager = CLLocationManager()
@@ -82,7 +82,7 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
             
             self.mapView.layer.cornerRadius = 5
             self.mapView.layer.borderWidth = 1
-            self.mapView.layer.borderColor = UIColor.scribeDarkGray.cgColor
+            self.mapView.layer.borderColor = UIColor.scribeDesignTwoBlue.cgColor
         } else {
             self.mapCoverView.isHidden = true
         }
