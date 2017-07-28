@@ -398,7 +398,7 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             
             vc.lookupKey = cell.lookupKey
             vc.parentVC = "ContactsVC"
-            vc.animator.operationPresenting = true
+//            vc.animator.operationPresenting = true
         }
     }
 }

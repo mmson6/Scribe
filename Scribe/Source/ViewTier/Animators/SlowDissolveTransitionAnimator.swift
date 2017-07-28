@@ -25,7 +25,7 @@ class SlowDissolveTransitionAnimator: NSObject, UIViewControllerTransitioningDel
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.operationPresenting = false
-        return nil
+        return self
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -44,11 +44,8 @@ class SlowDissolveTransitionAnimator: NSObject, UIViewControllerTransitioningDel
             let fromView = transitionContext.view(forKey: .from),
             let toView = transitionContext.view(forKey: .to),
             let logoLabel = toView.viewWithTag(11),
-            let authenticationView = toView.viewWithTag(12)
-//            let toViewController = transitionContext.viewController(forKey: .to) as? LoginVC,
-//            let backgroundView = toViewController.backgroundView,
-//            let authenticationView = toViewController.authenticationView,
-//            let logoLabel = toViewController.logoLabel
+            let authenticationView = toView.viewWithTag(12),
+            let signUpContainerView = toView.viewWithTag(13)
         else {
             return
         }
@@ -58,30 +55,13 @@ class SlowDissolveTransitionAnimator: NSObject, UIViewControllerTransitioningDel
         let containerView = transitionContext.containerView
         containerView.addSubview(fromView)
         containerView.addSubview(toView)
-//        containerView.addSubview(backgroundView)
-//        containerView.addSubview(authenticationView)
-//        containerView.addSubview(logoLabel)
-        
-//        
-//        backgroundView.alpha = 0
-//        authenticationView.alpha = 0
-//        logoLabel.alpha = 0
-//        
+
         toView.alpha = 0
         logoLabel.alpha = 0
         authenticationView.alpha = 0
-        
-//        UIView.animate(withDuration: self.transitionDuration, animations: { 
-//            toView.alpha = 1
-//            fromView.alpha = 0
-//        }) { (success) in
-//            fromView.alpha = 1
-//            test?.alpha = 0
-//            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//        }
+        signUpContainerView.alpha = 0
         
         UIView.animate(withDuration: 1.0, animations: {
-            fromView.alpha = 0
             toView.alpha = 1
             
             UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseIn, animations: {
@@ -89,8 +69,10 @@ class SlowDissolveTransitionAnimator: NSObject, UIViewControllerTransitioningDel
             })
             UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseIn, animations: {
                 authenticationView.alpha = 1
+                signUpContainerView.alpha = 1
             })
         }) { (success) in
+            fromView.alpha = 1
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		06C7AEDDF89CACE3CA32FC92 /* Pods_Scribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3DB000DE59DAAB7767194D2 /* Pods_Scribe.framework */; };
-		270F1AFB1EC0227E00232D2F /* ContactDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270F1AFA1EC0227E00232D2F /* ContactDetail.storyboard */; };
 		270F1B021EC0258F00232D2F /* ContactImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F1B011EC0258F00232D2F /* ContactImageCell.swift */; };
 		270F1B041EC026D300232D2F /* FetchContactDetailCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F1B031EC026D300232D2F /* FetchContactDetailCommand.swift */; };
 		2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA6E1EC3C6E1003D6D64 /* ContactCell.swift */; };
@@ -53,6 +52,8 @@
 		27EB3ED01EC9EB9E00BB292B /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */; };
 		27EB3ED21ECBB45600BB292B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EB3ED11ECBB45600BB292B /* MapKit.framework */; };
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
+		8A06F0BC1F2AAD2600D6458A /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BB1F2AAD2600D6458A /* MoreInfoViewController.swift */; };
+		8A06F0BE1F2AB97200D6458A /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */; };
 		8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A21F214412004AA24E /* ContactsVC.swift */; };
 		8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0B83A41F2145F4004AA24E /* Contacts.storyboard */; };
 		8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */; };
@@ -71,6 +72,7 @@
 		8A6016421EFA6FF600283491 /* FallingSky-Bulk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163A1EF8951B00283491 /* FallingSky-Bulk.otf */; };
 		8A6016431EFA6FF800283491 /* FallingSky-Bold+.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016381EF8951200283491 /* FallingSky-Bold+.otf */; };
 		8A6016441EFA6FFA00283491 /* FallingSky-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016391EF8951600283491 /* FallingSky-Bold.otf */; };
+		8A6F53681F2A5E7A00514780 /* ContactDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */; };
 		8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */; };
 		8A70B02F1F21728300C9BD91 /* ReadingPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */; };
 		8A70B0311F2172E200C9BD91 /* ReadingPlannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */; };
@@ -120,7 +122,6 @@
 /* Begin PBXFileReference section */
 		0463C4D1FABEF5A11CC28F98 /* Pods-ScribeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeUITests/Pods-ScribeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		258597442F4AF3C36A5F75C5 /* Pods-Scribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scribe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scribe/Pods-Scribe.release.xcconfig"; sourceTree = "<group>"; };
-		270F1AFA1EC0227E00232D2F /* ContactDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactDetail.storyboard; path = "Resource Files/Storyboards/ContactDetail.storyboard"; sourceTree = "<group>"; };
 		270F1B011EC0258F00232D2F /* ContactImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactImageCell.swift; path = Source/ViewTier/Views/ContactImageCell.swift; sourceTree = "<group>"; };
 		270F1B031EC026D300232D2F /* FetchContactDetailCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactDetailCommand.swift; path = Source/MiddleTier/Commands/FetchContactDetailCommand.swift; sourceTree = "<group>"; };
 		2719EA6E1EC3C6E1003D6D64 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactCell.swift; path = Source/ViewTier/Views/ContactCell.swift; sourceTree = "<group>"; };
@@ -173,6 +174,8 @@
 		337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scribe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scribe/Pods-Scribe.debug.xcconfig"; sourceTree = "<group>"; };
 		58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E94256574C2F12CE4BB17 /* Pods-ScribeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A06F0BB1F2AAD2600D6458A /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreInfoViewController.swift; path = Source/ViewTier/ViewControllers/MoreInfoViewController.swift; sourceTree = "<group>"; };
+		8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		8A0B83A21F214412004AA24E /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Source/ViewTier/ViewControllers/ContactsVC.swift; sourceTree = "<group>"; };
 		8A0B83A41F2145F4004AA24E /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contacts.storyboard; path = "Resource Files/Storyboards/Contacts.storyboard"; sourceTree = "<group>"; };
 		8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsVC.swift; path = Source/ViewTier/ViewControllers/ContactGroupsVC.swift; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 		8A60163B1EFA685A00283491 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		8A60163F1EFA6B4C00283491 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactDetail.storyboard; path = "Resource Files/Storyboards/ContactDetail.storyboard"; sourceTree = "<group>"; };
 		8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsTransitionAnimator.swift; path = Source/ViewTier/Animators/ContactGroupsTransitionAnimator.swift; sourceTree = "<group>"; };
 		8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ReadingPlanner.storyboard; path = "Resource Files/Storyboards/ReadingPlanner.storyboard"; sourceTree = "<group>"; };
 		8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerVC.swift; path = Source/ViewTier/ViewControllers/ReadingPlannerVC.swift; sourceTree = "<group>"; };
@@ -469,6 +473,7 @@
 				8A0B83A21F214412004AA24E /* ContactsVC.swift */,
 				8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */,
 				8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */,
+				8A06F0BB1F2AAD2600D6458A /* MoreInfoViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -477,7 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				275201FA1EB997C0002C469B /* ContactsCoordinatorVC.storyboard */,
-				270F1AFA1EC0227E00232D2F /* ContactDetail.storyboard */,
+				8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */,
 				2719EA771EC5F19A003D6D64 /* ContactList.storyboard */,
 				2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */,
 				274A83521ED39E17002DA226 /* GroupContacts.storyboard */,
@@ -591,6 +596,7 @@
 				8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */,
 				8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */,
 				8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */,
+				8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */,
 			);
 			name = RequestModels;
 			path = Source/DomainTier/RequestModels;
@@ -799,7 +805,7 @@
 				275201B41EB990C7002C469B /* LaunchScreen.storyboard in Resources */,
 				8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */,
 				8AAE32FC1EF09DC100374794 /* FallingSky.otf in Resources */,
-				270F1AFB1EC0227E00232D2F /* ContactDetail.storyboard in Resources */,
+				8A6F53681F2A5E7A00514780 /* ContactDetail.storyboard in Resources */,
 				8AAE33161EF09DC100374794 /* FONTLOG.txt in Resources */,
 				8A6016421EFA6FF600283491 /* FallingSky-Bulk.otf in Resources */,
 				8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */,
@@ -1038,6 +1044,8 @@
 				8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */,
 				2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */,
 				8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */,
+				8A06F0BC1F2AAD2600D6458A /* MoreInfoViewController.swift in Sources */,
+				8A06F0BE1F2AB97200D6458A /* SignUpRequest.swift in Sources */,
 				8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */,
 				2752020B1EB99D59002C469B /* Constants.swift in Sources */,
 			);

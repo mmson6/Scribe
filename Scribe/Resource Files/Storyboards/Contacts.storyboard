@@ -33,14 +33,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hXd-Nt-aYy">
-                                            <rect key="frame" x="14" y="12.5" width="361" height="50"/>
+                                            <rect key="frame" x="13" y="8" width="354" height="45"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhR-5b-wEe" userLabel="Avatar Layout View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOq-QM-IYw">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unknown_avatar60" translatesAutoresizingMaskIntoConstraints="NO" id="fOq-QM-IYw">
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
-                                                            <color key="backgroundColor" red="0.84593115482081216" green="0.84593115482081216" blue="0.84593115482081216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="45" id="byG-JZ-eiC"/>
+                                                                <constraint firstAttribute="width" constant="45" id="nlt-Jg-NX5"/>
+                                                            </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,16 +58,16 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-6" translatesAutoresizingMaskIntoConstraints="NO" id="xlF-3r-t0f" userLabel="Name Stack View">
-                                                    <rect key="frame" x="61" y="0.0" width="300" height="50"/>
+                                                    <rect key="frame" x="61" y="0.0" width="293" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joshua Allison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGO-jj-PBP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="28"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="293" height="25.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVi-bO-V1e">
-                                                            <rect key="frame" x="0.0" y="22" width="300" height="28"/>
+                                                            <rect key="frame" x="0.0" y="19.5" width="293" height="25.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.36073105570000003" green="0.34990912400000002" blue="0.34990912400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
@@ -83,11 +87,10 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="hXd-Nt-aYy" firstAttribute="width" secondItem="qDm-L3-3cn" secondAttribute="width" constant="-14" id="Mg5-MI-OGB"/>
-                                        <constraint firstItem="hXd-Nt-aYy" firstAttribute="leading" secondItem="qDm-L3-3cn" secondAttribute="leading" constant="14" id="P0J-1X-GFO"/>
-                                        <constraint firstItem="hXd-Nt-aYy" firstAttribute="top" secondItem="qDm-L3-3cn" secondAttribute="top" constant="12" id="Tjv-0A-11n"/>
-                                        <constraint firstAttribute="trailing" secondItem="hXd-Nt-aYy" secondAttribute="trailing" id="U1W-md-O5f"/>
-                                        <constraint firstAttribute="bottom" secondItem="hXd-Nt-aYy" secondAttribute="bottom" constant="12" id="llF-J1-fdb"/>
+                                        <constraint firstItem="hXd-Nt-aYy" firstAttribute="top" secondItem="qDm-L3-3cn" secondAttribute="topMargin" id="IFJ-Fa-04r"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="hXd-Nt-aYy" secondAttribute="trailing" id="ffF-Rq-QtA"/>
+                                        <constraint firstItem="hXd-Nt-aYy" firstAttribute="leading" secondItem="qDm-L3-3cn" secondAttribute="leadingMargin" constant="5" id="qfk-QC-861"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="hXd-Nt-aYy" secondAttribute="bottom" id="scE-lw-DrO"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -105,8 +108,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="4ML-GE-ieV">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" title="Group" id="7HO-x9-eJn">
-                            <color key="tintColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="group_filter_image" id="7HO-x9-eJn">
+                            <color key="tintColor" red="0.65098039215686276" green="0.71372549019607845" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="XWI-pB-O4u" kind="show" identifier="contactsToContactGroups" id="cgk-6l-zBD"/>
                             </connections>
@@ -158,7 +161,7 @@
                                                     <color key="backgroundColor" red="0.60218369959999996" green="0.76922750470000001" blue="0.3332494795" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young Adults" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0t-k5-qID">
-                                                    <rect key="frame" x="15" y="15" width="65.5" height="41.5"/>
+                                                    <rect key="frame" x="15" y="15" width="65.5" height="40"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                     <color key="textColor" red="0.4068424772" green="0.40487705460000001" blue="0.40880789969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -167,7 +170,7 @@
                                                     <rect key="frame" x="0.0" y="55" width="100" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvI-Gi-L2Z" userLabel="Member Count">
-                                                            <rect key="frame" x="35.5" y="10.5" width="54.5" height="24.5"/>
+                                                            <rect key="frame" x="41" y="11" width="49" height="23.5"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -218,7 +221,8 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Contact Groups" id="Jp1-04-Sqy">
-                        <barButtonItem key="rightBarButtonItem" title="Group" id="ic2-SC-yaL">
+                        <barButtonItem key="backBarButtonItem" title=" " id="jdL-qD-epW"/>
+                        <barButtonItem key="rightBarButtonItem" image="group_filter_image" id="ic2-SC-yaL">
                             <color key="tintColor" red="0.14117647058823529" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="groupButtonTapped:" destination="XWI-pB-O4u" id="lmV-Gj-5yd"/>
@@ -275,4 +279,8 @@
             <point key="canvasLocation" x="285.60000000000002" y="164.16791604197903"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="group_filter_image" width="20" height="14"/>
+        <image name="unknown_avatar60" width="60" height="60"/>
+    </resources>
 </document>

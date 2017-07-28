@@ -37,22 +37,21 @@ public class ContactImageCell: UITableViewCell {
         self.contactAvatarView.backgroundColor = UIColor.black
         self.contactAvatarView.backgroundColor = UIColor.white
         self.contactAvatarView.layer.cornerRadius = 70
-        self.contactAvatarView.layer.borderColor = UIColor.white.cgColor
-        self.contactAvatarView.layer.borderWidth = 0.5
+//        self.contactAvatarView.layer.borderColor = UIColor.white.cgColor
+//        self.contactAvatarView.layer.borderWidth = 0.5
         
         self.selectionStyle = .none
 
-        self.closeButton.setTitle("\u{f00d}", for: .normal)
-        self.setShadowEffect()
+//        self.setShadowEffect()
     }
     
-    public func setShadowEffect() {
-        self.closeButton.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        self.closeButton.layer.shadowColor = UIColor.black.cgColor
-        self.closeButton.layer.shadowRadius = 4
-        self.closeButton.layer.shadowOpacity = 0.45
-        self.closeButton.layer.masksToBounds = false
-    }
+//    public func setShadowEffect() {
+//        self.closeButton.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+//        self.closeButton.layer.shadowColor = UIColor.black.cgColor
+//        self.closeButton.layer.shadowRadius = 4
+//        self.closeButton.layer.shadowOpacity = 0.45
+//        self.closeButton.layer.masksToBounds = false
+//    }
 
     public func populate(with model: ContactInfoVOM) {
         self.nameLabel.text = model.value

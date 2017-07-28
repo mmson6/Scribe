@@ -19,7 +19,8 @@ class GroupContactListVC: SPRTableViewController {
     
     override func viewDidLoad() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.title = self.lookupKey as? String
+        
+        self.setNavigationBarTitle()
     }
     
     override public func loadObjectDataSource(_ callback: @escaping (AsyncResult<ObjectDataSource<Any>>) -> Void) {
@@ -67,6 +68,30 @@ class GroupContactListVC: SPRTableViewController {
     
     
     // MARK: Helper Functions
+    
+    private func setNavigationBarTitle() {
+        guard let group = self.lookupKey as? ContactGroups else { return }
+        
+        switch group {
+        case .Choir:
+            self.title = GroupName.Choir_Group
+        case .ChurchSchool:
+            self.title = GroupName.Church_School
+        case .Fathers:
+            self.title = GroupName.Fathers_Group
+        case .Mothers:
+            self.title = GroupName.Mothers_Group
+        case .Teachers:
+            self.title = GroupName.Teachers_Group
+        case .Translators:
+            self.title = GroupName.Translators_Group
+        case .YoungAdults:
+            self.title = GroupName.YA_Group
+        default:
+            break
+        }
+        
+    }
     
     private func populate(_ cell: ContactCell, with model: ContactVOM) {
         cell.commonInit()

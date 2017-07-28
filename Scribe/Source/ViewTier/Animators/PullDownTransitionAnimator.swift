@@ -32,10 +32,12 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.operationPresenting = false
         return self
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.operationPresenting = true
         return nil
     }
     

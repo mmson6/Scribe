@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class LoginVC: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signUpContainerView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -75,7 +77,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.authenticationView.layer.shadowOffset = CGSize(width: 8.0, height: 8.0)
         self.authenticationView.layer.shadowColor = UIColor.black.cgColor
         self.authenticationView.layer.shadowRadius = 10
-        self.authenticationView.layer.shadowOpacity = 0.15
+        self.authenticationView.layer.shadowOpacity = 0.3
         self.authenticationView.layer.masksToBounds = false
     }
     
@@ -96,6 +98,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
+        self.loginButton.isEnabled = false
+        self.signUpButton.isEnabled = false
         self.showLoadingIndicator()
         //        guard
         //            let email = self.emailTextField.text,
@@ -107,11 +111,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         let password = "123456"
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+            if let error = error {
+                print("Error occurred: \(error)")
+            }
             guard let strongSelf = self else { return }
             
             if let user = user {
                 strongSelf.hideLoadingIndicator()
                 strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
+                strongSelf.loginButton.isEnabled = true
+                strongSelf.signUpButton.isEnabled = true
             }
         }
         //

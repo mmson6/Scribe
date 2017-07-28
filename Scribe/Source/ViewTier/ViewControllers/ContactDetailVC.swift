@@ -342,8 +342,10 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch parentVC {
         case "ContactsVC":
             performSegue(withIdentifier: "unwindToContactsVC", sender: nil)
+            self.animator.finish()
         case "GroupContactListVC":
             performSegue(withIdentifier: "unwindToGroupContactListView", sender: nil)
+            self.animator.finish()
         default:
             return
         }
@@ -384,7 +386,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: Navigation Functions 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.animator.operationPresenting = false
+//        self.animator.operationPresenting = false
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
