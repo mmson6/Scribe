@@ -70,7 +70,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view tag="12" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLQ-wg-xfN" userLabel="Authentication View">
-                                <rect key="frame" x="19" y="193.5" width="282" height="250"/>
+                                <rect key="frame" x="19" y="183.5" width="282" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="q8d-pb-drd">
                                         <rect key="frame" x="15" y="30" width="252" height="205"/>
@@ -156,16 +156,16 @@
                                 </constraints>
                             </view>
                             <view tag="13" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36O-dM-j2J" userLabel="Sign Up Container View">
-                                <rect key="frame" x="0.0" y="443.5" width="320" height="124.5"/>
+                                <rect key="frame" x="0.0" y="433.5" width="320" height="114.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account yet?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rp6-0u-QO5">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="40" width="320" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                         <color key="textColor" red="0.45319334329878791" green="0.49973521932932974" blue="0.52486516497461921" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxr-r1-Kwp">
-                                        <rect key="frame" x="110" y="64.5" width="100" height="25"/>
+                                        <rect key="frame" x="110" y="54.5" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="SYK-ZG-K3I"/>
                                             <constraint firstAttribute="height" constant="25" id="XbI-C6-iCv"/>
@@ -181,7 +181,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="rp6-0u-QO5" firstAttribute="top" secondItem="36O-dM-j2J" secondAttribute="top" constant="50" id="JfT-ma-4xx"/>
+                                    <constraint firstItem="rp6-0u-QO5" firstAttribute="top" secondItem="36O-dM-j2J" secondAttribute="top" constant="40" id="JfT-ma-4xx"/>
                                     <constraint firstItem="cxr-r1-Kwp" firstAttribute="centerX" secondItem="36O-dM-j2J" secondAttribute="centerX" id="RUb-hl-iTC"/>
                                     <constraint firstAttribute="bottom" secondItem="cxr-r1-Kwp" secondAttribute="bottom" constant="35" id="VVL-mA-atC"/>
                                     <constraint firstItem="cxr-r1-Kwp" firstAttribute="top" secondItem="rp6-0u-QO5" secondAttribute="bottom" id="cCU-ny-Qx0"/>
@@ -195,7 +195,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.6679152397260274" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MDo-li-JkU">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MDo-li-JkU">
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                                 <color key="color" red="0.14117647058823529" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -204,7 +204,7 @@
                         <constraints>
                             <constraint firstItem="36O-dM-j2J" firstAttribute="top" secondItem="MLQ-wg-xfN" secondAttribute="bottom" id="MoW-zL-mKG"/>
                             <constraint firstItem="MLQ-wg-xfN" firstAttribute="centerX" secondItem="Dwp-ye-gqE" secondAttribute="centerX" id="Q4V-bs-KPf"/>
-                            <constraint firstAttribute="bottom" secondItem="36O-dM-j2J" secondAttribute="bottom" id="ULV-m5-LCV"/>
+                            <constraint firstAttribute="bottom" secondItem="36O-dM-j2J" secondAttribute="bottom" constant="20" id="ULV-m5-LCV"/>
                             <constraint firstItem="MDo-li-JkU" firstAttribute="centerY" secondItem="Dwp-ye-gqE" secondAttribute="centerY" id="VcK-c7-3NU"/>
                             <constraint firstItem="KEM-aj-qeR" firstAttribute="top" secondItem="EzZ-fZ-v03" secondAttribute="bottom" constant="40" id="Wbb-oC-R8E"/>
                             <constraint firstItem="36O-dM-j2J" firstAttribute="centerX" secondItem="Dwp-ye-gqE" secondAttribute="centerX" id="aYy-yc-g14"/>

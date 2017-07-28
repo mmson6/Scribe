@@ -44,7 +44,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     private func commonInit() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        self.activityIndicator.isHidden = true
         
 //        self.bgImageView.layer.opacity = 0.3
         self.setLayoutAttributes()
@@ -56,11 +55,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.transitioningDelegate = self.animator
     }
     
-    private func hideLoadingIndicator() {
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.stopAnimating()
-    }
-    
     private func setLayoutAttributes() {
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
             NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
@@ -69,7 +63,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
             ])
         
-        self.loginButton.layer.cornerRadius = 25
+        self.loginButton.layer.cornerRadius = 23
     }
     
     private func setShadowEffect() {
@@ -79,11 +73,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.authenticationView.layer.shadowRadius = 10
         self.authenticationView.layer.shadowOpacity = 0.3
         self.authenticationView.layer.masksToBounds = false
-    }
-    
-    private func showLoadingIndicator() {
-        self.activityIndicator.isHidden = false
-        self.activityIndicator.startAnimating()
     }
 
     // MARK: IBAction Functions
@@ -100,7 +89,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonTapped(_ sender: Any) {
         self.loginButton.isEnabled = false
         self.signUpButton.isEnabled = false
-        self.showLoadingIndicator()
+        self.activityIndicator.startAnimating()
         //        guard
         //            let email = self.emailTextField.text,
         //            let password = self.passwordTextField.text
@@ -117,11 +106,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             guard let strongSelf = self else { return }
             
             if let user = user {
-                strongSelf.hideLoadingIndicator()
                 strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
-                strongSelf.loginButton.isEnabled = true
-                strongSelf.signUpButton.isEnabled = true
             }
+            strongSelf.activityIndicator.stopAnimating()
+            strongSelf.loginButton.isEnabled = true
+            strongSelf.signUpButton.isEnabled = true
         }
         //
         //        if Auth.auth().currentUser != nil {

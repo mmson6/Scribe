@@ -43,6 +43,7 @@ struct AppConfiguration {
 
 // MARK: Sign Up Alert Constants
 
+// SignUpVC
 public let OK = "Okay"
 
 public let InvalidInputTitle = "Invalid Input"
@@ -52,7 +53,21 @@ public let InvalidPasswordTitle = "Invalid Name"
 
 public let InvalidInputMessage = "Invalid input. Please try again"
 public let EmptyFirstNameMessage = "First name cannot be empty."
+public let InvalidFirstNameMessage = "Your first name cannot contain special characters."
 public let EmptyLastNameMessage = "Last name cannot be empty."
+public let InvalidLastNameMessage = "Your last name cannot contain special characters."
 public let EmptyEmailMessage = "Email cannot be empty."
 public let InvalidEmailMessage = "Please enter email in the right format."
 public let InvalidPasswordMessage = "Password needs to be at least 6 characters long."
+
+// MoreInfoVC
+public let RequestSentTitle = "Request Sent"
+public let RequestSentMessage = "Your request has been sent. After the admin approves your request, you will be able to login to your account. Thank you."
+
+
+
+
+
+
+
+

@@ -52,7 +52,7 @@
 		27EB3ED01EC9EB9E00BB292B /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */; };
 		27EB3ED21ECBB45600BB292B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EB3ED11ECBB45600BB292B /* MapKit.framework */; };
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
-		8A06F0BC1F2AAD2600D6458A /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BB1F2AAD2600D6458A /* MoreInfoViewController.swift */; };
+		8A06F0BC1F2AAD2600D6458A /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */; };
 		8A06F0BE1F2AB97200D6458A /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */; };
 		8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A21F214412004AA24E /* ContactsVC.swift */; };
 		8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0B83A41F2145F4004AA24E /* Contacts.storyboard */; };
@@ -174,7 +174,7 @@
 		337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scribe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scribe/Pods-Scribe.debug.xcconfig"; sourceTree = "<group>"; };
 		58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E94256574C2F12CE4BB17 /* Pods-ScribeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.release.xcconfig"; sourceTree = "<group>"; };
-		8A06F0BB1F2AAD2600D6458A /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreInfoViewController.swift; path = Source/ViewTier/ViewControllers/MoreInfoViewController.swift; sourceTree = "<group>"; };
+		8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreInfoVC.swift; path = Source/ViewTier/ViewControllers/MoreInfoVC.swift; sourceTree = "<group>"; };
 		8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		8A0B83A21F214412004AA24E /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Source/ViewTier/ViewControllers/ContactsVC.swift; sourceTree = "<group>"; };
 		8A0B83A41F2145F4004AA24E /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contacts.storyboard; path = "Resource Files/Storyboards/Contacts.storyboard"; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 				8A0B83A21F214412004AA24E /* ContactsVC.swift */,
 				8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */,
 				8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */,
-				8A06F0BB1F2AAD2600D6458A /* MoreInfoViewController.swift */,
+				8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1044,7 +1044,7 @@
 				8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */,
 				2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */,
 				8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */,
-				8A06F0BC1F2AAD2600D6458A /* MoreInfoViewController.swift in Sources */,
+				8A06F0BC1F2AAD2600D6458A /* MoreInfoVC.swift in Sources */,
 				8A06F0BE1F2AB97200D6458A /* SignUpRequest.swift in Sources */,
 				8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */,
 				2752020B1EB99D59002C469B /* Constants.swift in Sources */,
