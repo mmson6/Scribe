@@ -20,13 +20,13 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var churchPickerView: UIPickerView!
     
     var requestModel: SignUpRequest?
-//    let churchs = ["US, Chicago",
-//                   "US, Atlanta",
-//                   "US, Michigan",
+//    let churchs = ["US, Atlanta",
+//                   "US, Chicago",
 //                   "US, New Jersey",
 //                   "US, New York",
-//                   "US, Washington",
-//                   "US, S. Illinois"]
+//                   "US, Michigan",
+//                   "US, S. Illinois",
+//                   "US, Washington"]
     let churchs = ["US, Chicago"]
     var selectedChurch = ""
     
@@ -93,6 +93,19 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         return alertController
     }
     
+    private func recomposeEmailForFirebase(_ email: String) -> String {
+        let parts = email.components(separatedBy: ".")
+        var recomposed = ""
+        for part in parts {
+            recomposed.append(part)
+            if parts.last != part {
+                recomposed.append("_")
+            }
+        }
+        
+        return recomposed
+    }
+    
     // MARK: IBAction Functions
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -104,42 +117,84 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         self.signUpButton.isEnabled = false
         self.activityIndicator.startAnimating()
         
-        guard let model = self.requestModel else { return }
+        guard var requestModel = self.requestModel else { return }
+        requestModel.church = self.selectedChurch
+        let recomposedEmail = self.recomposeEmailForFirebase(requestModel.email)
         
-        let first = model.first
-        let last = model.last
-        let email = model.email
-        let password = model.password
-        let church = self.selectedChurch
+        let baseRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let emailPath = "users/email_pool"
+        let emailRef = baseRef.child(emailPath)
         
-        let parts = email.components(separatedBy: ".")
-        var composed = ""
-        for part in parts {
-            composed.append(part)
-            if parts.last != part {
-                composed.append("_")
-            }
-        }
-        let key = "\(composed)-\(first):\(last)-\(church)"
+        var emailJSON: JSONObject = [:]
+        emailJSON["email"] = requestModel.email
+        emailJSON["name"] = "\(requestModel.first) \(requestModel.last)"
+        emailJSON["church"] = requestModel.church
+        emailJSON["status"] = "pending"
         
-        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let path = "signup_request"
-        let requestRef = ref.child(path)
-        let status = "request pending"
-        let object = ["status": status] as Any
-        
-        requestRef.child(key).setValue(object) { [weak self] (error, ref) in
+        emailRef.child(recomposedEmail).setValue(emailJSON) { [weak self] (error, ref) in
             guard let strongSelf = self else { return }
             
             if let error = error {
                 print(error)
             } else {
-                strongSelf.presentAlert()
+                requestSignUp()
+//                strongSelf.presentAlert()
             }
-            strongSelf.activityIndicator.stopAnimating()
-            strongSelf.signUpButton.isEnabled = true
-            strongSelf.backButton.isEnabled = true
+//            strongSelf.activityIndicator.stopAnimating()
+//            strongSelf.signUpButton.isEnabled = true
+//            strongSelf.backButton.isEnabled = true
         }
+        
+        func requestSignUp() {
+            let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
+            let path = "users/signup_request"
+            let requestRef = ref.child(path)
+            let jsonObj = requestModel.asJSON()
+            
+            requestRef.child(recomposedEmail).setValue(jsonObj) { [weak self] (error, ref) in
+                guard let strongSelf = self else { return }
+                
+                if let error = error {
+                    print(error)
+                } else {
+                    strongSelf.presentAlert()
+                }
+                strongSelf.activityIndicator.stopAnimating()
+                strongSelf.signUpButton.isEnabled = true
+                strongSelf.backButton.isEnabled = true
+            }
+        }
+        
+//        
+//        
+//        let first = model.first
+//        let last = model.last
+//        let email = model.email
+//        let password = model.password
+//        let church = self.selectedChurch
+//        
+//        let newEmail = self.recomposeEmailForFirebase(email: email)
+//        
+//        let key = "\(composed)-\(first):\(last)-\(church)"
+//        
+//        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
+//        let path = "users/signup_request"
+//        let requestRef = ref.child(path)
+//        let status = "request pending"
+//        let object = ["status": status] as Any
+//        
+//        requestRef.child(key).setValue(object) { [weak self] (error, ref) in
+//            guard let strongSelf = self else { return }
+//            
+//            if let error = error {
+//                print(error)
+//            } else {
+//                strongSelf.presentAlert()
+//            }
+//            strongSelf.activityIndicator.stopAnimating()
+//            strongSelf.signUpButton.isEnabled = true
+//            strongSelf.backButton.isEnabled = true
+//        }
     }
     
     // MARK: Navigation Functions

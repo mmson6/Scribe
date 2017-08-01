@@ -18,7 +18,6 @@
 		2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */; };
 		2719EA7F1EC66A2C003D6D64 /* ContactGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA7E1EC66A2C003D6D64 /* ContactGroupVC.swift */; };
 		2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */; };
-		2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */; };
 		274A83511ED39C4E002DA226 /* FetchContactsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274A83501ED39C4E002DA226 /* FetchContactsCommand.swift */; };
 		274A83531ED39E17002DA226 /* GroupContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274A83521ED39E17002DA226 /* GroupContacts.storyboard */; };
 		274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274A83541ED39EBF002DA226 /* GroupContactListVC.swift */; };
@@ -49,7 +48,6 @@
 		27EB3ECA1EC77D1F00BB292B /* DataAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */; };
 		27EB3ECC1EC7807800BB292B /* ContactGroupVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */; };
 		27EB3ECE1EC7936300BB292B /* ContactInfoVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */; };
-		27EB3ED01EC9EB9E00BB292B /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */; };
 		27EB3ED21ECBB45600BB292B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EB3ED11ECBB45600BB292B /* MapKit.framework */; };
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
 		8A06F0BC1F2AAD2600D6458A /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */; };
@@ -57,8 +55,7 @@
 		8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A21F214412004AA24E /* ContactsVC.swift */; };
 		8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0B83A41F2145F4004AA24E /* Contacts.storyboard */; };
 		8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */; };
-		8A2B6ECA1EF393B200425B61 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B6EC91EF393B200425B61 /* MainVC.swift */; };
-		8A2B6ECC1EF394E600425B61 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */; };
+		8A2B6ECC1EF394E600425B61 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B6ECB1EF394E600425B61 /* MainTabBarController.swift */; };
 		8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */; };
 		8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */; };
 		8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */; };
@@ -76,6 +73,13 @@
 		8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */; };
 		8A70B02F1F21728300C9BD91 /* ReadingPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */; };
 		8A70B0311F2172E200C9BD91 /* ReadingPlannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */; };
+		8A7D5E1E1F2BC4FA00089E1F /* AdminSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */; };
+		8A7D5E201F2BCECD00089E1F /* AdminSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E1F1F2BCECD00089E1F /* AdminSettingsVC.swift */; };
+		8A7D5E221F2F906100089E1F /* FetchSignUpRequestsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */; };
+		8A7D5E241F2F918C00089E1F /* SignUpRequestDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E231F2F918C00089E1F /* SignUpRequestDM.swift */; };
+		8A7D5E261F2F95F300089E1F /* SignUpRequestVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */; };
+		8A7D5E281F2F9A1B00089E1F /* SignUpRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */; };
+		8A7D5E2A1F2FC73900089E1F /* SignUpRequests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */; };
 		8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BACCC1EF1ED83006721F8 /* Login.storyboard */; };
 		8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */; };
 		8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */; };
@@ -84,6 +88,7 @@
 		8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BADB01EF390B7006721F8 /* LoadingVC.swift */; };
 		8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */; };
 		8A9762C51F22666D001583EA /* PullDownTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */; };
+		8AA7E3361F2FCED3009CFF28 /* SignUpRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7E3351F2FCED3009CFF28 /* SignUpRequestCell.swift */; };
 		8AAE32CD1EEFB1D600374794 /* FetchContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */; };
 		8AAE32CE1EEFB1D600374794 /* FetchContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */; };
 		8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */; };
@@ -132,7 +137,6 @@
 		2719EA7C1EC668CF003D6D64 /* ContactGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactGroup.storyboard; path = "Resource Files/Storyboards/ContactGroup.storyboard"; sourceTree = "<group>"; };
 		2719EA7E1EC66A2C003D6D64 /* ContactGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupVC.swift; path = Source/ViewTier/ViewControllers/ContactGroupVC.swift; sourceTree = "<group>"; };
 		2719EA801EC66C1A003D6D64 /* ContactGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupCell.swift; path = Source/ViewTier/Views/ContactGroupCell.swift; sourceTree = "<group>"; };
-		2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCollectionViewController.swift; path = Source/ViewTier/ViewControllers/TestCollectionViewController.swift; sourceTree = "<group>"; };
 		274A83501ED39C4E002DA226 /* FetchContactsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactsCommand.swift; path = Source/MiddleTier/Commands/FetchContactsCommand.swift; sourceTree = "<group>"; };
 		274A83521ED39E17002DA226 /* GroupContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupContacts.storyboard; path = "Resource Files/Storyboards/GroupContacts.storyboard"; sourceTree = "<group>"; };
 		274A83541ED39EBF002DA226 /* GroupContactListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupContactListVC.swift; path = Source/ViewTier/ViewControllers/GroupContactListVC.swift; sourceTree = "<group>"; };
@@ -169,7 +173,6 @@
 		27EB3EC91EC77D1F00BB292B /* DataAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataAccessor.swift; path = Source/DomainTier/Connectors/DataAccessor.swift; sourceTree = "<group>"; };
 		27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupVOM.swift; path = Source/ViewTier/ValueObjects/ContactGroupVOM.swift; sourceTree = "<group>"; };
 		27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoVOM.swift; path = Source/ViewTier/ValueObjects/ContactInfoVOM.swift; sourceTree = "<group>"; };
-		27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestTableViewController.swift; path = Source/ViewTier/ViewControllers/TestTableViewController.swift; sourceTree = "<group>"; };
 		27EB3ED11ECBB45600BB292B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		337FD66B17DED0697DACF031 /* Pods-Scribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scribe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scribe/Pods-Scribe.debug.xcconfig"; sourceTree = "<group>"; };
 		58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,8 +182,7 @@
 		8A0B83A21F214412004AA24E /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Source/ViewTier/ViewControllers/ContactsVC.swift; sourceTree = "<group>"; };
 		8A0B83A41F2145F4004AA24E /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contacts.storyboard; path = "Resource Files/Storyboards/Contacts.storyboard"; sourceTree = "<group>"; };
 		8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsVC.swift; path = Source/ViewTier/ViewControllers/ContactGroupsVC.swift; sourceTree = "<group>"; };
-		8A2B6EC91EF393B200425B61 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainVC.swift; path = Source/ViewTier/ViewControllers/MainVC.swift; sourceTree = "<group>"; };
-		8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarVC.swift; path = Source/ViewTier/ViewControllers/MainTabBarVC.swift; sourceTree = "<group>"; };
+		8A2B6ECB1EF394E600425B61 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Source/ViewTier/ViewControllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoDM.swift; path = Source/DomainTier/DomainModels/ContactInfoDM.swift; sourceTree = "<group>"; };
 		8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDM.swift; path = Source/DomainTier/DomainModels/ContactDM.swift; sourceTree = "<group>"; };
 		8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupDM.swift; path = Source/DomainTier/DomainModels/ContactGroupDM.swift; sourceTree = "<group>"; };
@@ -199,6 +201,13 @@
 		8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsTransitionAnimator.swift; path = Source/ViewTier/Animators/ContactGroupsTransitionAnimator.swift; sourceTree = "<group>"; };
 		8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ReadingPlanner.storyboard; path = "Resource Files/Storyboards/ReadingPlanner.storyboard"; sourceTree = "<group>"; };
 		8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerVC.swift; path = Source/ViewTier/ViewControllers/ReadingPlannerVC.swift; sourceTree = "<group>"; };
+		8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AdminSettings.storyboard; path = "Resource Files/Storyboards/AdminSettings.storyboard"; sourceTree = "<group>"; };
+		8A7D5E1F1F2BCECD00089E1F /* AdminSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminSettingsVC.swift; path = Source/ViewTier/ViewControllers/AdminSettingsVC.swift; sourceTree = "<group>"; };
+		8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchSignUpRequestsCommand.swift; path = Source/MiddleTier/Commands/FetchSignUpRequestsCommand.swift; sourceTree = "<group>"; };
+		8A7D5E231F2F918C00089E1F /* SignUpRequestDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestDM.swift; path = Source/DomainTier/DomainModels/SignUpRequestDM.swift; sourceTree = "<group>"; };
+		8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestVOM.swift; path = Source/ViewTier/ValueObjects/SignUpRequestVOM.swift; sourceTree = "<group>"; };
+		8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestsVC.swift; path = Source/ViewTier/ViewControllers/SignUpRequestsVC.swift; sourceTree = "<group>"; };
+		8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUpRequests.storyboard; path = "Resource Files/Storyboards/SignUpRequests.storyboard"; sourceTree = "<group>"; };
 		8A8BACCC1EF1ED83006721F8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = "Resource Files/Storyboards/Login.storyboard"; sourceTree = "<group>"; };
 		8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Source/ViewTier/ViewControllers/LoginVC.swift; sourceTree = "<group>"; };
 		8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTextField.swift; path = Source/ViewTier/Views/LoginTextField.swift; sourceTree = "<group>"; };
@@ -207,6 +216,7 @@
 		8A8BADB01EF390B7006721F8 /* LoadingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingVC.swift; path = Source/ViewTier/ViewControllers/LoadingVC.swift; sourceTree = "<group>"; };
 		8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsNavigationControllerDelegate.swift; path = Source/ViewTier/Animators/ContactsNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullDownTransitionAnimator.swift; path = Source/ViewTier/Animators/PullDownTransitionAnimator.swift; sourceTree = "<group>"; };
+		8AA7E3351F2FCED3009CFF28 /* SignUpRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestCell.swift; path = Source/ViewTier/Views/SignUpRequestCell.swift; sourceTree = "<group>"; };
 		8AAE32CA1EEFB1D600374794 /* FetchContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchContactDetailRequest.swift; sourceTree = "<group>"; };
 		8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchContactsRequest.swift; sourceTree = "<group>"; };
 		8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchGroupContactsRequest.swift; sourceTree = "<group>"; };
@@ -266,6 +276,7 @@
 				27D191BE1EC03830002C7346 /* ContactInfoCell.swift */,
 				8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */,
 				8A301B561F26665500830815 /* ContactSearchBar.swift */,
+				8AA7E3351F2FCED3009CFF28 /* SignUpRequestCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -295,6 +306,7 @@
 				2719EA751EC5883E003D6D64 /* ContactVOM.swift */,
 				27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */,
 				27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */,
+				8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */,
 			);
 			name = ValueObjects;
 			sourceTree = "<group>";
@@ -456,24 +468,23 @@
 		275201F61EB992B5002C469B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A7D5E1F1F2BCECD00089E1F /* AdminSettingsVC.swift */,
 				8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */,
 				2719EA7E1EC66A2C003D6D64 /* ContactGroupVC.swift */,
+				8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */,
 				275201F71EB99748002C469B /* ContactListVC.swift */,
 				2719EA791EC5F58D003D6D64 /* ContactsCoordinatorVC.swift */,
+				8A0B83A21F214412004AA24E /* ContactsVC.swift */,
 				274A83541ED39EBF002DA226 /* GroupContactListVC.swift */,
 				8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */,
 				8A8BADB01EF390B7006721F8 /* LoadingVC.swift */,
 				8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */,
-				8A2B6ECB1EF394E600425B61 /* MainTabBarVC.swift */,
-				8A2B6EC91EF393B200425B61 /* MainVC.swift */,
+				8A2B6ECB1EF394E600425B61 /* MainTabBarController.swift */,
+				8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */,
+				8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */,
 				8AC53EF71F1028150053DA99 /* SettingsVC.swift */,
 				8A2F42021F29048E00E6DEC5 /* SignUpVC.swift */,
-				2719EA821EC66EA7003D6D64 /* TestCollectionViewController.swift */,
-				27EB3ECF1EC9EB9E00BB292B /* TestTableViewController.swift */,
-				8A0B83A21F214412004AA24E /* ContactsVC.swift */,
-				8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */,
-				8A70B0301F2172E200C9BD91 /* ReadingPlannerVC.swift */,
-				8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */,
+				8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -481,6 +492,8 @@
 		275201F91EB997A2002C469B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */,
+				8A0B83A41F2145F4004AA24E /* Contacts.storyboard */,
 				275201FA1EB997C0002C469B /* ContactsCoordinatorVC.storyboard */,
 				8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */,
 				2719EA771EC5F19A003D6D64 /* ContactList.storyboard */,
@@ -490,10 +503,10 @@
 				8A8BADAE1EF39090006721F8 /* Loading.storyboard */,
 				8A8BACCC1EF1ED83006721F8 /* Login.storyboard */,
 				275201AD1EB990C7002C469B /* Main.storyboard */,
+				8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */,
 				8A8BADA81EF338E9006721F8 /* Settings.storyboard */,
 				8A2F42001F28E5C000E6DEC5 /* SignUp.storyboard */,
-				8A0B83A41F2145F4004AA24E /* Contacts.storyboard */,
-				8A70B02E1F21728300C9BD91 /* ReadingPlanner.storyboard */,
+				8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -514,6 +527,7 @@
 				270F1B031EC026D300232D2F /* FetchContactDetailCommand.swift */,
 				274A83501ED39C4E002DA226 /* FetchContactsCommand.swift */,
 				274A83561ED39FB8002DA226 /* FetchGroupContactsCommand.swift */,
+				8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -566,6 +580,7 @@
 				8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */,
 				8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */,
 				8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */,
+				8A7D5E231F2F918C00089E1F /* SignUpRequestDM.swift */,
 			);
 			name = DomainModels;
 			sourceTree = "<group>";
@@ -811,6 +826,7 @@
 				8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */,
 				276078271ED6495200389D42 /* GoogleService-Info.plist in Resources */,
 				8AAE33191EF09DC100374794 /* Montserrat-Bold.ttf in Resources */,
+				8A7D5E1E1F2BC4FA00089E1F /* AdminSettings.storyboard in Resources */,
 				275201FB1EB997C0002C469B /* ContactsCoordinatorVC.storyboard in Resources */,
 				274A83531ED39E17002DA226 /* GroupContacts.storyboard in Resources */,
 				8A6016411EFA6FF300283491 /* FallingSky-Light.otf in Resources */,
@@ -820,6 +836,7 @@
 				8A6016431EFA6FF800283491 /* FallingSky-Bold+.otf in Resources */,
 				8A6016441EFA6FFA00283491 /* FallingSky-Bold.otf in Resources */,
 				8A2F42011F28E5C000E6DEC5 /* SignUp.storyboard in Resources */,
+				8A7D5E2A1F2FC73900089E1F /* SignUpRequests.storyboard in Resources */,
 				8AAE33171EF09DC100374794 /* SIL Open Font License.txt in Resources */,
 				2719EA7D1EC668CF003D6D64 /* ContactGroup.storyboard in Resources */,
 				8A60163C1EFA685A00283491 /* Assets.xcassets in Resources */,
@@ -991,9 +1008,9 @@
 				8A301B571F26665500830815 /* ContactSearchBar.swift in Sources */,
 				8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */,
 				274A83511ED39C4E002DA226 /* FetchContactsCommand.swift in Sources */,
-				8A2B6ECA1EF393B200425B61 /* MainVC.swift in Sources */,
 				8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */,
 				8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */,
+				8A7D5E261F2F95F300089E1F /* SignUpRequestVOM.swift in Sources */,
 				8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */,
 				2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */,
 				8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */,
@@ -1007,7 +1024,9 @@
 				275201F81EB99748002C469B /* ContactListVC.swift in Sources */,
 				8A9762C51F22666D001583EA /* PullDownTransitionAnimator.swift in Sources */,
 				8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */,
+				8A7D5E281F2F9A1B00089E1F /* SignUpRequestsVC.swift in Sources */,
 				8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */,
+				8A7D5E221F2F906100089E1F /* FetchSignUpRequestsCommand.swift in Sources */,
 				8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */,
 				275201F11EB991D8002C469B /* SPRViewController.swift in Sources */,
 				275202051EB999F1002C469B /* ScribeClient.swift in Sources */,
@@ -1023,27 +1042,28 @@
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,
 				8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */,
-				8A2B6ECC1EF394E600425B61 /* MainTabBarVC.swift in Sources */,
+				8A2B6ECC1EF394E600425B61 /* MainTabBarController.swift in Sources */,
 				275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */,
 				275201EF1EB991D8002C469B /* SPRCollectionViewController.swift in Sources */,
 				275201EE1EB991D8002C469B /* ObjectDataSource.swift in Sources */,
 				275201ED1EB991D8002C469B /* MappingObjectDataSource.swift in Sources */,
 				275201FF1EB99879002C469B /* FetchContactGroupCommand.swift in Sources */,
-				27EB3ED01EC9EB9E00BB292B /* TestTableViewController.swift in Sources */,
 				8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */,
 				275201EC1EB991D8002C469B /* ErrorObjectDataSource.swift in Sources */,
 				27EB3ECE1EC7936300BB292B /* ContactInfoVOM.swift in Sources */,
 				2719EA7F1EC66A2C003D6D64 /* ContactGroupVC.swift in Sources */,
 				270F1B041EC026D300232D2F /* FetchContactDetailCommand.swift in Sources */,
+				8AA7E3361F2FCED3009CFF28 /* SignUpRequestCell.swift in Sources */,
 				2719EA7A1EC5F58D003D6D64 /* ContactsCoordinatorVC.swift in Sources */,
 				27EB3ECA1EC77D1F00BB292B /* DataAccessor.swift in Sources */,
 				275201AA1EB990C7002C469B /* AppDelegate.swift in Sources */,
+				8A7D5E201F2BCECD00089E1F /* AdminSettingsVC.swift in Sources */,
 				8A2F42031F29048E00E6DEC5 /* SignUpVC.swift in Sources */,
 				2719EA761EC5883E003D6D64 /* ContactVOM.swift in Sources */,
 				275201F21EB991D8002C469B /* SPRViewControllerFSM.swift in Sources */,
 				8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */,
-				2719EA831EC66EA7003D6D64 /* TestCollectionViewController.swift in Sources */,
 				8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */,
+				8A7D5E241F2F918C00089E1F /* SignUpRequestDM.swift in Sources */,
 				8A06F0BC1F2AAD2600D6458A /* MoreInfoVC.swift in Sources */,
 				8A06F0BE1F2AB97200D6458A /* SignUpRequest.swift in Sources */,
 				8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */,

@@ -17,7 +17,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FU-Iy-cM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-124" y="-175"/>
+            <point key="canvasLocation" x="-160" y="-361"/>
         </scene>
         <!--ContactsCoordinatorVC-->
         <scene sceneID="5JC-xb-PXg">
@@ -29,6 +29,16 @@
             </objects>
             <point key="canvasLocation" x="-124" y="-618"/>
         </scene>
+        <!--AdminSettings-->
+        <scene sceneID="6To-na-hcl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AdminSettings" id="vL6-WS-aV7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Admin" id="DWS-ir-lFm"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pib-ZU-PYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-124" y="-224"/>
+        </scene>
         <!--Contacts-->
         <scene sceneID="3UD-ct-eII">
             <objects>
@@ -37,12 +47,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lsk-Sd-p20" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-156" y="-392"/>
+            <point key="canvasLocation" x="-157" y="-476"/>
         </scene>
-        <!--Main Tab BarVC-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="XrM-vy-2Ta">
             <objects>
-                <tabBarController id="0ii-4z-egz" customClass="MainTabBarVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="0ii-4z-egz" customClass="MainTabBarController" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="SvW-jj-C5H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -51,6 +61,7 @@
                     <connections>
                         <segue destination="dig-HZ-T9X" kind="relationship" relationship="viewControllers" id="1zY-KL-fzx"/>
                         <segue destination="Cre-RA-QGR" kind="relationship" relationship="viewControllers" id="7Mm-b2-iBe"/>
+                        <segue destination="vL6-WS-aV7" kind="relationship" relationship="viewControllers" id="pfz-PA-DXG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7x-Ec-9Ot" userLabel="First Responder" sceneMemberID="firstResponder"/>

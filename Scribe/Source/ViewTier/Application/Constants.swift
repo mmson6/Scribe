@@ -48,8 +48,8 @@ public let OK = "Okay"
 
 public let InvalidInputTitle = "Invalid Input"
 public let InvalidNameTitle = "Invalid Name"
-public let InvalidEmailTitle = "Invalid Name"
-public let InvalidPasswordTitle = "Invalid Name"
+public let InvalidEmailTitle = "Invalid Email"
+public let InvalidPasswordTitle = "Invalid Password"
 
 public let InvalidInputMessage = "Invalid input. Please try again"
 public let EmptyFirstNameMessage = "First name cannot be empty."
@@ -58,13 +58,16 @@ public let EmptyLastNameMessage = "Last name cannot be empty."
 public let InvalidLastNameMessage = "Your last name cannot contain special characters."
 public let EmptyEmailMessage = "Email cannot be empty."
 public let InvalidEmailMessage = "Please enter email in the right format."
+public let DuplicateEmailMessage = "This email is already in use. Please try your other email."
 public let InvalidPasswordMessage = "Password needs to be at least 6 characters long."
 
 // MoreInfoVC
 public let RequestSentTitle = "Request Sent"
 public let RequestSentMessage = "Your request has been sent. After the admin approves your request, you will be able to login to your account. Thank you."
 
+// SignUpRequestsVC
 
+public let SnatchedEmailMessage = "This email is already being used for other account. Please contact the Admin."
 
 
 

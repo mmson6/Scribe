@@ -450,6 +450,10 @@
                                     <constraint firstItem="FNF-a5-u6O" firstAttribute="width" secondItem="9gH-ws-9fZ" secondAttribute="width" id="zKK-WU-Rw0"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9h0-nX-bFV">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <color key="color" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94901960780000005" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -460,13 +464,16 @@
                             <constraint firstItem="Jmt-0X-rri" firstAttribute="top" secondItem="07I-Ct-FjX" secondAttribute="bottom" constant="50" id="Zmq-Kz-2ln"/>
                             <constraint firstItem="dRH-9n-jxW" firstAttribute="top" secondItem="9gH-ws-9fZ" secondAttribute="bottom" id="bEA-G2-XZw"/>
                             <constraint firstItem="Jmt-0X-rri" firstAttribute="leading" secondItem="PdD-dh-J9D" secondAttribute="leading" constant="15" id="kfg-Ga-gNz"/>
+                            <constraint firstItem="9h0-nX-bFV" firstAttribute="centerY" secondItem="PdD-dh-J9D" secondAttribute="centerY" id="nNa-cW-C5x"/>
                             <constraint firstAttribute="trailing" secondItem="9gH-ws-9fZ" secondAttribute="trailing" id="tAo-N2-z3Z"/>
+                            <constraint firstItem="9h0-nX-bFV" firstAttribute="centerX" secondItem="PdD-dh-J9D" secondAttribute="centerX" id="vGB-jE-dOn"/>
                             <constraint firstItem="07I-Ct-FjX" firstAttribute="top" secondItem="qFn-n9-lGG" secondAttribute="bottom" constant="20" id="vgl-Rz-KgR"/>
                             <constraint firstAttribute="trailing" secondItem="Jmt-0X-rri" secondAttribute="trailing" constant="15" id="wYR-Yy-v8q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ngo-Vv-a0X"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="9h0-nX-bFV" id="Mkq-MP-Cwp"/>
                         <outlet property="authenticationView" destination="Jmt-0X-rri" id="lfD-u4-F9e"/>
                         <outlet property="bottomView" destination="9gH-ws-9fZ" id="4yh-GQ-zcT"/>
                         <outlet property="custumNavBar" destination="07I-Ct-FjX" id="vHa-r8-XKQ"/>

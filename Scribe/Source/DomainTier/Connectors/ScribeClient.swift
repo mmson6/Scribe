@@ -125,6 +125,28 @@ internal class NetworkScribeClient: ScribeClient {
         })
     }
     
+    internal func fetchSignUpRequests(callback: @escaping ScribeClientCallback<[SignUpRequestDM]>) {
+        let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let signUpRequestRef = rootRef.child("users/signup_request")
+        let query = signUpRequestRef.queryOrderedByKey()
+        query.observeSingleEvent(of: .value, with: { (snap) in
+            if let snapArray = snap.children.allObjects as? [DataSnapshot] {
+                let models = snapArray.map({ (snapData) -> SignUpRequestDM in
+                    guard
+                        let jsonData = snapData.value as? JSONObject
+                    else {
+                        return SignUpRequestDM(from: [:])
+                    }
+
+                    let dm = SignUpRequestDM(from: jsonData)
+                    return dm
+                })
+
+                callback(.success(models))
+            }
+        })
+    }
+    
     // MARK: Helper Functions
     
     private func contactGroupToString(_ value: ContactGroups) -> String {

@@ -1,5 +1,5 @@
 //
-//  MainTabBarVC.swift
+//  MainTabBarController.swift
 //  Scribe
 //
 //  Created by Mikael Son on 6/15/17.
@@ -11,8 +11,18 @@ import UIKit
 import FontAwesomeKit
 
 
-class MainTabBarVC: UITabBarController {
+class MainTabBarController: UITabBarController {
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.commonInit()
@@ -21,7 +31,7 @@ class MainTabBarVC: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.commonInit()
+        self.initializeTabBarItems()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +51,7 @@ class MainTabBarVC: UITabBarController {
     // MARK: Helper Functions
     
     private func commonInit() {
-        self.initializeTabBarItems()
+        self.showTabs()
     }
     
     private func initializeTabBarItems() {
@@ -55,4 +65,17 @@ class MainTabBarVC: UITabBarController {
         }
     }
 
+    private func showTabs() {
+        guard
+            let contactsVC = UIStoryboard.init(name: "Contacts", bundle: nil).instantiateInitialViewController(),
+            let settingsVC = UIStoryboard.init(name: "Settings", bundle: nil).instantiateInitialViewController(),
+            let adminSettingsVC = UIStoryboard.init(name: "AdminSettings", bundle: nil).instantiateInitialViewController()
+        else {
+            return
+        }
+
+        self.viewControllers = [contactsVC, settingsVC, adminSettingsVC]
+        self.selectedIndex = 0
+    
+    }
 }

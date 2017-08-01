@@ -314,7 +314,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     private func presentAlertForAddress(with address: Any?) {
         if let alert = createMapOptionsAlert(with: address) {
-            present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
         
     }

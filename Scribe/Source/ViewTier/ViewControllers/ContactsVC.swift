@@ -50,8 +50,6 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     private func commonInit() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        self.tableView.backgroundColor = UIColor.scribePintNavBarColor
-        
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 74
         
@@ -63,16 +61,16 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
         let contactVerRef = ref.child("contacts_ver")
         
-        contactVerRef.observe(.value, with: { [weak self] (snap) in
+        contactVerRef.observeSingleEvent(of: .value, with: { [weak self] (snap) in
             guard let strongSelf = self else { return }
             
             guard
                 let object = snap.value as? JSONObject,
                 let ver = object["version"] as? Int64
-            else {
-                return
+                else {
+                    return
             }
-//            let ver = object["version"] as? Int64
+            //            let ver = object["version"] as? Int64
             
             strongSelf.fetchContactDataSource(with: ver)
         })
@@ -248,7 +246,6 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     private func initFirebaseObservers() {
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let contactRef = ref.child("contacts")
         let contactVerRef = ref.child("contacts_ver")
 //        
 //        contactRef.observe(.childAdded, with: { snap in
@@ -349,7 +346,12 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     private func initializeSearchController() {
         self.customSearchBar.delegate = self
-        self.customSearchBar.placeholder = "Search here..."
+        self.customSearchBar.setSearchImageColor(color: UIColor.scribeDesignTwoLightBlue)
+        self.customSearchBar.setTextFieldClearButtonColor(color: UIColor.scribeDesignTwoLightBlue)
+        self.customSearchBar.setPlaceholderTextColor(color: UIColor.scribeDesignTwoLightBlue)
+        self.customSearchBar.setTextColor(color: UIColor.scribeDesignTwoDarkBlue)
+        self.customSearchBar.tintColor = UIColor.scribeDesignTwoLightBlue
+        
         self.customSearchBar.sizeToFit()
         self.navigationItem.titleView = customSearchBar
     }

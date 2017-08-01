@@ -43,7 +43,7 @@ class LoadingVC: UIViewController {
         
         if segue.identifier == "loadingToMain" {
             guard
-                let vc = segue.destination as? MainTabBarVC
+                let vc = segue.destination as? MainTabBarController
                 else {
                     return
             }

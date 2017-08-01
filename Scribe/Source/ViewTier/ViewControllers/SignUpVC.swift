@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var churchPickerView: UIPickerView!
     @IBOutlet weak var authenticationView: UIView!
     @IBOutlet weak var firstNameTextField: LoginTextField!
@@ -91,21 +92,45 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         return emailTest.evaluate(with: email)
     }
     
-    private func validateTextFields() -> Bool {
-        let title: String
-        let message: String
+    private func isUniqueEmail(_ email: String, callback: @escaping (AsyncResult<Bool>) -> Void) {
+        let parts = email.components(separatedBy: ".")
+        var recomposed = ""
+        for part in parts {
+            recomposed.append(part)
+            if parts.last != part {
+                recomposed.append("_")
+            }
+        }
+        
+        let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let path = "users/email_pool/" + recomposed
+        let usersEmailRef = rootRef.child(path)
+        usersEmailRef.observeSingleEvent(of: .value, with: { snap in
+            if let snapArray = snap.children.allObjects as? [DataSnapshot] {
+                if snapArray.count > 0 {
+                    callback(.success(false))
+                } else {
+                    callback(.success(true))
+                }
+            }
+        })
+    }
+    
+    private func validateTextFields(){
+        var title: String
+        var message: String
         
         if let firstName = self.firstNameTextField.text {
             if firstName.characters.count <= 0 {
                 title = InvalidNameTitle
                 message = EmptyFirstNameMessage
                 self.presentAlert(with: title, and: message, for: self.firstNameTextField)
-                return false
+                return
             } else if !self.isValidName(firstName) {
                 title = InvalidNameTitle
                 message = InvalidFirstNameMessage
                 self.presentAlert(with: title, and: message, for: self.firstNameTextField)
-                return false
+                return
             }
         }
         if let lastName = self.lastNameTextField.text {
@@ -113,12 +138,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 title = InvalidNameTitle
                 message = EmptyLastNameMessage
                 self.presentAlert(with: title, and: message, for: self.lastNameTextField)
-                return false
+                return
             } else if !self.isValidName(lastName) {
                 title = InvalidNameTitle
                 message = InvalidLastNameMessage
                 self.presentAlert(with: title, and: message, for: self.lastNameTextField)
-                return false
+                return
             }
         }
         if let email = self.emailTextField.text {
@@ -126,24 +151,44 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 title = InvalidEmailTitle
                 message = EmptyEmailMessage
                 self.presentAlert(with: title, and: message, for: self.emailTextField)
-                return false
+                return
             } else if !self.isValidEmail(email) {
                 title = InvalidEmailTitle
                 message = InvalidEmailMessage
                 self.presentAlert(with: title, and: message, for: self.emailTextField)
-                return false
-            }
-        }
-        if let password = self.passwordTextField.text {
-            if password.characters.count <= 5 {
-                title = InvalidPasswordTitle
-                message = InvalidPasswordMessage
-                self.presentAlert(with: title, and: message, for: self.passwordTextField)
-                return false
+                return
+            } else {
+                self.activityIndicator.startAnimating()
+                self.isUniqueEmail(email) { result in
+                    self.activityIndicator.stopAnimating()
+                    switch result {
+                    case .success(let unique):
+                        if unique {
+                            validatePassword()
+                        } else {
+                            let title = InvalidEmailTitle
+                            let message = DuplicateEmailMessage
+                            self.presentAlert(with: title, and: message, for: self.emailTextField)
+                        }
+                    case .failure:
+                        break
+                    }
+                }
             }
         }
         
-        return true
+        func validatePassword() {
+            if let password = self.passwordTextField.text {
+                if password.characters.count <= 5 {
+                    let title = InvalidPasswordTitle
+                    let message = InvalidPasswordMessage
+                    self.presentAlert(with: title, and: message, for: self.passwordTextField)
+                    return
+                } else {
+                    self.navigateToNextView()
+                }
+            }
+        }
     }
     
     private func presentAlert(with title: String, and message: String, for textField: UITextField) {
@@ -236,12 +281,14 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
-        if self.validateTextFields() {
-            self.performSegue(withIdentifier: "signUpToMoreInfo", sender: self)
-        }
+        self.validateTextFields()
     }
     
     // MARK: Navigation Functions
+    
+    private func navigateToNextView() {
+        self.performSegue(withIdentifier: "signUpToMoreInfo", sender: self)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
@@ -298,6 +345,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         default:
             break
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == " " {
+            return false
+        }
+        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

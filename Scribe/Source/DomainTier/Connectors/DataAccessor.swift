@@ -95,23 +95,19 @@ public final class DataAccessor {
                 callback(.failure(error))
             }
         }
-        //
-        ////        var contactArray = [ContactVOM]()
-        //
-        //        let obj1 = ContactVOM(id: 1, name: "Mike")
-        //        let obj2 = ContactVOM(id: 1,name: "Daniel")
-        //        let obj3 = ContactVOM(id: 1,name: "Roy")
-        //        let obj4 = ContactVOM(id: 1,name: "Paul")
-        //        let obj5 = ContactVOM(id: 1,name: "Andrew")
-        //        contactArray.append(obj1)
-        //        contactArray.append(obj2)
-        //        contactArray.append(obj3)
-        //        contactArray.append(obj4)
-        //        contactArray.append(obj5)
-        //        
-        //        return contactArray
     }
     
+    internal func loadSignUpRequests(callback: @escaping DataAccessorDMCallback<[SignUpRequestDM]>) {
+        let client = self.scribeClient
+        client.fetchSignUpRequests { result in
+            switch result {
+            case.success(let array):
+                callback(.success(array))
+            case .failure(let error):
+                callback(.failure(error))
+            }
+        }
+    }
     
     internal func populateDatabase() {
 //        var ref: reference
