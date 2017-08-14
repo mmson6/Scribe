@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import FirebaseAuth
+import FirebaseDatabase
 
 
 class LoginVC: UIViewController, UITextFieldDelegate {
@@ -74,6 +76,58 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.authenticationView.layer.shadowOpacity = 0.3
         self.authenticationView.layer.masksToBounds = false
     }
+    
+    private func recomposeEmailForFirebase(_ email: String) -> String {
+        let parts = email.components(separatedBy: ".")
+        var recomposed = ""
+        for part in parts {
+            recomposed.append(part)
+            if parts.last != part {
+                recomposed.append("_")
+            }
+        }
+        
+        return recomposed
+    }
+    
+    private func isAdmin(user: User, with email: String, callback: @escaping (AsyncResult<Bool>) -> Void) {
+        let recomposedEmail = self.recomposeEmailForFirebase(email)
+        let uid = user.uid
+        
+        let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let path = "users/profiles/\(uid)"
+        let usersEmailRef = rootRef.child(path)
+        
+        usersEmailRef.observeSingleEvent(of: .value, with: { snap in
+            if let snapArray = snap.children.allObjects as? [DataSnapshot] {
+                for json in snapArray {
+                    if json.key == "isAdmin" {
+                        callback(.success(true))
+                        return
+                    }
+                }
+                callback(.success(false))
+            }
+        })
+    }
+    
+    private func presentWrongCredentialsAlert() {
+        let alertController = UIAlertController(
+            title: InvalidCredentialsTitle,
+            message: InvalidCredentialsMessage,
+            preferredStyle: .alert
+        )
+        
+        let okayAction = UIAlertAction(
+            title: OK,
+            style: .default,
+            handler: nil
+        )
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true)
+    }
 
     // MARK: IBAction Functions
     
@@ -97,49 +151,42 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         //            return
         //        }
         let email = "mson62@gmail.com"
+//        let email = "mmson6@gmail.com"
         let password = "123456"
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+            guard let strongSelf = self else { return }
+            
             if let error = error {
                 print("Error occurred: \(error)")
+                strongSelf.activityIndicator.stopAnimating()
+                strongSelf.loginButton.isEnabled = true
+                strongSelf.signUpButton.isEnabled = true
+                strongSelf.presentWrongCredentialsAlert()
                 return
             }
             
-            guard let strongSelf = self else { return }
-            
             if let user = user {
-                strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
+                strongSelf.isAdmin(user: user, with: email, callback: { result in
+                    switch result {
+                    case .success(let isAdmin):
+                        if isAdmin {
+                            let store = UserDefaultsStore()
+                            store.setUserAdminStatus()
+                        }
+                    case .failure:
+                        break
+                    }
+                    
+                    strongSelf.performSegue(withIdentifier: "loginToLanding", sender: nil)
+                    
+                    
+                    strongSelf.activityIndicator.stopAnimating()
+                    strongSelf.loginButton.isEnabled = true
+                    strongSelf.signUpButton.isEnabled = true
+                })
             }
-            strongSelf.activityIndicator.stopAnimating()
-            strongSelf.loginButton.isEnabled = true
-            strongSelf.signUpButton.isEnabled = true
         }
-        //
-        //        if Auth.auth().currentUser != nil {
-        //            print("user signed in")
-        //            let user = Auth.auth().currentUser
-        //            if let user = user {
-        //
-        //                let email = user.email
-        //                print(email)
-        //            }
-        //
-        //        } else {
-        //            print("no users")
-        //        }
-        //
-        
-        //
-        //        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-        //            print(user)
-        //            print(error)
-        //
-        //            if let user = user {
-        //                print(user.displayName)
-        //                print(user.photosysURL)
-        //            }
-        //        }
-        //
     }
     
     // MARK: TextField Delegate Functions
@@ -150,12 +197,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             self.authenticationView.transform = moveUp
+            self.signUpContainerView.transform = moveUp
         }, completion: nil)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             self.authenticationView.transform = CGAffineTransform.identity
+            self.signUpContainerView.transform = CGAffineTransform.identity
         }, completion: nil)
     }
     

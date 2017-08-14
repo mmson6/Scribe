@@ -22,4 +22,13 @@ public struct SignUpRequestVOM {
         self.lastName = model.lastName
         self.password = model.password
     }
+    
+    public func asJSON() -> JSONObject {
+        var json: JSONObject = [:]
+        json["email"] = self.email
+        json["church"] = self.church
+        json["firstName"] = self.firstName
+        json["lastName"] = self.lastName
+        return json
+    }
 }

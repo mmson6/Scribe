@@ -10,6 +10,7 @@ target 'Scribe' do
   pod 'Firebase', '~> 4.0'
   pod 'Firebase/Auth', '~>4.0'
   pod 'Firebase/Database', '~> 4.0'
+  pod 'Firebase/Messaging', '~> 4.0'
   pod 'FontAwesomeKit', '~> 2.2'
   pod 'Objective-LevelDB', '~> 2.1'
   pod 'PhoneNumberKit', '~> 1.2'

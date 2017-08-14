@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
 import MapKit
+
 import PhoneNumberKit
 
 
@@ -81,7 +81,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cmd.lookupKey = self.lookupKey
         cmd.contactsVer = ver
         cmd.onCompletion { result in
-            self.tableView.backgroundColor = .clear
             switch result {
             case .success(let array):
                 self.infoDataSource = array
@@ -316,7 +315,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if let alert = createMapOptionsAlert(with: address) {
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
     private func presentAlertForPhone(with phone: Any?) {
@@ -390,8 +388,22 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= 0 {
+            self.animator.scrolledToTop = true
+//            print("------------- scrolled to top")
+        } else {
+            self.animator.scrolledToTop = false
+            
+        }
+        
+        if self.animator.transitionStarted {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        }
+        
         let gestureRecognizer = scrollView.panGestureRecognizer
+//        print(scrollView.contentOffset.y)
     }
+    
 }
 
 extension UIView {

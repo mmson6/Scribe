@@ -22,6 +22,7 @@ public final class DataAccessor {
     internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
         
         let loadFromDataStore = { (store: LevelDBStore) -> JSONObject? in
+            return nil
             let id = request.id as Any
             return store.loadContact(with: id)
         }
@@ -54,6 +55,7 @@ public final class DataAccessor {
     
     internal func loadContacts(with ver: Int64 ,callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
         let loadFromDataStore = { (store: LevelDBStore) -> JSONArray? in
+            return nil
             let defaultsStore = UserDefaultsStore()
             if defaultsStore.contactsNeedUpdate(ver) {
                 return nil
@@ -85,6 +87,19 @@ public final class DataAccessor {
         )
     }
     
+    internal func loadContactsVersion(callback: @escaping DataAccessorDMCallback<Int64>) {
+        let client = self.scribeClient
+        client.fetchContactsVersion { result in
+            switch result {
+            case.success(let ver):
+                callback(.success(ver))
+            case .failure(let error):
+                NSLog("Error occurred while fetching contactsVer:: \(error)")
+                callback(.success(0))
+            }
+        }
+    }
+    
     internal func loadGroupContacts(_ request: FetchGroupContactsRequest, callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
         let client = self.scribeClient
         client.fetchGroupContacts(request) { result in
@@ -108,6 +123,20 @@ public final class DataAccessor {
             }
         }
     }
+    
+    internal func loadUserRequestsCount(callback: @escaping DataAccessorDMCallback<Int64>) {
+        let client = self.scribeClient
+        client.fetchUserRequestsCount { result in
+            switch result {
+            case.success(let count):
+                callback(.success(count))
+            case .failure:
+                break
+            }
+        }
+    }
+    
+//    fetchUserRequestsCount
     
     internal func populateDatabase() {
 //        var ref: reference

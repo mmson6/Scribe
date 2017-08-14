@@ -47,5 +47,15 @@ class UserDefaultsStore {
         self.store.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
     
+    // MARK: User Related Functions
+    
+    internal func setUserAdminStatus() {
+        self.store.set(true, forKey: "admin_user")
+    }
+    
+    internal func checkUserAdminStatus() -> Bool{
+        let isAdmin = self.store.bool(forKey: "admin_user")
+        return isAdmin
+    }
     
 }

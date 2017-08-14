@@ -103,7 +103,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         }
         
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let path = "users/email_pool/" + recomposed
+        let path = "users/emails/" + recomposed
         let usersEmailRef = rootRef.child(path)
         usersEmailRef.observeSingleEvent(of: .value, with: { snap in
             if let snapArray = snap.children.allObjects as? [DataSnapshot] {
@@ -348,9 +348,16 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string == " " {
-            return false
+        let tag = textField.tag
+        
+        if tag == 0 || tag == 1 {
+            if self.isValidName(string) {
+                return true
+            } else {
+                return false
+            }
         }
+        
         return true
     }
     

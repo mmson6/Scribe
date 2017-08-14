@@ -23,6 +23,9 @@ public struct ContactInfoDM: JSONTransformable {
     public let address: String?
     public let phone: String?
     public let group: String?
+    public let teacher: Bool
+    public let translator: Bool
+    public let choir: Bool
     
     private let originalJSON: JSONObject
     
@@ -34,6 +37,9 @@ public struct ContactInfoDM: JSONTransformable {
         self.address = json["address"].string
         self.phone = json["phone"].string
         self.group = json["group"].string
+        self.teacher = json["teacher"].bool ?? false
+        self.translator = json["translator"].bool ?? false
+        self.choir = json["choir"].bool ?? false
         
         self.originalJSON = jsonObj
     }

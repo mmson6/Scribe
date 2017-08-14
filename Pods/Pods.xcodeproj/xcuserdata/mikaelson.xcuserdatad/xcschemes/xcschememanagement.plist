@@ -49,12 +49,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Protobuf.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,7 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
+		<key>17EC09E14418AEA812271C79EB6F40DA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>64B64DBF48B786312B965843720094A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>996E3A86A3D61B8D69F3146FE48DDAD4</key>
+		<key>A8E1DFAA9703A5C068D915A4C272EA21</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A8E1DFAA9703A5C068D915A4C272EA21</key>
+		<key>AF34388BBD55E7AE2349AFF9C35AA835</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF9D97966647DDA4ED37F46CEC5D72CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +132,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DB217E392F692525B101B3738FC53A4B</key>
+		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

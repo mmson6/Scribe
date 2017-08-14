@@ -29,13 +29,20 @@ class SettingsVC: UITableViewController{
 
     // MARK: - TableViewController Delegate Functions
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        UITableViewCell.applyScribeCellAttributes(to: cell)
+        return cell
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         guard
             let cell = tableView.cellForRow(at: indexPath),
             let identifier = cell.reuseIdentifier
         else {
+            self.showToast(message: "Not Supported Function Yet")
             return
         }
         
@@ -47,25 +54,26 @@ class SettingsVC: UITableViewController{
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
             }
+            performSegue(withIdentifier: "unwindToLandingView", sender: nil)
         default:
             break
         }
         
-        performSegue(withIdentifier: "unwindToLandingView", sender: nil)
         
-        // TEST
-        if Auth.auth().currentUser != nil {
-            print("user signed in")
-            let user = Auth.auth().currentUser
-            if let user = user {
-
-                let email = user.email
-                print(email)
-            }
-
-        } else {
-            print("no users")
-        }
+//        
+//        // TEST
+//        if Auth.auth().currentUser != nil {
+//            print("user signed in")
+//            let user = Auth.auth().currentUser
+//            if let user = user {
+//
+//                let email = user.email
+//                print(email)
+//            }
+//
+//        } else {
+//            print("no users")
+//        }
 
     }
     

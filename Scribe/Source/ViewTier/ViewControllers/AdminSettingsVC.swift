@@ -13,6 +13,8 @@ import FirebaseDatabase
 
 class AdminSettingsVC: UITableViewController {
 
+    @IBOutlet weak var signUpRequestBadgeLabel: UILabel!
+    
     var signUpRequestDataSource = [SignUpRequestVOM]()
     var emails: [String] {
         let email1 = "mmson6@gmail.com"
@@ -27,31 +29,90 @@ class AdminSettingsVC: UITableViewController {
         return emails
     }
     
+    // MARK: UITableViewController Functions
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.commonInit()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.commonInit()
+        
+        self.signUpRequestBadgeLabel.layer.cornerRadius = self.signUpRequestBadgeLabel.frame.width / 2
+        self.signUpRequestBadgeLabel.layer.masksToBounds = true
 //        self.fetchRequestDataSource()
     }
     
     private func commonInit() {
+        self.addObservers()
 //        self.tableView.rowHeight = UITableViewAutomaticDimension
 //        self.tableView.estimatedRowHeight = 70
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateUserRequestsBadge()
+    }
+    
     // MARK: UITableView Related Functions
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.signUpRequestDataSource.count
-//    }
-//    
-//    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        UITableViewCell.applyScribeCellAttributes(to: cell)
+        return cell
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        guard
+            let _ = cell.reuseIdentifier
+        else {
+            self.showToast(message: "Not Supported Function Yet")
+            return
+        }
     }
 
     // MARK: Helper Functions
     
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            forName: userRequestsCountChanged,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.updateUserRequestsBadge()
+            }
+        }
+    }
     
+    private func updateUserRequestsBadge() {
+        guard
+            let controller = self.tabBarController,
+            let items = controller.tabBar.items,
+            let item = items.last,
+            let value = item.badgeValue
+        else {
+            self.signUpRequestBadgeLabel.isHidden = true
+            return
+        }
+        
+        self.signUpRequestBadgeLabel.text = value
+        self.signUpRequestBadgeLabel.isHidden = false
+    }
         
     // MARK: - Navigation
 

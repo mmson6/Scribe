@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import UserNotifications
 
 import FontAwesomeKit
+import FirebaseDatabase
 
 
 class MainTabBarController: UITabBarController {
 
+    var authorization: Authorization = .none
+    var lastSelectedTabBarItem: UITabBarItem?
+    
+    // Store all firebase database reference obserbers to remove at deinit later
+    var fbObserverRefs = [DatabaseReference]()
+    
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.commonInit()
@@ -39,7 +48,16 @@ class MainTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    deinit {
+        // Clear UserDefaults
+        let store = UserDefaultsStore()
+        store.clearAll()
+        
+        // Clear all observers
+        NotificationCenter.default.removeObserver(self)
+        self.fbObserverRefs.forEach({ $0.removeAllObservers() })
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -51,7 +69,36 @@ class MainTabBarController: UITabBarController {
     // MARK: Helper Functions
     
     private func commonInit() {
-        self.showTabs()
+        self.addObservers()
+        self.confirmAuthorization()
+        self.showTabs(forAuthorization: self.authorization)
+    }
+    
+    private func addObservers() {
+        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let contactVerRef = ref.child("users/requests/signup")
+        self.fbObserverRefs.append(contactVerRef)
+        self.fbObserverRefs.last!.observe(.childAdded, with: { [weak self] snap in
+            guard let strongSelf = self else { return }
+            strongSelf.checkForUserRequests()
+        })
+        self.fbObserverRefs.last!.observe(.childRemoved, with: { [weak self] snap in
+            guard let strongSelf = self else { return }
+            strongSelf.checkForUserRequests()
+        })
+        self.fbObserverRefs.last!.observe(.childChanged, with: { [weak self] snap in
+            guard let strongSelf = self else { return }
+            strongSelf.checkForUserRequests()
+        })
+    }
+    
+    private func confirmAuthorization() {
+        let store = UserDefaultsStore()
+        if store.checkUserAdminStatus() {
+            self.authorization = .admin
+        } else {
+            self.authorization = .none
+        }
     }
     
     private func initializeTabBarItems() {
@@ -65,7 +112,7 @@ class MainTabBarController: UITabBarController {
         }
     }
 
-    private func showTabs() {
+    private func showTabs(forAuthorization authorization: Authorization) {
         guard
             let contactsVC = UIStoryboard.init(name: "Contacts", bundle: nil).instantiateInitialViewController(),
             let settingsVC = UIStoryboard.init(name: "Settings", bundle: nil).instantiateInitialViewController(),
@@ -74,8 +121,65 @@ class MainTabBarController: UITabBarController {
             return
         }
 
-        self.viewControllers = [contactsVC, settingsVC, adminSettingsVC]
+        switch authorization {
+        case .none:
+            self.viewControllers = [contactsVC, settingsVC]
+        case .admin:
+            self.viewControllers = [contactsVC, settingsVC, adminSettingsVC]
+            self.checkForUserRequests()
+        }
+        
         self.selectedIndex = 0
+    }
     
+    private func checkForUserRequests() {
+        DispatchQueue.main.async {
+            self.fetchUserRequestsCount()
+        }
+    }
+    
+    private func fetchUserRequestsCount() {
+        let cmd = FetchUserRequestsCount()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let count):
+                self.updateTabBarBadge(with: count)
+                break
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
+    }
+    
+    private func updateTabBarBadge(with count: Int64) {
+        guard
+            let tabArray = self.tabBar.items,
+            let tabItem = tabArray.last
+        else {
+            return
+        }
+        
+        if count > 0 {
+            tabItem.badgeValue = "\(count)"
+        } else {
+            tabItem.badgeValue = nil
+        }
+        
+        if self.selectedIndex == tabArray.count - 1 {
+            tabItem.badgeColor = .clear
+            
+            // Notify AdminSettingsVC to update the badge since the vc only update on ViewWillAppear()
+            NotificationCenter.default.post(name: userRequestsCountChanged, object: nil)
+        } else {
+            tabItem.badgeColor = UIColor.scribeDesignTwoRed
+        }
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        self.lastSelectedTabBarItem?.badgeColor = UIColor.scribeDesignTwoRed
+        
+        item.badgeColor = .clear
+        self.lastSelectedTabBarItem = item
     }
 }

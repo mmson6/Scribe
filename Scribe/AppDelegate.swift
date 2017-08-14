@@ -9,20 +9,62 @@
 import UIKit
 
 import Firebase
-
+import Messages
+import UserNotifications
+import FirebaseInstanceID
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
-
+    var applicationStateString: String {
+        if UIApplication.shared.applicationState == .active {
+            return "active"
+        } else if UIApplication.shared.applicationState == .background {
+            return "background"
+        }else {
+            return "inactive"
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        FirebaseApp.configure()
         self.setAppAttributes()
+        FirebaseApp.configure()
+        application.registerForRemoteNotifications()
+        self.requestNotificationAuthorization(application: application)
+        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
+            NSLog("[RemoteNotification] applicationState: \(applicationStateString) didFinishLaunchingWithOptions for iOS9: \(userInfo)")
+            //TODO: Handle background notification
+        }
+        
         return true
+        
+        
+//        // In case if you need to know the permissions granted
+//        UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
+//            switch setttings.soundSetting{
+//            case .enabled:
+//                print("enabled sound setting")
+//            case .disabled:
+//                print("setting has been disabled")
+//            case .notSupported:
+//                print("something vital went wrong here")
+//            }
+//        }
+    }
+    
+    private func requestNotificationAuthorization(application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -49,13 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setAppAttributes() {
         
-//        let barFont = UIFont(name: "Montserrat-Bold", size: 19.0) ?? UIFont.boldSystemFont(ofSize: 19.0)
-//        let barButtonFont = UIFont(name: "RobotoCondensed-Regular", size: 17) ?? UIFont.boldSystemFont(ofSize: 17.0)
-//        let barButtonAttributes: [String: Any] = [
-//            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue
-//            NSFontAttributeName: barButtonFont
-//        ]
-        
         let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
         let navBarAttributes: [String: Any] = [
 //            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
@@ -79,26 +114,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.scribeDesignTwoDarkBlue
         UITabBar.appearance().unselectedItemTintColor = .lightGray
         UITabBar.appearance().barTintColor = UIColor.white
-//        ha.barTintColor =
-        
-        
-//        UINavigationBar.appearance().tintColor = UIColor.red
-//        UINavigationBar.appearance().barTintColor = UIColor.red
-//        ha.barTintColor
-        
-//        UINavigationBar.appearance().titleTextAttributes = barButtonAttributes
-//        
-//        let navBarFont = UIFont(name: "RobotoCondensed-Bold", size: 19) ?? UIFont.boldSystemFont(ofSize: 19.0)
-//        let navBarAttributes: [String: Any] = [
-//            NSForegroundColorAttributeName: UIColor.xoobaPrimary,
-//            NSFontAttributeName: navBarFont
-//        ]
-//        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
-        
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-//        UINavigationBar.appearance().shadowImage = UIImage()
         
     }
-
+    
+    // MARK: UNUserNotificationCenterDelegate Functions
+    
+    // iOS10+, called when presenting notification in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        NSLog("[UserNotificationCenter] applicationState: \(applicationStateString) willPresentNotification: \(userInfo)")
+        //TODO: Handle foreground notification
+        completionHandler([.alert])
+    }
+    
+    // iOS10+, called when received response (default open, dismiss or custom action) for a notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        NSLog("[UserNotificationCenter] applicationState: \(applicationStateString) didReceiveResponse: \(userInfo)")
+        //TODO: Handle background notification
+        completionHandler()
+    }
+    
+    
+    // MARK: MessagingDeledate Functions
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        NSLog("[RemoteNotification] didRefreshRegistrationToken: \(fcmToken)")
+    }
+    
+    // iOS9, called when presenting notification in foreground
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        NSLog("[RemoteNotification] applicationState: \(applicationStateString) didReceiveRemoteNotification for iOS9: \(userInfo)")
+        if UIApplication.shared.applicationState == .active {
+            //TODO: Handle foreground notification
+        } else {
+            //TODO: Handle background notification
+        }
+    }
+    
+//    
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+//        print(deviceTokenString)
+//        
+//        Messaging.messaging().apnsToken = deviceToken
+////        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.sandbox)
+////        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.pro)
+////        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type:FIRInstanceIDAPNSTokenType.Sandbox)
+////        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type:FIRInstanceIDAPNSTokenType.Prod)
+//    }
+//    
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//        print("I am not available in simulator \(error)")
+//    }
 }
 

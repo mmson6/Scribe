@@ -122,7 +122,7 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         let recomposedEmail = self.recomposeEmailForFirebase(requestModel.email)
         
         let baseRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let emailPath = "users/email_pool"
+        let emailPath = "users/emails"
         let emailRef = baseRef.child(emailPath)
         
         var emailJSON: JSONObject = [:]
@@ -147,7 +147,7 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         func requestSignUp() {
             let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-            let path = "users/signup_request"
+            let path = "users/requests/signup"
             let requestRef = ref.child(path)
             let jsonObj = requestModel.asJSON()
             
@@ -178,7 +178,7 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //        let key = "\(composed)-\(first):\(last)-\(church)"
 //        
 //        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-//        let path = "users/signup_request"
+//        let path = "users/requests/signup"
 //        let requestRef = ref.child(path)
 //        let status = "request pending"
 //        let object = ["status": status] as Any

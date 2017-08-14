@@ -10,7 +10,7 @@ import Foundation
 
 
 public struct FetchContactDetailRequest {
-    public let id: Int64
+    public let id: String
     public let contactVer: Int64
     
     public func asJSON() -> JSONObject {

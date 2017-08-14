@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sign Up RequestsVC-->
+        <!--Sign Up Requests-->
         <scene sceneID="Rne-C4-XR4">
             <objects>
                 <viewController id="G5y-q2-MA4" customClass="SignUpRequestsVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,6 +126,7 @@
                             <outlet property="delegate" destination="G5y-q2-MA4" id="uca-Ao-e5x"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Sign Up Requests" id="u4Y-Np-HvG"/>
                     <connections>
                         <outlet property="activityIndicator" destination="4fX-hZ-s3g" id="Fba-b3-lSt"/>
                         <outlet property="activityIndicatorView" destination="dbp-Fi-OrY" id="Wje-1W-8kW"/>

@@ -34,7 +34,7 @@ internal class NetworkScribeClient: ScribeClient {
     
     internal func fetchContactDetail(_ request: FetchContactDetailRequest, callback: @escaping ScribeClientCallback<ContactInfoDM>) {
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let contactRef = ref.child("contacts")
+        let contactRef = ref.child(contactsChicago).child("contacts")
         let query = contactRef.queryOrderedByKey().queryEqual(toValue: "\(request.id)")
         
         query.observeSingleEvent(of: .value, with: { snap in
@@ -75,22 +75,19 @@ internal class NetworkScribeClient: ScribeClient {
     
     internal func fetchContacts(callback: @escaping ScribeClientCallback<[ContactDM]>) {
         let rootRef = Database.database().reference(fromURL: self.baseURL)
-        let contactRef = rootRef.child("contacts")
+        let contactRef = rootRef.child(contactsChicago).child("contacts")
         let query = contactRef.queryOrdered(byChild: "name_eng")
         
         query.observeSingleEvent(of: .value, with: { (snap) in
             if let snapArray = snap.children.allObjects as? [DataSnapshot] {
-                
                 let models = snapArray.map({ (snapData) -> ContactDM in
                     guard
-                        let jsonData = snapData.value as? JSONObject,
-                        let intId = Int(snapData.key)
-                        else {
-                            return ContactDM(from: [:], with: 0)
+                        let jsonData = snapData.value as? JSONObject
+                    else {
+                        return ContactDM(from: [:])
                     }
                     
-                    let int64Id = Int64(intId)
-                    let dm = ContactDM(from: jsonData, with: int64Id)
+                    let dm = ContactDM(from: jsonData)
                     return dm
                 })
                 
@@ -99,24 +96,39 @@ internal class NetworkScribeClient: ScribeClient {
         })
     }
     
+    internal func fetchContactsVersion(callback: @escaping ScribeClientCallback<Int64>) {
+        let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let contactVerRef = rootRef.child(contactsChicago).child("contactsVer")
+        
+        contactVerRef.observeSingleEvent(of: .value, with: { (snap) in
+            guard
+                let object = snap.value as? JSONObject,
+                let ver = object["version"] as? Int64
+                else {
+                    callback(.success(0))
+                    return
+            }
+            //            let ver = object["version"] as? Int64
+            callback(.success(ver))
+        })
+    }
+    
     internal func fetchGroupContacts(_ request: FetchGroupContactsRequest, callback: @escaping ScribeClientCallback<[ContactDM]>) {
         let key = self.contactGroupToString(request.lookupKey)
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let contactRef = rootRef.child("contacts")
+        let contactRef = rootRef.child(contactsChicago).child("contacts")
         let query = contactRef.queryOrdered(byChild: "group").queryEqual(toValue: key)
         
         query.observeSingleEvent(of: .value, with: { (snap) in
             if let snapArray = snap.children.allObjects as? [DataSnapshot] {
                 let models = snapArray.map({ (snapData) -> ContactDM in
                     guard
-                        let jsonData = snapData.value as? JSONObject,
-                        let intId = Int(snapData.key)
-                        else {
-                            return ContactDM(from: [:], with: 0)
+                        let jsonData = snapData.value as? JSONObject
+                    else {
+                        return ContactDM(from: [:])
                     }
                     
-                    let int64Id = Int64(intId)
-                    let dm = ContactDM(from: jsonData, with: int64Id)
+                    let dm = ContactDM(from: jsonData)
                     return dm
                 })
                 
@@ -127,7 +139,7 @@ internal class NetworkScribeClient: ScribeClient {
     
     internal func fetchSignUpRequests(callback: @escaping ScribeClientCallback<[SignUpRequestDM]>) {
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let signUpRequestRef = rootRef.child("users/signup_request")
+        let signUpRequestRef = rootRef.child("users/requests/signup")
         let query = signUpRequestRef.queryOrderedByKey()
         query.observeSingleEvent(of: .value, with: { (snap) in
             if let snapArray = snap.children.allObjects as? [DataSnapshot] {
@@ -144,6 +156,20 @@ internal class NetworkScribeClient: ScribeClient {
 
                 callback(.success(models))
             }
+        })
+    }
+    
+    internal func fetchUserRequestsCount(callback: @escaping ScribeClientCallback<Int64>) {
+        let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let signUpRequestRef = rootRef.child("users/requests/signup")
+        let query = signUpRequestRef.queryOrderedByKey()
+        var count: Int64 = 0
+        query.observeSingleEvent(of: .value, with: { (snap) in
+            if let snapArray = snap.children.allObjects as? [DataSnapshot] {
+                let intCount = snapArray.count
+                count = Int64(intCount)
+            }
+            callback(.success(count))
         })
     }
     

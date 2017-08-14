@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vzp-Zd-Q3d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vzp-Zd-Q3d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -66,7 +66,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OM-ak-cWQ">
-                                                            <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                                            <rect key="frame" x="5" y="20" width="45" height="45"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="45" id="C4b-dU-yqr"/>
@@ -86,7 +86,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="gfF-gg-jfg" secondAttribute="trailing" id="4sw-dZ-Dg2"/>
                                                         <constraint firstAttribute="trailing" secondItem="i7Z-lm-213" secondAttribute="trailing" id="I66-DF-5gm"/>
                                                         <constraint firstItem="gfF-gg-jfg" firstAttribute="top" secondItem="Awj-AJ-uZm" secondAttribute="top" id="Koq-cO-3DJ"/>
-                                                        <constraint firstItem="0OM-ak-cWQ" firstAttribute="leading" secondItem="Awj-AJ-uZm" secondAttribute="leading" constant="10" id="Pop-ap-JtU"/>
+                                                        <constraint firstItem="0OM-ak-cWQ" firstAttribute="leading" secondItem="Awj-AJ-uZm" secondAttribute="leading" constant="5" id="Pop-ap-JtU"/>
                                                         <constraint firstItem="gfF-gg-jfg" firstAttribute="leading" secondItem="Awj-AJ-uZm" secondAttribute="leading" id="bPb-mI-Wen"/>
                                                         <constraint firstItem="i7Z-lm-213" firstAttribute="leading" secondItem="Awj-AJ-uZm" secondAttribute="leading" id="cKc-jh-Nhb"/>
                                                         <constraint firstAttribute="bottom" secondItem="gfF-gg-jfg" secondAttribute="bottom" id="fqT-UQ-Rax"/>
@@ -111,7 +111,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lRE-be-zou" userLabel="Name Stack View">
-                                                    <rect key="frame" x="114" y="205" width="148" height="69.5"/>
+                                                    <rect key="frame" x="114.5" y="205" width="148" height="69.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNh-yc-rBB" userLabel="Main Name Label">
                                                             <rect key="frame" x="0.0" y="0.0" width="148" height="69.5"/>
@@ -184,16 +184,16 @@
                                                     <rect key="frame" x="74" y="20" width="286" height="80"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uaZ-X0-9ke">
-                                                            <rect key="frame" x="0.0" y="19.5" width="196" height="41.5"/>
+                                                            <rect key="frame" x="0.0" y="20" width="196" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3F-ta-dEj" userLabel="Sub Title">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="24.5" height="13.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="13"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="11"/>
                                                                     <color key="textColor" red="0.43529411759999997" green="0.74901960779999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4i-Df-gek" userLabel="Body">
-                                                                    <rect key="frame" x="0.0" y="21.5" width="32" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="21" width="27" height="19"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                                                     <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>

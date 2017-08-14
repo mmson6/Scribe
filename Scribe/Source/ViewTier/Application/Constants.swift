@@ -11,7 +11,26 @@ import Foundation
 public typealias JSONArray = [JSONObject]
 public typealias JSONObject = [String: Any]
 
-fileprivate let pBaseURL = "https://scribe-4ed24.firebaseio.com/"
+fileprivate let pBaseURL = "https://scribe-5fdee.firebaseio.com/"
+public let contactsChicago = "contacts/us/chicago/"
+
+struct AppConfiguration {
+    static let baseURL = pBaseURL
+}
+
+
+
+// MARK: - Enumerations
+
+public enum Authorization {
+    case none
+    case admin
+}
+
+
+
+
+
 
 // MARK: Contacts Group Names
 
@@ -31,14 +50,18 @@ internal struct GroupName {
 //public typealias Choir_Group = "Choir"
 
 
+
+
+
+
+
 // MARK: Notifications
 
 let mainLanguageChanged = Notification.Name("MainLanguageChanged")
+let userRequestsCountChanged = Notification.Name("UserRequestsCountChanged")
 
 
-struct AppConfiguration {
-    static let baseURL = pBaseURL
-}
+
 
 
 // MARK: Sign Up Alert Constants
@@ -50,6 +73,7 @@ public let InvalidInputTitle = "Invalid Input"
 public let InvalidNameTitle = "Invalid Name"
 public let InvalidEmailTitle = "Invalid Email"
 public let InvalidPasswordTitle = "Invalid Password"
+public let InvalidCredentialsTitle = "Invalid Credentials"
 
 public let InvalidInputMessage = "Invalid input. Please try again"
 public let EmptyFirstNameMessage = "First name cannot be empty."
@@ -60,6 +84,7 @@ public let EmptyEmailMessage = "Email cannot be empty."
 public let InvalidEmailMessage = "Please enter email in the right format."
 public let DuplicateEmailMessage = "This email is already in use. Please try your other email."
 public let InvalidPasswordMessage = "Password needs to be at least 6 characters long."
+public let InvalidCredentialsMessage = "Invalid email or password. Please try again"
 
 // MoreInfoVC
 public let RequestSentTitle = "Request Sent"

@@ -54,10 +54,14 @@ class GroupContactListVC: SPRTableViewController {
                 return UITableViewCell()
         }
         
-        print(model)
         self.populate(cell, with: contactModel)
+        UITableViewCell.applyScribeCellAttributes(to: cell)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: Lifecycle Functions

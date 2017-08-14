@@ -67,15 +67,19 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
     // MARK: Helper Function
     
     private func fetchRequestDataSource() {
+        self.showLoadingIndicator()
         let cmd = FetchSignUpRequestsCommand()
         cmd.onCompletion { result in
+            self.hideLoadingIndicator()
             switch result {
             case .success(let array):
                 self.signUpRequestDataSource = array
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
             case .failure(let error):
                 NSLog("Error occurred: \(error)")
             }
+            self.tableView.reloadData()
+            
         }
         cmd.execute()
     }
@@ -99,11 +103,12 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         self.noRequestsView.isHidden = true
     }
     
-    private func provisionUserEmail(model: SignUpRequestVOM, callback: @escaping (AsyncResult<Bool>) -> Void) {
+//    private func provisionUserEmail(model: SignUpRequestVOM, callback: @escaping (AsyncResult<Bool>) -> Void) {
+    private func provisionUserEmail(model: SignUpRequestVOM) {
         let recomposedEmail = self.recomposeEmailForFirebase(model.email)
         
         let baseRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let emailPath = "users/email_pool"
+        let emailPath = "users/emails"
         let emailRef = baseRef.child(emailPath)
         
         var emailJSON: JSONObject = [:]
@@ -112,13 +117,9 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         emailJSON["church"] = model.church
         emailJSON["status"] = "provisioned"
         
-        emailRef.child(recomposedEmail).setValue(emailJSON) { [weak self] (error, ref) in
-            guard let strongSelf = self else { return }
-            
+        emailRef.child(recomposedEmail).setValue(emailJSON) { (error, ref) in
             if let error = error {
                 print(error)
-            } else {
-                strongSelf.registerUser(model: model, callback: callback)
             }
         }
     }
@@ -134,9 +135,41 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
             }
             
             if let user = user {
-                print("User \(model.firstName) \(model.lastName) created successfully")
-                strongSelf.removeHandledSignUpRequest(model: model, callback: callback)
+                DispatchQueue.main.async {
+                    print("async addUserProfile")
+                    strongSelf.addUserProfile(user: user, model: model) { result in
+                        switch result {
+                        case .success(let success):
+                            if success {
+                                print("User \(model.firstName) \(model.lastName) created successfully")
+                                strongSelf.removeHandledSignUpRequest(model: model, callback: callback)
+                            }
+                        case .failure(let error):
+                            callback(.failure(error))
+                            print("Error occurred: \(error)")
+                        }
+                    }
+                }
+                DispatchQueue.main.async {
+                    print("async provisionUserEmail")
+                    strongSelf.provisionUserEmail(model: model)
+                }
             }
+        }
+    }
+    
+    private func addUserProfile(user: User, model: SignUpRequestVOM, callback: @escaping ((AsyncResult<Bool>) -> Void)) {
+        let uid = user.uid
+        let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
+        let storeRef = rootRef.child("users/profiles").child(uid)
+        let data = model.asJSON()
+        storeRef.updateChildValues(data) { (error, ref) in
+            if let error = error {
+                print("Error occurred while adding User Profile: \(error)")
+                callback(.failure(error))
+                return
+            }
+            callback(.success(true))
         }
     }
     
@@ -144,7 +177,7 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         
         let recomposedEmail = self.recomposeEmailForFirebase(model.email)
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let path = "users/email_pool/" + recomposedEmail
+        let path = "users/emails/" + recomposedEmail
         let usersEmailRef = rootRef.child(path)
         usersEmailRef.removeValue { (error, ref) in
             if let error = error {
@@ -159,7 +192,7 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
     private func removeHandledSignUpRequest(model: SignUpRequestVOM, callback: @escaping (AsyncResult<Bool>) -> Void) {
         let recomposedEmail = self.recomposeEmailForFirebase(model.email)
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let path = "users/signup_request/" + recomposedEmail
+        let path = "users/requests/signup/" + recomposedEmail
         let usersEmailRef = rootRef.child(path)
         usersEmailRef.removeValue { (error, ref) in
             if let error = error {
@@ -175,7 +208,7 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         let recomposedEmail = self.recomposeEmailForFirebase(email)
         
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let path = "users/email_pool/" + recomposedEmail
+        let path = "users/emails/" + recomposedEmail
         let usersEmailRef = rootRef.child(path)
         
         usersEmailRef.observeSingleEvent(of: .value, with: { snap in
@@ -204,10 +237,12 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     private func checkForAvailableRequests() {
-        if self.signUpRequestDataSource.count == 0 {
-            self.noRequestsView.isHidden = false
-        } else if self.signUpRequestDataSource.count > 0 {
-            self.noRequestsView.isHidden = true
+        if !self.activityIndicator.isAnimating {
+            if self.signUpRequestDataSource.count == 0 {
+                self.noRequestsView.isHidden = false
+            } else if self.signUpRequestDataSource.count > 0 {
+                self.noRequestsView.isHidden = true
+            }
         }
     }
     
@@ -239,23 +274,27 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
             switch result {
             case .success(let unique):
                 if unique {
-                    strongSelf.provisionUserEmail(model: model) { result in
+                    strongSelf.registerUser(model: model) { result in
+                        strongSelf.hideLoadingIndicator()
                         switch result {
                         case .success(let success):
                             if success {
                                 strongSelf.signUpRequestDataSource.remove(at: indexPath.row)
-                                strongSelf.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-                                strongSelf.checkForAvailableRequests()
+                                strongSelf.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
                             }
                         case .failure:
                             break
                         }
-                        strongSelf.hideLoadingIndicator()
                     }
                 } else {
+                    print("Unique Email success false")
+                    strongSelf.hideLoadingIndicator()
                     strongSelf.presentDuplicateEmailAlert()
+                    strongSelf.signUpRequestDataSource.remove(at: indexPath.row)
+                    strongSelf.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
                 }
             case .failure:
+                print("Unique Email failed")
                 break
             }
         }
@@ -279,18 +318,17 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         func clearEmailFromPool() {
             self.clearEmailFromPool(model: model) { [weak self] result in
                 guard let strongSelf = self else { return }
+                strongSelf.hideLoadingIndicator()
                 
                 switch result {
                 case .success(let success):
                     if success {
                         strongSelf.signUpRequestDataSource.remove(at: indexPath.row)
-                        strongSelf.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-                        strongSelf.checkForAvailableRequests()
+                        strongSelf.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
                     }
                 case .failure:
                     break
                 }
-                strongSelf.hideLoadingIndicator()
             }
         }
     }

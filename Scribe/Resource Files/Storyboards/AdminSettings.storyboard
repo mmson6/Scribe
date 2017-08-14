@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,80 +62,174 @@
                         <sections>
                             <tableViewSection headerTitle="User Related" id="lyU-T0-skN">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="jJl-1V-y9h" style="IBUITableViewCellStyleDefault" id="fez-To-c2i" userLabel="User Sign Up Requests Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="userSignUpRequests" id="fez-To-c2i" userLabel="User Sign Up Requests Cell">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fez-To-c2i" id="q7w-Yg-XEC">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="User Sign Up Requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jJl-1V-y9h">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="46.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Sign Up Requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baP-M6-Kmt">
+                                                    <rect key="frame" x="20" y="8" width="294" height="30.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.1502383595" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="textColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUh-Pr-CEt" userLabel="Sign Up Request Badge Label">
+                                                    <rect key="frame" x="314" y="13.5" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.96862745098039216" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="ZGs-Gg-gOw"/>
+                                                        <constraint firstAttribute="height" constant="20" id="sfa-so-QXI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="baP-M6-Kmt" firstAttribute="bottom" secondItem="q7w-Yg-XEC" secondAttribute="bottomMargin" id="3xS-nY-1u6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KUh-Pr-CEt" secondAttribute="trailing" id="CY1-FV-dU8"/>
+                                                <constraint firstItem="KUh-Pr-CEt" firstAttribute="leading" secondItem="baP-M6-Kmt" secondAttribute="trailing" id="FIw-3e-qAl"/>
+                                                <constraint firstItem="baP-M6-Kmt" firstAttribute="top" secondItem="q7w-Yg-XEC" secondAttribute="topMargin" id="alG-pt-UKW"/>
+                                                <constraint firstItem="baP-M6-Kmt" firstAttribute="centerY" secondItem="q7w-Yg-XEC" secondAttribute="centerY" id="d1v-Nj-bl3"/>
+                                                <constraint firstItem="KUh-Pr-CEt" firstAttribute="centerY" secondItem="q7w-Yg-XEC" secondAttribute="centerY" id="hYs-sr-CU0"/>
+                                                <constraint firstItem="baP-M6-Kmt" firstAttribute="leading" secondItem="q7w-Yg-XEC" secondAttribute="leadingMargin" constant="12" id="wPc-0K-IkD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Hdx-v8-43C" kind="show" id="lYF-lv-xxy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="B1a-t6-EIb" style="IBUITableViewCellStyleDefault" id="T6z-un-JhR" userLabel="Manage User Access Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="um9-7d-ckv" userLabel="User Sign Up Requests Cell">
                                         <rect key="frame" x="0.0" y="102.5" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T6z-un-JhR" id="Ofc-6q-DDh">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="um9-7d-ckv" id="GvT-No-BXP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Manage User Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B1a-t6-EIb">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="46.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage User Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRq-Xr-diD">
+                                                    <rect key="frame" x="20" y="8" width="161.5" height="30.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.1502383595" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="textColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGD-Gy-TGp" userLabel="Sign Up Request Badge Label">
+                                                    <rect key="frame" x="314" y="13.5" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.96862745100000003" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="cMN-bO-1u8"/>
+                                                        <constraint firstAttribute="height" constant="20" id="pVl-Pl-Tkf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aRq-Xr-diD" firstAttribute="leading" secondItem="GvT-No-BXP" secondAttribute="leadingMargin" constant="12" id="3am-vh-l0C"/>
+                                                <constraint firstItem="aRq-Xr-diD" firstAttribute="top" secondItem="GvT-No-BXP" secondAttribute="topMargin" id="4Sb-eg-OwF"/>
+                                                <constraint firstItem="wGD-Gy-TGp" firstAttribute="centerY" secondItem="GvT-No-BXP" secondAttribute="centerY" id="Kq3-78-0kP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wGD-Gy-TGp" secondAttribute="trailing" id="KuZ-Tl-Mdl"/>
+                                                <constraint firstItem="wGD-Gy-TGp" firstAttribute="leading" secondItem="aRq-Xr-diD" secondAttribute="trailing" id="Sw5-mg-K4D"/>
+                                                <constraint firstItem="aRq-Xr-diD" firstAttribute="centerY" secondItem="GvT-No-BXP" secondAttribute="centerY" id="co3-zt-oXc"/>
+                                                <constraint firstItem="aRq-Xr-diD" firstAttribute="bottom" secondItem="GvT-No-BXP" secondAttribute="bottomMargin" id="hQv-Yx-2dj"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="wGD-Gy-TGp"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Contact Related" id="AJr-e9-cCV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KEN-az-4Za" style="IBUITableViewCellStyleDefault" id="G1c-8s-d7q">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DX4-Yf-lHo" userLabel="User Sign Up Requests Cell">
                                         <rect key="frame" x="0.0" y="205.5" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G1c-8s-d7q" id="XiZ-9H-d6s">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DX4-Yf-lHo" id="7bg-zU-dNY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Add a Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KEN-az-4Za">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="46.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbe-zg-UEm">
+                                                    <rect key="frame" x="20" y="8" width="109.5" height="30.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.1502383595" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="textColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDI-Ic-psq" userLabel="Sign Up Request Badge Label">
+                                                    <rect key="frame" x="314" y="13.5" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.96862745100000003" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="mCM-8T-hpX"/>
+                                                        <constraint firstAttribute="height" constant="20" id="oCW-7q-12o"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vbe-zg-UEm" firstAttribute="top" secondItem="7bg-zU-dNY" secondAttribute="topMargin" id="MIL-lu-sPc"/>
+                                                <constraint firstItem="IDI-Ic-psq" firstAttribute="leading" secondItem="Vbe-zg-UEm" secondAttribute="trailing" id="MUj-fu-w23"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IDI-Ic-psq" secondAttribute="trailing" id="PcL-eg-Ret"/>
+                                                <constraint firstItem="Vbe-zg-UEm" firstAttribute="centerY" secondItem="7bg-zU-dNY" secondAttribute="centerY" id="Z0e-7Y-QYD"/>
+                                                <constraint firstItem="Vbe-zg-UEm" firstAttribute="leading" secondItem="7bg-zU-dNY" secondAttribute="leadingMargin" constant="12" id="qzW-24-bzZ"/>
+                                                <constraint firstItem="Vbe-zg-UEm" firstAttribute="bottom" secondItem="7bg-zU-dNY" secondAttribute="bottomMargin" id="uSn-AB-aGV"/>
+                                                <constraint firstItem="IDI-Ic-psq" firstAttribute="centerY" secondItem="7bg-zU-dNY" secondAttribute="centerY" id="yjA-rt-3OY"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="IDI-Ic-psq"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="7Jn-8f-34J" style="IBUITableViewCellStyleDefault" id="pu4-bl-e1p">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="manageContactInfo" id="B3P-5i-Sxo" userLabel="User Sign Up Requests Cell">
                                         <rect key="frame" x="0.0" y="252.5" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pu4-bl-e1p" id="AkR-9R-xfF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B3P-5i-Sxo" id="PMX-xy-RP9">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Manage Contact Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Jn-8f-34J">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="46.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Contact Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvG-1i-Joe">
+                                                    <rect key="frame" x="20" y="8" width="160" height="30.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.1502383595" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="textColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqG-B0-Hn9" userLabel="Sign Up Request Badge Label">
+                                                    <rect key="frame" x="314" y="13.5" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.96862745100000003" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="FYn-qA-NNi"/>
+                                                        <constraint firstAttribute="height" constant="20" id="jkm-OM-EWo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dvG-1i-Joe" firstAttribute="bottom" secondItem="PMX-xy-RP9" secondAttribute="bottomMargin" id="Eel-jj-1Ue"/>
+                                                <constraint firstItem="sqG-B0-Hn9" firstAttribute="leading" secondItem="dvG-1i-Joe" secondAttribute="trailing" id="HAD-yV-fed"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sqG-B0-Hn9" secondAttribute="trailing" id="ItH-7M-Tn6"/>
+                                                <constraint firstItem="dvG-1i-Joe" firstAttribute="leading" secondItem="PMX-xy-RP9" secondAttribute="leadingMargin" constant="12" id="dEL-T7-Q3Q"/>
+                                                <constraint firstItem="dvG-1i-Joe" firstAttribute="top" secondItem="PMX-xy-RP9" secondAttribute="topMargin" id="kNw-Mf-Uw5"/>
+                                                <constraint firstItem="dvG-1i-Joe" firstAttribute="centerY" secondItem="PMX-xy-RP9" secondAttribute="centerY" id="n2S-54-6ov"/>
+                                                <constraint firstItem="sqG-B0-Hn9" firstAttribute="centerY" secondItem="PMX-xy-RP9" secondAttribute="centerY" id="rAQ-Vy-vea"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="sqG-B0-Hn9"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="fam-Ya-FGw" kind="show" id="ekm-7A-slG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -143,7 +239,12 @@
                             <outlet property="delegate" destination="LOD-cE-OW7" id="2E6-4c-kAp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Admin Settings" id="MA3-3c-m2c"/>
+                    <navigationItem key="navigationItem" title="Admin Settings" id="MA3-3c-m2c">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7gM-Zr-SMM"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="signUpRequestBadgeLabel" destination="KUh-Pr-CEt" id="Ut4-w2-Icv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6T-KD-WfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,6 +258,14 @@
             </objects>
             <point key="canvasLocation" x="1821" y="-209"/>
         </scene>
+        <!--ManageContactInfo-->
+        <scene sceneID="byA-LN-eHf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ManageContactInfo" id="fam-Ya-FGw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o2X-Cc-nyR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1811" y="95"/>
+        </scene>
         <!--Admin-->
         <scene sceneID="uPt-0P-n6H">
             <objects>
@@ -164,7 +273,7 @@
                     <tabBarItem key="tabBarItem" title="Admin" id="UGb-SZ-W0V"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ocq-gi-H7f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ocq-gi-H7f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

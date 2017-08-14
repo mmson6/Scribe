@@ -19,9 +19,13 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     let customSearchBar = ContactSearchBar()
     var contactsNeedUpdate = false
     
+    // Store all firebase database reference obserbers to remove at deinit later
+    var fbObserverRefs = [DatabaseReference]()
+    
+    // MARK: UIViewController Functions
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         self.initObservers()
     }
     
@@ -30,6 +34,10 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.commonInit()
         self.initializeSearchController()
         self.checkForContactsUpdate()
+    }
+    
+    deinit {
+        self.fbObserverRefs.forEach({ $0.removeAllObservers() })
     }
     
     // MARK: Helper Functions
@@ -48,6 +56,7 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 //        }
 
     }
+    
     private func commonInit() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -57,9 +66,8 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     private func checkForContactsUpdate() {
-        
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-        let contactVerRef = ref.child("contacts_ver")
+        let contactVerRef = ref.child(contactsChicago).child("contactsVer")
         
         contactVerRef.observeSingleEvent(of: .value, with: { [weak self] (snap) in
             guard let strongSelf = self else { return }
@@ -77,140 +85,6 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     private func fetchContactDataSource(with ver: Int64 = 0) {
-        
-//        let ctd: [[String: Any]] = 	[
-//            [
-//                "name_kor": "안명숙",
-//                "name_eng": "Myungsook Ahn",
-//                "phone": "8476368041",
-//                "address": "10373 Dearlove Road #3E, Glenview, IL 60025",
-//                "group": "Mothers",
-//                "teacher": false,
-//                "choir": false,
-//                "translator": false,
-//                "district": "11"
-//            ],
-//            [
-//                "name_kor": "백중현",
-//                "name_eng": "John Baek",
-//                "phone": "6309949989",
-//                "address": "23801 Tallgrass Drive, Plainfield, IL 60658",
-//                "group": "Fathers",
-//                "teacher": false,
-//                "choir": false,
-//                "translator": false,
-//                "district": "11"
-//            ],
-//            [
-//                "name_kor": "김경민",
-//                "name_eng": "Ace Bowling",
-//                "phone": "8478262343",
-//                "address": "265 Washington Boulevard, Hoffman Estates, IL 60169",
-//                "group": "Young Adults",
-//                "teacher": true,
-//                "choir": false,
-//                "translator": false,
-//                "district": "31"
-//            ],
-//            [
-//                "name_kor": "",
-//                "name_eng": "Ryan Bowling",
-//                "phone": "8478264755",
-//                "address": "265 Washington Boulevard, Hoffman Estates, IL 60169",
-//                "group": "Young Adults",
-//                "teacher": true,
-//                "choir": false,
-//                "translator": false,
-//                "district": "31"
-//            ],
-//            [
-//                "name_kor": "변영희",
-//                "name_eng": "Younghee Byun",
-//                "phone": "2246228329",
-//                "address": "1509 Summerhill Lane, Cary IL 60013",
-//                "group": "Mothers",
-//                "teacher": false,
-//                "choir": false,
-//                "translator": false,
-//                "district": "21"
-//            ],
-//            [
-//                "name_kor": "장혜숙",
-//                "name_eng": "Hazel Chang",
-//                "phone": "6308809345",
-//                "address": "2426 North Kennicott Drive #2B, Arlington Heights, IL 60004",
-//                "group": "Mothers",
-//                "teacher": false,
-//                "choir": false,
-//                "translator": false,
-//                "district": "31"
-//            ],
-//            [
-//                "name_kor": "지시현",
-//                "name_eng": "Anna Chee",
-//                "phone": "2244028225",
-//                "address": "813 West Springfied Avenue APT 101, Urbana, IL 61801",
-//                "group": "Young Adults",
-//                "teacher": false,
-//                "choir": false,
-//                "translator": false,
-//                "district": "21"
-//            ]
-//        ]
-//        
-//        let models = ctd.enumerated().flatMap({ (index, jsonObj) -> ContactVOM? in
-//            let index64 = Int64(index)
-//            let dm = ContactDM(from: jsonObj, with: index64)
-//            let model = ContactVOM(model: dm)
-//            return model
-//        })
-//        
-//        self.contactDataSource = models
-//        self.tableView.reloadData()
-//
-        
-//            let test = snap.value as? JSONObject
-//            guard
-//                let object = snap.value as? JSONObject,
-//                let ver = object[0]["contacts_ver"]
-//            else {
-//                return
-//            }
-        
-        
-//        contactVerRef.observe(.childChanged, with: { [weak self] snap in
-//            guard let strongSelf = self else { return }
-//            
-//            guard
-//                let ver = snap.value as? Int64
-//                else {
-//                    return
-//            }
-//            
-//            if strongSelf.store.contactsNeedUpdate(ver) {
-//                strongSelf.fetchContactDataSource(with: ver)
-//                strongSelf.store.saveContactsVer(ver)
-//            }
-//        })
-        
-//        let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
-//        let contactRef = ref.child("contacts")
-//        let query = contactRef.queryOrderedByKey().queryEqual(toValue: "\(request.id)")
-//        
-//        query.observeSingleEvent(of: .value, with: { snap in
-//            if let dataSnap = snap.children.allObjects as? [DataSnapshot] {
-//                guard let json = dataSnap.last else { return }
-//                if let jsonData = json.value as? JSONObject {
-//                    let dm = ContactInfoDM(from: jsonData)
-//                    //                    let dms = jsonData.flatMap({ (key, value) -> ContactInfoDM? in
-//                    //                        let dm = ContactInfoDM(from: ["label": key, "value": value])
-//                    //                        return dm
-//                    //                    })
-//                    callback(.success(dm))
-//                }
-//            }
-//        })
-        
         let cmd = FetchContactsCommand()
         cmd.contactsVer = ver
         cmd.onCompletion { result in
@@ -236,17 +110,29 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         cell.subNameLabel.text = model.nameKor
     }
 
-    private func applyCellSettings(to cell: ContactCell) {
-        let view = UIView()
-        view.backgroundColor = UIColor.rgb(red: 237, green: 241, blue: 244)
-        cell.selectedBackgroundView = view
-    }
-    
     // MARK: Firebase Related Functions
     
     private func initFirebaseObservers() {
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
         let contactVerRef = ref.child("contacts_ver")
+        
+        self.fbObserverRefs.append(contactVerRef)
+        self.fbObserverRefs.last!.observe(.childChanged, with: { [weak self] snap in
+            guard let strongSelf = self else { return }
+            
+            guard
+                let ver = snap.value as? Int64
+                else {
+                    return
+            }
+            
+            let store = UserDefaultsStore()
+            if store.contactsNeedUpdate(ver) {
+                strongSelf.fetchContactDataSource(with: ver)
+                //                store.saveContactsVer(ver)
+            }
+        })
+        
 //        
 //        contactRef.observe(.childAdded, with: { snap in
 //            guard
@@ -278,23 +164,6 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 //            let contactsNameRef = ref.child("contacts_name")
 //            contactsNameRef.child(snap.key).removeValue()
 //        })
-        
-        
-        contactVerRef.observe(.childChanged, with: { [weak self] snap in
-            guard let strongSelf = self else { return }
-            
-            guard
-                let ver = snap.value as? Int64
-                else {
-                    return
-            }
-            
-            let store = UserDefaultsStore()
-            if store.contactsNeedUpdate(ver) {
-                strongSelf.fetchContactDataSource(with: ver)
-//                store.saveContactsVer(ver)
-            }
-        })
     }
     
     // MARK: - Table view data source
@@ -335,9 +204,7 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         
         self.populate(cell, with: contactModel)
-        
-        
-        self.applyCellSettings(to: cell)
+        UITableViewCell.applyScribeCellAttributes(to: cell)
         
         return cell
     }
@@ -378,7 +245,6 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         
