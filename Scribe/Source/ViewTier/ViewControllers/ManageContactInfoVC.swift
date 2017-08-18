@@ -17,17 +17,26 @@ class ManageContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDat
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.checkForContactsUpdate()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.checkForContactsUpdate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.checkForContactsUpdate()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.commonInit()
         self.initializeSearchController()
-        self.checkForContactsUpdate()
+//        self.checkForContactsUpdate()
         // Do any additional setup after loading the view.
     }
 

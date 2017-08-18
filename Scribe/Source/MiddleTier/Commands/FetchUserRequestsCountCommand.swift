@@ -1,5 +1,5 @@
 //
-//  FetchUserRequestsCount.swift
+//  FetchUserRequestsCountCommand.swift
 //  Scribe
 //
 //  Created by Mikael Son on 8/3/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class FetchUserRequestsCount: ScribeCommand<Int64> {
+public class FetchUserRequestsCountCommand: ScribeCommand<Int64> {
     
     public override func main() {
         self.accessor.loadUserRequestsCount { result in

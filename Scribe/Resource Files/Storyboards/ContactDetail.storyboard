@@ -111,16 +111,16 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lRE-be-zou" userLabel="Name Stack View">
-                                                    <rect key="frame" x="114.5" y="205" width="148" height="69.5"/>
+                                                    <rect key="frame" x="114" y="205" width="148" height="69.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNh-yc-rBB" userLabel="Main Name Label">
-                                                            <rect key="frame" x="0.0" y="0.0" width="148" height="69.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNh-yc-rBB" userLabel="Main Name Label">
+                                                            <rect key="frame" x="0.0" y="0.0" width="148" height="43"/>
                                                             <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="25"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.9532320205479452" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5p-7E-gBE" userLabel="Sub Name Label">
-                                                            <rect key="frame" x="0.0" y="69.5" width="148" height="0.0"/>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5p-7E-gBE" userLabel="Sub Name Label">
+                                                            <rect key="frame" x="0.0" y="48" width="148" height="21.5"/>
                                                             <fontDescription key="fontDescription" name="FallingSkyLight" family="Falling Sky" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -184,16 +184,16 @@
                                                     <rect key="frame" x="74" y="20" width="286" height="80"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uaZ-X0-9ke">
-                                                            <rect key="frame" x="0.0" y="20" width="196" height="40"/>
+                                                            <rect key="frame" x="0.0" y="19.5" width="196" height="41.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3F-ta-dEj" userLabel="Sub Title">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="13"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="24.5" height="13.5"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="11"/>
                                                                     <color key="textColor" red="0.43529411759999997" green="0.74901960779999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4i-Df-gek" userLabel="Body">
-                                                                    <rect key="frame" x="0.0" y="21" width="27" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="21.5" width="32" height="20"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                                                     <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>

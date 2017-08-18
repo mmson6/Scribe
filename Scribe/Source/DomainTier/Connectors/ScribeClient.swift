@@ -76,7 +76,7 @@ internal class NetworkScribeClient: ScribeClient {
     internal func fetchContacts(callback: @escaping ScribeClientCallback<[ContactDM]>) {
         let rootRef = Database.database().reference(fromURL: self.baseURL)
         let contactRef = rootRef.child(contactsChicago).child("contacts")
-        let query = contactRef.queryOrdered(byChild: "name_eng")
+        let query = contactRef.queryOrdered(byChild: "nameEng")
         
         query.observeSingleEvent(of: .value, with: { (snap) in
             if let snapArray = snap.children.allObjects as? [DataSnapshot] {

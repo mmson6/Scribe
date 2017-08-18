@@ -25,8 +25,8 @@ public struct ContactDM: JSONTransformable {
     init(from jsonObj: JSONObject) {
         let json = JSON(jsonObj)
         self.id = json["contactId"].string ?? ""
-        self.nameEng = json["name_eng"].string ?? ""
-        self.nameKor = json["name_kor"].string ?? ""
+        self.nameEng = json["nameEng"].string ?? ""
+        self.nameKor = json["nameKor"].string ?? ""
         self.group = json["group"].string ?? ""
         self.teacher = json["teacher"].bool ?? false
         self.choir = json["choir"].bool ?? false
@@ -38,8 +38,8 @@ public struct ContactDM: JSONTransformable {
 //    public init(from jsonObj: JSONObject, with id: Int64) {
 //        let json = JSON(jsonObj)
 //        self.id = id
-//        self.nameEng = json["name_eng"].string ?? ""
-//        self.nameKor = json["name_kor"].string ?? ""
+//        self.nameEng = json["nameEng"].string ?? ""
+//        self.nameKor = json["nameKor"].string ?? ""
 //        self.group = json["group"].string ?? ""
 //        self.teacher = json["teacher"].bool ?? false
 //        self.choir = json["choir"].bool ?? false

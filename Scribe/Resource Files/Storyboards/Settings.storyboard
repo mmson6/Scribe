@@ -41,15 +41,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Settings" id="Bkz-w3-dnG">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="languageSetting" textLabel="L8V-SO-qCn" style="IBUITableViewCellStyleDefault" id="wAW-ev-nIu" userLabel="Language Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="L8V-SO-qCn" style="IBUITableViewCellStyleDefault" id="wAW-ev-nIu" userLabel="Language Cell">
                                         <rect key="frame" x="0.0" y="158.5" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wAW-ev-nIu" id="DHi-Ln-UJS">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L8V-SO-qCn">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="46.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="46.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.1502383595" green="0.23311830450000001" blue="0.33139673219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -57,9 +57,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="cNF-9Z-IjY" kind="show" id="S1V-K0-KN1"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -262,7 +259,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="iTy-0P-Lwd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="owP-vn-XTp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="owP-vn-XTp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -15,8 +15,9 @@ public struct ContactDetailVOM {
     public let nameEng: String?
     public let nameKor: String?
     public let district: String?
-    public let address: String?
+    public let address: AddressDM?
     public let phone: String?
+    public let birthday: String
     public let group: String?
     public let teacher: Bool
     public let translator: Bool
@@ -29,6 +30,7 @@ public struct ContactDetailVOM {
         self.district = model.district
         self.address = model.address
         self.phone = model.phone
+        self.birthday = model.birthday
         self.group = model.group
         self.teacher = model.teacher
         self.translator = model.translator
@@ -40,9 +42,10 @@ public struct ContactDetailVOM {
         json["nameEng"] = self.nameEng
         json["nameKor"] = self.nameKor
         json["district"] = self.district
-        json["address"] = self.address
+        json["address"] = self.address?.asJSON()
         json["phone"] = self.phone
-        json["group"] = self.nameKor
+        json["birthday"] = self.birthday
+        json["group"] = self.group
         json["teacher"] = self.teacher
         json["translator"] = self.translator
         json["choir"] = self.choir

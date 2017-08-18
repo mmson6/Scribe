@@ -180,13 +180,13 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
             let teacher = json["teacher"] as? Bool
             let choir = json["choir"] as? Bool
             let translator = json["translator"] as? Bool
-            let engName = json["name_eng"] as? String
-            let korName = json["name_kor"] as? String
+            let engName = json["nameEng"] as? String
+            let korName = json["nameKor"] as? String
             
             let contactsNameRef = ref.child("contacts_name")
             contactsNameRef.child(snap.key).setValue(
-                ["name_eng": engName as Any,
-                 "name_kor": korName as Any,
+                ["nameEng": engName as Any,
+                 "nameKor": korName as Any,
                  "group": group as Any,
                  "teacher": teacher as Any,
                  "choir": choir as Any,

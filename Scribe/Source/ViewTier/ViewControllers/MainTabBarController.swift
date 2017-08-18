@@ -139,7 +139,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func fetchUserRequestsCount() {
-        let cmd = FetchUserRequestsCount()
+        let cmd = FetchUserRequestsCountCommand()
         cmd.onCompletion { result in
             switch result {
             case .success(let count):

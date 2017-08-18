@@ -10,17 +10,18 @@ import UIKit
 
 class AddressInfoCell: UITableViewCell {
 
-    @IBOutlet weak var addressTextView: UITextView!
+    @IBOutlet weak var streetTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var zipTextField: UITextField!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        self.commonInit()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+//
+//    private func commonInit() {
+//        
+//    }
 }

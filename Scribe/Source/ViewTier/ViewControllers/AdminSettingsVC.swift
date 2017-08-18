@@ -79,7 +79,7 @@ class AdminSettingsVC: UITableViewController {
         guard
             let _ = cell.reuseIdentifier
         else {
-            self.showToast(message: "Not Supported Function Yet")
+            self.showToast(message: "Function Not Supported Yet")
             return
         }
     }

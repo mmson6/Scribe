@@ -25,6 +25,7 @@ public class FetchContactDetailCommand: ScribeCommand<[ContactInfoVOM]> {
         self.accessor.loadContactDetails(request) { result in
             switch result {
             case .success(let dm):
+                
                     let sortedModels =  self.populate(dm: dm)
                     self.completedWith(value: sortedModels)
                 
@@ -53,18 +54,29 @@ public class FetchContactDetailCommand: ScribeCommand<[ContactInfoVOM]> {
             let model = ContactInfoVOM(jsonObj: ["label": "PHONE", "value": phone])
             sortedModels.append(model)
         }
-        if let address = dm.address, address != "" {
-            let model = ContactInfoVOM(jsonObj: ["label": "ADDRESS", "value": address])
+        if let address = dm.address {
+            let fullAddress = "\(address.addressLine), \(address.city), \(address.state) \(address.zipCode)"
+            let model = ContactInfoVOM(jsonObj: ["label": "ADDRESS", "value": fullAddress])
+            sortedModels.append(model)
+        }
+        let birthday = dm.birthday
+        if birthday != "" {
+            let model = ContactInfoVOM(jsonObj: ["label": "BIRTHDAY", "value": birthday])
+            sortedModels.append(model)
+        }
+//        if let address = dm.address, address != "" {
+//            let model = ContactInfoVOM(jsonObj: ["label": "ADDRESS", "value": address])
+//            sortedModels.append(model)
+//        }
+        if let group = dm.group, group != "" {
+            let model = ContactInfoVOM(jsonObj: ["label": "GROUP", "value": group])
             sortedModels.append(model)
         }
         if let district = dm.district, district != "" {
             let model = ContactInfoVOM(jsonObj: ["label": "DISTRICT", "value": district])
             sortedModels.append(model)
         }
-        if let group = dm.group, group != "" {
-            let model = ContactInfoVOM(jsonObj: ["label": "GROUP", "value": group])
-            sortedModels.append(model)
-        }
+
         return sortedModels
     }
 }

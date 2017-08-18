@@ -118,6 +118,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     return UITableViewCell()
             }
             self.populate(cell, with: model)
+            UITableViewCell.applyScribeCellAttributes(to: cell)
             return cell
             
         default:
@@ -127,6 +128,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     return UITableViewCell()
             }
             self.populate(cell, with: model)
+            UITableViewCell.applyScribeCellAttributes(to: cell)
             return cell
         }
     }
@@ -291,6 +293,8 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.iconLabel.text = "\u{f0f7}"
         case "GROUP":
             cell.iconLabel.text = "\u{f0c0}"
+        case "BIRTHDAY":
+            cell.iconLabel.text = "\u{f1fd}"
         default:
             break
         }

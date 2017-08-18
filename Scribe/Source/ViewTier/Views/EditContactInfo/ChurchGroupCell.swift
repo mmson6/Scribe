@@ -1,15 +1,15 @@
 //
-//  ChurchInfoCell.swift
+//  ChurchGroupCell.swift
 //  Scribe
 //
-//  Created by Mikael Son on 8/9/17.
+//  Created by Mikael Son on 8/15/17.
 //  Copyright © 2017 Mikael Son. All rights reserved.
 //
 
 import UIKit
 
-class ChurchInfoCell: UITableViewCell {
-
+class ChurchGroupCell: UITableViewCell {
+    
     public var buttonSelected = false
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
@@ -19,7 +19,7 @@ class ChurchInfoCell: UITableViewCell {
         
         self.commonInit()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -35,6 +35,7 @@ class ChurchInfoCell: UITableViewCell {
     
     internal func animateSelected() {
         let scaleGrow = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.setSelectedLayerAttributes()
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.7, options: .curveEaseIn, animations: {
@@ -50,6 +51,7 @@ class ChurchInfoCell: UITableViewCell {
     
     internal func animateDeselected() {
         let scaleShrink = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        self.setUnselectedLayerAttributes()
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.7, options: .curveEaseIn, animations: {
@@ -61,6 +63,20 @@ class ChurchInfoCell: UITableViewCell {
                 })
             })
         }
+    }
+    
+    func setSelectedLayerAttributes() {
+        let image = UIImage(named: "check_icon_filled_500")?.withRenderingMode(.alwaysTemplate)
+        self.checkButton.setImage(image, for: .normal)
+        self.checkButton.tintColor = UIColor.scribeDesignTwoGreen
+        self.checkButton.layer.borderWidth = 0
+    }
+    
+    func setUnselectedLayerAttributes() {
+        self.checkButton.setImage(nil, for: .normal)
+        self.checkButton.layer.borderWidth = 2
+        self.checkButton.layer.borderColor = UIColor.rgb(red: 235, green: 235, blue: 235).cgColor
+        self.checkButton.layer.cornerRadius = self.checkButton.frame.width / 2
     }
     
     // MARK: IBAction Functions

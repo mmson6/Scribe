@@ -11,7 +11,8 @@ import UIKit
 class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
 
     var tempTranslation: CGPoint!
-    private let transitionDuration = 0.5
+    private let transitionDuration = 0.3
+    public var preparedToTrack = false
     public var transitionStarted = false
     public var scrolledToTop = false
     var operationPresenting = false
@@ -170,17 +171,17 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
 //        toView.transform = animateSink
 //        fromView.backgroundColor = .clear
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             fromView.transform = animateDown
             //            toView.transform = animateFloat
             toView.alpha = 1
         }) { (success) in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.4, animations: {
+//            DispatchQueue.main.async {
+//                UIView.animate(withDuration: 0.4, animations: {
                     fromView.backgroundColor = .white
-                })
-            }
+//                })
+//            }
         }
 //        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
 //            fromView.transform = animateDown
@@ -204,7 +205,7 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
             
 //            print("check \(interactingView.frame.origin.y)")
 //            print("check \(interactingView.bounds.height)")
-            print("check \(self.sourceViewController.tableView.contentOffset.y)")
+//            print("check \(self.sourceViewController.tableView.contentOffset.y)")
             
             var translation = pan.translation(in: interactingView)
 //            let d = translation.y / interactingView.bounds.height * 0.4
@@ -228,15 +229,27 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
                 if translation.y >= 0 {
 //                    print("check SSSSSTTTTAAAARRRRRRTTTT-----")
                     self.tempTranslation = translation
-                    guard let identifier = self.parentVC else { return }
-                    self.sourceViewController.performSegue(withIdentifier: identifier, sender: nil)
-                    self.transitionStarted = true
-                    self.sourceViewController.tableView.backgroundColor = .clear
+                    self.preparedToTrack = true
+//                    guard let identifier = self.parentVC else { return }
+//                    self.sourceViewController.performSegue(withIdentifier: identifier, sender: nil)
+//                    self.transitionStarted = true
+//                    self.sourceViewController.tableView.backgroundColor = .clear
                 }
             case .changed:
+                if self.preparedToTrack {
+                    if pan.velocity(in: interactingView).y > 0 {
+                        guard let identifier = self.parentVC else { return }
+                        print("identifier ------- \(identifier)")
+                        self.preparedToTrack = false
+                        self.sourceViewController.performSegue(withIdentifier: identifier, sender: nil)
+                        self.transitionStarted = true
+                        self.sourceViewController.tableView.backgroundColor = .clear
+                    }
+                }
 //                pan.location(ofTouch: <#T##Int#>, in: <#T##UIView?#>)
-//                print("check translation: \(translation.y)")
-                print("check translation: \(d)")
+//                print("-------- \(pan.velocity(in: interactingView).y)")
+                print("check translation: \(translation.y)")
+//                print("check translation: \(d)")
                 if self.transitionStarted {
                     if d < 0 {
 //                        self.cancel()
@@ -247,12 +260,14 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
                     }
                 }
             case .cancelled:
+                self.preparedToTrack = false
                 break
             case .ended:
                 print("ended")
 //                if pan.velocity(in: interactingView).y > 0 {
 //                if pan.velocity(in: interactingView).y > 0 || translation.y > 100 {
-                if translation.y > 100 {
+//                print("-------- \(pan.velocity(in: interactingView).y)")
+                if translation.y > 200 || pan.velocity(in: interactingView).y > 1500 {
                     if self.transitionStarted {
                         print("check FIIIINIIIIIISSSSHHHHHH")
                         self.finish()
@@ -264,10 +279,12 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
                     }
                 }
                 self.transitionStarted = false
+                self.preparedToTrack = false
                 break
             default:
                 self.finish()
                 self.transitionStarted = false
+                self.preparedToTrack = false
                 break
             }
         }

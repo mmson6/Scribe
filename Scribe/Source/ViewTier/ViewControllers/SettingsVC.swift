@@ -42,7 +42,7 @@ class SettingsVC: UITableViewController{
             let cell = tableView.cellForRow(at: indexPath),
             let identifier = cell.reuseIdentifier
         else {
-            self.showToast(message: "Not Supported Function Yet")
+            self.showToast(message: "Function Not Supported Yet")
             return
         }
         

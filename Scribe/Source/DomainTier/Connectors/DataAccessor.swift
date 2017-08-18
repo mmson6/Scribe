@@ -136,8 +136,6 @@ public final class DataAccessor {
         }
     }
     
-//    fetchUserRequestsCount
-    
     internal func populateDatabase() {
 //        var ref: reference
 //        var myRootRef = Database

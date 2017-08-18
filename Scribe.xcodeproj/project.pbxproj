@@ -55,7 +55,7 @@
 		8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A21F214412004AA24E /* ContactsVC.swift */; };
 		8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0B83A41F2145F4004AA24E /* Contacts.storyboard */; };
 		8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */; };
-		8A17AE711F3366520085E8D7 /* FetchUserRequestsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A17AE701F3366520085E8D7 /* FetchUserRequestsCount.swift */; };
+		8A17AE711F3366520085E8D7 /* FetchUserRequestsCountCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A17AE701F3366520085E8D7 /* FetchUserRequestsCountCommand.swift */; };
 		8A17AE741F3382B70085E8D7 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A17AE731F3382B70085E8D7 /* ToastView.swift */; };
 		8A2B6ECC1EF394E600425B61 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B6ECB1EF394E600425B61 /* MainTabBarController.swift */; };
 		8A2CDAFB1EEB2FFC00DF2E0E /* ContactInfoDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */; };
@@ -92,13 +92,16 @@
 		8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BADB01EF390B7006721F8 /* LoadingVC.swift */; };
 		8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */; };
 		8A9762C51F22666D001583EA /* PullDownTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */; };
+		8AA2D2AE1F423B590050DD03 /* AddressDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AD1F423B590050DD03 /* AddressDM.swift */; };
+		8AA2D2B01F4396130050DD03 /* ChurchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */; };
+		8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */; };
 		8AA7E3361F2FCED3009CFF28 /* SignUpRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7E3351F2FCED3009CFF28 /* SignUpRequestCell.swift */; };
 		8AAE187A1F3914AC0049BC71 /* ManageContactInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE18791F3914AC0049BC71 /* ManageContactInfoVC.swift */; };
 		8AAE187C1F3915490049BC71 /* ManageContactInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AAE187B1F3915490049BC71 /* ManageContactInfo.storyboard */; };
 		8AAE187E1F3A70670049BC71 /* EditContactInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE187D1F3A70670049BC71 /* EditContactInfoVC.swift */; };
 		8AAE18831F3B65E70049BC71 /* GeneralInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE18821F3B65E70049BC71 /* GeneralInfoCell.swift */; };
 		8AAE18851F3B670B0049BC71 /* AddressInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE18841F3B670B0049BC71 /* AddressInfoCell.swift */; };
-		8AAE18891F3B6A890049BC71 /* ChurchInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE18881F3B6A890049BC71 /* ChurchInfoCell.swift */; };
+		8AAE18891F3B6A890049BC71 /* ChurchServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE18881F3B6A890049BC71 /* ChurchServiceCell.swift */; };
 		8AAE188B1F3B78230049BC71 /* TopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE188A1F3B78230049BC71 /* TopCell.swift */; };
 		8AAE188D1F3B91F00049BC71 /* BirthdayInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE188C1F3B91EF0049BC71 /* BirthdayInfoCell.swift */; };
 		8AAE18911F3B96510049BC71 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE18901F3B96510049BC71 /* SectionHeaderCell.swift */; };
@@ -199,7 +202,7 @@
 		8A0B83A21F214412004AA24E /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Source/ViewTier/ViewControllers/ContactsVC.swift; sourceTree = "<group>"; };
 		8A0B83A41F2145F4004AA24E /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contacts.storyboard; path = "Resource Files/Storyboards/Contacts.storyboard"; sourceTree = "<group>"; };
 		8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsVC.swift; path = Source/ViewTier/ViewControllers/ContactGroupsVC.swift; sourceTree = "<group>"; };
-		8A17AE701F3366520085E8D7 /* FetchUserRequestsCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchUserRequestsCount.swift; path = Source/MiddleTier/Commands/FetchUserRequestsCount.swift; sourceTree = "<group>"; };
+		8A17AE701F3366520085E8D7 /* FetchUserRequestsCountCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchUserRequestsCountCommand.swift; path = Source/MiddleTier/Commands/FetchUserRequestsCountCommand.swift; sourceTree = "<group>"; };
 		8A17AE731F3382B70085E8D7 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = Source/ViewTier/Views/ToastView.swift; sourceTree = "<group>"; };
 		8A2B6ECB1EF394E600425B61 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Source/ViewTier/ViewControllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		8A2CDAFA1EEB2FFC00DF2E0E /* ContactInfoDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactInfoDM.swift; path = Source/DomainTier/DomainModels/ContactInfoDM.swift; sourceTree = "<group>"; };
@@ -237,13 +240,16 @@
 		8A8BADB01EF390B7006721F8 /* LoadingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingVC.swift; path = Source/ViewTier/ViewControllers/LoadingVC.swift; sourceTree = "<group>"; };
 		8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsNavigationControllerDelegate.swift; path = Source/ViewTier/Animators/ContactsNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullDownTransitionAnimator.swift; path = Source/ViewTier/Animators/PullDownTransitionAnimator.swift; sourceTree = "<group>"; };
+		8AA2D2AD1F423B590050DD03 /* AddressDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressDM.swift; path = Source/DomainTier/DomainModels/AddressDM.swift; sourceTree = "<group>"; };
+		8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChurchGroupCell.swift; path = Source/ViewTier/Views/EditContactInfo/ChurchGroupCell.swift; sourceTree = "<group>"; };
+		8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateContactDetailRequest.swift; sourceTree = "<group>"; };
 		8AA7E3351F2FCED3009CFF28 /* SignUpRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestCell.swift; path = Source/ViewTier/Views/SignUpRequestCell.swift; sourceTree = "<group>"; };
 		8AAE18791F3914AC0049BC71 /* ManageContactInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageContactInfoVC.swift; path = Source/ViewTier/ViewControllers/ManageContactInfoVC.swift; sourceTree = "<group>"; };
 		8AAE187B1F3915490049BC71 /* ManageContactInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ManageContactInfo.storyboard; path = "Resource Files/Storyboards/ManageContactInfo.storyboard"; sourceTree = "<group>"; };
 		8AAE187D1F3A70670049BC71 /* EditContactInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditContactInfoVC.swift; path = Source/ViewTier/ViewControllers/EditContactInfoVC.swift; sourceTree = "<group>"; };
 		8AAE18821F3B65E70049BC71 /* GeneralInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralInfoCell.swift; path = Source/ViewTier/Views/EditContactInfo/GeneralInfoCell.swift; sourceTree = "<group>"; };
 		8AAE18841F3B670B0049BC71 /* AddressInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressInfoCell.swift; path = Source/ViewTier/Views/EditContactInfo/AddressInfoCell.swift; sourceTree = "<group>"; };
-		8AAE18881F3B6A890049BC71 /* ChurchInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChurchInfoCell.swift; path = Source/ViewTier/Views/EditContactInfo/ChurchInfoCell.swift; sourceTree = "<group>"; };
+		8AAE18881F3B6A890049BC71 /* ChurchServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChurchServiceCell.swift; path = Source/ViewTier/Views/EditContactInfo/ChurchServiceCell.swift; sourceTree = "<group>"; };
 		8AAE188A1F3B78230049BC71 /* TopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopCell.swift; path = Source/ViewTier/Views/EditContactInfo/TopCell.swift; sourceTree = "<group>"; };
 		8AAE188C1F3B91EF0049BC71 /* BirthdayInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BirthdayInfoCell.swift; path = Source/ViewTier/Views/EditContactInfo/BirthdayInfoCell.swift; sourceTree = "<group>"; };
 		8AAE18901F3B96510049BC71 /* SectionHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionHeaderCell.swift; path = Source/ViewTier/Views/EditContactInfo/SectionHeaderCell.swift; sourceTree = "<group>"; };
@@ -571,7 +577,7 @@
 				274A83501ED39C4E002DA226 /* FetchContactsCommand.swift */,
 				274A83561ED39FB8002DA226 /* FetchGroupContactsCommand.swift */,
 				8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */,
-				8A17AE701F3366520085E8D7 /* FetchUserRequestsCount.swift */,
+				8A17AE701F3366520085E8D7 /* FetchUserRequestsCountCommand.swift */,
 				8AF1421E1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift */,
 				8AF142221F3CBCAE00FC5BDB /* FetchContactDetailEditCommand.swift */,
 			);
@@ -627,6 +633,7 @@
 				8A2CDAFC1EEB3B4700DF2E0E /* ContactDM.swift */,
 				8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */,
 				8A7D5E231F2F918C00089E1F /* SignUpRequestDM.swift */,
+				8AA2D2AD1F423B590050DD03 /* AddressDM.swift */,
 			);
 			name = DomainModels;
 			sourceTree = "<group>";
@@ -666,7 +673,8 @@
 				8AAE18841F3B670B0049BC71 /* AddressInfoCell.swift */,
 				8AF142251F3CF7D300FC5BDB /* BirthdayDatePickerCell.swift */,
 				8AAE188C1F3B91EF0049BC71 /* BirthdayInfoCell.swift */,
-				8AAE18881F3B6A890049BC71 /* ChurchInfoCell.swift */,
+				8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */,
+				8AAE18881F3B6A890049BC71 /* ChurchServiceCell.swift */,
 				8AAE18821F3B65E70049BC71 /* GeneralInfoCell.swift */,
 				8AAE18901F3B96510049BC71 /* SectionHeaderCell.swift */,
 				8AAE188A1F3B78230049BC71 /* TopCell.swift */,
@@ -681,6 +689,7 @@
 				8AAE32CB1EEFB1D600374794 /* FetchContactsRequest.swift */,
 				8AAE32CC1EEFB1D600374794 /* FetchGroupContactsRequest.swift */,
 				8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */,
+				8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */,
 			);
 			name = RequestModels;
 			path = Source/DomainTier/RequestModels;
@@ -1097,6 +1106,7 @@
 				275202011EB9997C002C469B /* ScribeCommand.swift in Sources */,
 				8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */,
 				8AC53EF61F0FF3EA0053DA99 /* ContactDetailVC.swift in Sources */,
+				8AA2D2B01F4396130050DD03 /* ChurchGroupCell.swift in Sources */,
 				275201F81EB99748002C469B /* ContactListVC.swift in Sources */,
 				8A9762C51F22666D001583EA /* PullDownTransitionAnimator.swift in Sources */,
 				8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */,
@@ -1115,7 +1125,7 @@
 				8AAE187E1F3A70670049BC71 /* EditContactInfoVC.swift in Sources */,
 				27EB3ECC1EC7807800BB292B /* ContactGroupVOM.swift in Sources */,
 				275201EA1EB991D8002C469B /* AsyncResult.swift in Sources */,
-				8A17AE711F3366520085E8D7 /* FetchUserRequestsCount.swift in Sources */,
+				8A17AE711F3366520085E8D7 /* FetchUserRequestsCountCommand.swift in Sources */,
 				8AAE32CE1EEFB1D600374794 /* FetchContactsRequest.swift in Sources */,
 				8AAE32CD1EEFB1D600374794 /* FetchContactDetailRequest.swift in Sources */,
 				8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */,
@@ -1125,6 +1135,7 @@
 				8AAE18851F3B670B0049BC71 /* AddressInfoCell.swift in Sources */,
 				8AF142261F3CF7D300FC5BDB /* BirthdayDatePickerCell.swift in Sources */,
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
+				8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,
 				8AAE18911F3B96510049BC71 /* SectionHeaderCell.swift in Sources */,
 				8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */,
@@ -1149,7 +1160,8 @@
 				8A2F42031F29048E00E6DEC5 /* SignUpVC.swift in Sources */,
 				2719EA761EC5883E003D6D64 /* ContactVOM.swift in Sources */,
 				275201F21EB991D8002C469B /* SPRViewControllerFSM.swift in Sources */,
-				8AAE18891F3B6A890049BC71 /* ChurchInfoCell.swift in Sources */,
+				8AA2D2AE1F423B590050DD03 /* AddressDM.swift in Sources */,
+				8AAE18891F3B6A890049BC71 /* ChurchServiceCell.swift in Sources */,
 				8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */,
 				8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */,
 				8A7D5E241F2F918C00089E1F /* SignUpRequestDM.swift in Sources */,
