@@ -11,7 +11,7 @@ import Foundation
 public typealias JSONArray = [JSONObject]
 public typealias JSONObject = [String: Any]
 
-fileprivate let pBaseURL = "https://scribe-5fdee.firebaseio.com/production/"
+fileprivate let pBaseURL = "https://scribe-c1563.firebaseio.com/production/"
 public let contactsChicago = "contacts/us/chicago/"
 
 struct AppConfiguration {
@@ -59,7 +59,7 @@ internal struct GroupName {
 
 let mainLanguageChanged = Notification.Name("MainLanguageChanged")
 let userRequestsCountChanged = Notification.Name("UserRequestsCountChanged")
-
+let openFromSignUpRequest = Notification.Name("OpenFromSignUpRequest")
 
 
 

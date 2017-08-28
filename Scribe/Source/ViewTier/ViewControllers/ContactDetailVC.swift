@@ -20,10 +20,20 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var infoDataSource: [ContactInfoVOM] = []
     let animator = PullDownTransitionAnimator()
     
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.commonInit()
+        self.initializeViews()
         self.loadDataSource()
     }
     
@@ -45,51 +55,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 //        self.navigationController?.navigationBar.tintColor = UIColor.scribeDarkGray
         //        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .any, barMetrics: .default)
         //        self.navigationController?.navigationBar.shadowImage = nil
-    }
-    
-    // MARK: Private Funcitons
-    
-    private func initializeAnimator() {
-        self.transitioningDelegate = self.animator
-        self.animator.sourceViewController = self
-        
-        
-        guard let parentVC = self.parentVC else { return }
-        
-        switch parentVC {
-        case "ContactsVC":
-            self.animator.parentVC = "unwindToContactsVC"
-        case "GroupContactListVC":
-            self.animator.parentVC = "unwindToGroupContactListView"
-        default:
-            return
-        }
-    }
-    
-    private func commonInit() {
-        self.initializeAnimator()
-        
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
-        customView.backgroundColor = UIColor.white
-        self.tableView.tableFooterView = customView
-    }
-    
-    private func loadDataSource() {
-        let cmd = FetchContactDetailCommand()
-        let store = UserDefaultsStore()
-        let ver = store.loadContactsVer()
-        cmd.lookupKey = self.lookupKey
-        cmd.contactsVer = ver
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let array):
-                self.infoDataSource = array
-                self.tableView.reloadData()
-            case .failure(let error):
-                NSLog("error occurred: \(error)")
-            }
-        }
-        cmd.execute()
     }
     
     // MARK: UITableViewDelegate & UITableViewDataSource
@@ -195,6 +160,66 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     // MARK: Helper Functions
+    
+    private func commonInit() {
+        self.addObservers()
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            forName: openFromSignUpRequest,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                strongSelf.dismiss(animated: false, completion: nil)
+            }
+        }
+    }
+    
+    private func initializeAnimator() {
+        self.transitioningDelegate = self.animator
+        self.animator.sourceViewController = self
+        
+        
+        guard let parentVC = self.parentVC else { return }
+        
+        switch parentVC {
+        case "ContactsVC":
+            self.animator.parentVC = "unwindToContactsVC"
+        case "GroupContactListVC":
+            self.animator.parentVC = "unwindToGroupContactListView"
+        default:
+            return
+        }
+    }
+    
+    private func initializeViews() {
+        self.initializeAnimator()
+        
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
+        customView.backgroundColor = UIColor.white
+        self.tableView.tableFooterView = customView
+    }
+    
+    private func loadDataSource() {
+        let cmd = FetchContactDetailCommand()
+        let store = UserDefaultsStore()
+        let ver = store.loadContactsVer()
+        cmd.lookupKey = self.lookupKey
+        cmd.contactsVer = ver
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                self.infoDataSource = array
+                self.tableView.reloadData()
+            case .failure(let error):
+                NSLog("error occurred: \(error)")
+            }
+        }
+        cmd.execute()
+    }
     
     private func createMapOptionsAlert(with address: Any?) -> UIAlertController? {
         

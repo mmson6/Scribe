@@ -129,6 +129,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // iOS10+, called when received response (default open, dismiss or custom action) for a notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        NotificationCenter.default.post(name: openFromSignUpRequest, object: nil)
+        
         let userInfo = response.notification.request.content.userInfo
         NSLog("[UserNotificationCenter] applicationState: \(applicationStateString) didReceiveResponse: \(userInfo)")
         //TODO: Handle background notification

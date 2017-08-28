@@ -90,6 +90,29 @@ class MainTabBarController: UITabBarController {
             guard let strongSelf = self else { return }
             strongSelf.checkForUserRequests()
         })
+        
+        
+        NotificationCenter.default.addObserver(
+            forName: openFromSignUpRequest,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+
+                let index = strongSelf.selectedIndex
+                for vc in strongSelf.viewControllers! {
+                    if let vc = vc as? UINavigationController {
+                        vc.popToRootViewController(animated: false)
+                    }
+                }
+
+                strongSelf.selectedIndex = 2
+                if let tabBarItems = strongSelf.tabBar.items?[2] {
+                    strongSelf.tabBar(strongSelf.tabBar, didSelect: tabBarItems)
+                }
+            }
+        }
     }
     
     private func confirmAuthorization() {

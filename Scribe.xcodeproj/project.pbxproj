@@ -51,7 +51,6 @@
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
 		8A06F0BC1F2AAD2600D6458A /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */; };
 		8A06F0BE1F2AB97200D6458A /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */; };
-		8A09E9BF1F34FA5E00782B6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A09E9BE1F34FA5E00782B6F /* GoogleService-Info.plist */; };
 		8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A21F214412004AA24E /* ContactsVC.swift */; };
 		8A0B83A51F2145F4004AA24E /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0B83A41F2145F4004AA24E /* Contacts.storyboard */; };
 		8A0B83A71F214CCF004AA24E /* ContactGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */; };
@@ -84,6 +83,7 @@
 		8A7D5E261F2F95F300089E1F /* SignUpRequestVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */; };
 		8A7D5E281F2F9A1B00089E1F /* SignUpRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */; };
 		8A7D5E2A1F2FC73900089E1F /* SignUpRequests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */; };
+		8A87D5241F5466F600CCE1F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A87D5231F5466F600CCE1F4 /* GoogleService-Info.plist */; };
 		8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BACCC1EF1ED83006721F8 /* Login.storyboard */; };
 		8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */; };
 		8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */; };
@@ -198,7 +198,6 @@
 		743E94256574C2F12CE4BB17 /* Pods-ScribeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeTests/Pods-ScribeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreInfoVC.swift; path = Source/ViewTier/ViewControllers/MoreInfoVC.swift; sourceTree = "<group>"; };
 		8A06F0BD1F2AB97200D6458A /* SignUpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
-		8A09E9BE1F34FA5E00782B6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A0B83A21F214412004AA24E /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsVC.swift; path = Source/ViewTier/ViewControllers/ContactsVC.swift; sourceTree = "<group>"; };
 		8A0B83A41F2145F4004AA24E /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contacts.storyboard; path = "Resource Files/Storyboards/Contacts.storyboard"; sourceTree = "<group>"; };
 		8A0B83A61F214CCF004AA24E /* ContactGroupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsVC.swift; path = Source/ViewTier/ViewControllers/ContactGroupsVC.swift; sourceTree = "<group>"; };
@@ -232,6 +231,7 @@
 		8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestVOM.swift; path = Source/ViewTier/ValueObjects/SignUpRequestVOM.swift; sourceTree = "<group>"; };
 		8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestsVC.swift; path = Source/ViewTier/ViewControllers/SignUpRequestsVC.swift; sourceTree = "<group>"; };
 		8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUpRequests.storyboard; path = "Resource Files/Storyboards/SignUpRequests.storyboard"; sourceTree = "<group>"; };
+		8A87D5231F5466F600CCE1F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A8BACCC1EF1ED83006721F8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = "Resource Files/Storyboards/Login.storyboard"; sourceTree = "<group>"; };
 		8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Source/ViewTier/ViewControllers/LoginVC.swift; sourceTree = "<group>"; };
 		8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTextField.swift; path = Source/ViewTier/Views/LoginTextField.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 				275201F41EB99298002C469B /* Source */,
 				275201F31EB99290002C469B /* Resource Files */,
 				275201CB1EB990C7002C469B /* Info.plist */,
-				8A09E9BE1F34FA5E00782B6F /* GoogleService-Info.plist */,
+				8A87D5231F5466F600CCE1F4 /* GoogleService-Info.plist */,
 			);
 			path = Scribe;
 			sourceTree = "<group>";
@@ -899,6 +899,7 @@
 				8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */,
 				8A8BADA91EF338E9006721F8 /* Settings.storyboard in Resources */,
 				275201B41EB990C7002C469B /* LaunchScreen.storyboard in Resources */,
+				8A87D5241F5466F600CCE1F4 /* GoogleService-Info.plist in Resources */,
 				8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */,
 				8AAE32FC1EF09DC100374794 /* FallingSky.otf in Resources */,
 				8A6F53681F2A5E7A00514780 /* ContactDetail.storyboard in Resources */,
@@ -908,7 +909,6 @@
 				8AAE33191EF09DC100374794 /* Montserrat-Bold.ttf in Resources */,
 				8A7D5E1E1F2BC4FA00089E1F /* AdminSettings.storyboard in Resources */,
 				275201FB1EB997C0002C469B /* ContactsCoordinatorVC.storyboard in Resources */,
-				8A09E9BF1F34FA5E00782B6F /* GoogleService-Info.plist in Resources */,
 				274A83531ED39E17002DA226 /* GroupContacts.storyboard in Resources */,
 				8A6016411EFA6FF300283491 /* FallingSky-Light.otf in Resources */,
 				275201AF1EB990C7002C469B /* Main.storyboard in Resources */,

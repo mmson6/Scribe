@@ -55,8 +55,11 @@ class AdminSettingsVC: UITableViewController {
     
     private func commonInit() {
         self.addObservers()
-//        self.tableView.rowHeight = UITableViewAutomaticDimension
-//        self.tableView.estimatedRowHeight = 70
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.updateUserRequestsBadge()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +100,24 @@ class AdminSettingsVC: UITableViewController {
                 strongSelf.updateUserRequestsBadge()
             }
         }
+        
+        NotificationCenter.default.addObserver(
+            forName: openFromSignUpRequest,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                strongSelf.performSegue(withIdentifier: "userSignUpRequestsSegue", sender: nil)
+//                let indexPath = IndexPath(row: 0, section: 0)
+//                self.tableView(self.tableView, didSelectRowAt: indexPath)
+//                super.tableView(tableView(self.tableView, didSelectRowAt: indexPath))
+//                strongSelf.tableView(didselect)
+//                super.tableView(strongSelf.tableView, didSelectRowAt: indexPath)
+//                strongSelf.tableView.select
+//                strongSelf.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
+        }
     }
     
     private func updateUserRequestsBadge() {
@@ -110,8 +131,10 @@ class AdminSettingsVC: UITableViewController {
             return
         }
         
-        self.signUpRequestBadgeLabel.text = value
-        self.signUpRequestBadgeLabel.isHidden = false
+        if self.signUpRequestBadgeLabel != nil {
+            self.signUpRequestBadgeLabel.text = value
+            self.signUpRequestBadgeLabel.isHidden = false
+        }
     }
         
     // MARK: - Navigation

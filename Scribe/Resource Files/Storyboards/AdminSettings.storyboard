@@ -98,7 +98,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Hdx-v8-43C" kind="show" id="lYF-lv-xxy"/>
+                                            <segue destination="Hdx-v8-43C" kind="show" identifier="userSignUpRequestsSegue" id="lYF-lv-xxy"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="um9-7d-ckv" userLabel="User Sign Up Requests Cell">
@@ -273,7 +273,7 @@
                     <tabBarItem key="tabBarItem" title="Admin" id="UGb-SZ-W0V"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ocq-gi-H7f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ocq-gi-H7f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

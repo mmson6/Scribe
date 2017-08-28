@@ -263,13 +263,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07I-Ct-FjX">
-                                <rect key="frame" x="0.0" y="40" width="320" height="24.5"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="20"/>
                                 <color key="textColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jmt-0X-rri" userLabel="Authentication View">
-                                <rect key="frame" x="15" y="114.5" width="290" height="329.5"/>
+                                <rect key="frame" x="15" y="113.5" width="290" height="329.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iMP-aJ-9zG" userLabel="Name Stack View">
                                         <rect key="frame" x="15" y="15" width="260" height="65"/>
@@ -418,7 +418,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gH-ws-9fZ" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="444" width="320" height="124"/>
+                                <rect key="frame" x="0.0" y="443" width="320" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNF-a5-u6O">
                                         <rect key="frame" x="-1" y="30" width="320.5" height="14.5"/>

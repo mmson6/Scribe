@@ -10,6 +10,7 @@ import UIKit
 
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseMessaging
 
 
 class LoginVC: UIViewController, UITextFieldDelegate {
@@ -173,6 +174,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         if isAdmin {
                             let store = UserDefaultsStore()
                             store.setUserAdminStatus()
+                            Messaging.messaging().subscribe(toTopic: "admin")
+                            NSLog("Subscribed to topic 'admin'")
                         }
                     case .failure:
                         break
