@@ -111,7 +111,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lRE-be-zou" userLabel="Name Stack View">
-                                                    <rect key="frame" x="114" y="205" width="148" height="69.5"/>
+                                                    <rect key="frame" x="114.5" y="205" width="148" height="69.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Contact Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNh-yc-rBB" userLabel="Main Name Label">
                                                             <rect key="frame" x="0.0" y="0.0" width="148" height="43"/>

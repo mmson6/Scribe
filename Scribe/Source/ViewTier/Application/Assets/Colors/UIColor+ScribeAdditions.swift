@@ -13,6 +13,21 @@ extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
     }
+    
+    // MARK: Bible Reading Planner Colors
+    
+    class var bookCellSeparatorColor: UIColor {
+        return rgb(red: 204, green: 204, blue: 204)
+    }
+    
+    class var bookChapterSelectedRedColor: UIColor {
+        return rgb(red: 237, green: 93, blue: 87)
+    }
+    
+    class var bookChapterPossiblySelectedRedColor: UIColor {
+        return rgb(red: 250, green: 221, blue: 221)
+    }
+    
     // MARK: Pinterest Design 2
     
     class var scribeDesignTwoLightBlue: UIColor {

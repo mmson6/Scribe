@@ -138,6 +138,7 @@ class MainTabBarController: UITabBarController {
     private func showTabs(forAuthorization authorization: Authorization) {
         guard
             let contactsVC = UIStoryboard.init(name: "Contacts", bundle: nil).instantiateInitialViewController(),
+            let plannerVC = UIStoryboard.init(name: "BibleReadingPlanner", bundle: nil).instantiateInitialViewController(),
             let settingsVC = UIStoryboard.init(name: "Settings", bundle: nil).instantiateInitialViewController(),
             let adminSettingsVC = UIStoryboard.init(name: "AdminSettings", bundle: nil).instantiateInitialViewController()
         else {
@@ -146,9 +147,9 @@ class MainTabBarController: UITabBarController {
 
         switch authorization {
         case .none:
-            self.viewControllers = [contactsVC, settingsVC]
+            self.viewControllers = [contactsVC, plannerVC, settingsVC]
         case .admin:
-            self.viewControllers = [contactsVC, settingsVC, adminSettingsVC]
+            self.viewControllers = [contactsVC, plannerVC, settingsVC, adminSettingsVC]
             self.checkForUserRequests()
         }
         
