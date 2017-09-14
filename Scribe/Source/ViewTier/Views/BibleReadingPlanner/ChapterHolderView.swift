@@ -35,7 +35,6 @@ class ChapterHolderView: UIView {
         super.draw(rect)
         
         let byTen = self.chapterCount / 10
-//            (self.chapterCount / 10 > 0) ? self.chapterCount / 10 : 1
         let paddingSpace = sectionInsets.left * (itemsPerRow - 1)
         let availableWidth = rect.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
@@ -45,16 +44,22 @@ class ChapterHolderView: UIView {
                 let byOne = (i == byTen) ? self.chapterCount % 10 : 10
                 if byOne != 0 {
                     for j in 1...byOne {
-                        let numberLabel = UILabel(frame: CGRect(x: 0, y: 0, width: widthPerItem + 5, height: widthPerItem))
+                        let horizontalPointer: CGFloat = ((widthPerItem + sectionInsets.left) * CGFloat(j-1))
+                        let verticalPointer: CGFloat = ((widthPerItem + sectionInsets.bottom) * CGFloat(i))
+                        
+                        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: widthPerItem, height: widthPerItem))
+                        backgroundView.center = CGPoint(x: widthPerItem/2 + horizontalPointer, y: widthPerItem/2 + verticalPointer)
+                        backgroundView.layer.cornerRadius = backgroundView.frame.width / 2
+                        
+                        let numberLabel = UILabel(frame: CGRect(x: -2.5, y: 0, width: widthPerItem + 5, height: widthPerItem))
                         numberLabel.lineBreakMode = .byClipping
                         numberLabel.textAlignment = .center
                         numberLabel.font = UIFont.systemFont(ofSize: 10)
                         numberLabel.textColor = .darkGray
                         numberLabel.backgroundColor = .clear
-                        let horizontalPointer: CGFloat = ((widthPerItem + sectionInsets.left) * CGFloat(j-1))
-                        let verticalPointer: CGFloat = ((widthPerItem + sectionInsets.bottom) * CGFloat(i))
+                        
                         //                    print(horizontalPointer)
-                        numberLabel.center = CGPoint(x: widthPerItem/2 + horizontalPointer, y: widthPerItem/2 + verticalPointer)
+//                        numberLabel.center = CGPoint(x: widthPerItem/2 + horizontalPointer, y: widthPerItem/2 + verticalPointer)
                         
                         let circlePath = UIBezierPath(arcCenter: CGPoint(x: (widthPerItem/2) + 2.5, y: widthPerItem/2), radius: widthPerItem/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
                         //                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: widthPerItem/2 + horizontalPointer, y: widthPerItem/2 + verticalPointer), radius: widthPerItem/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
@@ -88,21 +93,11 @@ class ChapterHolderView: UIView {
                             }
                         }
                         
-                        //                    numberLabel.center = shapeLayer.anchorPoint
                         numberLabel.layer.addSublayer(shapeLayer)
                         numberLabel.text = shapeLayer.name
-
-                        let backgroundView = UIView(frame: CGRect(x: 2.5, y: 0, width: widthPerItem, height: widthPerItem))
-//                        let backgroundView = UIView(frame: CGRect(x: numberLabel.center.x - (widthPerItem / 2), y: numberLabel.center.y - (widthPerItem / 2), width: widthPerItem, height: widthPerItem))
-//                        backgroundView.backgroundColor = .green
-                        backgroundView.layer.cornerRadius = backgroundView.frame.width / 2
-                        backgroundView.tag = 300
-//                        self.addSubview(backgroundView)
-                        numberLabel.addSubview(backgroundView)
-                        numberLabel.sendSubview(toBack: backgroundView)
-                        self.addSubview(numberLabel)
-                        
-                        //                    self.layer.addSublayer(shapeLayer)
+                    
+                        backgroundView.addSubview(numberLabel)
+                        self.addSubview(backgroundView)
                     }
                 }
             }
@@ -119,7 +114,7 @@ class ChapterHolderView: UIView {
         } else {
             viewHeight = widthPerItem
         }
-//        let viewHeight = byTen > 0 ? ((widthPerItem * CGFloat(byTen + 1)) + (sectionInsets.bottom * CGFloat(byTen))) : widthPerItem
+        
         self.delegate?.updateHeightConstraint(height: viewHeight)
     }
     
@@ -127,18 +122,14 @@ class ChapterHolderView: UIView {
         let counterData = counter.chapterCount
         for (i, count) in counterData.enumerated() {
             let subview = self.subviews[i]
-//            if subview.tag == 300 {
-//                continue
-//            }
-            
-            let width = subview.frame.width - 5
+            let width = subview.frame.width
             
             let startAngle = CGFloat(Double.pi * 3 / 2)
             var endAngle: CGFloat = 0
             if count > 0 {
                 endAngle = startAngle + (CGFloat(Double.pi / 2) * 4)
                 
-                let circlePath = UIBezierPath(arcCenter: CGPoint(x: (width/2) + 2.5, y: width/2), radius: width/2, startAngle: startAngle, endAngle:endAngle, clockwise: true)
+                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: width/2, startAngle: startAngle, endAngle:endAngle, clockwise: true)
                 
                 let shapeLayer = CAShapeLayer()
                 shapeLayer.path = circlePath.cgPath
@@ -156,36 +147,24 @@ class ChapterHolderView: UIView {
             if count > 1 {
                 let countValue = CGFloat(count - 1)
                 endAngle = startAngle + (CGFloat(Double.pi / 2) * countValue)
-                let circlePath = UIBezierPath(arcCenter: CGPoint(x: (width/2) + 2.5, y: width/2), radius: (width/2) + 0.5, startAngle: startAngle, endAngle:endAngle, clockwise: true)
+                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: (width/2) + 0.5, startAngle: startAngle, endAngle:endAngle, clockwise: true)
                 
                 let shapeLayer = CAShapeLayer()
                 shapeLayer.path = circlePath.cgPath
                 
                 //change the fill color
-//                shapeLayer.fillColor = UIColor.rgb(red: 214, green: 238, blue: 227, alpha: 0.2).cgColor
                 shapeLayer.fillColor = UIColor.clear.cgColor
+                
                 //you can change the stroke color
-               
                 shapeLayer.strokeColor = UIColor.rgb(red: 71, green: 152, blue: 105).cgColor
-//                shapeLayer.strokeColor = UIColor.bookChapterSelectedGreenColor.cgColor
-//                shapeLayer.strokeColor = UIColor.rgb(red: 48, green: 119, blue: 154).cgColor
-//                shapeLayer.strokeColor = UIColor.rgb(red: 57, green: 138, blue: 179).cgColor
-//                shapeLayer.strokeColor = UIColor.scribeDesignTwoDarkBlue.cgColor
+
                 //you can change the line width
                 shapeLayer.lineWidth = 2.0
                 subview.layer.addSublayer(shapeLayer)
                 
                 // Add background color to chapters read more than once
-                let backgroundView = subview.viewWithTag(300)
-                backgroundView?.backgroundColor = UIColor.rgb(red: 214, green: 238, blue: 227, alpha: 0.4)
+                subview.backgroundColor = UIColor.rgb(red: 224, green: 248, blue: 237)
             }
-            
-            
-            UIView.animate(withDuration: 1.0, animations: {
-                //                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: width/2, startAngle: CGFloat(Double.pi * -0.5), endAngle:CGFloat(Double.pi * 0), clockwise: true)
-                
-            })
-            
         }
     }
     
