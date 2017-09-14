@@ -54,12 +54,15 @@ class BookCell: UITableViewCell, ChapterHolderViewDelegate {
     }
     
     func updateCircle() {
-        
-        self.tapAnimationView.alpha = 0.7
-        UIView.animate(withDuration: 0.5) {
-            self.tapAnimationView.alpha = 0
-        }
-//        self.chapterHolderView.updateCircle()
+        self.animateTap() 
+        self.chapterHolderView.updateCircle()
+    }
+    
+    private func animateTap() {
+    self.tapAnimationView.alpha = 0.7
+    UIView.animate(withDuration: 0.5) {
+    self.tapAnimationView.alpha = 0
+    }
     }
     
 }

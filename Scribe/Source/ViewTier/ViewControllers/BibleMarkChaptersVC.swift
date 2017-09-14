@@ -14,8 +14,9 @@ protocol BibleMarkChaptersVCDelegate: class {
     func backgroundTappedToDismiss()
 }
 
-class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-
+class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var closeIconLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var engTitleLabel: UILabel!
     @IBOutlet weak var korTitleLabel: UILabel!
@@ -26,58 +27,8 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     
     var min: Int = 999
     var max: Int = -1
+    var previousCells: [(key: Int, value: Bool)] = []
     var selectedCellDict: [Int: Bool] = [:]
-    var selectedChapters: [Int] = [] {
-        didSet {
-            var oldItems: [IndexPath] = []
-            if self.min != self.max && self.max - self.min > 1 {
-                for i in self.min+1...self.max-1 {
-                    oldItems.append(IndexPath(item: i-1, section: 0))
-                }
-            }
-            
-            self.min = 999
-            self.max = -1
-//            if self.selectedChapters.count == 0 {
-            
-//            }
-            for number in selectedChapters {
-                if number < min {
-                    min = number
-                }
-                if number > max {
-                    max = number
-                }
-            }
-            
-            var newItems: [IndexPath] = []
-            if self.min != self.max && self.max - self.min > 1 {
-                for i in self.min+1...self.max-1 {
-                    newItems.append(IndexPath(item: i-1, section: 0))
-                }
-            }
-            
-            if oldItems.count > newItems.count {
-                self.collectionView.reloadItems(at: oldItems)
-            } else {
-                self.collectionView.reloadItems(at: newItems)
-            }
-            
-
-//            if self.min != self.max && self.max - self.min > 1 {
-//                var items: [IndexPath] = []
-//                for i in self.min+1...self.max-1 {
-//                    items.append(IndexPath(item: i-1, section: 0))
-//                }
-//                if self.selectedChapters.count == 1 {
-//                    self.min = self.selectedChapters[0]
-//                    self.max = self.selectedChapters[0]
-//                }
-//                
-//                self.collectionView.reloadItems(at: items)
-//            }
-        }
-    }
     
     var bookModel: BibleVOM?
     weak var delegate: BibleMarkChaptersVCDelegate?
@@ -89,24 +40,95 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     
     // MARK: Helper Functions
     
-    func commonInit() {
+    private func commonInit() {
         self.layoutView.layer.cornerRadius = 15
         self.engTitleLabel.text = self.bookModel?.engName
         self.korTitleLabel.text = self.bookModel?.korName
         self.applyButton.layer.cornerRadius = self.applyButton.frame.height / 2
-//        self.applyButton.layer.cornerRadius = 20
         self.selectAllButton.layer.cornerRadius = self.selectAllButton.frame.height / 2
-//        self.selectAllButton.layer.cornerRadius = 20
         self.selectAllButton.layer.borderColor = UIColor.rgb(red: 150, green: 150, blue: 150).cgColor
         self.selectAllButton.layer.borderWidth = 1
+        self.closeIconLabel.text = "\u{f00d}"
+    }
+    
+    private func updateCells() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let model = self.bookModel else { return }
+            let chapters = model.chapters
+            
+            if self.selectedCellDict.count == 0 {
+                self.previousCells = []
+                self.min = 999
+                self.max = -1
+                
+                for i in 0...chapters-1 {
+                    let indexPath = IndexPath(item: i, section: 0)
+                    if let cell = self.collectionView.cellForItem(at: indexPath) as? MarkChapterCell {
+                        DispatchQueue.main.async {
+                            cell.didDeselect()
+                        }
+                    }
+                }
+            } else {
+                let sorted = self.selectedCellDict.sorted { $0.key < $1.key }
+                
+                guard
+                    var min = sorted.first?.key,
+                    var max = sorted.last?.key
+                    else {
+                        return
+                }
+                
+                self.min = min
+                self.max = max
+                
+                if let previousMin = self.previousCells.first?.key {
+                    if previousMin < min {
+                        min = previousMin
+                    }
+                }
+                if let previousMax = self.previousCells.last?.key {
+                    if previousMax > max {
+                        max = previousMax
+                    }
+                }
+                
+                self.previousCells = sorted
+                
+                for i in min...max {
+                    let indexPath = IndexPath(item: i, section: 0)
+                    if let cell = self.collectionView.cellForItem(at: indexPath) as? MarkChapterCell {
+                        DispatchQueue.main.async {
+                            if self.selectedCellDict[indexPath.row] != nil {
+                                cell.didSelect()
+                            } else {
+                                if i > self.min && i < self.max {
+                                    cell.selectBackgroundView.backgroundColor = .bookChapterPossiblySelectedGreenColor
+                                    cell.chapterNumberLabel.textColor = .bookChapterTextColor
+                                } else {
+                                    cell.selectBackgroundView.backgroundColor = .white
+                                    cell.chapterNumberLabel.textColor = .bookChapterTextColor
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                if self.selectedCellDict.count == chapters {
+                    self.selectAllButton.setTitle("Deselect All", for: .normal)
+                } else {
+                    self.selectAllButton.setTitle("Select All", for: .normal)
+                }
+            }
+        }
     }
     
     // MARK: CollectionView Delegate Functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         guard let model = self.bookModel else { return 0 }
-        print(model.chapters)
         return model.chapters
     }
     
@@ -118,22 +140,20 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             return UICollectionViewCell()
         }
         
-        print(indexPath.row)
-        if let _ = self.selectedCellDict[indexPath.row] {
-            cell.commonInit()
-        }
-        
-        
-        cell.chapterNumberLabel.text = "\(indexPath.row + 1)"
-        let chapterNumber = indexPath.row + 1
-        if chapterNumber > self.min && chapterNumber < self.max {
-            print("chapter: \(chapterNumber)")
-            cell.highlightPossibleSelection()
-        } else {
-            cell.unhighlightPossibleSelection()
-        }
+        cell.selectionStatus = self.selectedCellDict[indexPath.row] != nil
+        cell.updateCell(with: indexPath.row, min: self.min, max: self.max, and: self.selectedCellDict)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard
+            let chapterCell = cell as? MarkChapterCell
+        else {
+            return
+        }
+        chapterCell.selectionStatus = self.selectedCellDict[indexPath.row] != nil
+        chapterCell.updateCell(with: indexPath.row, min: self.min, max: self.max, and: self.selectedCellDict)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -144,34 +164,26 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard
             let cell = collectionView.cellForItem(at: indexPath) as? MarkChapterCell
         else {
-            return
+            return true
         }
         
-        
-        
-        if let _ = self.selectedCellDict[indexPath.row] {
-//        if cell.selectionStatus { // Deselect
+        if self.selectedCellDict[indexPath.row] != nil {
             cell.selectionStatus = false
             cell.cellTapped()
-            var selectedArray = self.selectedChapters
-            selectedArray = selectedArray.filter { $0 != indexPath.row + 1}
-//            selectedArray.remove(at: indexPath.row + 1)
             self.selectedCellDict.removeValue(forKey: indexPath.row)
-            self.selectedChapters = selectedArray
-        } else { // Select
+        } else {
             cell.selectionStatus = true
             cell.cellTapped()
-            var selectedArray = self.selectedChapters
-            selectedArray.append(indexPath.row + 1)
             self.selectedCellDict[indexPath.row] = true
-            self.selectedChapters = selectedArray
         }
         
-//        cell.cellTapped()
+        self.updateCells()
+        
+        return true
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -196,9 +208,33 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     
     // MARK: IBAction Functions
     
-    @IBAction func outsideTapped(_ sender: UITapGestureRecognizer) {
-        print("Tap tap")
+    @IBAction func applyButtonTapped(_ sender: UIButton) {
+        NotificationCenter.default.post(name: bibleChaptersUpdated, object: self.selectedCellDict)
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: UITapGestureRecognizer) {
         self.delegate?.backgroundTappedToDismiss()
     }
     
+    @IBAction func outsideTapped(_ sender: UITapGestureRecognizer) {
+        self.delegate?.backgroundTappedToDismiss()
+    }
+    
+    @IBAction func selectAllTapped(_ sender: UIButton) {
+        guard let model = self.bookModel else { return }
+        let chapters = model.chapters
+        
+        if self.selectedCellDict.count == chapters {
+            print("ALL SELECTED")
+            for i in 0...chapters - 1 {
+                self.selectedCellDict.removeValue(forKey: i)
+            }
+        } else {
+            for i in 0...chapters - 1 {
+                self.selectedCellDict[i] = true
+            }
+        }
+
+        self.updateCells()
+    }
 }

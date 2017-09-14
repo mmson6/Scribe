@@ -23,7 +23,7 @@ class MarkChapterCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         self.selectionStatus = false
-        self.chapterNumberLabel.textColor = UIColor.rgb(red: 102, green: 102, blue: 102)
+        self.chapterNumberLabel.textColor = .bookChapterTextColor
     }
     
     private func initializeLayout() {
@@ -37,15 +37,31 @@ class MarkChapterCell: UICollectionViewCell {
         self.selectionStatus = true
     }
     
+    // MARK: Helper Functions
+    
+    func updateCell(with index: Int, min: Int, max: Int, and map: [Int: Bool]) {
+        self.chapterNumberLabel.text = "\(index+1)"
+        
+        if map[index] != nil {
+            self.didSelect()
+        } else {
+            if index > min && index < max {
+                self.selectBackgroundView.backgroundColor = .bookChapterPossiblySelectedGreenColor
+                self.chapterNumberLabel.textColor = .bookChapterTextColor
+            } else {
+                self.selectBackgroundView.backgroundColor = .white
+                self.chapterNumberLabel.textColor = .bookChapterTextColor
+            }
+        }
+    }
+    
     func didDeselect() {
-        self.selectionStatus = !self.selectionStatus
         self.selectBackgroundView.backgroundColor = .white
-        self.chapterNumberLabel.textColor = UIColor.rgb(red: 102, green: 102, blue: 102)
+        self.chapterNumberLabel.textColor = .bookChapterTextColor
     }
     
     func didSelect() {
-        self.selectionStatus = !self.selectionStatus
-        self.selectBackgroundView.backgroundColor = .bookChapterSelectedRedColor
+        self.selectBackgroundView.backgroundColor = .bookChapterSelectedGreenColor
         self.chapterNumberLabel.textColor = .white
     }
     
@@ -59,7 +75,6 @@ class MarkChapterCell: UICollectionViewCell {
     
     func didHighlight() {
         UIView.animate(withDuration: 0.2) {
-//            self.highlightView.backgroundColor = .white
             self.layer.opacity = 0.5
             self.highlightView.alpha = 0.35
         }
@@ -69,25 +84,6 @@ class MarkChapterCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.2) {
             self.layer.opacity = 1
             self.highlightView.alpha = 0
-        }
-    }
-    
-    func highlightPossibleSelection() {
-        print("\(self.selectionStatus)")
-        if !self.selectionStatus {
-            self.selectBackgroundView.backgroundColor = .bookChapterPossiblySelectedRedColor
-            self.chapterNumberLabel.textColor = UIColor.rgb(red: 102, green: 102, blue: 102)
-        } else {
-            self.didSelect()
-        }
-    }
-    
-    func unhighlightPossibleSelection() {
-//        print("\(self.selectionStatus)")
-        if !self.selectionStatus {
-            self.selectBackgroundView.backgroundColor = .white
-        } else {
-            self.didSelect()
         }
     }
 }

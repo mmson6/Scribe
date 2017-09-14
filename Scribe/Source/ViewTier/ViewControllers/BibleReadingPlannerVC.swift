@@ -15,6 +15,16 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     var bibleDataSource = [BibleVOM]()
     var markChapterWindow: UIWindow?
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.addObservers()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.addObservers()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +34,15 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         self.commonInit()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: Helper Functions
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateReadChapters), name: bibleChaptersUpdated, object: nil)
+    }
     
     private func commonInit() {
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -39,6 +57,11 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         DispatchQueue.global(qos: .userInitiated).async {
             self.bibleDataSource = BibleFactory.getAllList()
         }
+    }
+    
+    @objc private func updateReadChapters(notification: Notification) {
+        guard let dict = notification.object as? [Int: Bool] else { return }
+        print(dict)
     }
     
     private func presentMarkingWindow(with model: BibleVOM) {
@@ -99,7 +122,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         }
         
         self.presentMarkingWindow(with: model)
-        cell.updateCircle()
+//        cell.updateCircle()
     }
     
     

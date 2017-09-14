@@ -60,6 +60,7 @@ internal struct GroupName {
 let mainLanguageChanged = Notification.Name("MainLanguageChanged")
 let userRequestsCountChanged = Notification.Name("UserRequestsCountChanged")
 let openFromSignUpRequest = Notification.Name("OpenFromSignUpRequest")
+let bibleChaptersUpdated = Notification.Name("BibleChaptersUpdated")
 
 
 

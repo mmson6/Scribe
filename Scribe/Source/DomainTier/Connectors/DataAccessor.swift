@@ -22,7 +22,6 @@ public final class DataAccessor {
     internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
         
         let loadFromDataStore = { (store: LevelDBStore) -> JSONObject? in
-            return nil
             let id = request.id as Any
             return store.loadContact(with: id)
         }
@@ -55,7 +54,6 @@ public final class DataAccessor {
     
     internal func loadContacts(with ver: Int64 ,callback: @escaping DataAccessorDMCallback<[ContactDM]>) {
         let loadFromDataStore = { (store: LevelDBStore) -> JSONArray? in
-            return nil
             let defaultsStore = UserDefaultsStore()
             if defaultsStore.contactsNeedUpdate(ver) {
                 return nil

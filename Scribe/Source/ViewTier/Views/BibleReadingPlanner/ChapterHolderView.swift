@@ -152,10 +152,11 @@ class ChapterHolderView: UIView {
         for subview in self.subviews {
 //            print(subview.tag)
             
-            let width = subview.frame.width
+            let width = subview.frame.width - 5
+            print("subview width: \(width)")
             UIView.animate(withDuration: 1.0, animations: {
                 //                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: width/2, startAngle: CGFloat(Double.pi * -0.5), endAngle:CGFloat(Double.pi * 0), clockwise: true)
-                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: width/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+                let circlePath = UIBezierPath(arcCenter: CGPoint(x: (width/2) + 2.5, y: width/2), radius: width/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
                 
                 let shapeLayer = CAShapeLayer()
                 shapeLayer.path = circlePath.cgPath

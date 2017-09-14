@@ -9,6 +9,11 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FontAwesome.otf">
+            <string>FontAwesome</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Bible Mark ChaptersVC-->
         <scene sceneID="uni-lL-RHu">
@@ -53,22 +58,28 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFz-jz-zrd">
-                                                <rect key="frame" x="216" y="0.0" width="30" height="30"/>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnI-J4-GoV" userLabel="Icon Label">
+                                                <rect key="frame" x="206.5" y="0.0" width="40" height="40"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="CJk-G0-aSc"/>
-                                                    <constraint firstAttribute="width" constant="30" id="KYW-RT-pFR"/>
+                                                    <constraint firstAttribute="height" constant="40" id="1gb-te-sFe"/>
+                                                    <constraint firstAttribute="width" constant="40" id="uJ5-oZ-LgP"/>
                                                 </constraints>
-                                                <state key="normal" title="X"/>
-                                            </button>
+                                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
+                                                <color key="textColor" red="0.30588235289999999" green="0.53333333329999999" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="G1V-Nh-bbF" appends="YES" id="JxP-8b-aJj"/>
+                                                </connections>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="6Zp-LD-yKs" firstAttribute="top" secondItem="R9h-FT-MlW" secondAttribute="top" constant="5" id="3fj-Jf-Utn"/>
+                                            <constraint firstAttribute="trailing" secondItem="HnI-J4-GoV" secondAttribute="trailing" id="9cJ-hO-qsA"/>
                                             <constraint firstAttribute="height" constant="50" id="DJA-35-9KY"/>
-                                            <constraint firstAttribute="trailing" secondItem="NFz-jz-zrd" secondAttribute="trailing" id="EfT-bA-2L8"/>
                                             <constraint firstItem="6Zp-LD-yKs" firstAttribute="centerX" secondItem="R9h-FT-MlW" secondAttribute="centerX" id="Ll6-GF-Bm0"/>
-                                            <constraint firstItem="NFz-jz-zrd" firstAttribute="top" secondItem="R9h-FT-MlW" secondAttribute="top" id="pT3-VR-twq"/>
+                                            <constraint firstItem="HnI-J4-GoV" firstAttribute="top" secondItem="R9h-FT-MlW" secondAttribute="top" id="yFo-gA-Qnv"/>
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jlf-WY-kwp">
@@ -141,6 +152,9 @@
                                                 <state key="normal" title="Select All">
                                                     <color key="titleColor" red="0.47733000338612841" green="0.47502406134078484" blue="0.47963594543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="selectAllTapped:" destination="kWb-Mh-1fK" eventType="touchUpInside" id="MEx-20-R5Z"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-6j-fmO">
                                                 <rect key="frame" x="136" y="15" width="98.5" height="40"/>
@@ -151,6 +165,9 @@
                                                 <state key="normal" title="Apply">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="applyButtonTapped:" destination="kWb-Mh-1fK" eventType="touchUpInside" id="DY6-7D-uXq"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -194,6 +211,7 @@
                     </view>
                     <connections>
                         <outlet property="applyButton" destination="4RE-6j-fmO" id="UdU-LC-usM"/>
+                        <outlet property="closeIconLabel" destination="HnI-J4-GoV" id="dPF-HM-dZo"/>
                         <outlet property="collectionView" destination="Jlf-WY-kwp" id="ceM-qx-chB"/>
                         <outlet property="engTitleLabel" destination="xad-5r-UBF" id="kmx-Rr-U5A"/>
                         <outlet property="korTitleLabel" destination="Tm4-Ik-BvX" id="nFA-nf-lZv"/>
@@ -205,6 +223,11 @@
                 <tapGestureRecognizer id="c8M-bj-LdG" userLabel="Outside Tap Gesture Recognizer">
                     <connections>
                         <action selector="outsideTapped:" destination="kWb-Mh-1fK" id="eiF-x6-obj"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="G1V-Nh-bbF" userLabel="Close Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="closeButtonTapped:" destination="kWb-Mh-1fK" id="XWy-0o-fSu"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -332,7 +355,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W44-rI-mH1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E4g-od-Zwr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E4g-od-Zwr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
