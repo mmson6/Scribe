@@ -13,6 +13,7 @@ fileprivate let sectionInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right:
 class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate {
     
     var bibleDataSource = [BibleVOM]()
+    var chapterCounterDataSource = [ChapterCounterVOM]()
     var markChapterWindow: UIWindow?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -30,8 +31,8 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
         self.commonInit()
+        self.fetchData()
     }
     
     deinit {
@@ -53,10 +54,27 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         bottomView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 1)
         bottomView.backgroundColor = UIColor.bookCellSeparatorColor
         self.tableView.tableFooterView = bottomView
-        
+    }
+    
+    private func fetchData() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.bibleDataSource = BibleFactory.getAllList()
+            self.fetchChapterCounterData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
+    }
+    
+    private func fetchChapterCounterData() {
+        var fetchingData = [ChapterCounterVOM]()
+        var intVal = 0
+        for model in self.bibleDataSource {
+            let val = intVal % 5
+            fetchingData.append(ChapterCounterVOM(bookName: model.engName, chapterCount: [Int](repeating: val, count: model.chapters)))
+            intVal = intVal + 1
+        }
+        self.chapterCounterDataSource = fetchingData
     }
     
     @objc private func updateReadChapters(notification: Notification) {
@@ -96,7 +114,15 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            self.bibleDataSource.count > 0,
+            self.chapterCounterDataSource.count > 0
+        else {
+            return UITableViewCell()
+        }
+        
         let model = self.bibleDataSource[indexPath.row]
+        let chapterCounter = self.chapterCounterDataSource[indexPath.row]
         
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell
@@ -104,7 +130,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
                 return UITableViewCell()
         }
         
-        cell.populate(with: model)
+        cell.populate(with: model, and: chapterCounter)
         cell.selectionStyle = .none
         
         return cell

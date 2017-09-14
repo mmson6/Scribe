@@ -31,6 +31,7 @@ public class ContactListVC: UITableViewController {
             self.loadObjectDataSource()
         }
     }
+    
     private func loadObjectDataSource() {
         let cmd = FetchContactsCommand()
         cmd.onCompletion { result in

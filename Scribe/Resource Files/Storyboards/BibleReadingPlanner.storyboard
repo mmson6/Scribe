@@ -158,7 +158,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-6j-fmO">
                                                 <rect key="frame" x="136" y="15" width="98.5" height="40"/>
-                                                <color key="backgroundColor" red="0.30588235294117649" green="0.53333333333333333" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.27843137254901962" green="0.59607843137254901" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ZjJ-LI-u44"/>
                                                 </constraints>
@@ -240,7 +240,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" id="gVS-73-kEr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.90196078431372551" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.92166769478344468" green="0.95751694775132279" blue="0.94445978705783007" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="78" id="HIl-ii-lsh" customClass="BookCell" customModule="Scribe" customModuleProvider="target">
@@ -253,6 +253,13 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcy-ce-mnA" userLabel="Title View">
                                             <rect key="frame" x="0.0" y="0.0" width="112.5" height="77.5"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vB7-jD-y61" userLabel="Vertical Separator View">
+                                                    <rect key="frame" x="111.5" y="0.0" width="1" height="77.5"/>
+                                                    <color key="backgroundColor" red="0.95296643776868384" green="0.95296643776868384" blue="0.95296643776868384" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="1" id="3bk-r4-Xal"/>
+                                                    </constraints>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="dHQ-UH-MDF">
                                                     <rect key="frame" x="38.5" y="23" width="35.5" height="32.5"/>
                                                     <subviews>
@@ -271,11 +278,15 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.98039215686274506" green="0.99215686274509807" blue="0.98091311177248675" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="dHQ-UH-MDF" firstAttribute="centerY" secondItem="Rcy-ce-mnA" secondAttribute="centerY" id="T0c-KS-Yg6"/>
+                                                <constraint firstAttribute="trailing" secondItem="vB7-jD-y61" secondAttribute="trailing" id="WNr-Hs-ekL"/>
+                                                <constraint firstAttribute="bottom" secondItem="vB7-jD-y61" secondAttribute="bottom" id="i1m-JX-bXO"/>
                                                 <constraint firstItem="dHQ-UH-MDF" firstAttribute="centerX" secondItem="Rcy-ce-mnA" secondAttribute="centerX" id="lE9-oX-MLn"/>
+                                                <constraint firstItem="vB7-jD-y61" firstAttribute="top" secondItem="Rcy-ce-mnA" secondAttribute="top" id="lEi-QS-SPZ"/>
+                                                <constraint firstItem="vB7-jD-y61" firstAttribute="height" secondItem="Rcy-ce-mnA" secondAttribute="height" id="xaV-Mh-0zv"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psX-Vr-RYl" userLabel="Chapter View">

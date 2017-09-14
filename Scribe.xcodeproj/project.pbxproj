@@ -74,6 +74,7 @@
 		8A50DF911F3DFDF0000ACD77 /* UITableViewCell+ScribeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50DF901F3DFDF0000ACD77 /* UITableViewCell+ScribeAdditions.swift */; };
 		8A50DF931F3E2001000ACD77 /* AddBirthdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50DF921F3E2001000ACD77 /* AddBirthdayCell.swift */; };
 		8A54AEFD1F671E7000293C1A /* MarkChapterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A54AEFC1F671E7000293C1A /* MarkChapterCell.swift */; };
+		8A5D5F851F6B118600883D51 /* ChapterCounterVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D5F841F6B118600883D51 /* ChapterCounterVOM.swift */; };
 		8A60163C1EFA685A00283491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163B1EFA685A00283491 /* Assets.xcassets */; };
 		8A6016401EFA6ECB00283491 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */; };
 		8A6016411EFA6FF300283491 /* FallingSky-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016371EF8950E00283491 /* FallingSky-Light.otf */; };
@@ -232,6 +233,7 @@
 		8A50DF901F3DFDF0000ACD77 /* UITableViewCell+ScribeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+ScribeAdditions.swift"; path = "Source/ViewTier/Views/Extensions/UITableViewCell+ScribeAdditions.swift"; sourceTree = "<group>"; };
 		8A50DF921F3E2001000ACD77 /* AddBirthdayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddBirthdayCell.swift; path = Source/ViewTier/Views/EditContactInfo/AddBirthdayCell.swift; sourceTree = "<group>"; };
 		8A54AEFC1F671E7000293C1A /* MarkChapterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkChapterCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/MarkChapterCell.swift; sourceTree = "<group>"; };
+		8A5D5F841F6B118600883D51 /* ChapterCounterVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChapterCounterVOM.swift; path = Source/ViewTier/ValueObjects/ChapterCounterVOM.swift; sourceTree = "<group>"; };
 		8A6016371EF8950E00283491 /* FallingSky-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Light.otf"; sourceTree = "<group>"; };
 		8A6016381EF8951200283491 /* FallingSky-Bold+.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bold+.otf"; sourceTree = "<group>"; };
 		8A6016391EF8951600283491 /* FallingSky-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FallingSky-Bold.otf"; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 		2719EA741EC58825003D6D64 /* ValueObjects */ = {
 			isa = PBXGroup;
 			children = (
+				8A5D5F841F6B118600883D51 /* ChapterCounterVOM.swift */,
 				2719EA751EC5883E003D6D64 /* ContactVOM.swift */,
 				27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */,
 				27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */,
@@ -1191,6 +1194,7 @@
 				275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */,
 				275201EF1EB991D8002C469B /* SPRCollectionViewController.swift in Sources */,
 				275201EE1EB991D8002C469B /* ObjectDataSource.swift in Sources */,
+				8A5D5F851F6B118600883D51 /* ChapterCounterVOM.swift in Sources */,
 				275201ED1EB991D8002C469B /* MappingObjectDataSource.swift in Sources */,
 				275201FF1EB99879002C469B /* FetchContactGroupCommand.swift in Sources */,
 				8A28F6C41F633BA100EB3F4F /* ChapterHolderView.swift in Sources */,

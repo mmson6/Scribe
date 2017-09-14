@@ -28,7 +28,7 @@ class MarkChapterCell: UICollectionViewCell {
     
     private func initializeLayout() {
         self.layer.cornerRadius = 21
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.borderColor = UIColor.rgb(red: 210, green: 210, blue: 210).cgColor
         self.layer.borderWidth = 2
         self.selectBackgroundView.layer.cornerRadius = 18
     }

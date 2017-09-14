@@ -16,6 +16,10 @@ extension UIColor {
     
     // MARK: Bible Reading Planner Colors
     
+    class var bookCellTitleViewColor: UIColor {
+        return rgb(red: 240, green: 245, blue: 248)
+    }
+    
     class var bookCellSeparatorColor: UIColor {
         return rgb(red: 204, green: 204, blue: 204)
     }

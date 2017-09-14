@@ -47,10 +47,12 @@ class BookCell: UITableViewCell, ChapterHolderViewDelegate {
         self.chapterHolderViewHeightConstraint.constant = height
     }
     
-    func populate(with model: BibleVOM) {
+    func populate(with model: BibleVOM, and counter: ChapterCounterVOM) {
         self.chapterHolderView.chapterCount = model.chapters
         self.engNameLabel.text = model.engName
         self.korNameLabel.text = model.korName
+        
+        self.chapterHolderView.updateChapterCount(with: counter)
     }
     
     func updateCircle() {
