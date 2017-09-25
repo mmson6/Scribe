@@ -55,14 +55,10 @@ class ChapterHolderView: UIView {
                         numberLabel.lineBreakMode = .byClipping
                         numberLabel.textAlignment = .center
                         numberLabel.font = UIFont.systemFont(ofSize: 10)
-                        numberLabel.textColor = .darkGray
+                        numberLabel.textColor = UIColor.rgb(red: 110, green: 110, blue: 110)
                         numberLabel.backgroundColor = .clear
                         
-                        //                    print(horizontalPointer)
-//                        numberLabel.center = CGPoint(x: widthPerItem/2 + horizontalPointer, y: widthPerItem/2 + verticalPointer)
-                        
                         let circlePath = UIBezierPath(arcCenter: CGPoint(x: (widthPerItem/2) + 2.5, y: widthPerItem/2), radius: widthPerItem/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-                        //                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: widthPerItem/2 + horizontalPointer, y: widthPerItem/2 + verticalPointer), radius: widthPerItem/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
                         
                         let shapeLayer = CAShapeLayer()
                         shapeLayer.path = circlePath.cgPath
@@ -121,8 +117,8 @@ class ChapterHolderView: UIView {
     func updateChapterCount(with counter: ChapterCounterVOM) {
         let counterData = counter.chapterCount
         for (i, count) in counterData.enumerated() {
-            let subview = self.subviews[i]
-            let width = subview.frame.width
+            let subView = self.subviews[i]
+            let width = subView.frame.width
             
             let startAngle = CGFloat(Double.pi * 3 / 2)
             var endAngle: CGFloat = 0
@@ -138,16 +134,21 @@ class ChapterHolderView: UIView {
                 shapeLayer.fillColor = UIColor.clear.cgColor
 
                 //you can change the stroke color
-                shapeLayer.strokeColor = UIColor.rgb(red: 106, green: 183, blue: 117).cgColor
+//                shapeLayer.strokeColor = UIColor.rgb(red: 92, green: 160, blue: 102).cgColor
+                shapeLayer.strokeColor = UIColor.rgb(red: 143, green: 203, blue: 160).cgColor
+                
 
                 //you can change the line width
                 shapeLayer.lineWidth = 1.0
-                subview.layer.addSublayer(shapeLayer)
+                subView.layer.addSublayer(shapeLayer)
+                
+                // Add background color to chapters read at least once
+                subView.backgroundColor = UIColor.rgb(red: 234, green: 255, blue: 247)
             }
             if count > 1 {
                 let countValue = CGFloat(count - 1)
                 endAngle = startAngle + (CGFloat(Double.pi / 2) * countValue)
-                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: (width/2) + 0.5, startAngle: startAngle, endAngle:endAngle, clockwise: true)
+                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: (width/2) + 1, startAngle: startAngle, endAngle:endAngle, clockwise: true)
                 
                 let shapeLayer = CAShapeLayer()
                 shapeLayer.path = circlePath.cgPath
@@ -159,37 +160,12 @@ class ChapterHolderView: UIView {
                 shapeLayer.strokeColor = UIColor.rgb(red: 71, green: 152, blue: 105).cgColor
 
                 //you can change the line width
-                shapeLayer.lineWidth = 2.0
-                subview.layer.addSublayer(shapeLayer)
+                shapeLayer.lineWidth = 2.5
+                subView.layer.addSublayer(shapeLayer)
                 
                 // Add background color to chapters read more than once
-                subview.backgroundColor = UIColor.rgb(red: 224, green: 248, blue: 237)
+                subView.backgroundColor = UIColor.rgb(red: 224, green: 248, blue: 237)
             }
-        }
-    }
-    
-    func updateCircle() {
-        for subview in self.subviews {
-//            print(subview.tag)
-            
-            let width = subview.frame.width - 5
-            print("subview width: \(width)")
-            UIView.animate(withDuration: 1.0, animations: {
-                //                let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: width/2, startAngle: CGFloat(Double.pi * -0.5), endAngle:CGFloat(Double.pi * 0), clockwise: true)
-                let circlePath = UIBezierPath(arcCenter: CGPoint(x: (width/2) + 2.5, y: width/2), radius: width/2, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-                
-                let shapeLayer = CAShapeLayer()
-                shapeLayer.path = circlePath.cgPath
-                
-                //change the fill color
-                shapeLayer.fillColor = UIColor.clear.cgColor
-                //you can change the stroke color
-                shapeLayer.strokeColor = UIColor.red.cgColor
-                //you can change the line width
-                shapeLayer.lineWidth = 1.0
-                subview.layer.addSublayer(shapeLayer)
-            })
-            
         }
     }
 }

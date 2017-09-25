@@ -29,7 +29,8 @@ extension UIColor {
     }
     
     class var bookChapterSelectedGreenColor: UIColor {
-        return rgb(red: 100, green: 184, blue: 143)
+        return rgb(red: 71, green: 152, blue: 105)
+//        return rgb(red: 100, green: 184, blue: 143)
     }
     
     class var bookChapterPossiblySelectedGreenColor: UIColor {

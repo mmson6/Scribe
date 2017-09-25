@@ -92,9 +92,10 @@ public let RequestSentTitle = "Request Sent"
 public let RequestSentMessage = "Your request has been sent. After the admin approves your request, you will be able to login to your account. Thank you."
 
 // SignUpRequestsVC
-
 public let SnatchedEmailMessage = "This email is already being used for other account. Please contact the Admin."
 
+// BibleReadingPlannerVC
+public let MarkChaptersMessage = "Mark Chapters"//"There are unselected chapters in between. What do you want to do?"
 
 
 

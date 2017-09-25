@@ -25,12 +25,15 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var layoutView: UIView!
     
+    var bookIdentifier: Int?
+    var bookModel: BibleVOM?
+    var chapterCountVOM: ChapterCounterVOM?
+    
     var min: Int = 999
     var max: Int = -1
     var previousCells: [(key: Int, value: Bool)] = []
     var selectedCellDict: [Int: Bool] = [:]
     
-    var bookModel: BibleVOM?
     weak var delegate: BibleMarkChaptersVCDelegate?
     
     override func viewDidLoad() {
@@ -125,6 +128,49 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
+    private func createMarkChaptersAlert() -> UIAlertController? {
+        let alertController = UIAlertController(
+            title: nil,
+            message: MarkChaptersMessage,
+            preferredStyle: .alert
+        )
+        
+        let applySelectedOnlyAction = UIAlertAction(
+            title: "Selected Only",
+            style: .destructive,
+            handler: { action in
+                self.applyChapters()
+        })
+        
+        let startingChapter = self.min + 1
+        let endingChapter = self.max + 1
+        let title = "Chapters \(startingChapter)~\(endingChapter)"
+        let applyAllAction = UIAlertAction(
+            title: title,
+            style: .default,
+            handler: { action in
+                for i in self.min...self.max {
+                    self.selectedCellDict[i] = true
+                }
+                self.applyChapters()
+        })
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(applySelectedOnlyAction)
+        alertController.addAction(applyAllAction)
+        alertController.addAction(cancelAction)
+        
+        return alertController
+    }
+    
+    private func applyChapters() {
+        let userInfo: [String: Any] = ["identifier": self.bookIdentifier as Any]
+        NotificationCenter.default.post(name: bibleChaptersUpdated, object: self.selectedCellDict, userInfo: userInfo)
+        self.delegate?.backgroundTappedToDismiss()
+    }
+    
     // MARK: CollectionView Delegate Functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -140,6 +186,8 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             return UICollectionViewCell()
         }
         
+        cell.commonInit()
+        cell.drawCellRect(with: self.chapterCountVOM, index: indexPath.row)
         cell.selectionStatus = self.selectedCellDict[indexPath.row] != nil
         cell.updateCell(with: indexPath.row, min: self.min, max: self.max, and: self.selectedCellDict)
         
@@ -157,10 +205,10 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = 10 * (itemsPerRow - 1)
+        let paddingSpace = 5 * (itemsPerRow - 1)
         let availableWidth = self.layoutView.frame.width - paddingSpace - 40
         let widthPerItem = availableWidth / itemsPerRow
-        
+            print("cell size check : \( CGSize(width: widthPerItem, height: widthPerItem))")
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
@@ -209,7 +257,13 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     // MARK: IBAction Functions
     
     @IBAction func applyButtonTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name: bibleChaptersUpdated, object: self.selectedCellDict)
+        if ((self.max - self.min) + 1) != self.selectedCellDict.count {
+            if let alertController = self.createMarkChaptersAlert() {
+                self.present(alertController, animated: true, completion: nil)
+            }
+        } else {
+            self.applyChapters()
+        }
     }
     
     @IBAction func closeButtonTapped(_ sender: UITapGestureRecognizer) {

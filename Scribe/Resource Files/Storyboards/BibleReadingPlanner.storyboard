@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -66,7 +66,7 @@
                                                     <constraint firstAttribute="width" constant="40" id="uJ5-oZ-LgP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
-                                                <color key="textColor" red="0.30588235289999999" green="0.53333333329999999" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="textColor" red="0.51570251239999998" green="0.72519841269999996" blue="0.56664186289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="G1V-Nh-bbF" appends="YES" id="JxP-8b-aJj"/>
@@ -85,7 +85,7 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jlf-WY-kwp">
                                         <rect key="frame" x="0.0" y="58" width="262.5" height="313"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h01-xs-Rtu">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="h01-xs-Rtu">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -99,8 +99,12 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAK-mN-rNZ">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xWe-AW-BIp" userLabel="Count Background View">
                                                             <rect key="frame" x="2.5" y="2.5" width="44" height="44"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAK-mN-rNZ">
+                                                            <rect key="frame" x="7" y="7" width="36" height="36"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-aW-5og">
@@ -120,17 +124,22 @@
                                                 <constraints>
                                                     <constraint firstItem="vdO-aW-5og" firstAttribute="centerX" secondItem="i7z-0L-rQp" secondAttribute="centerX" id="5uK-8Q-W09"/>
                                                     <constraint firstItem="vdO-aW-5og" firstAttribute="centerY" secondItem="i7z-0L-rQp" secondAttribute="centerY" id="Aqk-HN-cAW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="xWe-AW-BIp" secondAttribute="bottom" constant="3" id="AzE-w3-PXq"/>
                                                     <constraint firstAttribute="bottom" secondItem="6ek-7t-MTk" secondAttribute="bottom" constant="3" id="D7f-Vb-c3r"/>
-                                                    <constraint firstItem="BAK-mN-rNZ" firstAttribute="top" secondItem="i7z-0L-rQp" secondAttribute="top" constant="3" id="D8v-71-Gz8"/>
-                                                    <constraint firstAttribute="bottom" secondItem="BAK-mN-rNZ" secondAttribute="bottom" constant="3" id="IRG-3e-Stc"/>
+                                                    <constraint firstItem="BAK-mN-rNZ" firstAttribute="top" secondItem="i7z-0L-rQp" secondAttribute="top" constant="6.5" id="D8v-71-Gz8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="BAK-mN-rNZ" secondAttribute="bottom" constant="6.5" id="IRG-3e-Stc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xWe-AW-BIp" secondAttribute="trailing" constant="3" id="Jek-EA-fQC"/>
                                                     <constraint firstItem="6ek-7t-MTk" firstAttribute="top" secondItem="i7z-0L-rQp" secondAttribute="top" constant="3" id="Ps0-rH-LnL"/>
-                                                    <constraint firstItem="BAK-mN-rNZ" firstAttribute="leading" secondItem="i7z-0L-rQp" secondAttribute="leading" constant="3" id="SvO-rW-ZBU"/>
+                                                    <constraint firstItem="BAK-mN-rNZ" firstAttribute="leading" secondItem="i7z-0L-rQp" secondAttribute="leading" constant="6.5" id="SvO-rW-ZBU"/>
+                                                    <constraint firstItem="xWe-AW-BIp" firstAttribute="top" secondItem="i7z-0L-rQp" secondAttribute="top" constant="3" id="TC8-rM-OBv"/>
+                                                    <constraint firstItem="xWe-AW-BIp" firstAttribute="leading" secondItem="i7z-0L-rQp" secondAttribute="leading" constant="3" id="TI1-Kj-NGV"/>
                                                     <constraint firstAttribute="trailing" secondItem="6ek-7t-MTk" secondAttribute="trailing" constant="3" id="eVS-Jw-rh7"/>
-                                                    <constraint firstAttribute="trailing" secondItem="BAK-mN-rNZ" secondAttribute="trailing" constant="3" id="ibg-Gm-tMR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BAK-mN-rNZ" secondAttribute="trailing" constant="6.5" id="ibg-Gm-tMR"/>
                                                     <constraint firstItem="6ek-7t-MTk" firstAttribute="leading" secondItem="i7z-0L-rQp" secondAttribute="leading" constant="3" id="mCm-on-Duw"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="chapterNumberLabel" destination="vdO-aW-5og" id="jcO-3b-UeR"/>
+                                                    <outlet property="countBackgroundView" destination="xWe-AW-BIp" id="Ttq-d5-XOI"/>
                                                     <outlet property="highlightView" destination="6ek-7t-MTk" id="k4B-Rt-RO3"/>
                                                     <outlet property="selectBackgroundView" destination="BAK-mN-rNZ" id="Ibx-ZL-PeC"/>
                                                 </connections>
@@ -158,7 +167,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-6j-fmO">
                                                 <rect key="frame" x="136" y="15" width="98.5" height="40"/>
-                                                <color key="backgroundColor" red="0.18823529410000001" green="0.46666666670000001" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.51570251236942755" green="0.72519841269841268" blue="0.56664186293126495" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ZjJ-LI-u44"/>
                                                 </constraints>

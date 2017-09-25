@@ -264,7 +264,8 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         cmd.execute()
     }
-        private func populate(cell: AddBirthdayCell, data: [String: Any?], indexPath: IndexPath ) {
+    
+    private func populate(cell: AddBirthdayCell, data: [String: Any?], indexPath: IndexPath ) {
         if let birthday = data["Birthday"] as? String {
             if birthday == "" {
                 self.addedBirthday = false

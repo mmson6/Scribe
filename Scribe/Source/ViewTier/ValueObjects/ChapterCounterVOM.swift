@@ -10,5 +10,5 @@ import Foundation
 
 public struct ChapterCounterVOM {
     public let bookName: String
-    public let chapterCount: [Int]
+    public var chapterCount: [Int]
 }

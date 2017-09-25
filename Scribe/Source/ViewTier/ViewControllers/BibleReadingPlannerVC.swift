@@ -70,19 +70,36 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         var fetchingData = [ChapterCounterVOM]()
         var intVal = 0
         for model in self.bibleDataSource {
-            let val = intVal % 5
-            fetchingData.append(ChapterCounterVOM(bookName: model.engName, chapterCount: [Int](repeating: val, count: model.chapters)))
-            intVal = intVal + 1
+//            let val = intVal % 5
+            fetchingData.append(ChapterCounterVOM(bookName: model.engName, chapterCount: [Int](repeating: 0, count: model.chapters)))
+//            intVal = intVal + 1
         }
         self.chapterCounterDataSource = fetchingData
     }
     
     @objc private func updateReadChapters(notification: Notification) {
-        guard let dict = notification.object as? [Int: Bool] else { return }
-        print(dict)
+        guard
+            let dict = notification.object as? [Int: Bool],
+            let userInfo = notification.userInfo as? [String: Int],
+            let identifier = userInfo["identifier"]
+        else {
+            return
+        }
+        
+        var chapterCounter = self.chapterCounterDataSource[identifier]
+        var counterData = chapterCounter.chapterCount
+        
+        for object in dict {
+            counterData[object.key] = counterData[object.key] + 1
+        }
+        chapterCounter.chapterCount = counterData
+        self.chapterCounterDataSource[identifier] = chapterCounter
+        
+        let indexPath = IndexPath(row: identifier, section: 0)
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
-    private func presentMarkingWindow(with model: BibleVOM) {
+    private func presentMarkingWindow(with bookModel: BibleVOM, counterVOM: ChapterCounterVOM, identifier: Int) {
         let storyboard = UIStoryboard(name: "BibleReadingPlanner", bundle: nil)
         
         guard
@@ -91,7 +108,9 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
             return
         }
         vc.delegate = self
-        vc.bookModel = model
+        vc.bookModel = bookModel
+        vc.bookIdentifier = identifier
+        vc.chapterCountVOM = counterVOM
         
         let window = UIWindow()
         window.windowLevel = window.windowLevel + 10
@@ -138,17 +157,10 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let model = self.bibleDataSource[indexPath.row]
-        
-        guard
-            let cell = tableView.cellForRow(at: indexPath) as? BookCell
-        else {
-            return
-        }
-        
-        self.presentMarkingWindow(with: model)
-//        cell.updateCircle()
+
+        let bookModel = self.bibleDataSource[indexPath.row]
+        let chapterCounterModel = self.chapterCounterDataSource[indexPath.row]
+        self.presentMarkingWindow(with: bookModel, counterVOM: chapterCounterModel, identifier: indexPath.row)
     }
     
     
