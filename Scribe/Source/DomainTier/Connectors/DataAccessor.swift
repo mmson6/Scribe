@@ -19,8 +19,17 @@ public final class DataAccessor {
     private let dataStore = LevelDBStore()
     var rootRef: DatabaseReference!
     
+    internal func loadBiblePlannerData(callback: @escaping DataAccessorDMCallback<[PlannerDataDM]>) {
+        let store = self.dataStore
+        if let modelArray = store.loadBiblePlannerData() {
+            callback(.success(modelArray))
+        } else {
+            let modelArray = [PlannerDataDM]()
+            callback(.success(modelArray))
+        }
+    }
+    
     internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
-        
         let loadFromDataStore = { (store: LevelDBStore) -> JSONObject? in
             let id = request.id as Any
             return store.loadContact(with: id)

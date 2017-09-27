@@ -13,7 +13,7 @@ fileprivate let sectionInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right:
 class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate {
     
     var bibleDataSource = [BibleVOM]()
-    var chapterCounterDataSource = [ChapterCounterVOM]()
+    var plannerDataSource = [PlannerDataVOM]()
     var markChapterWindow: UIWindow?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -67,14 +67,24 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     }
     
     private func fetchChapterCounterData() {
-        var fetchingData = [ChapterCounterVOM]()
-        var intVal = 0
-        for model in self.bibleDataSource {
-//            let val = intVal % 5
-            fetchingData.append(ChapterCounterVOM(bookName: model.engName, chapterCount: [Int](repeating: 0, count: model.chapters)))
-//            intVal = intVal + 1
+        let cmd = FetchBiblePlannerDataCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                if array.count > 0 {
+                    self.plannerDataSource = array
+                } else {
+                    var fetchingData = [PlannerDataVOM]()
+                    for model in self.bibleDataSource {
+                        fetchingData.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: [Int](repeating: 0, count: model.chapters)))
+                    }
+                    self.plannerDataSource = fetchingData
+                }
+            case .failure:
+                break
+            }
         }
-        self.chapterCounterDataSource = fetchingData
+        cmd.execute()
     }
     
     @objc private func updateReadChapters(notification: Notification) {
@@ -86,20 +96,20 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
             return
         }
         
-        var chapterCounter = self.chapterCounterDataSource[identifier]
-        var counterData = chapterCounter.chapterCount
+        var plannerDataVOM = self.plannerDataSource[identifier]
+        var chapterDataArray = plannerDataVOM.chaptersReadCount
         
         for object in dict {
-            counterData[object.key] = counterData[object.key] + 1
+            chapterDataArray[object.key] = chapterDataArray[object.key] + 1
         }
-        chapterCounter.chapterCount = counterData
-        self.chapterCounterDataSource[identifier] = chapterCounter
+        plannerDataVOM.chaptersReadCount = chapterDataArray
+        self.plannerDataSource[identifier] = plannerDataVOM
         
         let indexPath = IndexPath(row: identifier, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
-    private func presentMarkingWindow(with bookModel: BibleVOM, counterVOM: ChapterCounterVOM, identifier: Int) {
+    private func presentMarkingWindow(with bookModel: BibleVOM, plannerDataVOM: PlannerDataVOM, identifier: Int) {
         let storyboard = UIStoryboard(name: "BibleReadingPlanner", bundle: nil)
         
         guard
@@ -110,7 +120,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         vc.delegate = self
         vc.bookModel = bookModel
         vc.bookIdentifier = identifier
-        vc.chapterCountVOM = counterVOM
+        vc.plannerDataVOM = plannerDataVOM
         
         let window = UIWindow()
         window.windowLevel = window.windowLevel + 10
@@ -135,13 +145,13 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             self.bibleDataSource.count > 0,
-            self.chapterCounterDataSource.count > 0
+            self.plannerDataSource.count > 0
         else {
             return UITableViewCell()
         }
         
         let model = self.bibleDataSource[indexPath.row]
-        let chapterCounter = self.chapterCounterDataSource[indexPath.row]
+        let chapterCounter = self.plannerDataSource[indexPath.row]
         
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookCell
@@ -159,8 +169,8 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         tableView.deselectRow(at: indexPath, animated: true)
 
         let bookModel = self.bibleDataSource[indexPath.row]
-        let chapterCounterModel = self.chapterCounterDataSource[indexPath.row]
-        self.presentMarkingWindow(with: bookModel, counterVOM: chapterCounterModel, identifier: indexPath.row)
+        let chapterCounterModel = self.plannerDataSource[indexPath.row]
+        self.presentMarkingWindow(with: bookModel, plannerDataVOM: chapterCounterModel, identifier: indexPath.row)
     }
     
     

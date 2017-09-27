@@ -42,8 +42,8 @@ class MarkChapterCell: UICollectionViewCell {
     
     // MARK: Helper Functions
     
-    func drawCellRect(with counterVOM: ChapterCounterVOM?, index: Int) {
-        guard let counterData = counterVOM?.chapterCount else { return }
+    func drawCellRect(with plannerDataVOM: PlannerDataVOM?, index: Int) {
+        guard let counterData = plannerDataVOM?.chaptersReadCount else { return }
         let count = counterData[index]
         let width = self.frame.width
         

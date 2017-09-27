@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pem-b4-uuH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pem-b4-uuH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -161,7 +161,7 @@
                                                     <color key="backgroundColor" red="0.60218369959999996" green="0.76922750470000001" blue="0.3332494795" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young Adults" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0t-k5-qID">
-                                                    <rect key="frame" x="15" y="15" width="65.5" height="40"/>
+                                                    <rect key="frame" x="15" y="15" width="65.5" height="41.5"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                     <color key="textColor" red="0.4068424772" green="0.40487705460000001" blue="0.40880789969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -170,7 +170,7 @@
                                                     <rect key="frame" x="0.0" y="55" width="100" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvI-Gi-L2Z" userLabel="Member Count">
-                                                            <rect key="frame" x="41" y="11" width="49" height="23.5"/>
+                                                            <rect key="frame" x="35.5" y="10.5" width="54.5" height="24.5"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -247,14 +247,14 @@
             </objects>
             <point key="canvasLocation" x="2827" y="130"/>
         </scene>
-        <!--Contacts-->
+        <!--Navigation Controller-->
         <scene sceneID="3Nq-OM-N7j">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pem-b4-uuH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" id="WqG-1V-5CZ"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="WqG-1V-5CZ"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WCE-Hw-1gd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WCE-Hw-1gd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

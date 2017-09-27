@@ -114,8 +114,8 @@ class ChapterHolderView: UIView {
         self.delegate?.updateHeightConstraint(height: viewHeight)
     }
     
-    func updateChapterCount(with counter: ChapterCounterVOM) {
-        let counterData = counter.chapterCount
+    func updateChapterCount(with counter: PlannerDataVOM) {
+        let counterData = counter.chaptersReadCount
         for (i, count) in counterData.enumerated() {
             let subView = self.subviews[i]
             let width = subView.frame.width

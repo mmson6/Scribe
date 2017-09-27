@@ -13,7 +13,7 @@
         <scene sceneID="nvK-sf-x3v">
             <objects>
                 <viewControllerPlaceholder storyboardName="BibleReadingPlanner" id="2Zh-0g-YKt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kj4-ue-W0r"/>
+                    <tabBarItem key="tabBarItem" title="Planner" id="kj4-ue-W0r"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeN-vD-Hru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

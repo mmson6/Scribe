@@ -27,7 +27,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     
     var bookIdentifier: Int?
     var bookModel: BibleVOM?
-    var chapterCountVOM: ChapterCounterVOM?
+    var plannerDataVOM: PlannerDataVOM?
     
     var min: Int = 999
     var max: Int = -1
@@ -187,7 +187,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         cell.commonInit()
-        cell.drawCellRect(with: self.chapterCountVOM, index: indexPath.row)
+        cell.drawCellRect(with: self.plannerDataVOM, index: indexPath.row)
         cell.selectionStatus = self.selectedCellDict[indexPath.row] != nil
         cell.updateCell(with: indexPath.row, min: self.min, max: self.max, and: self.selectedCellDict)
         

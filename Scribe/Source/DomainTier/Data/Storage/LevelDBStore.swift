@@ -42,6 +42,24 @@ class LevelDBStore {
         self.levelDB?.removeAllObjects()
     }
     
+    // MARK: Bible Planner Related Functions
+    
+    internal func loadBiblePlannerData() -> [PlannerDataDM]? {
+        let key = "bible_planner_data"
+        guard
+            let value = self.loadValue(forKey: key),
+            let modelArray = value as? [PlannerDataDM]
+        else {
+            return nil
+        }
+        
+        return modelArray
+    }
+    internal func save(plannerData: [PlannerDataDM]?) {
+        let key = "bible_planner_data"
+        self.save(value: plannerData, forKey: key)
+    }
+    
     // MARK: Contact List Related Functions
     
     internal func loadContacts() -> JSONArray? {
@@ -80,8 +98,8 @@ class LevelDBStore {
         guard
             let value = loadValue(forKey: key),
             let object = value as? JSONArray
-            else {
-                return nil
+        else {
+            return nil
         }
         
         return object
@@ -91,8 +109,8 @@ class LevelDBStore {
         guard
             let value = loadValue(forKey: key),
             let object = value as? JSONObject
-            else {
-                return nil
+        else {
+            return nil
         }
         
         return object

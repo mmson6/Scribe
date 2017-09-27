@@ -364,17 +364,83 @@
                             <outlet property="delegate" destination="Ex4-lU-NlG" id="pbG-7Q-8Lf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bible Reading Planner" id="Lbm-ge-QLE"/>
+                    <navigationItem key="navigationItem" title="Bible Reading Planner" id="Lbm-ge-QLE">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="DnW-hI-z8h"/>
+                        <barButtonItem key="rightBarButtonItem" image="Settings_75" id="gaN-xh-7ma">
+                            <color key="tintColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <segue destination="rwq-A5-KAj" kind="show" id="qfn-xA-P4u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsR-cC-3Kg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2612" y="17.541229385307346"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings-->
+        <scene sceneID="ttR-68-oBg">
+            <objects>
+                <tableViewController id="rwq-A5-KAj" customClass="ReadingPlannerSettingsVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="CIr-Mw-tvd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadingPlannerSettingsHeaderCell" id="L6k-wi-E3D" customClass="ReadingPlannerSettingsHeaderCell" customModule="Scribe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L6k-wi-E3D" id="mCU-U9-xJu">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-XF-g2U">
+                                            <rect key="frame" x="20" y="24" width="87" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadActivityCell" id="J66-kn-VMd" customClass="ReadActivityCell" customModule="Scribe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="98" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J66-kn-VMd" id="8vd-ZF-26A">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-KD-6aT">
+                                            <rect key="frame" x="21" y="24" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="rwq-A5-KAj" id="6cr-Kh-Oon"/>
+                            <outlet property="delegate" destination="rwq-A5-KAj" id="xkY-IZ-cmc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="jjH-ev-utN"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Hs-GB-oAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3557.5999999999999" y="17.541229385307346"/>
+        </scene>
+        <!--Planner-->
         <scene sceneID="Lix-Zw-yjr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W44-rI-mH1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Planner" image="Open_Book_Filled_75" id="b2C-5w-w8G"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E4g-od-Zwr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -389,4 +455,8 @@
             <point key="canvasLocation" x="1672.8" y="17.541229385307346"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Open_Book_Filled_75" width="37" height="37"/>
+        <image name="Settings_75" width="37" height="37"/>
+    </resources>
 </document>
