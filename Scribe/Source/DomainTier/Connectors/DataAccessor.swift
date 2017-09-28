@@ -21,7 +21,12 @@ public final class DataAccessor {
     
     internal func loadBiblePlannerData(callback: @escaping DataAccessorDMCallback<[PlannerDataDM]>) {
         let store = self.dataStore
-        if let modelArray = store.loadBiblePlannerData() {
+//        var modelArray = [PlannerDataDM]()
+        if let jsonArray = store.loadBiblePlannerData() {
+            let modelArray = jsonArray.map({ (json) -> PlannerDataDM in
+                let dm = PlannerDataDM(json: json)
+                return dm
+            })
             callback(.success(modelArray))
         } else {
             let modelArray = [PlannerDataDM]()
@@ -141,6 +146,16 @@ public final class DataAccessor {
                 break
             }
         }
+    }
+    
+    internal func saveBiblePlannerData(dmArray: [PlannerDataDM], callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        let jsonArray = dmArray.map { (dm) -> JSONObject in
+            let jsonObj = dm.asJSON()
+            return jsonObj
+        }
+        store.save(plannerData: jsonArray)
+        callback(.success(true))
     }
     
     internal func populateDatabase() {

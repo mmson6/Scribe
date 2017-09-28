@@ -132,6 +132,7 @@
 		8AED41571F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41561F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift */; };
 		8AED41591F7C0BDD0053E09D /* FetchBiblePlannerDataCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41581F7C0BDD0053E09D /* FetchBiblePlannerDataCommand.swift */; };
 		8AED415B1F7C38230053E09D /* PlannerDataDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED415A1F7C38230053E09D /* PlannerDataDM.swift */; };
+		8AED415D1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED415C1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift */; };
 		8AF1421F1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1421E1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift */; };
 		8AF142211F3CBA4B00FC5BDB /* ContactDetailVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF142201F3CBA4B00FC5BDB /* ContactDetailVOM.swift */; };
 		8AF142231F3CBCAE00FC5BDB /* FetchContactDetailEditCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF142221F3CBCAE00FC5BDB /* FetchContactDetailEditCommand.swift */; };
@@ -294,6 +295,7 @@
 		8AED41561F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerSettingsHeaderCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/ReadingPlannerSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		8AED41581F7C0BDD0053E09D /* FetchBiblePlannerDataCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchBiblePlannerDataCommand.swift; path = Source/MiddleTier/Commands/FetchBiblePlannerDataCommand.swift; sourceTree = "<group>"; };
 		8AED415A1F7C38230053E09D /* PlannerDataDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerDataDM.swift; path = Source/DomainTier/DomainModels/PlannerDataDM.swift; sourceTree = "<group>"; };
+		8AED415C1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveBiblePlannerDataCommand.swift; path = Source/MiddleTier/Commands/SaveBiblePlannerDataCommand.swift; sourceTree = "<group>"; };
 		8AF1421E1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactsVersionCommand.swift; path = Source/MiddleTier/Commands/FetchContactsVersionCommand.swift; sourceTree = "<group>"; };
 		8AF142201F3CBA4B00FC5BDB /* ContactDetailVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailVOM.swift; path = Source/ViewTier/ValueObjects/ContactDetailVOM.swift; sourceTree = "<group>"; };
 		8AF142221F3CBCAE00FC5BDB /* FetchContactDetailEditCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchContactDetailEditCommand.swift; path = Source/MiddleTier/Commands/FetchContactDetailEditCommand.swift; sourceTree = "<group>"; };
@@ -525,9 +527,9 @@
 		275201F41EB99298002C469B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				275201F51EB9929E002C469B /* ViewTier */,
-				275201FC1EB9983B002C469B /* MiddleTier */,
 				275202021EB999D1002C469B /* DomainTier */,
+				275201FC1EB9983B002C469B /* MiddleTier */,
+				275201F51EB9929E002C469B /* ViewTier */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -616,6 +618,7 @@
 				8AF1421E1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift */,
 				8AF142221F3CBCAE00FC5BDB /* FetchContactDetailEditCommand.swift */,
 				8AED41581F7C0BDD0053E09D /* FetchBiblePlannerDataCommand.swift */,
+				8AED415C1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -1152,6 +1155,7 @@
 				2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */,
 				8A44DD721F66F8180044CAEC /* BibleMarkChaptersVC.swift in Sources */,
 				8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */,
+				8AED415D1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift in Sources */,
 				270F1B021EC0258F00232D2F /* ContactImageCell.swift in Sources */,
 				8AAE188B1F3B78230049BC71 /* TopCell.swift in Sources */,
 				275201E91EB991D8002C469B /* AsyncCommand.swift in Sources */,

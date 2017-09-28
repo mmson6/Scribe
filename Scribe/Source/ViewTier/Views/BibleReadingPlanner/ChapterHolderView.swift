@@ -115,8 +115,16 @@ class ChapterHolderView: UIView {
     }
     
     func updateChapterCount(with counter: PlannerDataVOM) {
-        let counterData = counter.chaptersReadCount
-        for (i, count) in counterData.enumerated() {
+        let json = counter.chaptersReadCount
+        for (key, value) in json {
+//        for (i, count) in counterData.enumerated() {
+            guard
+                let count = value as? Int,
+                let i = Int(key)
+            else {
+                return
+            }
+
             let subView = self.subviews[i]
             let width = subView.frame.width
             

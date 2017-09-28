@@ -44,18 +44,20 @@ class LevelDBStore {
     
     // MARK: Bible Planner Related Functions
     
-    internal func loadBiblePlannerData() -> [PlannerDataDM]? {
+    internal func loadBiblePlannerData() -> JSONArray? {
         let key = "bible_planner_data"
-        guard
-            let value = self.loadValue(forKey: key),
-            let modelArray = value as? [PlannerDataDM]
-        else {
-            return nil
-        }
-        
-        return modelArray
+        let array = self.loadJSONArray(forKey: key)
+        return array
+//        guard
+//            let value = self.loadValue(forKey: key),
+//            let modelArray = value as? [PlannerDataDM]
+//        else {
+//            return nil
+//        }
+//        
+//        return modelArray
     }
-    internal func save(plannerData: [PlannerDataDM]?) {
+    internal func save(plannerData: JSONArray?) {
         let key = "bible_planner_data"
         self.save(value: plannerData, forKey: key)
     }
@@ -64,8 +66,8 @@ class LevelDBStore {
     
     internal func loadContacts() -> JSONArray? {
         let key = "contacts"
-        let object = self.loadJSONArray(forKey: key)
-        return object
+        let array = self.loadJSONArray(forKey: key)
+        return array
     }
     internal func save(contacts: JSONArray?) {
         let key = "contacts"
@@ -97,12 +99,12 @@ class LevelDBStore {
     private func loadJSONArray(forKey key: String) -> JSONArray? {
         guard
             let value = loadValue(forKey: key),
-            let object = value as? JSONArray
+            let array = value as? JSONArray
         else {
             return nil
         }
         
-        return object
+        return array
     }
     
     private func loadJSONObject(forKey key: String) -> JSONObject? {

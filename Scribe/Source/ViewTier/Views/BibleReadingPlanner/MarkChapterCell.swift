@@ -43,8 +43,15 @@ class MarkChapterCell: UICollectionViewCell {
     // MARK: Helper Functions
     
     func drawCellRect(with plannerDataVOM: PlannerDataVOM?, index: Int) {
-        guard let counterData = plannerDataVOM?.chaptersReadCount else { return }
-        let count = counterData[index]
+        guard
+            let json = plannerDataVOM?.chaptersReadCount,
+            let count = json["\(index)"] as? Int
+        else {
+            return
+        }
+        
+//        guard let counterData = plannerDataVOM?.chaptersReadCount else { return }
+//        let count = counterData[index]
         let width = self.frame.width
         
         let startAngle = CGFloat(Double.pi * 3 / 2)

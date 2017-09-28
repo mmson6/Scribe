@@ -59,14 +59,14 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     private func fetchData() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.bibleDataSource = BibleFactory.getAllList()
-            self.fetchChapterCounterData()
+            self.fetchPlannerDataSource()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
     
-    private func fetchChapterCounterData() {
+    private func fetchPlannerDataSource() {
         let cmd = FetchBiblePlannerDataCommand()
         cmd.onCompletion { result in
             switch result {
@@ -76,10 +76,28 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
                 } else {
                     var fetchingData = [PlannerDataVOM]()
                     for model in self.bibleDataSource {
-                        fetchingData.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: [Int](repeating: 0, count: model.chapters)))
+                        var json: JSONObject = [:]
+                        for i in 0...model.chapters - 1 {
+                            json["\(i)"] = 0
+                        }
+                        fetchingData.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: json))
                     }
                     self.plannerDataSource = fetchingData
                 }
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
+    }
+    
+    private func savePlannerDataSource() {
+        let cmd = SaveBiblePlannerDataCommand()
+        cmd.plannerDataSource = self.plannerDataSource
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                NSLog("Save PlannerDataSource called")
             case .failure:
                 break
             }
@@ -97,13 +115,16 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         }
         
         var plannerDataVOM = self.plannerDataSource[identifier]
-        var chapterDataArray = plannerDataVOM.chaptersReadCount
+        var json = plannerDataVOM.chaptersReadCount
         
         for object in dict {
-            chapterDataArray[object.key] = chapterDataArray[object.key] + 1
+            guard let count = json["\(object.key)"] as? Int else { return }
+            json["\(object.key)"] = count + 1
+//            chapterDataArray[object.key] = chapterDataArray[object.key] + 1
         }
-        plannerDataVOM.chaptersReadCount = chapterDataArray
+        plannerDataVOM.chaptersReadCount = json
         self.plannerDataSource[identifier] = plannerDataVOM
+        self.savePlannerDataSource()
         
         let indexPath = IndexPath(row: identifier, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: .automatic)

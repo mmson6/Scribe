@@ -10,14 +10,14 @@ import Foundation
 
 public struct PlannerDataVOM {
     public let bookName: String
-    public var chaptersReadCount: [Int]
+    public var chaptersReadCount: JSONObject
     
     public init(model: PlannerDataDM) {
         self.bookName = model.bookName
         self.chaptersReadCount = model.chaptersReadCount
     }
     
-    public init(bookName: String, chaptersReadCount: [Int]) {
+    public init(bookName: String, chaptersReadCount: JSONObject) {
         self.bookName = bookName
         self.chaptersReadCount = chaptersReadCount
     }
