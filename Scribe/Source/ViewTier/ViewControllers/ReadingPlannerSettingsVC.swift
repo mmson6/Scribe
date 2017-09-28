@@ -10,6 +10,8 @@ import UIKit
 
 class ReadingPlannerSettingsVC: UITableViewController {
 
+    var activityDataSource = [PlannerActivityVOM]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,11 +31,12 @@ class ReadingPlannerSettingsVC: UITableViewController {
     // MARK: Helpter FUnctions
     
     private func fetchBiblePlannerActivities() {
-        let cmd = FetchBiblePlannerDataCommand()
+        let cmd = FetchPlannerMarkActivitiesCommand()
         cmd.onCompletion { result in
             switch result {
-            case .success:
-                NSLog("hahhaaha success")
+            case .success(let array):
+                self.activityDataSource = array
+                self.tableView.reloadData()
             case .failure:
                 break
             }
@@ -44,13 +47,11 @@ class ReadingPlannerSettingsVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 6
+        return self.activityDataSource.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

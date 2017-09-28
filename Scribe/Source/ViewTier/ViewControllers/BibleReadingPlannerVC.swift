@@ -107,7 +107,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     
     @objc private func updateReadChapters(notification: Notification) {
         guard
-            let dict = notification.object as? [Int: Bool],
+            let dict = notification.object as? JSONObject,
             let userInfo = notification.userInfo as? [String: Int],
             let identifier = userInfo["identifier"]
         else {

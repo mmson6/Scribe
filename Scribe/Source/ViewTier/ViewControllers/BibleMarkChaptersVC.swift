@@ -29,10 +29,11 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     var bookModel: BibleVOM?
     var plannerDataVOM: PlannerDataVOM?
     
+    var previousMin: Int = 999
+    var previousMax: Int = -1
     var min: Int = 999
     var max: Int = -1
-    var previousCells: [(key: Int, value: Bool)] = []
-    var selectedCellDict: [Int: Bool] = [:]
+    var selectedCellDict = JSONObject()
     
     weak var delegate: BibleMarkChaptersVCDelegate?
     
@@ -58,9 +59,9 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         DispatchQueue.global(qos: .userInitiated).async {
             guard let model = self.bookModel else { return }
             let chapters = model.chapters
-            
             if self.selectedCellDict.count == 0 {
-                self.previousCells = []
+                self.previousMin = 999
+                self.previousMax = -1
                 self.min = 999
                 self.max = -1
                 
@@ -73,36 +74,38 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                     }
                 }
             } else {
-                let sorted = self.selectedCellDict.sorted { $0.key < $1.key }
+                let sorted = self.selectedCellDict.sorted(by: { (x, y) -> Bool in
+                    guard let xKey = Int(x.key), let yKey = Int(y.key) else { return false }
+                    return xKey < yKey
+                })
                 
                 guard
-                    var min = sorted.first?.key,
-                    var max = sorted.last?.key
-                    else {
-                        return
+                    let sortedFirst = sorted.first,
+                    var min = Int(sortedFirst.key),
+                    let sortedLast = sorted.last,
+                    var max = Int(sortedLast.key)
+                else {
+                    return
                 }
                 
                 self.min = min
                 self.max = max
                 
-                if let previousMin = self.previousCells.first?.key {
-                    if previousMin < min {
-                        min = previousMin
-                    }
+                if self.previousMin < min {
+                    min = self.previousMin
                 }
-                if let previousMax = self.previousCells.last?.key {
-                    if previousMax > max {
-                        max = previousMax
-                    }
+                if self.previousMax > max {
+                    max = self.previousMax
                 }
-                
-                self.previousCells = sorted
+
+                self.previousMin = min
+                self.previousMax = max
                 
                 for i in min...max {
                     let indexPath = IndexPath(item: i, section: 0)
                     if let cell = self.collectionView.cellForItem(at: indexPath) as? MarkChapterCell {
                         DispatchQueue.main.async {
-                            if self.selectedCellDict[indexPath.row] != nil {
+                            if self.selectedCellDict["\(indexPath.row)"] != nil {
                                 cell.didSelect()
                             } else {
                                 if i > self.min && i < self.max {
@@ -150,7 +153,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             style: .default,
             handler: { action in
                 for i in self.min...self.max {
-                    self.selectedCellDict[i] = true
+                    self.selectedCellDict["\(i)"] = true
                 }
                 self.applyChapters(isConsecutive: true)
         })
@@ -166,27 +169,54 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     private func applyChapters(isConsecutive: Bool = false) {
-        guard let bookModel = self.bookModel else { return }
-        let model = PlannerActivityVOM(bookName: bookModel.engName,
-                                   isConsecutive: isConsecutive,
-                                   chapterDict: [:],
-                                   min: self.min,
-                                   max: self.max)
-        self.saveMarkActivity(model: model)
-        
+        isConsecutive ? self.saveMarkActivity() : self.saveMarkActivities()
         
         let userInfo: [String: Any] = ["identifier": self.bookIdentifier as Any]
         NotificationCenter.default.post(name: bibleChaptersUpdated, object: self.selectedCellDict, userInfo: userInfo)
         self.delegate?.backgroundTappedToDismiss()
     }
     
-    private func saveMarkActivity(model: PlannerActivityVOM) {
+    private func saveMarkActivity() {
+        guard let bookModel = self.bookModel else { return }
+        let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                       isConsecutive: true,
+                                       chapterDict: self.selectedCellDict,
+                                       min: self.min,
+                                       max: self.max)
+        
         let cmd = SavePlannerMarkActivityCommand()
         cmd.plannerActivityData = model
         cmd.onCompletion { result in
             switch result {
             case .success:
                 NSLog("Save MarkActivity returned with success")
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
+    }
+    
+    private func saveMarkActivities() {
+        guard let bookModel = self.bookModel else { return }
+        var array = [PlannerActivityVOM]()
+        for (key, _) in self.selectedCellDict {
+            guard let chapter = Int(key) else { continue }
+            let dict: JSONObject = [key: true]
+            let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                           isConsecutive: true,
+                                           chapterDict: dict,
+                                           min: chapter,
+                                           max: chapter)
+            array.append(model)
+        }
+        
+        let cmd = SavePlannerMarkActivitiesCommand()
+        cmd.plannerActivityDataSource = array
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                NSLog("Save MarkActivities returned with success")
             case .failure:
                 break
             }
@@ -211,7 +241,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         
         cell.commonInit()
         cell.drawCellRect(with: self.plannerDataVOM, index: indexPath.row)
-        cell.selectionStatus = self.selectedCellDict[indexPath.row] != nil
+        cell.selectionStatus = self.selectedCellDict["\(indexPath.row)"] != nil
         cell.updateCell(with: indexPath.row, min: self.min, max: self.max, and: self.selectedCellDict)
         
         return cell
@@ -223,7 +253,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         else {
             return
         }
-        chapterCell.selectionStatus = self.selectedCellDict[indexPath.row] != nil
+        chapterCell.selectionStatus = self.selectedCellDict["\(indexPath.row)"] != nil
         chapterCell.updateCell(with: indexPath.row, min: self.min, max: self.max, and: self.selectedCellDict)
     }
     
@@ -242,14 +272,14 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             return true
         }
         
-        if self.selectedCellDict[indexPath.row] != nil {
+        if self.selectedCellDict["\(indexPath.row)"] != nil {
             cell.selectionStatus = false
             cell.cellTapped()
-            self.selectedCellDict.removeValue(forKey: indexPath.row)
+            self.selectedCellDict.removeValue(forKey: "\(indexPath.row)")
         } else {
             cell.selectionStatus = true
             cell.cellTapped()
-            self.selectedCellDict[indexPath.row] = true
+            self.selectedCellDict["\(indexPath.row)"] = true
         }
         
         self.updateCells()
@@ -285,7 +315,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                 self.present(alertController, animated: true, completion: nil)
             }
         } else {
-            self.applyChapters()
+            self.applyChapters(isConsecutive: true)
         }
     }
     
@@ -304,11 +334,11 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         if self.selectedCellDict.count == chapters {
             print("ALL SELECTED")
             for i in 0...chapters - 1 {
-                self.selectedCellDict.removeValue(forKey: i)
+                self.selectedCellDict.removeValue(forKey: "\(i)")
             }
         } else {
             for i in 0...chapters - 1 {
-                self.selectedCellDict[i] = true
+                self.selectedCellDict["\(i)"] = true
             }
         }
 

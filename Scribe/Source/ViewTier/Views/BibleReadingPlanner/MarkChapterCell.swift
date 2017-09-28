@@ -50,8 +50,6 @@ class MarkChapterCell: UICollectionViewCell {
             return
         }
         
-//        guard let counterData = plannerDataVOM?.chaptersReadCount else { return }
-//        let count = counterData[index]
         let width = self.frame.width
         
         let startAngle = CGFloat(Double.pi * 3 / 2)
@@ -66,7 +64,7 @@ class MarkChapterCell: UICollectionViewCell {
             let countValue = CGFloat(count - 1)
     
             endAngle = startAngle + (CGFloat(Double.pi / 2) * countValue)
-            let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: (width/2) - 3.5, startAngle: startAngle, endAngle:endAngle, clockwise: true)
+            let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: width/2), radius: (width/2) - 3, startAngle: startAngle, endAngle:endAngle, clockwise: true)
             
             let shapeLayer = CAShapeLayer()
             shapeLayer.path = circlePath.cgPath
@@ -83,12 +81,12 @@ class MarkChapterCell: UICollectionViewCell {
         }
     }
     
-    func updateCell(with index: Int, min: Int, max: Int, and map: [Int: Bool]) {
+    func updateCell(with index: Int, min: Int, max: Int, and map: JSONObject) {
         print("Check cell : \((self.frame.width))")
         print("Check : \((self.frame.width - 6) / 2)")
         self.chapterNumberLabel.text = "\(index+1)"
         
-        if map[index] != nil {
+        if map["\(index)"] != nil {
             self.didSelect()
         } else {
             if index > min && index < max {

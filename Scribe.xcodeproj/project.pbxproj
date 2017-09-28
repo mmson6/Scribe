@@ -95,6 +95,7 @@
 		8A88ECC91F7D733B00C46763 /* PlannerActivityDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88ECC81F7D733B00C46763 /* PlannerActivityDM.swift */; };
 		8A88ECCB1F7D78AD00C46763 /* PlannerActivityVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88ECCA1F7D78AD00C46763 /* PlannerActivityVOM.swift */; };
 		8A88ECCD1F7D7B4600C46763 /* FetchPlannerMarkActivitiesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88ECCC1F7D7B4600C46763 /* FetchPlannerMarkActivitiesCommand.swift */; };
+		8A88ECCF1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88ECCE1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift */; };
 		8A8BACCD1EF1ED83006721F8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8BACCC1EF1ED83006721F8 /* Login.storyboard */; };
 		8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */; };
 		8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */; };
@@ -262,6 +263,7 @@
 		8A88ECC81F7D733B00C46763 /* PlannerActivityDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerActivityDM.swift; path = Source/DomainTier/DomainModels/PlannerActivityDM.swift; sourceTree = "<group>"; };
 		8A88ECCA1F7D78AD00C46763 /* PlannerActivityVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerActivityVOM.swift; path = Source/ViewTier/ValueObjects/PlannerActivityVOM.swift; sourceTree = "<group>"; };
 		8A88ECCC1F7D7B4600C46763 /* FetchPlannerMarkActivitiesCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchPlannerMarkActivitiesCommand.swift; path = Source/MiddleTier/Commands/FetchPlannerMarkActivitiesCommand.swift; sourceTree = "<group>"; };
+		8A88ECCE1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavePlannerMarkActivitiesCommand.swift; path = Source/MiddleTier/Commands/SavePlannerMarkActivitiesCommand.swift; sourceTree = "<group>"; };
 		8A8BACCC1EF1ED83006721F8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = "Resource Files/Storyboards/Login.storyboard"; sourceTree = "<group>"; };
 		8A8BACCE1EF1EF88006721F8 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Source/ViewTier/ViewControllers/LoginVC.swift; sourceTree = "<group>"; };
 		8A8BAD0A1EF2EACA006721F8 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTextField.swift; path = Source/ViewTier/Views/LoginTextField.swift; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 				8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */,
 				8A17AE701F3366520085E8D7 /* FetchUserRequestsCountCommand.swift */,
 				8AED415C1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift */,
+				8A88ECCE1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift */,
 				8A88ECC61F7D72AB00C46763 /* SavePlannerMarkActivityCommand.swift */,
 				275202001EB9997C002C469B /* ScribeCommand.swift */,
 			);
@@ -679,9 +682,9 @@
 		8A28F6C21F633B7800EB3F4F /* BibleReadingPlanner */ = {
 			isa = PBXGroup;
 			children = (
-				8A28F6C31F633BA100EB3F4F /* ChapterHolderView.swift */,
-				8A28F6C51F633BDB00EB3F4F /* BookCell.swift */,
 				8A28F6C71F633C1A00EB3F4F /* BibleFactory.swift */,
+				8A28F6C51F633BDB00EB3F4F /* BookCell.swift */,
+				8A28F6C31F633BA100EB3F4F /* ChapterHolderView.swift */,
 				8A54AEFC1F671E7000293C1A /* MarkChapterCell.swift */,
 				8AED41541F79AE990053E09D /* ReadActivityCell.swift */,
 				8AED41561F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift */,
@@ -1186,6 +1189,7 @@
 				8A7D5E221F2F906100089E1F /* FetchSignUpRequestsCommand.swift in Sources */,
 				8AF142211F3CBA4B00FC5BDB /* ContactDetailVOM.swift in Sources */,
 				8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */,
+				8A88ECCF1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift in Sources */,
 				275201F11EB991D8002C469B /* SPRViewController.swift in Sources */,
 				275202051EB999F1002C469B /* ScribeClient.swift in Sources */,
 				2719EA731EC582EA003D6D64 /* UIColor+ScribeAdditions.swift in Sources */,
