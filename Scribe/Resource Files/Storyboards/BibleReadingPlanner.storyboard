@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="fontawesome-webfont.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -379,54 +379,75 @@
             </objects>
             <point key="canvasLocation" x="2612" y="17.541229385307346"/>
         </scene>
-        <!--Settings-->
+        <!--Planner Settings-->
         <scene sceneID="ttR-68-oBg">
             <objects>
                 <tableViewController id="rwq-A5-KAj" customClass="ReadingPlannerSettingsVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="CIr-Mw-tvd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94901960780000005" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadingPlannerSettingsHeaderCell" id="L6k-wi-E3D" customClass="ReadingPlannerSettingsHeaderCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadingPlannerSettingsHeaderCell" id="L6k-wi-E3D" customClass="ReadingPlannerSettingsHeaderCell" customModule="Scribe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L6k-wi-E3D" id="mCU-U9-xJu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Undo Mark Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-XF-g2U">
-                                            <rect key="frame" x="20" y="24" width="87" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDO PAST ACTIVITIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-XF-g2U">
+                                            <rect key="frame" x="28" y="8" width="339" height="54.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                            <color key="textColor" red="0.14117647058823529" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="foB-Qv-YuN" userLabel="Separator View">
+                                            <rect key="frame" x="0.0" y="53.5" width="375" height="1"/>
+                                            <color key="backgroundColor" red="0.65098039215686276" green="0.71372549019607845" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="tgs-La-4em"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="W4N-XF-g2U" secondAttribute="trailing" id="8xx-hw-zft"/>
                                         <constraint firstItem="W4N-XF-g2U" firstAttribute="height" secondItem="mCU-U9-xJu" secondAttribute="height" id="Ats-9h-EkD"/>
+                                        <constraint firstItem="foB-Qv-YuN" firstAttribute="leading" secondItem="mCU-U9-xJu" secondAttribute="leading" id="EBM-QU-ITM"/>
                                         <constraint firstItem="W4N-XF-g2U" firstAttribute="leading" secondItem="mCU-U9-xJu" secondAttribute="leadingMargin" constant="20" id="Jf3-d9-Vou"/>
-                                        <constraint firstItem="W4N-XF-g2U" firstAttribute="centerY" secondItem="mCU-U9-xJu" secondAttribute="centerY" id="LbJ-gt-obX"/>
+                                        <constraint firstItem="W4N-XF-g2U" firstAttribute="centerY" secondItem="mCU-U9-xJu" secondAttribute="centerY" constant="8" id="LbJ-gt-obX"/>
+                                        <constraint firstItem="foB-Qv-YuN" firstAttribute="width" secondItem="mCU-U9-xJu" secondAttribute="width" id="h1k-cN-NRz"/>
+                                        <constraint firstAttribute="bottom" secondItem="foB-Qv-YuN" secondAttribute="bottom" id="swF-xL-5HL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadActivityCell" id="J66-kn-VMd" customClass="ReadActivityCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="98" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="83" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J66-kn-VMd" id="8vd-ZF-26A">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-KD-6aT">
-                                            <rect key="frame" x="21" y="24" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-KD-6aT">
+                                            <rect key="frame" x="28" y="0.0" width="339" height="54.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <color key="textColor" red="0.4115395778" green="0.71220858129999998" blue="0.45659479819999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="textColor" red="0.30588235294117649" green="0.53333333333333333" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tx2-mA-rOS" userLabel="Separator View">
+                                            <rect key="frame" x="28" y="53.5" width="347" height="1"/>
+                                            <color key="backgroundColor" red="0.65098039220000004" green="0.71372549019999998" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="1Nr-jz-zTc"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="zcE-KD-6aT" secondAttribute="trailing" id="5Fo-pU-Ffn"/>
+                                        <constraint firstAttribute="trailing" secondItem="tx2-mA-rOS" secondAttribute="trailing" id="9vx-aC-7xq"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="height" secondItem="8vd-ZF-26A" secondAttribute="height" id="M1c-iU-LdM"/>
+                                        <constraint firstItem="tx2-mA-rOS" firstAttribute="leading" secondItem="zcE-KD-6aT" secondAttribute="leading" id="Tdx-z0-vxY"/>
+                                        <constraint firstAttribute="bottom" secondItem="tx2-mA-rOS" secondAttribute="bottom" id="kCz-Zr-ipp"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="centerY" secondItem="8vd-ZF-26A" secondAttribute="centerY" id="wep-3l-Pid"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="leading" secondItem="8vd-ZF-26A" secondAttribute="leadingMargin" constant="20" id="wq8-TX-XEw"/>
                                     </constraints>
@@ -442,7 +463,7 @@
                             <outlet property="delegate" destination="rwq-A5-KAj" id="xkY-IZ-cmc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="jjH-ev-utN"/>
+                    <navigationItem key="navigationItem" title="Planner Settings" id="jjH-ev-utN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Hs-GB-oAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -455,7 +476,7 @@
                     <tabBarItem key="tabBarItem" title="Planner" image="Open_Book_Filled_75" id="b2C-5w-w8G"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E4g-od-Zwr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E4g-od-Zwr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

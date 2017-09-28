@@ -60,9 +60,6 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         DispatchQueue.global(qos: .userInitiated).async {
             self.bibleDataSource = BibleFactory.getAllList()
             self.fetchPlannerDataSource()
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
         }
     }
     
@@ -83,6 +80,9 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
                         fetchingData.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: json))
                     }
                     self.plannerDataSource = fetchingData
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             case .failure:
                 break

@@ -15,20 +15,21 @@ class ReadingPlannerSettingsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.fetchBiblePlannerActivities()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.commonInit()
+        self.fetchData()
     }
 
     // MARK: Helpter FUnctions
+    
+    private func commonInit() {
+        self.tableView.separatorStyle = .none
+    }
+    
+    private func fetchData() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.fetchBiblePlannerActivities()
+        }
+    }
     
     private func fetchBiblePlannerActivities() {
         let cmd = FetchPlannerMarkActivitiesCommand()
@@ -36,7 +37,9 @@ class ReadingPlannerSettingsVC: UITableViewController {
             switch result {
             case .success(let array):
                 self.activityDataSource = array
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             case .failure:
                 break
             }
@@ -79,10 +82,6 @@ class ReadingPlannerSettingsVC: UITableViewController {
             
             return cell
         }
-        
-
-        // Configure the cell...
-
     }
 
     /*
