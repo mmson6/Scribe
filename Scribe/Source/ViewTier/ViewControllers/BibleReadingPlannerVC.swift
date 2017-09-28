@@ -43,6 +43,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     
     private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateReadChapters), name: bibleChaptersUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchUpdatedBiblePlannerData), name: biblePlannerDataUpdated, object: nil)
     }
     
     private func commonInit() {
@@ -105,6 +106,12 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         cmd.execute()
     }
     
+    @objc private func fetchUpdatedBiblePlannerData(notification: Notification) {
+        DispatchQueue.global(qos: .default).async {
+            self.fetchPlannerDataSource()
+        }
+    }
+    
     @objc private func updateReadChapters(notification: Notification) {
         guard
             let dict = notification.object as? JSONObject,
@@ -120,8 +127,8 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         for object in dict {
             guard let count = json["\(object.key)"] as? Int else { return }
             json["\(object.key)"] = count + 1
-//            chapterDataArray[object.key] = chapterDataArray[object.key] + 1
         }
+        
         plannerDataVOM.chaptersReadCount = json
         self.plannerDataSource[identifier] = plannerDataVOM
         self.savePlannerDataSource()

@@ -61,7 +61,9 @@ let mainLanguageChanged = Notification.Name("MainLanguageChanged")
 let userRequestsCountChanged = Notification.Name("UserRequestsCountChanged")
 let openFromSignUpRequest = Notification.Name("OpenFromSignUpRequest")
 let bibleChaptersUpdated = Notification.Name("BibleChaptersUpdated")
+let biblePlannerDataUpdated = Notification.Name("BiblePlannerDataUpdated")
 
+let userLoggedOut = Notification.Name("UserLoggedOut")
 
 
 
@@ -96,6 +98,7 @@ public let SnatchedEmailMessage = "This email is already being used for other ac
 
 // BibleReadingPlannerVC
 public let MarkChaptersMessage = "Mark Chapters"//"There are unselected chapters in between. What do you want to do?"
+public let UndoMarkChaptersMessage = "Undo this activity?"//"There are unselected chapters in between. What do you want to do?"
 
 
 

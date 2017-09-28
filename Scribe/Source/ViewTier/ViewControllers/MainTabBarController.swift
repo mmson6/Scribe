@@ -49,10 +49,6 @@ class MainTabBarController: UITabBarController {
     }
     
     deinit {
-        // Clear UserDefaults
-        let store = UserDefaultsStore()
-        store.clearAll()
-        
         // Clear all observers
         NotificationCenter.default.removeObserver(self)
         self.fbObserverRefs.forEach({ $0.removeAllObservers() })

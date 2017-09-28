@@ -33,7 +33,7 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     
     var searchController = UISearchController(searchResultsController: nil)
    
-    let store = UserDefaultsStore()
+    let defaultStore = UserDefaultsStore()
     
     public var contactDataSource = [ContactVOM]()
     internal var filteredDataSource = [ContactVOM]()
@@ -72,7 +72,6 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Lifecycle Functions
     
     deinit {
-        self.store.clearAll()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -210,9 +209,9 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
                 return
             }
             
-            if strongSelf.store.contactsNeedUpdate(ver) {
+            if strongSelf.defaultStore.contactsNeedUpdate(ver) {
                 strongSelf.fetchContactDataSource(with: ver)
-                strongSelf.store.saveContactsVer(ver)
+                strongSelf.defaultStore.saveContactsVer(ver)
             }
         })
     }
@@ -352,7 +351,7 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
         cell.commonInit()
         cell.lookupKey = model.id
         
-        if let mainLang = self.store.loadMainLanguage() {
+        if let mainLang = self.defaultStore.loadMainLanguage() {
             switch mainLang {
             case "Eng_US":
                 if model.nameEng == "" {

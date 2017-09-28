@@ -1,5 +1,5 @@
 //
-//  SavePlannerMarkActivityCommand.swift
+//  RemoveBiblePlannerDataCommand.swift
 //  Scribe
 //
 //  Created by Mikael Son on 9/28/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SavePlannerMarkActivityCommand: ScribeCommand<Bool> {
+public class RemoveBiblePlannerDataCommand: ScribeCommand<Bool> {
     
     var plannerActivityData: PlannerActivityVOM?
     
@@ -16,7 +16,7 @@ public class SavePlannerMarkActivityCommand: ScribeCommand<Bool> {
         guard let model = self.plannerActivityData else { return }
         
         let dm = PlannerActivityDM(from: model)
-        self.accessor.savePlannerActivity(dm: dm) { result in
+        self.accessor.removeBiblePlannerData(dm: dm) { result in
             switch result {
             case .success:
                 self.completedWith(value: true)

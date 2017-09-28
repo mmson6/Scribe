@@ -17,6 +17,7 @@ import FirebaseInstanceID
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
+    var dataAccessor: DataAccessor?
 
     var applicationStateString: String {
         if UIApplication.shared.applicationState == .active {
@@ -32,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         
         self.setAppAttributes()
+        self.addObservers()
+        
+        
         FirebaseApp.configure()
         application.registerForRemoteNotifications()
         self.requestNotificationAuthorization(application: application)
@@ -89,6 +93,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // MARK: Helper Functions
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleUserLogoutNotification), name: userLoggedOut, object: nil)
+    }
+    
+    @objc private func handleUserLogoutNotification(notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            NSLog("Handling User Logout Notification")
+            if let dataAccessor = self?.dataAccessor {
+                dataAccessor.clear()
+            }
+        }
+    }
+    
     private func setAppAttributes() {
         
         let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
@@ -154,21 +173,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             //TODO: Handle background notification
         }
     }
-    
-//    
-//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-//        print(deviceTokenString)
-//        
-//        Messaging.messaging().apnsToken = deviceToken
-////        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.sandbox)
-////        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.pro)
-////        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type:FIRInstanceIDAPNSTokenType.Sandbox)
-////        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type:FIRInstanceIDAPNSTokenType.Prod)
-//    }
-//    
-//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-//        print("I am not available in simulator \(error)")
-//    }
 }
 

@@ -16,8 +16,16 @@ public typealias DataAccessorDMCallback<T> = (AsyncResult<T>) -> Void
 public final class DataAccessor {
     
     private let scribeClient = NetworkScribeClient(baseURL: AppConfiguration.baseURL)
+    private let defaultStore = UserDefaultsStore()
     private let dataStore = LevelDBStore()
     var rootRef: DatabaseReference!
+    
+    // MARK: Global Functions
+    
+    public func clear() {
+        self.defaultStore.clearAll()
+        self.dataStore.clear()
+    }
     
     internal func loadBiblePlannerData(callback: @escaping DataAccessorDMCallback<[PlannerDataDM]>) {
         let store = self.dataStore
@@ -159,6 +167,33 @@ public final class DataAccessor {
                 break
             }
         }
+    }
+    
+    internal func removeBiblePlannerData(dm: PlannerActivityDM, callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        if let jsonArray = store.loadBiblePlannerData() {
+            let newArray = jsonArray.map({ (json) -> JSONObject in
+                var plannerDataDM = PlannerDataDM(from: json)
+                if plannerDataDM.bookName == dm.bookName {
+                    for (key, _) in dm.chapterDict {
+                        guard let count = plannerDataDM.chaptersReadCount[key] as? Int else { continue }
+                        plannerDataDM.chaptersReadCount[key] = count - 1
+                    }
+                }
+                return plannerDataDM.asJSON()
+            })
+            store.save(plannerData: newArray)
+        }
+        callback(.success(true))
+    }
+    
+    internal func removePlannerActivity(dmArray: [PlannerActivityDM], callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        let jsonArray = dmArray.map { (dm) -> JSONObject in
+            return dm.asJSON()
+        }
+        store.save(plannerActivities: jsonArray)
+        callback(.success(true))
     }
     
     internal func saveBiblePlannerData(dmArray: [PlannerDataDM], callback: @escaping DataAccessorDMCallback<Bool>) {
