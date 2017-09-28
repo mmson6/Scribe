@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
-            timestampString = "528334649.869276"
+            timestampString = "528335876.750862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "savePlannerActivities(dmArray:callback:)"
             landmarkType = "7">
             <Locations>
@@ -26,11 +26,11 @@
                   moduleName = "Scribe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
-                  timestampString = "528334808.467919"
+                  timestampString = "528335922.804887"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
                   offsetFromSymbolStart = "68">
                </Location>
                <Location
@@ -41,11 +41,11 @@
                   moduleName = "Scribe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
-                  timestampString = "528334808.470081"
+                  timestampString = "528335922.806932"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
                   offsetFromSymbolStart = "120">
                </Location>
             </Locations>
@@ -96,6 +96,22 @@
             startingLineNumber = "86"
             endingLineNumber = "86"
             landmarkName = "fetchPlannerDataSource()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
+            timestampString = "528335921.816066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "clear()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

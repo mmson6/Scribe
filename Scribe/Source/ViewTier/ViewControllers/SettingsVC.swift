@@ -54,6 +54,8 @@ class SettingsVC: UITableViewController{
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
             }
+            
+            NotificationCenter.default.post(name: userLoggedOut, object: nil)
             performSegue(withIdentifier: "unwindToLandingView", sender: nil)
         default:
             break
