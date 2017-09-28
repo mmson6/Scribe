@@ -21,15 +21,28 @@ public final class DataAccessor {
     
     internal func loadBiblePlannerData(callback: @escaping DataAccessorDMCallback<[PlannerDataDM]>) {
         let store = self.dataStore
-//        var modelArray = [PlannerDataDM]()
         if let jsonArray = store.loadBiblePlannerData() {
             let modelArray = jsonArray.map({ (json) -> PlannerDataDM in
-                let dm = PlannerDataDM(json: json)
+                let dm = PlannerDataDM(from: json)
                 return dm
             })
             callback(.success(modelArray))
         } else {
             let modelArray = [PlannerDataDM]()
+            callback(.success(modelArray))
+        }
+    }
+    
+    internal func loadPlannerActivities(callback: @escaping DataAccessorDMCallback<[PlannerActivityDM]>) {
+        let store = self.dataStore
+        if let jsonArray = store.loadPlannerActivities() {
+            let modelArray = jsonArray.map({ (json) -> PlannerActivityDM in
+                let dm = PlannerActivityDM(from: json)
+                return dm
+            })
+            callback(.success(modelArray))
+        } else {
+            let modelArray = [PlannerActivityDM]()
             callback(.success(modelArray))
         }
     }
@@ -151,10 +164,20 @@ public final class DataAccessor {
     internal func saveBiblePlannerData(dmArray: [PlannerDataDM], callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
         let jsonArray = dmArray.map { (dm) -> JSONObject in
-            let jsonObj = dm.asJSON()
-            return jsonObj
+            let json = dm.asJSON()
+            return json
         }
         store.save(plannerData: jsonArray)
+        callback(.success(true))
+    }
+    
+    internal func savePlannerActivities(dmArray: [PlannerActivityDM], callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        let jsonArray = dmArray.map { (dm) -> JSONObject in
+            let json = dm.asJSON()
+            return json
+        }
+        store.save(plannerActivities: jsonArray)
         callback(.success(true))
     }
     

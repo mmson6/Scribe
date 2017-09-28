@@ -48,18 +48,20 @@ class LevelDBStore {
         let key = "bible_planner_data"
         let array = self.loadJSONArray(forKey: key)
         return array
-//        guard
-//            let value = self.loadValue(forKey: key),
-//            let modelArray = value as? [PlannerDataDM]
-//        else {
-//            return nil
-//        }
-//        
-//        return modelArray
     }
     internal func save(plannerData: JSONArray?) {
         let key = "bible_planner_data"
         self.save(value: plannerData, forKey: key)
+    }
+    
+    internal func loadPlannerActivities() -> JSONArray? {
+        let key = "bible_planner_activities"
+        let array = self.loadJSONArray(forKey: key)
+        return array
+    }
+    internal func save(plannerActivities: JSONArray?) {
+        let key = "bible_planner_activities"
+        self.save(value: plannerActivities, forKey: key)
     }
     
     // MARK: Contact List Related Functions

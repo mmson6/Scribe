@@ -152,7 +152,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                 for i in self.min...self.max {
                     self.selectedCellDict[i] = true
                 }
-                self.applyChapters()
+                self.applyChapters(isConsecutive: true)
         })
         
         
@@ -165,10 +165,16 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         return alertController
     }
     
-    private func applyChapters() {
+    private func applyChapters(isConsecutive: Bool = false) {
+        
+        
         let userInfo: [String: Any] = ["identifier": self.bookIdentifier as Any]
         NotificationCenter.default.post(name: bibleChaptersUpdated, object: self.selectedCellDict, userInfo: userInfo)
         self.delegate?.backgroundTappedToDismiss()
+    }
+    
+    private func saveMarkActivity() {
+        let cmd = SavePlannerMarkActivityCommand()
     }
     
     // MARK: CollectionView Delegate Functions
