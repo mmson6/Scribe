@@ -166,6 +166,13 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     private func applyChapters(isConsecutive: Bool = false) {
+        guard let bookModel = self.bookModel else { return }
+        let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                   isConsecutive: isConsecutive,
+                                   chapterDict: [:],
+                                   min: self.min,
+                                   max: self.max)
+        self.saveMarkActivity(model: model)
         
         
         let userInfo: [String: Any] = ["identifier": self.bookIdentifier as Any]
@@ -173,8 +180,18 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         self.delegate?.backgroundTappedToDismiss()
     }
     
-    private func saveMarkActivity() {
+    private func saveMarkActivity(model: PlannerActivityVOM) {
         let cmd = SavePlannerMarkActivityCommand()
+        cmd.plannerActivityData = model
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                NSLog("Save MarkActivity returned with success")
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
     }
     
     // MARK: CollectionView Delegate Functions

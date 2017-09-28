@@ -10,17 +10,14 @@ import Foundation
 
 public class SavePlannerMarkActivityCommand: ScribeCommand<Bool> {
     
-    var plannerActivityDataSource: [PlannerActivityVOM]?
+    var plannerActivityData: PlannerActivityVOM?
     
     public override func main() {
-        guard let modelArray = self.plannerActivityDataSource else { return }
+//        guard let modelArray = self.plannerActivityDataSource else { return }
+        guard let model = self.plannerActivityData else { return }
+        let dm = PlannerActivityDM(from: model)
         
-        let dmArray = modelArray.map { (model) -> PlannerActivityDM in
-            let dm = PlannerActivityDM(from: model)
-            return dm
-        }
-        
-        self.accessor.savePlannerActivities(dmArray: dmArray) { result in
+        self.accessor.savePlannerActivity(dm: dm) { result in
             switch result {
             case .success:
                 NSLog("SavePlannerMarkActivityCommand called")
@@ -28,5 +25,18 @@ public class SavePlannerMarkActivityCommand: ScribeCommand<Bool> {
                 break
             }
         }
+//        let dmArray = modelArray.map { (model) -> PlannerActivityDM in
+//            let dm = PlannerActivityDM(from: model)
+//            return dm
+//        }
+//        
+//        self.accessor.savePlannerActivities(dmArray: dmArray) { result in
+//            switch result {
+//            case .success:
+//                NSLog("SavePlannerMarkActivityCommand called")
+//            case .failure:
+//                break
+//            }
+//        }
     }
 }

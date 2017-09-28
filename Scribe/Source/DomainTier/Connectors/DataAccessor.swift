@@ -171,14 +171,25 @@ public final class DataAccessor {
         callback(.success(true))
     }
     
-    internal func savePlannerActivities(dmArray: [PlannerActivityDM], callback: @escaping DataAccessorDMCallback<Bool>) {
+    internal func savePlannerActivity(dm: PlannerActivityDM, callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
-        let jsonArray = dmArray.map { (dm) -> JSONObject in
-            let json = dm.asJSON()
-            return json
+        if let jsonArray = store.loadPlannerActivities() {
+            var array = jsonArray
+            array.append(dm.asJSON())
+            store.save(plannerActivities: jsonArray)
+        } else {
+            var jsonArray = [JSONObject]()
+            jsonArray.append(dm.asJSON())
+            store.save(plannerActivities: jsonArray)
         }
-        store.save(plannerActivities: jsonArray)
         callback(.success(true))
+        
+//        let jsonArray = dmArray.map { (dm) -> JSONObject in
+//            let json = dm.asJSON()
+//            return json
+//        }
+//        store.save(plannerActivities: jsonArray)
+//        callback(.success(true))
     }
     
     internal func populateDatabase() {

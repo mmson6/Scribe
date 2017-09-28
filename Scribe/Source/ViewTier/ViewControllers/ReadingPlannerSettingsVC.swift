@@ -13,6 +13,7 @@ class ReadingPlannerSettingsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.fetchBiblePlannerActivities()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,6 +26,21 @@ class ReadingPlannerSettingsVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Helpter FUnctions
+    
+    private func fetchBiblePlannerActivities() {
+        let cmd = FetchBiblePlannerDataCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                NSLog("hahhaaha success")
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

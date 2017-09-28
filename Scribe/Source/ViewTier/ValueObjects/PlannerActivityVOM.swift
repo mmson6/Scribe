@@ -15,6 +15,14 @@ public struct PlannerActivityVOM {
     public let min: Int
     public let max: Int
     
+    init(bookName: String, isConsecutive: Bool, chapterDict: JSONObject, min: Int, max: Int) {
+        self.bookName = bookName
+        self.isConsecutive = isConsecutive
+        self.chapterDict = chapterDict
+        self.min = min
+        self.max = max
+    }
+    
     init(from model: PlannerActivityDM) {
         self.bookName = model.bookName
         self.isConsecutive = model.isConsecutive
