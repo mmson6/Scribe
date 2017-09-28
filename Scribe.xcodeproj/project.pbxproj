@@ -391,13 +391,13 @@
 		2719EA741EC58825003D6D64 /* ValueObjects */ = {
 			isa = PBXGroup;
 			children = (
-				8A5D5F841F6B118600883D51 /* PlannerDataVOM.swift */,
-				2719EA751EC5883E003D6D64 /* ContactVOM.swift */,
+				8AF142201F3CBA4B00FC5BDB /* ContactDetailVOM.swift */,
 				27EB3ECB1EC7807800BB292B /* ContactGroupVOM.swift */,
 				27EB3ECD1EC7936300BB292B /* ContactInfoVOM.swift */,
-				8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */,
-				8AF142201F3CBA4B00FC5BDB /* ContactDetailVOM.swift */,
+				2719EA751EC5883E003D6D64 /* ContactVOM.swift */,
 				8A88ECCA1F7D78AD00C46763 /* PlannerActivityVOM.swift */,
+				8A5D5F841F6B118600883D51 /* PlannerDataVOM.swift */,
+				8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */,
 			);
 			name = ValueObjects;
 			sourceTree = "<group>";

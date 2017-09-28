@@ -56,10 +56,27 @@ class ReadingPlannerSettingsVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingPlannerSettingsHeaderCell", for: indexPath)
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingPlannerSettingsHeaderCell", for: indexPath) as? ReadingPlannerSettingsHeaderCell
+            else {
+                return UITableViewCell()
+            }
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReadActivityCell", for: indexPath)
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReadActivityCell", for: indexPath) as? ReadActivityCell
+            else {
+                return UITableViewCell()
+            }
+            
+            // Present cells in descending order - lastest acitivity top
+            let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
+            if model.isConsecutive {
+                cell.bookLabel.text = "\(model.bookName) Ch. \(model.min + 1) ~ \(model.max + 1)"
+            } else {
+                cell.bookLabel.text = "\(model.bookName) Ch. \(model.min + 1)"
+            }
+            
             return cell
         }
         

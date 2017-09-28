@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -394,14 +395,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-XF-g2U">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Undo Mark Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-XF-g2U">
                                             <rect key="frame" x="20" y="24" width="87" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="W4N-XF-g2U" secondAttribute="trailing" id="8xx-hw-zft"/>
+                                        <constraint firstItem="W4N-XF-g2U" firstAttribute="height" secondItem="mCU-U9-xJu" secondAttribute="height" id="Ats-9h-EkD"/>
+                                        <constraint firstItem="W4N-XF-g2U" firstAttribute="leading" secondItem="mCU-U9-xJu" secondAttribute="leadingMargin" constant="20" id="Jf3-d9-Vou"/>
+                                        <constraint firstItem="W4N-XF-g2U" firstAttribute="centerY" secondItem="mCU-U9-xJu" secondAttribute="centerY" id="LbJ-gt-obX"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadActivityCell" id="J66-kn-VMd" customClass="ReadActivityCell" customModule="Scribe" customModuleProvider="target">
@@ -411,15 +417,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-KD-6aT">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-KD-6aT">
                                             <rect key="frame" x="21" y="24" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.4115395778" green="0.71220858129999998" blue="0.45659479819999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zcE-KD-6aT" secondAttribute="trailing" id="5Fo-pU-Ffn"/>
+                                        <constraint firstItem="zcE-KD-6aT" firstAttribute="height" secondItem="8vd-ZF-26A" secondAttribute="height" id="M1c-iU-LdM"/>
+                                        <constraint firstItem="zcE-KD-6aT" firstAttribute="centerY" secondItem="8vd-ZF-26A" secondAttribute="centerY" id="wep-3l-Pid"/>
+                                        <constraint firstItem="zcE-KD-6aT" firstAttribute="leading" secondItem="8vd-ZF-26A" secondAttribute="leadingMargin" constant="20" id="wq8-TX-XEw"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bookLabel" destination="zcE-KD-6aT" id="djt-bZ-7fP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -441,7 +455,7 @@
                     <tabBarItem key="tabBarItem" title="Planner" image="Open_Book_Filled_75" id="b2C-5w-w8G"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E4g-od-Zwr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E4g-od-Zwr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

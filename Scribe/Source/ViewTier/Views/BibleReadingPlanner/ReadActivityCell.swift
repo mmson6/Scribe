@@ -10,6 +10,8 @@ import UIKit
 
 class ReadActivityCell: UITableViewCell {
 
+    @IBOutlet weak var bookLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

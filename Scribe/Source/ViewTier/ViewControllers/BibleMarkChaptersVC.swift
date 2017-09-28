@@ -200,11 +200,16 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     private func saveMarkActivities() {
         guard let bookModel = self.bookModel else { return }
         var array = [PlannerActivityVOM]()
-        for (key, _) in self.selectedCellDict {
+        let sorted = self.selectedCellDict.sorted(by: { (x, y) -> Bool in
+            guard let xKey = Int(x.key), let yKey = Int(y.key) else { return false }
+            return xKey < yKey
+        })
+        
+        for (key, _) in sorted {
             guard let chapter = Int(key) else { continue }
             let dict: JSONObject = [key: true]
             let model = PlannerActivityVOM(bookName: bookModel.engName,
-                                           isConsecutive: true,
+                                           isConsecutive: false,
                                            chapterDict: dict,
                                            min: chapter,
                                            max: chapter)

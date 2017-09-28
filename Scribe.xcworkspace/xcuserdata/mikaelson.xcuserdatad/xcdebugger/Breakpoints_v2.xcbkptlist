@@ -9,30 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/DomainTier/DomainModels/PlannerDataDM.swift"
-            timestampString = "528319766.380288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "PlannerDataDM"
-            landmarkType = "14">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
-            timestampString = "528320048.579644"
+            timestampString = "528326014.717171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "loadPlannerActivities(callback:)"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "savePlannerActivities(dmArray:callback:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scribe.DataAccessor.savePlannerActivities (dmArray : Swift.Array&lt;Scribe.PlannerActivityDM&gt;, callback : (Scribe.AsyncResult&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scribe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
+                  timestampString = "528326244.418963"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scribe.DataAccessor.savePlannerActivities (dmArray : Swift.Array&lt;Scribe.PlannerActivityDM&gt;, callback : (Scribe.AsyncResult&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scribe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikaelson/Downloads/Scribe/Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
+                  timestampString = "528326244.421004"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,76 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scribe/Source/ViewTier/ViewControllers/BibleMarkChaptersVC.swift"
-            timestampString = "528324968.598092"
+            timestampString = "528326244.167684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/ViewTier/ViewControllers/BibleMarkChaptersVC.swift"
-            timestampString = "528323753.85208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "updateCells()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/ViewTier/ViewControllers/BibleMarkChaptersVC.swift"
-            timestampString = "528324968.598092"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "applyChapters(isConsecutive:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/DomainTier/Connectors/DataAccessor.swift"
-            timestampString = "528324968.598092"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "savePlannerActivity(dm:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scribe/Source/ViewTier/ViewControllers/BibleMarkChaptersVC.swift"
-            timestampString = "528323753.85208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "saveMarkActivity()"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "saveMarkActivities()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
