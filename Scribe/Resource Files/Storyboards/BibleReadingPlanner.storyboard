@@ -168,7 +168,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-6j-fmO">
                                                 <rect key="frame" x="136" y="15" width="98.5" height="40"/>
-                                                <color key="backgroundColor" red="0.51570251236942755" green="0.72519841269841268" blue="0.56664186293126495" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.40916946922252889" green="0.65571263227513232" blue="0.41687225182354309" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ZjJ-LI-u44"/>
                                                 </constraints>
@@ -441,18 +441,31 @@
                                                 <constraint firstAttribute="height" constant="0.5" id="1Nr-jz-zTc"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t2-PW-DAm">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="Ffc-wj-qKY"/>
+                                                <constraint firstAttribute="height" constant="20" id="kQk-n0-9cw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                            <color key="textColor" red="0.36338458994709" green="0.36338458994709" blue="0.36338458994709" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="6t2-PW-DAm" firstAttribute="top" secondItem="8vd-ZF-26A" secondAttribute="top" id="1Sf-1w-ae9"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="zcE-KD-6aT" secondAttribute="trailing" id="5Fo-pU-Ffn"/>
                                         <constraint firstAttribute="trailing" secondItem="tx2-mA-rOS" secondAttribute="trailing" id="9vx-aC-7xq"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="height" secondItem="8vd-ZF-26A" secondAttribute="height" id="M1c-iU-LdM"/>
                                         <constraint firstItem="tx2-mA-rOS" firstAttribute="leading" secondItem="zcE-KD-6aT" secondAttribute="leading" id="Tdx-z0-vxY"/>
                                         <constraint firstAttribute="bottom" secondItem="tx2-mA-rOS" secondAttribute="bottom" id="kCz-Zr-ipp"/>
+                                        <constraint firstItem="6t2-PW-DAm" firstAttribute="leading" secondItem="8vd-ZF-26A" secondAttribute="leading" id="mCi-85-VU9"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="centerY" secondItem="8vd-ZF-26A" secondAttribute="centerY" id="wep-3l-Pid"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="leading" secondItem="8vd-ZF-26A" secondAttribute="leadingMargin" constant="20" id="wq8-TX-XEw"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityCountLabel" destination="6t2-PW-DAm" id="h8l-KT-cz1"/>
                                     <outlet property="bookLabel" destination="zcE-KD-6aT" id="djt-bZ-7fP"/>
                                 </connections>
                             </tableViewCell>
@@ -464,8 +477,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Planner Settings" id="jjH-ev-utN"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="PLS-5v-K4J" id="ePp-cu-Obo"/>
+                        <outlet property="activityIndicatorView" destination="L1k-UP-Yhz" id="Kl9-sE-Pmr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Hs-GB-oAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="L1k-UP-Yhz" userLabel="Activity Indicator View">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PLS-5v-K4J">
+                            <rect key="frame" x="110" y="54" width="20" height="20"/>
+                            <color key="color" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="PLS-5v-K4J" firstAttribute="centerX" secondItem="L1k-UP-Yhz" secondAttribute="centerX" id="9Na-Sj-tad"/>
+                        <constraint firstItem="PLS-5v-K4J" firstAttribute="centerY" secondItem="L1k-UP-Yhz" secondAttribute="centerY" id="Dw9-XS-Ksm"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="3557.5999999999999" y="17.541229385307346"/>
         </scene>

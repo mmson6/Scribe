@@ -14,13 +14,15 @@ public struct PlannerActivityVOM {
     public let chapterDict: JSONObject
     public let min: Int
     public let max: Int
+    public let time: String
     
-    init(bookName: String, isConsecutive: Bool, chapterDict: JSONObject, min: Int, max: Int) {
+    init(bookName: String, isConsecutive: Bool, chapterDict: JSONObject, min: Int, max: Int, time: String) {
         self.bookName = bookName
         self.isConsecutive = isConsecutive
         self.chapterDict = chapterDict
         self.min = min
         self.max = max
+        self.time = time
     }
     
     init(from model: PlannerActivityDM) {
@@ -29,6 +31,7 @@ public struct PlannerActivityVOM {
         self.chapterDict = model.chapterDict
         self.min = model.min
         self.max = model.max
+        self.time = model.time
     }
     
     internal func asJSON() -> JSONObject {
@@ -38,8 +41,8 @@ public struct PlannerActivityVOM {
         json["chapterDict"] = self.chapterDict
         json["min"] = self.min
         json["max"] = self.max
+        json["time"] = self.time
         
         return json
-//        return self.originalJSON
     }
 }

@@ -33,7 +33,17 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     var previousMax: Int = -1
     var min: Int = 999
     var max: Int = -1
-    var selectedCellDict = JSONObject()
+    var selectedCellDict = JSONObject() {
+        didSet {
+            if self.selectedCellDict.count > 0 {
+                self.applyButton.isEnabled = true
+                self.applyButton.alpha = 1
+            } else {
+                self.applyButton.isEnabled = false
+                self.applyButton.alpha = 0.5
+            }
+        }
+    }
     
     weak var delegate: BibleMarkChaptersVCDelegate?
     
@@ -49,6 +59,8 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         self.engTitleLabel.text = self.bookModel?.engName
         self.korTitleLabel.text = self.bookModel?.korName
         self.applyButton.layer.cornerRadius = self.applyButton.frame.height / 2
+        self.applyButton.isEnabled = false
+        self.applyButton.alpha = 0.5
         self.selectAllButton.layer.cornerRadius = self.selectAllButton.frame.height / 2
         self.selectAllButton.layer.borderColor = UIColor.rgb(red: 150, green: 150, blue: 150).cgColor
         self.selectAllButton.layer.borderWidth = 1
@@ -178,11 +190,13 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     
     private func saveMarkActivity() {
         guard let bookModel = self.bookModel else { return }
+        let time = self.getTimeString()
         let model = PlannerActivityVOM(bookName: bookModel.engName,
                                        isConsecutive: true,
                                        chapterDict: self.selectedCellDict,
                                        min: self.min,
-                                       max: self.max)
+                                       max: self.max,
+                                       time: time)
         
         let cmd = SavePlannerMarkActivityCommand()
         cmd.plannerActivityData = model
@@ -199,6 +213,8 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
     
     private func saveMarkActivities() {
         guard let bookModel = self.bookModel else { return }
+        let time = self.getTimeString()
+        
         var array = [PlannerActivityVOM]()
         let sorted = self.selectedCellDict.sorted(by: { (x, y) -> Bool in
             guard let xKey = Int(x.key), let yKey = Int(y.key) else { return false }
@@ -212,7 +228,8 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                                            isConsecutive: false,
                                            chapterDict: dict,
                                            min: chapter,
-                                           max: chapter)
+                                           max: chapter,
+                                           time: time)
             array.append(model)
         }
         
@@ -227,6 +244,18 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
         cmd.execute()
+    }
+    
+    private func getTimeString() -> String{
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy, HH:mm"
+        let dateString = dateFormatter.string(from: now)
+        
+        return dateString
+        
+        //https://stackoverflow.com/questions/45163271/swift-3-how-to-display-time-as-string-each-5-minutes
+        //https://stackoverflow.com/questions/43199635/get-current-time-as-string-swift-3-0
     }
     
     // MARK: CollectionView Delegate Functions

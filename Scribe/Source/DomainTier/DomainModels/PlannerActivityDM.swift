@@ -16,6 +16,7 @@ public struct PlannerActivityDM: JSONTransformable {
     public let chapterDict: JSONObject
     public let min: Int
     public let max: Int
+    public let time: String
     
     private let originalJSON: JSONObject
     
@@ -32,6 +33,7 @@ public struct PlannerActivityDM: JSONTransformable {
         
         self.min = json["min"].int ?? -1
         self.max = json["max"].int ?? -1
+        self.time = json["time"].string ?? ""
         
         self.originalJSON = jsonObj
     }
@@ -42,6 +44,7 @@ public struct PlannerActivityDM: JSONTransformable {
         self.chapterDict = model.chapterDict
         self.min = model.min
         self.max = model.max
+        self.time = model.time
         
         self.originalJSON = model.asJSON()
     }

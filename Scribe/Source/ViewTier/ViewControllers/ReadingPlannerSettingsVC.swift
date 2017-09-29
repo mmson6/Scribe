@@ -11,6 +11,8 @@ import UIKit
 class ReadingPlannerSettingsVC: UITableViewController {
 
     var activityDataSource = [PlannerActivityVOM]()
+    @IBOutlet var activityIndicatorView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,11 @@ class ReadingPlannerSettingsVC: UITableViewController {
     
     private func commonInit() {
         self.tableView.separatorStyle = .none
+        
+        // Add activity indicator to the view
+        self.activityIndicatorView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height)
+        self.tableView.addSubview(self.activityIndicatorView)
+        self.activityIndicatorView.isHidden = true
     }
     
     private func fetchData() {
@@ -48,7 +55,7 @@ class ReadingPlannerSettingsVC: UITableViewController {
     }
     
     private func createUndoMarkChaptersAlert(with indexPath: IndexPath) -> UIAlertController? {
-//    private func createUndoMarkChaptersAlert(with model: PlannerActivityVOM, title: String) -> UIAlertController? {
+
         guard
             let cell = tableView.cellForRow(at: indexPath) as? ReadActivityCell,
             let title = cell.bookLabel.text
@@ -66,11 +73,13 @@ class ReadingPlannerSettingsVC: UITableViewController {
         let undoAction = UIAlertAction(
             title: "Undo",
             style: .destructive,
-            handler: { action in
-                self.activityDataSource.remove(at: (self.activityDataSource.count - 1) - (indexPath.row - 1))
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-                self.removePastActivity()
-                self.removeBiblePlannerData(with: model)
+            handler: { [weak self] action in
+                guard let strongSelf = self else { return }
+                strongSelf.showLoadingIndicator()
+                strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 1))
+                strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
+                strongSelf.removePastActivity()
+                strongSelf.removeBiblePlannerData(with: model)
         })
         
         let cancelAction = UIAlertAction(
@@ -97,6 +106,7 @@ class ReadingPlannerSettingsVC: UITableViewController {
             case .failure:
                 break
             }
+            self.hideLoadingIndicator()
         }
         cmd.execute()
     }
@@ -114,6 +124,16 @@ class ReadingPlannerSettingsVC: UITableViewController {
             }
         }
         cmd.execute()
+    }
+    
+    private func showLoadingIndicator() {
+        self.activityIndicatorView.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+    
+    private func hideLoadingIndicator() {
+        self.activityIndicatorView.isHidden = true
+        self.activityIndicator.stopAnimating()
     }
     
     // MARK: - Table view data source
@@ -136,6 +156,8 @@ class ReadingPlannerSettingsVC: UITableViewController {
             else {
                 return UITableViewCell()
             }
+            
+            cell.activityCountLabel.text = "\(indexPath.row)"
             
             // Present cells in descending order - lastest acitivity top
             let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
