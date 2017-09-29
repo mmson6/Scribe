@@ -12,6 +12,7 @@ class ReadActivityCell: UITableViewCell {
 
     @IBOutlet weak var bookLabel: UILabel!
     @IBOutlet weak var activityCountLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

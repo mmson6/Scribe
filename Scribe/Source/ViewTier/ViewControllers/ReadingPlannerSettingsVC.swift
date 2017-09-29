@@ -157,10 +157,61 @@ class ReadingPlannerSettingsVC: UITableViewController {
                 return UITableViewCell()
             }
             
+            let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
+            
             cell.activityCountLabel.text = "\(indexPath.row)"
             
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy, HH:mm"
+            if let date = dateFormatter.date(from: model.time) {
+                if Date.compareYears(from: date) > 0 {
+                    let years = Date.compareYears(from: date)
+                    if years > 1 {
+                        cell.timeLabel.text = "\(years) years ago"
+                    } else {
+                        cell.timeLabel.text = "Last year"
+                    }
+                } else if Date.compareMonths(from: date) > 0 {
+                    let months = Date.compareMonths(from: date)
+                    if months > 1 {
+                        cell.timeLabel.text = "\(months) months ago"
+                    } else {
+                        cell.timeLabel.text = "Last month"
+                    }
+                } else if Date.compareWeeks(from: date) > 0 {
+                    let weeks = Date.compareWeeks(from: date)
+                    if weeks > 1 {
+                        cell.timeLabel.text = "\(weeks) weeks ago"
+                    } else {
+                        cell.timeLabel.text = "Last week"
+                    }
+                } else if Date.compareDays(from: date) > 0 {
+                    let days = Date.compareDays(from: date)
+                    if days > 1 {
+                        cell.timeLabel.text = "\(days) days ago"
+                    } else {
+                        cell.timeLabel.text = "Yesterday"
+                    }
+                } else if Date.compareHours(from: date) > 0 {
+                    let hours = Date.compareHours(from: date)
+                    if hours > 1 {
+                        cell.timeLabel.text = "\(hours) hours ago"
+                    } else {
+                        cell.timeLabel.text = "\(hours) hour ago"
+                    }
+                } else if Date.compareMinutes(from: date) > 0 {
+                    let mins = Date.compareMinutes(from: date)
+                    if mins > 1 {
+                        cell.timeLabel.text = "\(mins) minutes ago"
+                    } else {
+                        cell.timeLabel.text = "\(mins) minute ago"
+                    }
+                } else {
+                    cell.timeLabel.text = "Just now"
+                }
+            }
+            
             // Present cells in descending order - lastest acitivity top
-            let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
             if model.isConsecutive {
                 cell.bookLabel.text = "\(model.bookName) Ch. \(model.min + 1) ~ \(model.max + 1)"
             } else {

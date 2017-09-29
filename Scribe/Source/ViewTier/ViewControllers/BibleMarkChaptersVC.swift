@@ -221,17 +221,73 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             return xKey < yKey
         })
         
-        for (key, _) in sorted {
-            guard let chapter = Int(key) else { continue }
-            let dict: JSONObject = [key: true]
-            let model = PlannerActivityVOM(bookName: bookModel.engName,
-                                           isConsecutive: false,
-                                           chapterDict: dict,
-                                           min: chapter,
-                                           max: chapter,
-                                           time: time)
-            array.append(model)
+        var patternDict = JSONObject()
+        var min = 999
+//        var max = -1
+        var foundPattern = false
+        for (i, json) in sorted.enumerated() {
+            if i < sorted.count - 1 {
+                let next = sorted[i + 1]
+                guard
+                    let currentChapter = Int(json.key),
+                    let nextChapter = Int(next.key)
+                else {
+                    continue
+                }
+                
+                if nextChapter == currentChapter + 1 {
+                    foundPattern = true
+                    if min > currentChapter {
+                        min = currentChapter
+                    }
+                    patternDict["\(currentChapter)"] = true
+                    continue
+                } else if foundPattern {
+                    patternDict["\(currentChapter)"] = true
+                    let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                                   isConsecutive: true,
+                                                   chapterDict: patternDict,
+                                                   min: min,
+                                                   max: currentChapter,
+                                                   time: time)
+                    array.append(model)
+                    min = 999
+                    foundPattern = false
+                    patternDict = [:]
+                } else {
+                    let dict: JSONObject = [json.key: true]
+                    let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                                   isConsecutive: false,
+                                                   chapterDict: dict,
+                                                   min: currentChapter,
+                                                   max: currentChapter,
+                                                   time: time)
+                    array.append(model)
+                }
+            } else {
+                guard let chapter = Int(json.key) else { continue }
+                let dict: JSONObject = [json.key: true]
+                let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                               isConsecutive: false,
+                                               chapterDict: dict,
+                                               min: chapter,
+                                               max: chapter,
+                                               time: time)
+                array.append(model)
+            }
         }
+        
+        //        for (key, _) in sorted {
+        //            guard let chapter = Int(key) else { continue }
+        //            let dict: JSONObject = [key: true]
+        //            let model = PlannerActivityVOM(bookName: bookModel.engName,
+        //                                           isConsecutive: false,
+        //                                           chapterDict: dict,
+        //                                           min: chapter,
+        //                                           max: chapter,
+        //                                           time: time)
+        //            array.append(model)
+        //        }
         
         let cmd = SavePlannerMarkActivitiesCommand()
         cmd.plannerActivityDataSource = array
@@ -349,7 +405,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                 self.present(alertController, animated: true, completion: nil)
             }
         } else {
-            self.applyChapters(isConsecutive: true)
+            self.selectedCellDict.count > 1 ? self.applyChapters(isConsecutive: true) : self.applyChapters()
         }
     }
     

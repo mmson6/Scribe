@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -451,15 +451,27 @@
                                             <color key="textColor" red="0.36338458994709" green="0.36338458994709" blue="0.36338458994709" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kx-e6-8tz">
+                                            <rect key="frame" x="265" y="24.5" width="100" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="3nE-Cr-Lyy"/>
+                                                <constraint firstAttribute="height" constant="20" id="f2m-NU-WCs"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.3633845899" green="0.3633845899" blue="0.3633845899" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="6t2-PW-DAm" firstAttribute="top" secondItem="8vd-ZF-26A" secondAttribute="top" id="1Sf-1w-ae9"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="zcE-KD-6aT" secondAttribute="trailing" id="5Fo-pU-Ffn"/>
                                         <constraint firstAttribute="trailing" secondItem="tx2-mA-rOS" secondAttribute="trailing" id="9vx-aC-7xq"/>
+                                        <constraint firstAttribute="trailing" secondItem="7kx-e6-8tz" secondAttribute="trailing" constant="10" id="Hq7-yE-CEO"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="height" secondItem="8vd-ZF-26A" secondAttribute="height" id="M1c-iU-LdM"/>
                                         <constraint firstItem="tx2-mA-rOS" firstAttribute="leading" secondItem="zcE-KD-6aT" secondAttribute="leading" id="Tdx-z0-vxY"/>
                                         <constraint firstAttribute="bottom" secondItem="tx2-mA-rOS" secondAttribute="bottom" id="kCz-Zr-ipp"/>
                                         <constraint firstItem="6t2-PW-DAm" firstAttribute="leading" secondItem="8vd-ZF-26A" secondAttribute="leading" id="mCi-85-VU9"/>
+                                        <constraint firstAttribute="bottom" secondItem="7kx-e6-8tz" secondAttribute="bottom" constant="5" id="oVC-2l-c3l"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="centerY" secondItem="8vd-ZF-26A" secondAttribute="centerY" id="wep-3l-Pid"/>
                                         <constraint firstItem="zcE-KD-6aT" firstAttribute="leading" secondItem="8vd-ZF-26A" secondAttribute="leadingMargin" constant="20" id="wq8-TX-XEw"/>
                                     </constraints>
@@ -467,6 +479,7 @@
                                 <connections>
                                     <outlet property="activityCountLabel" destination="6t2-PW-DAm" id="h8l-KT-cz1"/>
                                     <outlet property="bookLabel" destination="zcE-KD-6aT" id="djt-bZ-7fP"/>
+                                    <outlet property="timeLabel" destination="7kx-e6-8tz" id="9IO-wh-eCz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

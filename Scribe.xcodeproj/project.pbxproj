@@ -81,6 +81,7 @@
 		8A6016421EFA6FF600283491 /* FallingSky-Bulk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A60163A1EF8951B00283491 /* FallingSky-Bulk.otf */; };
 		8A6016431EFA6FF800283491 /* FallingSky-Bold+.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016381EF8951200283491 /* FallingSky-Bold+.otf */; };
 		8A6016441EFA6FFA00283491 /* FallingSky-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A6016391EF8951600283491 /* FallingSky-Bold.otf */; };
+		8A6C73A41F7EEC0B00CCC758 /* Date+Scribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C73A31F7EEC0B00CCC758 /* Date+Scribe.swift */; };
 		8A6F53681F2A5E7A00514780 /* ContactDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */; };
 		8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */; };
 		8A7D5E1E1F2BC4FA00089E1F /* AdminSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */; };
@@ -252,6 +253,7 @@
 		8A60163B1EFA685A00283491 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A60163E1EFA6B4C00283491 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		8A60163F1EFA6B4C00283491 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		8A6C73A31F7EEC0B00CCC758 /* Date+Scribe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Scribe.swift"; path = "Source/ViewTier/Application/Date+Scribe.swift"; sourceTree = "<group>"; };
 		8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactDetail.storyboard; path = "Resource Files/Storyboards/ContactDetail.storyboard"; sourceTree = "<group>"; };
 		8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsTransitionAnimator.swift; path = Source/ViewTier/Animators/ContactGroupsTransitionAnimator.swift; sourceTree = "<group>"; };
 		8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AdminSettings.storyboard; path = "Resource Files/Storyboards/AdminSettings.storyboard"; sourceTree = "<group>"; };
@@ -669,8 +671,9 @@
 		275202091EB99D37002C469B /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2752020A1EB99D59002C469B /* Constants.swift */,
 				275201A91EB990C7002C469B /* AppDelegate.swift */,
+				2752020A1EB99D59002C469B /* Constants.swift */,
+				8A6C73A31F7EEC0B00CCC758 /* Date+Scribe.swift */,
 				275201B51EB990C7002C469B /* Info.plist */,
 				2719EA701EC5826E003D6D64 /* Assets */,
 			);
@@ -1195,6 +1198,7 @@
 				8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */,
 				8A7D5E281F2F9A1B00089E1F /* SignUpRequestsVC.swift in Sources */,
 				8A2CDAFD1EEB3B4700DF2E0E /* ContactDM.swift in Sources */,
+				8A6C73A41F7EEC0B00CCC758 /* Date+Scribe.swift in Sources */,
 				8A7D5E221F2F906100089E1F /* FetchSignUpRequestsCommand.swift in Sources */,
 				8AF142211F3CBA4B00FC5BDB /* ContactDetailVOM.swift in Sources */,
 				8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */,
