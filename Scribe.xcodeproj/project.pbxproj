@@ -90,6 +90,7 @@
 		8A7D5E261F2F95F300089E1F /* SignUpRequestVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */; };
 		8A7D5E281F2F9A1B00089E1F /* SignUpRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */; };
 		8A7D5E2A1F2FC73900089E1F /* SignUpRequests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */; };
+		8A84E1B41F7DC82D00DCB058 /* HandleSignOutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A84E1B31F7DC82D00DCB058 /* HandleSignOutCommand.swift */; };
 		8A87D5241F5466F600CCE1F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A87D5231F5466F600CCE1F4 /* GoogleService-Info.plist */; };
 		8A88ECC71F7D72AB00C46763 /* SavePlannerMarkActivityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88ECC61F7D72AB00C46763 /* SavePlannerMarkActivityCommand.swift */; };
 		8A88ECC91F7D733B00C46763 /* PlannerActivityDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88ECC81F7D733B00C46763 /* PlannerActivityDM.swift */; };
@@ -260,6 +261,7 @@
 		8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestVOM.swift; path = Source/ViewTier/ValueObjects/SignUpRequestVOM.swift; sourceTree = "<group>"; };
 		8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpRequestsVC.swift; path = Source/ViewTier/ViewControllers/SignUpRequestsVC.swift; sourceTree = "<group>"; };
 		8A7D5E291F2FC73900089E1F /* SignUpRequests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUpRequests.storyboard; path = "Resource Files/Storyboards/SignUpRequests.storyboard"; sourceTree = "<group>"; };
+		8A84E1B31F7DC82D00DCB058 /* HandleSignOutCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandleSignOutCommand.swift; path = Source/MiddleTier/Commands/HandleSignOutCommand.swift; sourceTree = "<group>"; };
 		8A87D5231F5466F600CCE1F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A88ECC61F7D72AB00C46763 /* SavePlannerMarkActivityCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavePlannerMarkActivityCommand.swift; path = Source/MiddleTier/Commands/SavePlannerMarkActivityCommand.swift; sourceTree = "<group>"; };
 		8A88ECC81F7D733B00C46763 /* PlannerActivityDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerActivityDM.swift; path = Source/DomainTier/DomainModels/PlannerActivityDM.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				8A88ECCC1F7D7B4600C46763 /* FetchPlannerMarkActivitiesCommand.swift */,
 				8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */,
 				8A17AE701F3366520085E8D7 /* FetchUserRequestsCountCommand.swift */,
+				8A84E1B31F7DC82D00DCB058 /* HandleSignOutCommand.swift */,
 				8AED415C1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift */,
 				8A88ECCE1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift */,
 				8A88ECC61F7D72AB00C46763 /* SavePlannerMarkActivityCommand.swift */,
@@ -1215,6 +1218,7 @@
 				8A2CDAFF1EEB428600DF2E0E /* ContactGroupDM.swift in Sources */,
 				8AC53EFE1F1561C80053DA99 /* UserDefaultsStore.swift in Sources */,
 				8AAE187A1F3914AC0049BC71 /* ManageContactInfoVC.swift in Sources */,
+				8A84E1B41F7DC82D00DCB058 /* HandleSignOutCommand.swift in Sources */,
 				275201EB1EB991D8002C469B /* ArrayObjectDataSource.swift in Sources */,
 				8AAE18851F3B670B0049BC71 /* AddressInfoCell.swift in Sources */,
 				8AF142261F3CF7D300FC5BDB /* BirthdayDatePickerCell.swift in Sources */,

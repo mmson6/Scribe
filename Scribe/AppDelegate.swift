@@ -17,7 +17,6 @@ import FirebaseInstanceID
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
-    var dataAccessor: DataAccessor?
 
     var applicationStateString: String {
         if UIApplication.shared.applicationState == .active {
@@ -30,11 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         self.setAppAttributes()
         self.addObservers()
-        
         
         FirebaseApp.configure()
         application.registerForRemoteNotifications()
@@ -100,12 +97,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     @objc private func handleUserLogoutNotification(notification: Notification) {
-        DispatchQueue.main.async { [weak self] in
-            NSLog("Handling User Logout Notification")
-            if let dataAccessor = self?.dataAccessor {
-                dataAccessor.clear()
+        NSLog("Handling User Logout Notification")
+        
+        let cmd = HandleSignOutCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                NSLog("HandleSignOutCommand returned with success")
+            case .failure:
+                break
             }
         }
+        cmd.execute()
     }
     
     private func setAppAttributes() {
