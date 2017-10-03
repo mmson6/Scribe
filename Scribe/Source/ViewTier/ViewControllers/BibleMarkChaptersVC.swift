@@ -265,15 +265,34 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                     array.append(model)
                 }
             } else {
-                guard let chapter = Int(json.key) else { continue }
-                let dict: JSONObject = [json.key: true]
-                let model = PlannerActivityVOM(bookName: bookModel.engName,
-                                               isConsecutive: false,
-                                               chapterDict: dict,
-                                               min: chapter,
-                                               max: chapter,
-                                               time: time)
-                array.append(model)
+                if foundPattern {
+                    guard
+                        let currentChapter = Int(json.key)
+                    else {
+                        continue
+                    }
+                    patternDict["\(currentChapter)"] = true
+                    let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                                   isConsecutive: true,
+                                                   chapterDict: patternDict,
+                                                   min: min,
+                                                   max: currentChapter,
+                                                   time: time)
+                    array.append(model)
+                    min = 999
+                    foundPattern = false
+                    patternDict = [:]
+                } else {
+                    guard let chapter = Int(json.key) else { continue }
+                    let dict: JSONObject = [json.key: true]
+                    let model = PlannerActivityVOM(bookName: bookModel.engName,
+                                                   isConsecutive: false,
+                                                   chapterDict: dict,
+                                                   min: chapter,
+                                                   max: chapter,
+                                                   time: time)
+                    array.append(model)
+                }
             }
         }
         

@@ -215,6 +215,11 @@ public final class DataAccessor {
             })
             newArray.append(contentsOf: newJSONArray)
             store.save(plannerActivities: newArray)
+        } else {
+            let newArray = dmArray.map({ (dm) -> JSONObject in
+                return dm.asJSON()
+            })
+            store.save(plannerActivities: newArray)
         }
     }
     
