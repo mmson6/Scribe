@@ -223,7 +223,6 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         
         var patternDict = JSONObject()
         var min = 999
-//        var max = -1
         var foundPattern = false
         for (i, json) in sorted.enumerated() {
             if i < sorted.count - 1 {

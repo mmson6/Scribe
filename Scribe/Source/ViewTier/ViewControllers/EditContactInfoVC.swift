@@ -574,11 +574,6 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        print("ha?")
-        return true
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 && indexPath.section != Section.Top.int()
         {
@@ -852,7 +847,6 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func handleDPValueChanged(_ sender: UIDatePicker) {
-        print(sender.date)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
         let indexPath = IndexPath(row: 2, section: Section.Birthday.int())

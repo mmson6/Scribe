@@ -126,11 +126,11 @@ class MainTabBarController: UITabBarController {
         
         if let tabBarItems = self.tabBar.items {
 //            tabBarItems[0].image = contactIcon?.image(with: CGSize(width: 30, height: 30))
-            tabBarItems[1].image = UIImage(named: "Open_Book_Filled_75")
-            tabBarItems[2].image = UIImage(named: "Settings_75")
+            tabBarItems[1].image = UIImage(named: "Open_Book_Filled.png")
+            tabBarItems[2].image = UIImage(named: "Settings.png")
 //            tabBarItems[2].image = settingsIcon?.image(with: CGSize(width: 30, height: 30))
             if tabBarItems.count > 3 {
-                tabBarItems[3].image = UIImage(named: "Admin_Filled_75")
+                tabBarItems[3].image = UIImage(named: "Admin_Filled.png")
             }
             self.view.layoutIfNeeded()
         }

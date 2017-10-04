@@ -59,6 +59,10 @@ extension UIColor {
         return rgb(red: 36, green: 75, blue: 97)
     }
     
+    class var scribeDesignTwoDarkBlueDisabled: UIColor {
+        return rgb(red: 36, green: 75, blue: 97, alpha: 0.5)
+    }
+    
     class var scribeDesignTwoBlue: UIColor {
         return rgb(red: 78, green: 136, blue: 168)
     }
