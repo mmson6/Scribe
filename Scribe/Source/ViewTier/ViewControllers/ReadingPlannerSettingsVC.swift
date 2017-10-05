@@ -112,7 +112,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         else {
             return nil
         }
-        let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
+        let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 2)]
 
         let alertController = UIAlertController(
             title: title,
@@ -126,7 +126,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             handler: { [weak self] action in
                 guard let strongSelf = self else { return }
                 strongSelf.showLoadingIndicator()
-                strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 1))
+                strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 2))
                 strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
                 strongSelf.removePastActivity()
                 strongSelf.removeBiblePlannerData(with: model)
@@ -385,12 +385,11 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if self.activityDataSource.count == 0 {
-                tableView.reloadSections([0], with: .fade)
-//                tableView.sectionFooterHeight = 50
+                self.emptyPastAcitivity = true
             } else {
-//                tableView.sectionFooterHeight = 0
+                self.emptyPastAcitivity = false
             }
-            return self.activityDataSource.count + 1
+            return self.activityDataSource.count + 2
         } else {
             return 7
         }
@@ -416,25 +415,25 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         
         switch indexPath.section {
         case 0:
-//            if self.emptyPastAcitivity {
-//                guard
-//                    let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyActivityCell", for: indexPath) as? ReadActivityCell
-//                    else {
-//                        return UITableViewCell()
-//                }
-//                return cell
-//            } else {
+            if indexPath.row == 1 {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyActivityCell", for: indexPath) as? ReadActivityCell
+                    else {
+                        return UITableViewCell()
+                }
+                return cell
+            } else {
                 guard
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ReadActivityCell", for: indexPath) as? ReadActivityCell
-                else {
-                    return UITableViewCell()
+                    else {
+                        return UITableViewCell()
                 }
                 UITableViewCell.applyScribeCellAttributes(to: cell)
                 
-                let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
+                let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 2)]
                 self.populate(cell: cell, with: model, at: indexPath)
                 return cell
-//            }
+            }
             
         case 1:
             if indexPath.row == 2 || indexPath.row == 4 {
@@ -445,7 +444,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 }
                 
                 self.initializeDatePickerView(cell: cell, indexPath: indexPath)
-                cell.datePickerView.tag = indexPath.row
+                cell.datePickerView.tag = indexPath.row - 1
                 
                 return cell
             } else if indexPath.row == 6 {
@@ -515,6 +514,15 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if indexPath.row == 1 {
+                if self.emptyPastAcitivity {
+                    return UITableViewAutomaticDimension
+                } else {
+                    return 0
+                }
+            }
+        }
         if indexPath.section == 1 {
             if indexPath.row == 2 {
                 if self.startDateToggled {
@@ -535,11 +543,9 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                     return 0
                 }
             }
-            
-            return UITableViewAutomaticDimension
-        } else {
-            return UITableViewAutomaticDimension
         }
+        
+        return UITableViewAutomaticDimension
     }
     
     // MARK: UIPickerView Delegate Functions
