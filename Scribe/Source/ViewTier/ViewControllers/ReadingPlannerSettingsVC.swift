@@ -11,9 +11,11 @@ import UIKit
 class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var activityDataSource = [PlannerActivityVOM]()
+    var goalJSONData = JSONObject()
     var startDateToggled = false
     var endDateToggled = false
     var goalToggled = false
+    var emptyPastAcitivity = true
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet var activityIndicatorView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -41,6 +43,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     }
     
     private func fetchData() {
+        self.showLoadingIndicator()
         DispatchQueue.global(qos: .userInitiated).async {
             self.fetchBiblePlannerActivities()
         }
@@ -51,15 +54,55 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         cmd.onCompletion { result in
             switch result {
             case .success(let array):
+                NSLog("FetchPlannerMarkActivitiesCommand returned with success")
                 self.activityDataSource = array
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
             case .failure:
-                break
+                NSLog("FetchPlannerMarkActivitiesCommand returned with failure")
+            }
+            self.fetchBiblePlannerGoals()
+        }
+        cmd.execute()
+    }
+    
+    private func fetchBiblePlannerGoals() {
+        let cmd = FetchPlannerGoalsCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let model):
+                NSLog("FetchPlannerGoalsCommand returned with success")
+                self.goalJSONData = model.asJSON()
+            case .failure:
+                NSLog("FetchPlannerGoalsCommand returned with failure")
+                self.setPlannerInitialGoal()
+            }
+            DispatchQueue.main.async {
+                self.hideLoadingIndicator()
+                self.tableView.reloadData()
             }
         }
         cmd.execute()
+    }
+    
+    private func setPlannerInitialGoal() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        
+        let startDate = dateFormatter.string(from: Date())
+        var endDate = ""
+        if let last = Date.lastDayOfYear() {
+            endDate = dateFormatter.string(from: last)
+        }
+        
+        var json = JSONObject()
+        json["startDate"] = startDate
+        json["endDate"] = endDate
+        json["OTGoal"] = 1
+        json["NTGoal"] = 1
+        self.goalJSONData = json
+        
+        self.showLoadingIndicator()
+        let model = PlannerGoalsVOM(from: self.goalJSONData)
+        self.savePlannerGoalsToDB(with: model, showToast: false)
     }
     
     private func createUndoMarkChaptersAlert(with indexPath: IndexPath) -> UIAlertController? {
@@ -173,15 +216,29 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     }
     
     private func populate(cell: SetGoalCell, at indexPath: IndexPath) {
+        let model = PlannerGoalsVOM(from: self.goalJSONData)
+        
+        let OTText = model.OTGoal == 1 ? "time" : "times"
+        let NTText = model.NTGoal == 1 ? "time" : "times"
+        
         if indexPath.row == 1 {
             cell.titleLabel.text = "Start Date :"
             cell.dateRangeLabel.text = "From"
+            cell.dateLabel.text = model.startDate
         } else if indexPath.row == 3 {
             cell.titleLabel.text = "End Date :"
             cell.dateRangeLabel.text = "To"
+            cell.dateLabel.text = model.endDate
         } else {
-            cell.titleLabel.text = "Goal"
+            cell.titleLabel.text = "Goal :"
             cell.dateRangeLabel.text = ""
+            if model.OTGoal == 0 {
+                cell.dateLabel.text = "NT \(model.NTGoal) \(NTText)"
+            } else if model.NTGoal == 0 {
+                cell.dateLabel.text = "OT \(model.OTGoal) \(OTText)"
+            } else {
+                cell.dateLabel.text = "OT \(model.OTGoal) \(OTText) + NT \(model.NTGoal) \(NTText)"
+            }
         }
     }
     
@@ -204,6 +261,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             
             cell.datePickerView.minimumDate = minDate
             cell.datePickerView.maximumDate = maxDate
+            
+            if let startDate = self.goalJSONData["startDate"] as? String {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM dd, yyyy"
+                if let dateData = dateFormatter.date(from: startDate) {
+                    cell.datePickerView.setDate(dateData, animated: false)
+                }
+            }
         } else if indexPath.row == 4 {
             let minDate = Calendar.current.date(byAdding: components, to: Date())
             
@@ -212,6 +277,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             
             cell.datePickerView.minimumDate = minDate
             cell.datePickerView.maximumDate = maxDate
+            
+            if let endDate = self.goalJSONData["endDate"] as? String {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM dd, yyyy"
+                if let dateData = dateFormatter.date(from: endDate) {
+                    cell.datePickerView.setDate(dateData, animated: false)
+                }
+            }
         }
     }
     
@@ -258,6 +331,41 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         cmd.execute()
     }
     
+    private func savePlannerGoalsToDB(with model: PlannerGoalsVOM, showToast: Bool = true) {
+        let cmd = SavePlannerGoalsCommand()
+        cmd.plannerGoalsData = model
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                if showToast {
+                    self.showSuccessToast()
+                }
+                NSLog("SavePlannerGoalCommand returned with success")
+            case .failure:
+                NSLog("SavePlannerGoalCommand returned with failure")
+            }
+            self.hideLoadingIndicator()
+            self.disableSaveButton()
+        }
+        cmd.execute()
+    }
+    
+    private func showSuccessToast() {
+        let toast = UIView(frame: CGRect(x: self.tableView.center.x - (self.tableView.frame.width / 6), y: self.tableView.center.y - 100, width: self.tableView.frame.width / 3, height: self.tableView.frame.width / 4))
+        toast.backgroundColor = .clear
+        toast.layer.cornerRadius = 10
+        
+        let textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: toast.frame.width - 15, height: toast.frame.height - 15))
+        textLabel.backgroundColor = UIColor.rgb(red: 200, green: 200, blue: 200, alpha: 0.5)
+        textLabel.numberOfLines = 0
+        textLabel.textAlignment = .center
+        textLabel.text = "Save Successful"
+        toast.addSubview(textLabel)
+        self.tableView.addSubview(toast)
+        
+        
+    }
+    
     private func showLoadingIndicator() {
         self.activityIndicatorView.isHidden = false
         self.activityIndicator.startAnimating()
@@ -276,6 +384,12 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            if self.activityDataSource.count == 0 {
+                tableView.reloadSections([0], with: .fade)
+//                tableView.sectionFooterHeight = 50
+            } else {
+//                tableView.sectionFooterHeight = 0
+            }
             return self.activityDataSource.count + 1
         } else {
             return 7
@@ -302,15 +416,25 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         
         switch indexPath.section {
         case 0:
-            guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ReadActivityCell", for: indexPath) as? ReadActivityCell
-            else {
-                return UITableViewCell()
-            }
-            
-            let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
-            self.populate(cell: cell, with: model, at: indexPath)
-            return cell
+//            if self.emptyPastAcitivity {
+//                guard
+//                    let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyActivityCell", for: indexPath) as? ReadActivityCell
+//                    else {
+//                        return UITableViewCell()
+//                }
+//                return cell
+//            } else {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ReadActivityCell", for: indexPath) as? ReadActivityCell
+                else {
+                    return UITableViewCell()
+                }
+                UITableViewCell.applyScribeCellAttributes(to: cell)
+                
+                let model = self.activityDataSource[(self.activityDataSource.count - 1) - (indexPath.row - 1)]
+                self.populate(cell: cell, with: model, at: indexPath)
+                return cell
+//            }
             
         case 1:
             if indexPath.row == 2 || indexPath.row == 4 {
@@ -341,6 +465,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 else {
                     return UITableViewCell()
                 }
+                UITableViewCell.applyScribeCellAttributes(to: cell)
                 
                 self.populate(cell: cell, at: indexPath)
                 
@@ -366,6 +491,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             } else if indexPath.row == 3 {
                 self.endDateToggled = !self.endDateToggled
             } else if indexPath.row == 5 {
+                // Initialize Pickerview
+                let indexPath = IndexPath(row: 6, section: 1)
+                guard let cell = tableView.cellForRow(at: indexPath) as? GoalPickerCell else { return }
+                let model = PlannerGoalsVOM(from: self.goalJSONData)
+                cell.pickerView.selectRow(model.OTGoal, inComponent: 0, animated: false)
+                cell.pickerView.selectRow(model.NTGoal, inComponent: 1, animated: false)
+                
+                // Toggle to show/hide
                 self.goalToggled = !self.goalToggled
             }
             tableView.beginUpdates()
@@ -426,6 +559,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
     }
+    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel = view as? UILabel
         if pickerLabel == nil {
@@ -434,9 +568,13 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             pickerLabel?.textAlignment = .center
         }
         
+        if let frame = pickerLabel?.frame {
+            pickerLabel?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height - 10)
+        }
+        
         if component == 0 {
             if row == 0 {
-                pickerLabel?.text =  "-- Old Testament --"
+                pickerLabel?.text =  "- Old Testament -"
             } else {
                 if row == 1 {
                     pickerLabel?.text =  "OT \(row) time"
@@ -447,7 +585,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             
         } else {
             if row == 0 {
-                pickerLabel?.text =  "-- New Testament --"
+                pickerLabel?.text =  "- New Testament -"
             } else {
                 if row == 1 {
                     pickerLabel?.text =  "NT \(row) time"
@@ -462,6 +600,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.enableSaveButton()
+        
+        if row == 0 {
+            if component == 0 {
+                pickerView.selectRow(1, inComponent: 1, animated: true)
+            } else if component == 1 {
+                pickerView.selectRow(1, inComponent: 0, animated: true)
+            }
+        }
         
         let OTRow = pickerView.selectedRow(inComponent: 0)
         let NTRow = pickerView.selectedRow(inComponent: 1)
@@ -478,6 +624,9 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 cell.dateLabel.text = "OT \(OTRow) \(OTText) + NT \(NTRow) \(NTText)"
             }
         }
+        
+        self.goalJSONData["OTGoal"] = OTRow
+        self.goalJSONData["NTGoal"] = NTRow
     }
     
     // MARK: IBAction Functions
@@ -494,15 +643,19 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             if let cell = self.tableView.cellForRow(at: indexPath) as? SetGoalCell {
                 cell.dateLabel.text = stringDate
             }
+            self.goalJSONData["startDate"] = stringDate
         } else if sender.tag == 4 {
             let indexPath = IndexPath(row: 3, section: 1)
             if let cell = self.tableView.cellForRow(at: indexPath) as? SetGoalCell {
                 cell.dateLabel.text = stringDate
             }
+            self.goalJSONData["endDate"] = stringDate
         }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
+        self.showLoadingIndicator()
+        let model = PlannerGoalsVOM(from: self.goalJSONData)
+        self.savePlannerGoalsToDB(with: model)
     }
 }

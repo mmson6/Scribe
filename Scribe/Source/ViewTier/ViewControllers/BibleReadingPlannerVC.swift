@@ -183,9 +183,9 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
             else {
                 return UITableViewCell()
         }
-        
+        UITableViewCell.applyScribePlannerCellAttributes(to: cell)
         cell.populate(with: model, and: chapterCounter)
-        cell.selectionStyle = .none
+//        cell.selectionStyle = .none
         
         return cell
     }

@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -376,11 +376,6 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsR-cC-3Kg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="snl-Vk-pwA">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="2612" y="17.541229385307346"/>
         </scene>
@@ -454,8 +449,47 @@
                                     <outlet property="titleLabel" destination="W4N-XF-g2U" id="R84-LJ-T0f"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadActivityCell" id="J66-kn-VMd" customClass="ReadActivityCell" customModule="Scribe" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyActivityCell" id="rnj-ST-Lnq" userLabel="EmptyActivityCell" customClass="ReadActivityCell" customModule="Scribe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="78" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rnj-ST-Lnq" id="KN3-B4-XUj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Activities Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddI-Kz-u37">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="49.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="VoC-ay-zIu"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                            <color key="textColor" red="0.3165032008" green="0.31497419980000002" blue="0.31803220180000003" alpha="0.2890892551" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTh-UT-z5a" userLabel="Separator View">
+                                            <rect key="frame" x="8" y="48.5" width="367" height="1"/>
+                                            <color key="backgroundColor" red="0.65098039220000004" green="0.71372549019999998" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="CX7-ym-mu6"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ddI-Kz-u37" firstAttribute="top" secondItem="KN3-B4-XUj" secondAttribute="top" id="6mA-Tg-1JT"/>
+                                        <constraint firstItem="wTh-UT-z5a" firstAttribute="leading" secondItem="ddI-Kz-u37" secondAttribute="leading" id="DOq-ft-uGg"/>
+                                        <constraint firstAttribute="trailing" secondItem="wTh-UT-z5a" secondAttribute="trailing" id="VM2-HV-HYh"/>
+                                        <constraint firstAttribute="bottom" secondItem="ddI-Kz-u37" secondAttribute="bottom" id="Vv0-Es-sTg"/>
+                                        <constraint firstItem="ddI-Kz-u37" firstAttribute="centerY" secondItem="KN3-B4-XUj" secondAttribute="centerY" id="YzU-Tz-NZy"/>
+                                        <constraint firstAttribute="bottom" secondItem="wTh-UT-z5a" secondAttribute="bottom" id="uvm-hW-eCy"/>
+                                        <constraint firstItem="ddI-Kz-u37" firstAttribute="leading" secondItem="KN3-B4-XUj" secondAttribute="leadingMargin" id="vJM-Ja-wsa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ddI-Kz-u37" secondAttribute="trailing" id="vs0-Mz-ica"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bookLabel" destination="ddI-Kz-u37" id="cDa-Vn-tC1"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadActivityCell" id="J66-kn-VMd" customClass="ReadActivityCell" customModule="Scribe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J66-kn-VMd" id="8vd-ZF-26A">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -520,7 +554,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SetGoalCell" id="xA9-Cv-mn8" userLabel="SetGoalCell" customClass="SetGoalCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="178" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xA9-Cv-mn8" id="Qdv-dj-ABT">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
@@ -576,7 +610,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GoalDatePickerCell" rowHeight="140" id="1cG-QS-xDN" userLabel="GoalDatePickerCell" customClass="GoalDatePickerCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="178" width="375" height="140"/>
+                                <rect key="frame" x="0.0" y="228" width="375" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1cG-QS-xDN" id="TFu-0Z-Oog">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
@@ -608,7 +642,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GoalPickerCell" rowHeight="140" id="LpR-pn-1QJ" userLabel="GoalPickerCell" customClass="GoalPickerCell" customModule="Scribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="318" width="375" height="140"/>
+                                <rect key="frame" x="0.0" y="368" width="375" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LpR-pn-1QJ" id="qMA-dE-qTa">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>

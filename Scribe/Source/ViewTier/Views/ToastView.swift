@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    internal func showToast(message : String) {
+    internal func showDropDownToast(message : String) {
         self.removePreviousToast()
         
         let toastBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30))

@@ -13,6 +13,10 @@ import FirebaseDatabase
 
 public typealias DataAccessorDMCallback<T> = (AsyncResult<T>) -> Void
 
+fileprivate enum ClientError: Error {
+    case FailedToLoadData
+}
+
 public final class DataAccessor {
     
     private let scribeClient = NetworkScribeClient(baseURL: AppConfiguration.baseURL)
@@ -40,22 +44,7 @@ public final class DataAccessor {
             callback(.success(modelArray))
         }
     }
-    
-    internal func loadPlannerActivities(callback: @escaping DataAccessorDMCallback<[PlannerActivityDM]>) {
-        let store = self.dataStore
-        if let jsonArray = store.loadPlannerActivities() {
-            let modelArray = jsonArray.map({ (json) -> PlannerActivityDM in
-                let dm = PlannerActivityDM(from: json)
-                return dm
-            })
-            callback(.success(modelArray))
-        } else {
-            let modelArray = [PlannerActivityDM]()
-            callback(.success(modelArray))
-        }
-    }
-    
-    internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
+        internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
         let loadFromDataStore = { (store: LevelDBStore) -> JSONObject? in
             let id = request.id as Any
             return store.loadContact(with: id)
@@ -142,6 +131,31 @@ public final class DataAccessor {
             case .failure(let error):
                 callback(.failure(error))
             }
+        }
+    }
+    
+    internal func loadPlannerActivities(callback: @escaping DataAccessorDMCallback<[PlannerActivityDM]>) {
+        let store = self.dataStore
+        if let jsonArray = store.loadPlannerActivities() {
+            let modelArray = jsonArray.map({ (json) -> PlannerActivityDM in
+                let dm = PlannerActivityDM(from: json)
+                return dm
+            })
+            callback(.success(modelArray))
+        } else {
+            let modelArray = [PlannerActivityDM]()
+            callback(.success(modelArray))
+        }
+    }
+    
+    internal func loadPlannerGoals(callback: @escaping DataAccessorDMCallback<PlannerGoalsDM>) {
+        let store = self.dataStore
+        if let json = store.loadPlannerGoals() {
+            let dm = PlannerGoalsDM(from: json)
+            callback(.success(dm))
+        } else {
+            let error = ClientError.FailedToLoadData
+            callback(.failure(error))
         }
     }
     
@@ -234,6 +248,13 @@ public final class DataAccessor {
             jsonArray.append(dm.asJSON())
             store.save(plannerActivities: jsonArray)
         }
+        callback(.success(true))
+    }
+    
+    internal func savePlannerGoals(dm: PlannerGoalsDM, callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        let json = dm.asJSON()
+        store.save(plannerGoals: json)
         callback(.success(true))
     }
     
