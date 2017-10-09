@@ -12,8 +12,12 @@ fileprivate let sectionInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right:
 
 class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate {
     
+    @IBOutlet var topPlanTrackerView: TopPlanTrackerView!
+    @IBOutlet var bottomPlanTrackerView: BottomPlanTrackerView!
+    var bottomTrackerHidden = false
     var bibleDataSource = [BibleVOM]()
     var plannerDataSource = [PlannerDataVOM]()
+    var plannerGoalModel: PlannerGoalsVOM?
     var markChapterWindow: UIWindow?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -24,6 +28,20 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.addObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = UIColor.scribeDesignTwoBlue
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.bottomPlanTrackerView.isHidden = false
+        self.topPlanTrackerView.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.bottomPlanTrackerView.isHidden = true
+        self.topPlanTrackerView.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -40,17 +58,49 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     
     private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateReadChapters), name: bibleChaptersUpdated, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchUpdatedBiblePlannerData), name: biblePlannerDataUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.fetchUpdatedBiblePlannerData), name: biblePlannerDataUpdatedFromSettings, object: nil)
     }
     
     private func commonInit() {
+        
+        // Initialize TopPlanTrackerView
+        guard
+            let navController = self.navigationController,
+            let tabBarController = self.tabBarController
+            else {
+                return
+        }
+        navController.view.addSubview(self.topPlanTrackerView)
+        navController.view.insertSubview(self.topPlanTrackerView, belowSubview: navController.navigationBar)
+        var topFrame = self.topPlanTrackerView.frame
+        topFrame.size.width = navController.view.frame.width
+        topFrame.origin.y = navController.navigationBar.frame.height + navController.navigationBar.frame.origin.y
+        self.topPlanTrackerView.frame = topFrame
+        self.topPlanTrackerView.initAttributes()
+        
+        // Initialize BottomPlanTrackerView
+        
+        navController.view.addSubview(self.bottomPlanTrackerView)
+        self.bottomPlanTrackerView.center.x = self.tableView.center.x
+        var bottomFrame = self.bottomPlanTrackerView.frame
+        bottomFrame.origin.y = navController.view.frame.height - self.bottomPlanTrackerView.frame.height - tabBarController.tabBar.frame.height + 22
+        self.bottomPlanTrackerView.frame = bottomFrame
+        
+        self.bottomPlanTrackerView.initAttributes()
+        
+        
+        // Initialize Table View
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
         self.tableView.separatorStyle = .none
         
-        let bottomView = UIView()
-        bottomView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 1)
-        bottomView.backgroundColor = UIColor.bookCellSeparatorColor
+        // Initialize Table View Bottom View
+        let bottomView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 33))
+        bottomView.backgroundColor = UIColor.rgb(red: 235, green: 244, blue: 241)
+        let bottomViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: bottomView.frame.width, height: 1))
+        bottomViewSeparator.backgroundColor = UIColor.bookCellSeparatorColor
+        bottomView.addSubview(bottomViewSeparator)
+        bottomViewSeparator.topAnchor.constraint(equalTo: bottomViewSeparator.topAnchor).isActive = true
         self.tableView.tableFooterView = bottomView
     }
     
@@ -85,6 +135,60 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
             case .failure:
                 break
             }
+            self.fetchBiblePlannerGoals()
+        }
+        cmd.execute()
+    }
+    
+    // Fetch data for bottomPlanTrackerView
+    private func fetchBiblePlannerGoals() {
+        let cmd = FetchPlannerGoalsCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let model):
+                NSLog("FetchPlannerGoalsCommand returned with success")
+                self.plannerGoalModel = model
+                self.fetchPlanTrackers(with: model)
+            case .failure:
+                NSLog("FetchPlannerGoalsCommand returned with failure")
+                self.setPlannerInitialGoal()
+            }
+        }
+        cmd.execute()
+    }
+    
+    private func setPlannerInitialGoal() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        
+        let startDate = dateFormatter.string(from: Date())
+        var endDate = ""
+        if let last = Date.lastDayOfYear() {
+            endDate = dateFormatter.string(from: last)
+        }
+        
+        var json = JSONObject()
+        json["startDate"] = startDate
+        json["endDate"] = endDate
+        json["OTGoal"] = 1
+        json["NTGoal"] = 1
+        
+        let model = PlannerGoalsVOM(from: json)
+        self.plannerGoalModel = model
+        self.savePlannerGoalsToDB(with: model)
+        self.fetchPlanTrackers(with: model)
+    }
+    
+    private func savePlannerGoalsToDB(with model: PlannerGoalsVOM) {
+        let cmd = SavePlannerGoalsCommand()
+        cmd.plannerGoalsData = model
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                NSLog("SavePlannerGoalCommand returned with success")
+            case .failure:
+                NSLog("SavePlannerGoalCommand returned with failure")
+            }
         }
         cmd.execute()
     }
@@ -95,7 +199,10 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         cmd.onCompletion { result in
             switch result {
             case .success:
-                NSLog("Save PlannerDataSource called")
+                NSLog("SaveBiblePlannerDataCommand returned with success")
+                if let goalModel = self.plannerGoalModel {
+                    self.fetchPlanTrackers(with: goalModel)
+                }
             case .failure:
                 break
             }
@@ -159,8 +266,57 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         }
     }
     
-    // MARK: - Table view data source
+    private func hideBottomPlanTrackerView() {
+        let translationHeight = self.bottomPlanTrackerView.frame.height - self.bottomPlanTrackerView.targetPeriodLabel.frame.height - 14 - 25
+        let animateHide = CGAffineTransform(translationX: 0, y: translationHeight)
+        
+        UIView.beginAnimations("animateHideBottom", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.7)
+        UIView.setAnimationCurve(.easeInOut)
+        self.bottomPlanTrackerView.transform = animateHide
+        UIView.commitAnimations()
+        
+        self.hideTopPlanTrackerView()
+    }
     
+    private func hideTopPlanTrackerView() {
+        let animateHide = CGAffineTransform(translationX: 0, y: -self.topPlanTrackerView.frame.height)
+        
+        UIView.beginAnimations("animateHideTop", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.7)
+        UIView.setAnimationCurve(.easeInOut)
+        self.topPlanTrackerView.transform = animateHide
+        UIView.commitAnimations()
+    }
+    
+    private func showTopPlanTrackerView() {
+        UIView.beginAnimations("animateShowTop", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.7)
+        UIView.setAnimationCurve(.easeInOut)
+        self.topPlanTrackerView.transform = CGAffineTransform.identity
+        UIView.commitAnimations()
+    }
+    
+    private func showBottomPlanTrackerView() {
+        UIView.beginAnimations("animateShowBottom", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.7)
+        UIView.setAnimationCurve(.easeInOut)
+        self.bottomPlanTrackerView.transform = CGAffineTransform.identity
+        UIView.commitAnimations()
+        
+        self.showTopPlanTrackerView()
+    }
+    
+    private func fetchPlanTrackers(with model: PlannerGoalsVOM) {
+        self.topPlanTrackerView.update(with: model, and: self.plannerDataSource)
+        self.bottomPlanTrackerView.update(with: model, and: self.plannerDataSource)
+    }
+    
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -185,7 +341,6 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         }
         UITableViewCell.applyScribePlannerCellAttributes(to: cell)
         cell.populate(with: model, and: chapterCounter)
-//        cell.selectionStyle = .none
         
         return cell
     }
@@ -207,6 +362,10 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         }) { (_) in
             self.markChapterWindow = nil
         }
-        
+    }
+    
+    @IBAction func handlePlanTrackerTapped(_ sender: UITapGestureRecognizer) {
+        self.bottomTrackerHidden ? self.showBottomPlanTrackerView() : self.hideBottomPlanTrackerView()
+        self.bottomTrackerHidden = !self.bottomTrackerHidden
     }
 }

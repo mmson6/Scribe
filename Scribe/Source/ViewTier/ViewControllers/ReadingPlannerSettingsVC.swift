@@ -73,7 +73,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 self.goalJSONData = model.asJSON()
             case .failure:
                 NSLog("FetchPlannerGoalsCommand returned with failure")
-                self.setPlannerInitialGoal()
+//                self.setPlannerInitialGoal()
             }
             DispatchQueue.main.async {
                 self.hideLoadingIndicator()
@@ -82,29 +82,29 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         }
         cmd.execute()
     }
-    
-    private func setPlannerInitialGoal() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
-        
-        let startDate = dateFormatter.string(from: Date())
-        var endDate = ""
-        if let last = Date.lastDayOfYear() {
-            endDate = dateFormatter.string(from: last)
-        }
-        
-        var json = JSONObject()
-        json["startDate"] = startDate
-        json["endDate"] = endDate
-        json["OTGoal"] = 1
-        json["NTGoal"] = 1
-        self.goalJSONData = json
-        
-        self.showLoadingIndicator()
-        let model = PlannerGoalsVOM(from: self.goalJSONData)
-        self.savePlannerGoalsToDB(with: model, showToast: false)
-    }
-    
+//    
+//    private func setPlannerInitialGoal() {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMM dd, yyyy"
+//        
+//        let startDate = dateFormatter.string(from: Date())
+//        var endDate = ""
+//        if let last = Date.lastDayOfYear() {
+//            endDate = dateFormatter.string(from: last)
+//        }
+//        
+//        var json = JSONObject()
+//        json["startDate"] = startDate
+//        json["endDate"] = endDate
+//        json["OTGoal"] = 1
+//        json["NTGoal"] = 1
+//        self.goalJSONData = json
+//        
+//        self.showLoadingIndicator()
+//        let model = PlannerGoalsVOM(from: self.goalJSONData)
+//        self.savePlannerGoalsToDB(with: model, showToast: false)
+//    }
+//    
     private func createUndoMarkChaptersAlert(with indexPath: IndexPath) -> UIAlertController? {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? ReadActivityCell,
@@ -323,7 +323,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             switch result {
             case .success:
                 NSLog("removeBiblePlannerData returned with success")
-                NotificationCenter.default.post(name: biblePlannerDataUpdated, object: nil)
+                NotificationCenter.default.post(name: biblePlannerDataUpdatedFromSettings, object: nil)
             case .failure:
                 break
             }
@@ -341,6 +341,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                     self.showSuccessToast()
                 }
                 NSLog("SavePlannerGoalCommand returned with success")
+                NotificationCenter.default.post(name: biblePlannerDataUpdatedFromSettings, object: nil)
             case .failure:
                 NSLog("SavePlannerGoalCommand returned with failure")
             }
@@ -444,7 +445,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 }
                 
                 self.initializeDatePickerView(cell: cell, indexPath: indexPath)
-                cell.datePickerView.tag = indexPath.row - 1
+                cell.datePickerView.tag = indexPath.row
                 
                 return cell
             } else if indexPath.row == 6 {

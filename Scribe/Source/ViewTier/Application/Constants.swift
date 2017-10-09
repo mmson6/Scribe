@@ -19,6 +19,13 @@ struct AppConfiguration {
 }
 
 
+// MARK: - Bible Related Constants
+
+public let totalOTVerses = 23145
+public let totalNTVerses = 7957
+public let totalOTChapters = 929
+public let totalNTChapters = 260
+
 
 // MARK: - Enumerations
 
@@ -61,7 +68,7 @@ let mainLanguageChanged = Notification.Name("MainLanguageChanged")
 let userRequestsCountChanged = Notification.Name("UserRequestsCountChanged")
 let openFromSignUpRequest = Notification.Name("OpenFromSignUpRequest")
 let bibleChaptersUpdated = Notification.Name("BibleChaptersUpdated")
-let biblePlannerDataUpdated = Notification.Name("BiblePlannerDataUpdated")
+let biblePlannerDataUpdatedFromSettings = Notification.Name("BiblePlannerDataUpdatedFromSettings")
 
 let userLoggedOut = Notification.Name("UserLoggedOut")
 
