@@ -250,7 +250,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" id="gVS-73-kEr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.92166769478344468" green="0.95751694775132279" blue="0.94445978705783007" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.87445229828042326" green="0.87445229828042326" blue="0.87445229828042326" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="78" id="HIl-ii-lsh" customClass="BookCell" customModule="Scribe" customModuleProvider="target">
@@ -288,7 +288,7 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.98039215686274506" green="0.99215686274509807" blue="0.98091311177248675" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98091311177248675" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="dHQ-UH-MDF" firstAttribute="centerY" secondItem="Rcy-ce-mnA" secondAttribute="centerY" id="T0c-KS-Yg6"/>
@@ -368,7 +368,7 @@
                     <navigationItem key="navigationItem" title="Bible Reading Planner" id="Lbm-ge-QLE">
                         <barButtonItem key="backBarButtonItem" title="Back" id="DnW-hI-z8h"/>
                         <barButtonItem key="rightBarButtonItem" image="Settings" id="gaN-xh-7ma">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <segue destination="rwq-A5-KAj" kind="show" id="qfn-xA-P4u"/>
                             </connections>
@@ -973,7 +973,7 @@
                     <tabBarItem key="tabBarItem" title="Planner" id="b2C-5w-w8G"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E4g-od-Zwr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E4g-od-Zwr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

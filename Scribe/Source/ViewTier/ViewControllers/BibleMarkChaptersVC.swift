@@ -369,7 +369,7 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
         let paddingSpace = 5 * (itemsPerRow - 1)
         let availableWidth = self.layoutView.frame.width - paddingSpace - 40
         let widthPerItem = availableWidth / itemsPerRow
-            print("cell size check : \( CGSize(width: widthPerItem, height: widthPerItem))")
+        
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     

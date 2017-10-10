@@ -665,4 +665,12 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         let model = PlannerGoalsVOM(from: self.goalJSONData)
         self.savePlannerGoalsToDB(with: model)
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("ha")
+        self.navigationController?.navigationBar.barTintColor = UIColor.scribeDesignTwoBlue
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+    }
 }

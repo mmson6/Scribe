@@ -32,14 +32,15 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = UIColor.scribeDesignTwoBlue
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
         self.bottomPlanTrackerView.isHidden = false
         self.topPlanTrackerView.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+//        self.navigationController?.navigationBar.barTintColor = .white
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
         self.bottomPlanTrackerView.isHidden = true
         self.topPlanTrackerView.isHidden = true
     }
@@ -313,7 +314,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     
     private func fetchPlanTrackers(with model: PlannerGoalsVOM) {
         self.topPlanTrackerView.update(with: model, and: self.plannerDataSource)
-        self.bottomPlanTrackerView.update(with: model, and: self.plannerDataSource)
+        self.bottomPlanTrackerView.update(with: model, and: self.plannerDataSource, and: self.bibleDataSource)
     }
     
     // MARK: - Table view data source

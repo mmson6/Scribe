@@ -148,6 +148,22 @@ public final class DataAccessor {
         }
     }
     
+    internal func loadPlannerLastActivity(callback: @escaping DataAccessorDMCallback<PlannerActivityDM>) {
+        let store = self.dataStore
+        if let jsonArray = store.loadPlannerActivities() {
+            if let last = jsonArray.last {
+                let dm = PlannerActivityDM(from: last)
+                callback(.success(dm))
+            } else {
+                let error = ClientError.FailedToLoadData
+                callback(.failure(error))
+            }
+        } else {
+            let error = ClientError.FailedToLoadData
+            callback(.failure(error))
+        }
+    }
+    
     internal func loadPlannerGoals(callback: @escaping DataAccessorDMCallback<PlannerGoalsDM>) {
         let store = self.dataStore
         if let json = store.loadPlannerGoals() {

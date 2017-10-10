@@ -139,12 +139,14 @@
 		8AAE331A1EF09DC100374794 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */; };
 		8AB6791D1EF1C2B700123A32 /* GradationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB6791C1EF1C2B700123A32 /* GradationView.swift */; };
 		8AB9861B1F8BFDC000291A4D /* TopPlanTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB9861A1F8BFDC000291A4D /* TopPlanTrackerView.swift */; };
+		8AB9861D1F8D198600291A4D /* FetchPlannerLastMarkActivityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB9861C1F8D198600291A4D /* FetchPlannerLastMarkActivityCommand.swift */; };
 		8AC53EF61F0FF3EA0053DA99 /* ContactDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */; };
 		8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EF71F1028150053DA99 /* SettingsVC.swift */; };
 		8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */; };
 		8AC53EFE1F1561C80053DA99 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */; };
 		8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */; };
 		8AD120841F85372A00610F30 /* PlannerGoalsVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD120831F85372A00610F30 /* PlannerGoalsVOM.swift */; };
+		8AE3C2691F8D25520017CD88 /* BibleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE3C2681F8D25520017CD88 /* BibleConstants.swift */; };
 		8AED41531F79AD210053E09D /* ReadingPlannerSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41521F79AD210053E09D /* ReadingPlannerSettingsVC.swift */; };
 		8AED41551F79AE990053E09D /* ReadActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41541F79AE990053E09D /* ReadActivityCell.swift */; };
 		8AED41571F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41561F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift */; };
@@ -320,12 +322,14 @@
 		8AAE32FB1EF09DC100374794 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		8AB6791C1EF1C2B700123A32 /* GradationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradationView.swift; path = Source/ViewTier/Application/Assets/Colors/GradationView.swift; sourceTree = "<group>"; };
 		8AB9861A1F8BFDC000291A4D /* TopPlanTrackerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopPlanTrackerView.swift; path = Source/ViewTier/Views/BibleReadingPlanner/TopPlanTrackerView.swift; sourceTree = "<group>"; };
+		8AB9861C1F8D198600291A4D /* FetchPlannerLastMarkActivityCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchPlannerLastMarkActivityCommand.swift; path = Source/MiddleTier/Commands/FetchPlannerLastMarkActivityCommand.swift; sourceTree = "<group>"; };
 		8AC53EF51F0FF3EA0053DA99 /* ContactDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailVC.swift; path = Source/ViewTier/ViewControllers/ContactDetailVC.swift; sourceTree = "<group>"; };
 		8AC53EF71F1028150053DA99 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Source/ViewTier/ViewControllers/SettingsVC.swift; sourceTree = "<group>"; };
 		8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDBStore.swift; path = Source/DomainTier/Data/Storage/LevelDBStore.swift; sourceTree = "<group>"; };
 		8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsStore.swift; path = Source/DomainTier/Data/Storage/UserDefaultsStore.swift; sourceTree = "<group>"; };
 		8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageSettingsVC.swift; path = Source/ViewTier/ViewControllers/LanguageSettingsVC.swift; sourceTree = "<group>"; };
 		8AD120831F85372A00610F30 /* PlannerGoalsVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerGoalsVOM.swift; path = Source/ViewTier/ValueObjects/PlannerGoalsVOM.swift; sourceTree = "<group>"; };
+		8AE3C2681F8D25520017CD88 /* BibleConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BibleConstants.swift; path = Source/ViewTier/Application/BibleConstants.swift; sourceTree = "<group>"; };
 		8AED41521F79AD210053E09D /* ReadingPlannerSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerSettingsVC.swift; path = Source/ViewTier/ViewControllers/ReadingPlannerSettingsVC.swift; sourceTree = "<group>"; };
 		8AED41541F79AE990053E09D /* ReadActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadActivityCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/ReadActivityCell.swift; sourceTree = "<group>"; };
 		8AED41561F79B0010053E09D /* ReadingPlannerSettingsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerSettingsHeaderCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/ReadingPlannerSettingsHeaderCell.swift; sourceTree = "<group>"; };
@@ -665,6 +669,7 @@
 				275202001EB9997C002C469B /* ScribeCommand.swift */,
 				8AA9A8711F7DAFC300E107C8 /* RemoveBiblePlannerDataCommand.swift */,
 				8AA9A86F1F7DAB5000E107C8 /* RemovePlannerMarkActivityCommand.swift */,
+				8AB9861C1F8D198600291A4D /* FetchPlannerLastMarkActivityCommand.swift */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				8A6C73A31F7EEC0B00CCC758 /* Date+Scribe.swift */,
 				275201B51EB990C7002C469B /* Info.plist */,
 				2719EA701EC5826E003D6D64 /* Assets */,
+				8AE3C2681F8D25520017CD88 /* BibleConstants.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -1199,6 +1205,7 @@
 				8A301B571F26665500830815 /* ContactSearchBar.swift in Sources */,
 				8A50C4BE1F56121F0076C3A5 /* ChapterHolderCell.swift in Sources */,
 				8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */,
+				8AB9861D1F8D198600291A4D /* FetchPlannerLastMarkActivityCommand.swift in Sources */,
 				274A83511ED39C4E002DA226 /* FetchContactsCommand.swift in Sources */,
 				8A8BACCF1EF1EF88006721F8 /* LoginVC.swift in Sources */,
 				8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */,
@@ -1208,6 +1215,7 @@
 				8AF1421F1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift in Sources */,
 				8AED415B1F7C38230053E09D /* PlannerDataDM.swift in Sources */,
 				2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */,
+				8AE3C2691F8D25520017CD88 /* BibleConstants.swift in Sources */,
 				8A44DD721F66F8180044CAEC /* BibleMarkChaptersVC.swift in Sources */,
 				8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */,
 				8AED415D1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift in Sources */,

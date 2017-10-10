@@ -19,14 +19,6 @@ struct AppConfiguration {
 }
 
 
-// MARK: - Bible Related Constants
-
-public let totalOTVerses = 23145
-public let totalNTVerses = 7957
-public let totalOTChapters = 929
-public let totalNTChapters = 260
-
-
 // MARK: - Enumerations
 
 public enum Authorization {

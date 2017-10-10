@@ -18,7 +18,7 @@ extension UITableViewCell {
     
     static func applyScribePlannerCellAttributes(to cell: UITableViewCell) {
         let view = UIView()
-        view.backgroundColor = UIColor.rgb(red: 237, green: 244, blue: 241)
+        view.backgroundColor = UIColor.rgb(red: 241, green: 241, blue: 241)
         cell.selectedBackgroundView = view
     }
 }

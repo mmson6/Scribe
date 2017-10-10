@@ -82,8 +82,6 @@ class MarkChapterCell: UICollectionViewCell {
     }
     
     func updateCell(with index: Int, min: Int, max: Int, and map: JSONObject) {
-        print("Check cell : \((self.frame.width))")
-        print("Check : \((self.frame.width - 6) / 2)")
         self.chapterNumberLabel.text = "\(index+1)"
         
         if map["\(index)"] != nil {

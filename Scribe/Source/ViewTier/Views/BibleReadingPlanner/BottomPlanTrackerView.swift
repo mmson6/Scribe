@@ -45,7 +45,7 @@ class BottomPlanTrackerView: UIView {
     */
 
     public func initAttributes() {
-        self.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 0.77)
+        self.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 0.70)
         self.layer.cornerRadius = 10
         
         // Set text color
@@ -97,7 +97,7 @@ class BottomPlanTrackerView: UIView {
         self.verseTrackOuterView.layer.borderWidth = 1
     }
     
-    public func update(with model: PlannerGoalsVOM, and plannerDataSource: [PlannerDataVOM]) {
+    public func update(with model: PlannerGoalsVOM, and plannerDataSource: [PlannerDataVOM], and bibleDataSource: [BibleVOM]) {
         var startDateString = ""
         var endDateString = ""
         
@@ -137,16 +137,32 @@ class BottomPlanTrackerView: UIView {
         
         // Set chapter and verse data
         var totalChaptersRead = 0
-        for (index, x) in plannerDataSource.enumerated() {
-            let isOT = index < 39
-            for (_, value) in x.chaptersReadCount {
-                if let intVal = value as? Int {
+        var totalVersesRead = 0
+        for (bookIndex, x) in plannerDataSource.enumerated() {
+            let isOT = bookIndex < 39
+            for (chapter, count) in x.chaptersReadCount {
+                if let intCount = count as? Int {
+                    let bibleVOM = bibleDataSource[bookIndex]
+                    guard let intChapter = Int(chapter) else { return }
+                    let verseCount = bibleVOM.versesPerChapter[intChapter]
+                    
                     if isOT {
-                        totalChaptersRead = intVal > model.OTGoal ?
-                            totalChaptersRead + model.OTGoal : totalChaptersRead + intVal
+                        if intCount > model.OTGoal {
+                            totalChaptersRead = totalChaptersRead + model.OTGoal
+                            totalVersesRead = totalVersesRead + (verseCount * model.OTGoal)
+                            
+                        } else {
+                            totalChaptersRead = totalChaptersRead + intCount
+                            totalVersesRead = totalVersesRead + (verseCount * intCount)
+                        }
                     } else {
-                        totalChaptersRead = intVal > model.NTGoal ?
-                            totalChaptersRead + model.NTGoal : totalChaptersRead + intVal
+                        if intCount > model.NTGoal {
+                            totalChaptersRead = totalChaptersRead + model.NTGoal
+                            totalVersesRead = totalVersesRead + (verseCount * model.NTGoal)
+                        } else {
+                            totalChaptersRead = totalChaptersRead + intCount
+                            totalVersesRead = totalVersesRead + (verseCount * intCount)
+                        }
                     }
                 }
             }
@@ -155,28 +171,34 @@ class BottomPlanTrackerView: UIView {
         let totalChapters = (model.OTGoal * totalOTChapters) + (model.NTGoal * totalNTChapters)
         let totalVerses = (model.OTGoal * totalOTVerses) + (model.NTGoal * totalNTVerses)
         self.chapterTrackLabel.text = "\(totalChaptersRead) / \(totalChapters)"
-        self.verseTrackLabel.text = "0 / \(totalVerses)"
-        
+        self.verseTrackLabel.text = "\(totalVersesRead) / \(totalVerses)"
         
         // Update Chapter Tracker Bars
         let chapterProportion = (CGFloat(totalChaptersRead) / CGFloat(totalChapters))
         multiplier = chapterProportion * 0.985
         self.chapterTrackerInnerViewWidthConstraint.constant = self.chapterTrackOuterView.frame.width * multiplier
-        let chaptersLeft = (Double(totalChapters) - Double(totalChaptersRead))
-        
-        // Update Daily Average Reading
-        let daysLeft = (Double(totalDays) - Double(daysElapsed))
-        let average = chaptersLeft / daysLeft
-        self.dailyReadingLabel.text = "Daily \(String(format: "%.1f", average)) chpt"
         
         // Update chapter percentage
         self.chapterPercentageLabel.text = "\(String(format: "%.2f", multiplier * 100))%"
         
+        // Update Daily Average Reading
+        let chaptersLeft = (Double(totalChapters) - Double(totalChaptersRead))
+        let daysLeft = (Double(totalDays) - Double(daysElapsed))
+        let average = chaptersLeft / daysLeft
+        self.dailyReadingLabel.text = "Daily \(String(format: "%.1f", average)) chpt"
         
+        // Update Verse Tracker Bars
+        let verseProportion = (CGFloat(totalVersesRead) / CGFloat(totalVerses))
+        multiplier = verseProportion * 0.985
+        self.verseTrackerInnerViewWidthConstraint.constant = self.verseTrackOuterView.frame.width * multiplier
+        
+        // Update verse percentage
+        self.versePercentageLabel.text = "\(String(format: "%.2f", multiplier * 100))%"
         
         UIView.animate(withDuration: 1) {
             self.chapterTrackOuterView.layoutIfNeeded()
             self.dayTrackOuterView.layoutIfNeeded()
+            self.verseTrackOuterView.layoutIfNeeded()
         }
     }
 }
