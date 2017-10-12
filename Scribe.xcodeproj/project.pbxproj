@@ -113,6 +113,7 @@
 		8A8BADB11EF390B7006721F8 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8BADB01EF390B7006721F8 /* LoadingVC.swift */; };
 		8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */; };
 		8A9762C51F22666D001583EA /* PullDownTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */; };
+		8AA09C101F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */; };
 		8AA2D2AE1F423B590050DD03 /* AddressDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AD1F423B590050DD03 /* AddressDM.swift */; };
 		8AA2D2B01F4396130050DD03 /* ChurchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */; };
 		8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */; };
@@ -296,6 +297,7 @@
 		8A8BADB01EF390B7006721F8 /* LoadingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingVC.swift; path = Source/ViewTier/ViewControllers/LoadingVC.swift; sourceTree = "<group>"; };
 		8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsNavigationControllerDelegate.swift; path = Source/ViewTier/Animators/ContactsNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullDownTransitionAnimator.swift; path = Source/ViewTier/Animators/PullDownTransitionAnimator.swift; sourceTree = "<group>"; };
+		8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadMoreActivitiesCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/LoadMoreActivitiesCell.swift; sourceTree = "<group>"; };
 		8AA2D2AD1F423B590050DD03 /* AddressDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressDM.swift; path = Source/DomainTier/DomainModels/AddressDM.swift; sourceTree = "<group>"; };
 		8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChurchGroupCell.swift; path = Source/ViewTier/Views/EditContactInfo/ChurchGroupCell.swift; sourceTree = "<group>"; };
 		8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateContactDetailRequest.swift; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 				8A04FE2A1F8417BC0018CC90 /* SetGoalCell.swift */,
 				8A40670D1F86CE81002026A9 /* BottomPlanTrackerView.swift */,
 				8AB9861A1F8BFDC000291A4D /* TopPlanTrackerView.swift */,
+				8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */,
 			);
 			name = BibleReadingPlanner;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,
+				8AA09C101F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift in Sources */,
 				8A28F6C61F633BDB00EB3F4F /* BookCell.swift in Sources */,
 				8AAE18911F3B96510049BC71 /* SectionHeaderCell.swift in Sources */,
 				8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */,

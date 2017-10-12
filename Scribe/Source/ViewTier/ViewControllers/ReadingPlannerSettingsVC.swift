@@ -16,7 +16,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     var endDateToggled = false
     var goalToggled = false
     var emptyPastAcitivity = true
-    var showLoadMoreCell = false
+    var showLoadMoreCell = true
+    var activitiesLoadAmount = 10
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet var activityIndicatorView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -128,7 +129,12 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 guard let strongSelf = self else { return }
                 strongSelf.showLoadingIndicator()
                 strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 2))
-                strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
+                if strongSelf.activityDataSource.count < 10 {
+                    strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
+                } else {
+                    strongSelf.tableView.reloadSections([0], with: .fade)
+                }
+                
                 strongSelf.removePastActivity()
                 strongSelf.removeBiblePlannerData(with: model)
         })
@@ -307,8 +313,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             switch result {
             case .success:
                 NSLog("RemovePlannerMarkActivityCommand returned with success")
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
+//                self.tableView.beginUpdates()
+//                self.tableView.endUpdates()
             case .failure:
                 break
             }
@@ -341,6 +347,10 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 if showToast {
                     self.showSuccessToast(on: self.tableView)
                 }
+                self.startDateToggled = false
+                self.endDateToggled = false
+                self.goalToggled = false
+                self.tableView.reloadSections([1], with: .fade)
                 NSLog("SavePlannerGoalCommand returned with success")
                 NotificationCenter.default.post(name: biblePlannerDataUpdatedFromSettings, object: nil)
             case .failure:
@@ -373,10 +383,11 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             if self.activityDataSource.count == 0 {
                 self.emptyPastAcitivity = true
             } else {
-                if self.activityDataSource.count < 10 {
-                    self.showLoadMoreCell = true
-                }
                 self.emptyPastAcitivity = false
+                if self.activityDataSource.count > 10 && self.showLoadMoreCell {
+//                    self.showLoadMoreCell = true
+                    return self.activitiesLoadAmount + 3
+                }
             }
             return self.activityDataSource.count + 2
         } else {
@@ -396,7 +407,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 cell.titleLabel.text = "PAST ACTIVITIES"
                 cell.subTextLabel.text = "Undo your past marking activities"
             } else if indexPath.section == 1 {
-                cell.titleLabel.text = "SET GOALS"
+                cell.titleLabel.text = "PLANNER GOAL"
                 cell.subTextLabel.text = "You need to save the change to apply."
             }
             return cell
@@ -412,10 +423,23 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 }
                 return cell
             } else {
+                if self.activityDataSource.count > 10 {
+                    if indexPath.row == (self.activitiesLoadAmount + 2) {
+                        guard
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadMoreActivitiesCell", for: indexPath) as? LoadMoreActivitiesCell
+                        else {
+                            return UITableViewCell()
+                        }
+                        UITableViewCell.applyScribeCellAttributes(to: cell)
+                        cell.tag = -1
+                        return cell
+                    }
+                }
+                
                 guard
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ReadActivityCell", for: indexPath) as? ReadActivityCell
-                    else {
-                        return UITableViewCell()
+                else {
+                    return UITableViewCell()
                 }
                 UITableViewCell.applyScribeCellAttributes(to: cell)
                 
@@ -470,8 +494,17 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 0 {
-            if let alertController = self.createUndoMarkChaptersAlert(with: indexPath) {
-                self.present(alertController, animated: true, completion: nil)
+            let cell = tableView.cellForRow(at: indexPath)
+            if cell?.tag == -1 {
+                self.activitiesLoadAmount = self.activitiesLoadAmount + 10
+                if self.activityDataSource.count <= self.activitiesLoadAmount {
+                    self.showLoadMoreCell = false
+                }
+                tableView.reloadSections([0], with: .fade)
+            } else {
+                if let alertController = self.createUndoMarkChaptersAlert(with: indexPath) {
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 1 {
