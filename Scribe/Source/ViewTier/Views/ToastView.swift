@@ -53,6 +53,33 @@ extension UIViewController {
         let previous = self.view.viewWithTag(100)
         previous?.removeFromSuperview()
     }
+    
+    internal func showSuccessToast(on view: UIView) {
+        let toast = UIView(frame: CGRect(x: view.center.x - (view.frame.width / 6), y: view.center.y - 100, width: view.frame.width / 3, height: view.frame.width / 4))
+        toast.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 0.70)
+        toast.layer.cornerRadius = 10
+        toast.alpha = 0
+        
+        let textLabel = UILabel(frame: toast.bounds)
+        textLabel.backgroundColor = .clear
+        textLabel.numberOfLines = 0
+        textLabel.textColor = UIColor(white: 1, alpha: 0.95)
+        textLabel.textAlignment = .center
+        textLabel.text = "Save \nSuccessful"
+        toast.addSubview(textLabel)
+        
+        view.addSubview(toast)
+        
+        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+            toast.alpha = 1
+        }) { (_) in
+            UIView.animate(withDuration: 1, delay: 1, options: .curveEaseInOut, animations: {
+                toast.alpha = 0
+            }, completion: { (success) in
+                toast.removeFromSuperview()
+            })
+        }
+    }
 }
 
 

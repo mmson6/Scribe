@@ -33,7 +33,7 @@ class BottomPlanTrackerView: UIView {
     @IBOutlet weak var dailyReadingLabel: UILabel!
     
     @IBOutlet weak var chapterTrackerInnerViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dayTrackerInnterViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dayTrackerInnerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var verseTrackerInnerViewWidthConstraint: NSLayoutConstraint!
     
     /*
@@ -56,7 +56,7 @@ class BottomPlanTrackerView: UIView {
         
         self.targetLabel.textColor = UIColor(white: 1, alpha: 0.95)
         self.dayTrackLabel.textColor = UIColor(white: 1, alpha: 0.95)
-        self.chapterTrackLabel.textColor = UIColor(white: 1, alpha: 0.95)
+        self.chapterTrackLabel.textColor = UIColor.rgb(red: 68, green: 188, blue: 250)
         self.verseTrackLabel.textColor = UIColor(white: 1, alpha: 0.95)
         
         self.dayPercentageLabel.textColor = UIColor(white: 1, alpha: 0.95)
@@ -70,7 +70,15 @@ class BottomPlanTrackerView: UIView {
         self.chaptersReadLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
         self.versesReadLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
         self.targetLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
+        
         self.dailyReadingLabel.font = UIFont.systemFont(ofSize: 11, weight: 0.3)
+        self.dayTrackLabel.font = UIFont.systemFont(ofSize: 11)
+        self.chapterTrackLabel.font = UIFont.systemFont(ofSize: 11)
+        self.verseTrackLabel.font = UIFont.systemFont(ofSize: 11)
+        
+        self.dayPercentageLabel.font = UIFont.systemFont(ofSize: 11)
+        self.chapterPercentageLabel.font = UIFont.systemFont(ofSize: 11)
+        self.versePercentageLabel.font = UIFont.systemFont(ofSize: 11)
         
         // Set Corner Radius
         self.dayTrackOuterView.layer.cornerRadius = self.dayTrackOuterView.frame.height / 2
@@ -128,11 +136,12 @@ class BottomPlanTrackerView: UIView {
         // Update Elapsed Days Tracker Bars
         self.dayTrackLabel.text = "\(daysElapsed) / \(totalDays)"
         let dayProportion = (CGFloat(daysElapsed) / CGFloat(totalDays))
-        var multiplier = dayProportion * 0.985
-        self.dayTrackerInnterViewWidthConstraint.constant = self.dayTrackOuterView.frame.width * multiplier
+        var multiplier = dayProportion * 0.98
+        var fillingWidth = (self.dayTrackOuterView.frame.width - self.dayTrackInnerView.frame.height) * multiplier
+        self.dayTrackerInnerViewWidthConstraint.constant = self.dayTrackInnerView.frame.height + fillingWidth
         
         // Update day percentage
-        self.dayPercentageLabel.text = "\(String(format: "%.2f", multiplier * 100))%"
+        self.dayPercentageLabel.text = "\(String(format: "%.2f", dayProportion * 100))%"
         
         
         // Set chapter and verse data
@@ -175,25 +184,39 @@ class BottomPlanTrackerView: UIView {
         
         // Update Chapter Tracker Bars
         let chapterProportion = (CGFloat(totalChaptersRead) / CGFloat(totalChapters))
-        multiplier = chapterProportion * 0.985
-        self.chapterTrackerInnerViewWidthConstraint.constant = self.chapterTrackOuterView.frame.width * multiplier
+        multiplier = chapterProportion * 0.98
+        fillingWidth = (self.chapterTrackOuterView.frame.width - self.chapterTrackInnerView.frame.height) * multiplier
+        self.chapterTrackerInnerViewWidthConstraint.constant = self.chapterTrackInnerView.frame.height + fillingWidth
+        
+        // Update Chapter tracker label color
+        if totalChaptersRead >= (totalChapters / totalDays) * (daysElapsed + 1) {
+            self.chapterTrackLabel.textColor = UIColor.bottomPlanTrackerChapterBlueColor
+        } else {
+            self.chapterTrackLabel.textColor = UIColor.bottomPlanTrackerChapterGreenColor
+        }
         
         // Update chapter percentage
-        self.chapterPercentageLabel.text = "\(String(format: "%.2f", multiplier * 100))%"
+        self.chapterPercentageLabel.text = "\(String(format: "%.2f", chapterProportion * 100))%"
         
         // Update Daily Average Reading
         let chaptersLeft = (Double(totalChapters) - Double(totalChaptersRead))
         let daysLeft = (Double(totalDays) - Double(daysElapsed))
         let average = chaptersLeft / daysLeft
-        self.dailyReadingLabel.text = "Daily \(String(format: "%.1f", average)) chpt"
+        if daysLeft == 0 {
+            self.dailyReadingLabel.text = "Daily 0 chpt"
+        } else {
+            self.dailyReadingLabel.text = "Daily \(String(format: "%.1f", average)) chpt"
+        }
+        
         
         // Update Verse Tracker Bars
         let verseProportion = (CGFloat(totalVersesRead) / CGFloat(totalVerses))
-        multiplier = verseProportion * 0.985
-        self.verseTrackerInnerViewWidthConstraint.constant = self.verseTrackOuterView.frame.width * multiplier
+        multiplier = verseProportion * 0.98
+        fillingWidth = (self.verseTrackOuterView.frame.width - self.verseTrackInnerView.frame.height) * multiplier
+        self.verseTrackerInnerViewWidthConstraint.constant = self.verseTrackInnerView.frame.height + fillingWidth
         
         // Update verse percentage
-        self.versePercentageLabel.text = "\(String(format: "%.2f", multiplier * 100))%"
+        self.versePercentageLabel.text = "\(String(format: "%.2f", verseProportion * 100))%"
         
         UIView.animate(withDuration: 1) {
             self.chapterTrackOuterView.layoutIfNeeded()

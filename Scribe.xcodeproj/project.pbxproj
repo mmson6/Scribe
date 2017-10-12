@@ -610,8 +610,8 @@
 				8A06F0BB1F2AAD2600D6458A /* MoreInfoVC.swift */,
 				8AED41521F79AD210053E09D /* ReadingPlannerSettingsVC.swift */,
 				8AC53EF71F1028150053DA99 /* SettingsVC.swift */,
-				8A2F42021F29048E00E6DEC5 /* SignUpVC.swift */,
 				8A7D5E271F2F9A1B00089E1F /* SignUpRequestsVC.swift */,
+				8A2F42021F29048E00E6DEC5 /* SignUpVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -45,6 +45,22 @@ extension UIColor {
         return rgb(red: 250, green: 221, blue: 221)
     }
     
+    class var topPlanTrackerAverageGreenColor: UIColor {
+        return UIColor.rgb(red: 211, green: 251, blue: 206)
+    }
+    
+    class var topPlanTrackerAveragePurpleColor: UIColor {
+        return rgb(red: 203, green: 204, blue: 248)
+    }
+    
+    class var bottomPlanTrackerChapterGreenColor: UIColor {
+        return UIColor.rgb(red: 78, green: 244, blue: 66)
+    }
+    
+    class var bottomPlanTrackerChapterBlueColor: UIColor {
+        return UIColor.rgb(red: 68, green: 188, blue: 250)
+    }
+    
     // MARK: Pinterest Design 2
     
     class var scribeDesignTwoLightBlue: UIColor {

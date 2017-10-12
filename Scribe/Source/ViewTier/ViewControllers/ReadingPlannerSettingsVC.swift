@@ -16,6 +16,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     var endDateToggled = false
     var goalToggled = false
     var emptyPastAcitivity = true
+    var showLoadMoreCell = false
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet var activityIndicatorView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -155,7 +156,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     }
     
     private func populate(cell: ReadActivityCell, with model: PlannerActivityVOM, at indexPath: IndexPath) {
-        cell.activityCountLabel.text = "\(indexPath.row)"
+        cell.activityCountLabel.text = "\(indexPath.row - 1)"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy, HH:mm"
@@ -338,7 +339,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             switch result {
             case .success:
                 if showToast {
-                    self.showSuccessToast()
+                    self.showSuccessToast(on: self.tableView)
                 }
                 NSLog("SavePlannerGoalCommand returned with success")
                 NotificationCenter.default.post(name: biblePlannerDataUpdatedFromSettings, object: nil)
@@ -349,22 +350,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             self.disableSaveButton()
         }
         cmd.execute()
-    }
-    
-    private func showSuccessToast() {
-        let toast = UIView(frame: CGRect(x: self.tableView.center.x - (self.tableView.frame.width / 6), y: self.tableView.center.y - 100, width: self.tableView.frame.width / 3, height: self.tableView.frame.width / 4))
-        toast.backgroundColor = .clear
-        toast.layer.cornerRadius = 10
-        
-        let textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: toast.frame.width - 15, height: toast.frame.height - 15))
-        textLabel.backgroundColor = UIColor.rgb(red: 200, green: 200, blue: 200, alpha: 0.5)
-        textLabel.numberOfLines = 0
-        textLabel.textAlignment = .center
-        textLabel.text = "Save Successful"
-        toast.addSubview(textLabel)
-        self.tableView.addSubview(toast)
-        
-        
     }
     
     private func showLoadingIndicator() {
@@ -388,6 +373,9 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             if self.activityDataSource.count == 0 {
                 self.emptyPastAcitivity = true
             } else {
+                if self.activityDataSource.count < 10 {
+                    self.showLoadMoreCell = true
+                }
                 self.emptyPastAcitivity = false
             }
             return self.activityDataSource.count + 2

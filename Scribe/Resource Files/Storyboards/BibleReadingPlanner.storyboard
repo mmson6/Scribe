@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -483,8 +483,8 @@
                                 <constraint firstAttribute="height" constant="11" id="vgx-lE-0KA"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 31105" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUw-az-E0j">
-                            <rect key="frame" x="122" y="110" width="45" height="12"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 31102" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUw-az-E0j">
+                            <rect key="frame" x="122" y="110" width="44.5" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -503,12 +503,12 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="fmq-CV-Oa5">
-                            <rect key="frame" x="122" y="78" width="213" height="14.5"/>
+                            <rect key="frame" x="122" y="79" width="213" height="14.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 1189" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gy2-DL-klP">
                                     <rect key="frame" x="0.0" y="0.0" width="38.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.26471534309898648" green="0.73531220610899339" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily reading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2q-NR-LFv">
@@ -526,7 +526,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.64913035168195721" colorSpace="custom" customColorSpace="displayP3"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="0P1-Y3-sLa" firstAttribute="top" secondItem="iJp-j7-o5d" secondAttribute="bottom" constant="13" id="5ie-5O-rpp"/>
@@ -536,7 +536,7 @@
                         <constraint firstItem="9c6-4K-fex" firstAttribute="leading" secondItem="5Ea-gg-jcU" secondAttribute="trailing" constant="10" id="DxU-CA-3wd"/>
                         <constraint firstAttribute="trailing" secondItem="VI9-9X-1m4" secondAttribute="trailing" constant="10" id="GIg-E4-kjb"/>
                         <constraint firstItem="3sR-07-ZHM" firstAttribute="top" secondItem="4kE-Je-zht" secondAttribute="bottom" id="K5B-1v-5b7"/>
-                        <constraint firstItem="fmq-CV-Oa5" firstAttribute="top" secondItem="jKl-ic-kgD" secondAttribute="bottom" constant="-1.5" id="LKl-QT-AZS"/>
+                        <constraint firstItem="fmq-CV-Oa5" firstAttribute="top" secondItem="jKl-ic-kgD" secondAttribute="bottom" constant="-0.5" id="LKl-QT-AZS"/>
                         <constraint firstItem="VI9-9X-1m4" firstAttribute="leading" secondItem="0P1-Y3-sLa" secondAttribute="trailing" constant="10" id="NZk-lE-0e2"/>
                         <constraint firstItem="mUw-az-E0j" firstAttribute="leading" secondItem="VI9-9X-1m4" secondAttribute="leading" id="NnN-sQ-7Hf"/>
                         <constraint firstItem="iJp-j7-o5d" firstAttribute="trailing" secondItem="Fb9-lK-V2h" secondAttribute="trailing" id="PwE-XT-XO7"/>
@@ -575,7 +575,7 @@
                         <outlet property="dayTrackInnerView" destination="S6A-EG-Fm6" id="3k5-vi-xkd"/>
                         <outlet property="dayTrackLabel" destination="3sR-07-ZHM" id="qGO-AT-qbE"/>
                         <outlet property="dayTrackOuterView" destination="4kE-Je-zht" id="lR4-Xa-bKD"/>
-                        <outlet property="dayTrackerInnterViewWidthConstraint" destination="4aW-QK-1ao" id="N5W-ei-JuJ"/>
+                        <outlet property="dayTrackerInnerViewWidthConstraint" destination="4aW-QK-1ao" id="OTC-pr-Fsl"/>
                         <outlet property="daysElapsedLabel" destination="Fb9-lK-V2h" id="iWb-Tl-5X9"/>
                         <outlet property="targetLabel" destination="9c6-4K-fex" id="Jx7-2R-yga"/>
                         <outlet property="targetPeriodLabel" destination="5Ea-gg-jcU" id="db0-a8-hlQ"/>
@@ -592,19 +592,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="240" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-2" translatesAutoresizingMaskIntoConstraints="NO" id="gFc-V0-3jf">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gFc-V0-3jf">
                             <rect key="frame" x="0.0" y="3" width="240" height="29"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Recently you read ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDA-iE-gKj">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="16.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recently you read ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDA-iE-gKj">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You need to read ... daily" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI0-j1-WKf">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You need to read ... daily" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI0-j1-WKf">
                                     <rect key="frame" x="0.0" y="14.5" width="240" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.79765447454317584" green="0.79862637809426651" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -613,7 +613,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.6612791475535168" colorSpace="custom" customColorSpace="displayP3"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="gFc-V0-3jf" firstAttribute="width" secondItem="ILf-M5-dD7" secondAttribute="width" id="0i6-7D-Yxq"/>
