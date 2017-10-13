@@ -8,6 +8,9 @@
 
 import Foundation
 
+import SwiftyJSON
+
+
 public struct PlannerDataVOM {
     public let bookName: String
     public var chaptersReadCount: JSONObject
@@ -20,5 +23,15 @@ public struct PlannerDataVOM {
     public init(bookName: String, chaptersReadCount: JSONObject) {
         self.bookName = bookName
         self.chaptersReadCount = chaptersReadCount
+    }
+    
+    public init(from jsonObj: JSONObject) {
+        let json = JSON(jsonObj)
+        self.bookName = json["bookName"].string ?? ""
+        if let chaptersReadCountJSON = json["chaptersReadCount"].dictionaryObject {
+            self.chaptersReadCount = chaptersReadCountJSON
+        } else {
+            self.chaptersReadCount = [:]
+        }
     }
 }

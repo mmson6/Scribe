@@ -11,6 +11,7 @@ import UIKit
 class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var activityDataSource = [PlannerActivityVOM]()
+    var readingPlannerDataSource = [ReadingPlannerVOM]()
     var goalJSONData = JSONObject()
     var startDateToggled = false
     var endDateToggled = false
@@ -61,20 +62,20 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             case .failure:
                 NSLog("FetchPlannerMarkActivitiesCommand returned with failure")
             }
-            self.fetchBiblePlannerGoals()
+            self.fetchBiblePlannerGoal()
         }
         cmd.execute()
     }
     
-    private func fetchBiblePlannerGoals() {
-        let cmd = FetchPlannerGoalsCommand()
+    private func fetchBiblePlannerGoal() {
+        let cmd = FetchPlannerGoalCommand()
         cmd.onCompletion { result in
             switch result {
             case .success(let model):
-                NSLog("FetchPlannerGoalsCommand returned with success")
+                NSLog("FetchPlannerGoalCommand returned with success")
                 self.goalJSONData = model.asJSON()
             case .failure:
-                NSLog("FetchPlannerGoalsCommand returned with failure")
+                NSLog("FetchPlannerGoalCommand returned with failure")
 //                self.setPlannerInitialGoal()
             }
             DispatchQueue.main.async {
@@ -103,8 +104,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
 //        self.goalJSONData = json
 //        
 //        self.showLoadingIndicator()
-//        let model = PlannerGoalsVOM(from: self.goalJSONData)
-//        self.savePlannerGoalsToDB(with: model, showToast: false)
+//        let model = PlannerGoalVOM(from: self.goalJSONData)
+//        self.savePlannerGoalToDB(with: model, showToast: false)
 //    }
 //    
     private func createUndoMarkChaptersAlert(with indexPath: IndexPath) -> UIAlertController? {
@@ -223,7 +224,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     }
     
     private func populate(cell: SetGoalCell, at indexPath: IndexPath) {
-        let model = PlannerGoalsVOM(from: self.goalJSONData)
+        let model = PlannerGoalVOM(from: self.goalJSONData)
         
         let OTText = model.OTGoal == 1 ? "time" : "times"
         let NTText = model.NTGoal == 1 ? "time" : "times"
@@ -338,9 +339,9 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         cmd.execute()
     }
     
-    private func savePlannerGoalsToDB(with model: PlannerGoalsVOM, showToast: Bool = true) {
-        let cmd = SavePlannerGoalsCommand()
-        cmd.plannerGoalsData = model
+    private func savePlannerGoalToDB(with model: PlannerGoalVOM, showToast: Bool = true) {
+        let cmd = SavePlannerGoalCommand()
+        cmd.plannerGoalData = model
         cmd.onCompletion { result in
             switch result {
             case .success:
@@ -375,7 +376,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -484,6 +485,15 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 return cell
             }
             
+        case 2:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingPlannerCell", for: indexPath) as? ReadingPlannerCell
+                else {
+                    return UITableViewCell()
+            }
+            UITableViewCell.applyScribeCellAttributes(to: cell)
+            
+            return cell
         default:
             return UITableViewCell()
         }
@@ -515,7 +525,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 // Initialize Pickerview
                 let indexPath = IndexPath(row: 6, section: 1)
                 guard let cell = tableView.cellForRow(at: indexPath) as? GoalPickerCell else { return }
-                let model = PlannerGoalsVOM(from: self.goalJSONData)
+                let model = PlannerGoalVOM(from: self.goalJSONData)
                 cell.pickerView.selectRow(model.OTGoal, inComponent: 0, animated: false)
                 cell.pickerView.selectRow(model.NTGoal, inComponent: 1, animated: false)
                 
@@ -683,8 +693,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         self.showLoadingIndicator()
-        let model = PlannerGoalsVOM(from: self.goalJSONData)
-        self.savePlannerGoalsToDB(with: model)
+        let model = PlannerGoalVOM(from: self.goalJSONData)
+        self.savePlannerGoalToDB(with: model)
     }
     
     // MARK: - Navigation

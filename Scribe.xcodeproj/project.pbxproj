@@ -88,9 +88,9 @@
 		8A6C73A41F7EEC0B00CCC758 /* Date+Scribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C73A31F7EEC0B00CCC758 /* Date+Scribe.swift */; };
 		8A6F53681F2A5E7A00514780 /* ContactDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */; };
 		8A70B02B1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */; };
-		8A7395DF1F853A2F00937D5A /* SavePlannerGoalsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7395DE1F853A2F00937D5A /* SavePlannerGoalsCommand.swift */; };
-		8A7395E11F853A7E00937D5A /* PlannerGoalsDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7395E01F853A7E00937D5A /* PlannerGoalsDM.swift */; };
-		8A7395E31F853DC300937D5A /* FetchPlannerGoalsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7395E21F853DC300937D5A /* FetchPlannerGoalsCommand.swift */; };
+		8A7395DF1F853A2F00937D5A /* SavePlannerGoalCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7395DE1F853A2F00937D5A /* SavePlannerGoalCommand.swift */; };
+		8A7395E11F853A7E00937D5A /* PlannerGoalDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7395E01F853A7E00937D5A /* PlannerGoalDM.swift */; };
+		8A7395E31F853DC300937D5A /* FetchPlannerGoalCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7395E21F853DC300937D5A /* FetchPlannerGoalCommand.swift */; };
 		8A7D5E1E1F2BC4FA00089E1F /* AdminSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */; };
 		8A7D5E201F2BCECD00089E1F /* AdminSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E1F1F2BCECD00089E1F /* AdminSettingsVC.swift */; };
 		8A7D5E221F2F906100089E1F /* FetchSignUpRequestsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */; };
@@ -114,6 +114,10 @@
 		8A9762C11F2256BE001583EA /* ContactsNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */; };
 		8A9762C51F22666D001583EA /* PullDownTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */; };
 		8AA09C101F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */; };
+		8AA09C121F90104F00EAE7AC /* ReadingPlannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C111F90104F00EAE7AC /* ReadingPlannerCell.swift */; };
+		8AA09C141F910E5600EAE7AC /* ReadingPlannerVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C131F910E5600EAE7AC /* ReadingPlannerVOM.swift */; };
+		8AA09C161F9122AF00EAE7AC /* ReadingPlannerDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C151F9122AF00EAE7AC /* ReadingPlannerDM.swift */; };
+		8AA09C181F914BF000EAE7AC /* FetchReadingPlannersCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C171F914BF000EAE7AC /* FetchReadingPlannersCommand.swift */; };
 		8AA2D2AE1F423B590050DD03 /* AddressDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AD1F423B590050DD03 /* AddressDM.swift */; };
 		8AA2D2B01F4396130050DD03 /* ChurchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */; };
 		8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */; };
@@ -146,7 +150,7 @@
 		8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */; };
 		8AC53EFE1F1561C80053DA99 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */; };
 		8AC53F001F1567DC0053DA99 /* LanguageSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */; };
-		8AD120841F85372A00610F30 /* PlannerGoalsVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD120831F85372A00610F30 /* PlannerGoalsVOM.swift */; };
+		8AD120841F85372A00610F30 /* PlannerGoalVOM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD120831F85372A00610F30 /* PlannerGoalVOM.swift */; };
 		8AE3C2691F8D25520017CD88 /* BibleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE3C2681F8D25520017CD88 /* BibleConstants.swift */; };
 		8AED41531F79AD210053E09D /* ReadingPlannerSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41521F79AD210053E09D /* ReadingPlannerSettingsVC.swift */; };
 		8AED41551F79AE990053E09D /* ReadActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED41541F79AE990053E09D /* ReadActivityCell.swift */; };
@@ -272,9 +276,9 @@
 		8A6C73A31F7EEC0B00CCC758 /* Date+Scribe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Scribe.swift"; path = "Source/ViewTier/Application/Date+Scribe.swift"; sourceTree = "<group>"; };
 		8A6F53671F2A5E7A00514780 /* ContactDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContactDetail.storyboard; path = "Resource Files/Storyboards/ContactDetail.storyboard"; sourceTree = "<group>"; };
 		8A70B02A1F215B6400C9BD91 /* ContactGroupsTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupsTransitionAnimator.swift; path = Source/ViewTier/Animators/ContactGroupsTransitionAnimator.swift; sourceTree = "<group>"; };
-		8A7395DE1F853A2F00937D5A /* SavePlannerGoalsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavePlannerGoalsCommand.swift; path = Source/MiddleTier/Commands/SavePlannerGoalsCommand.swift; sourceTree = "<group>"; };
-		8A7395E01F853A7E00937D5A /* PlannerGoalsDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerGoalsDM.swift; path = Source/DomainTier/DomainModels/PlannerGoalsDM.swift; sourceTree = "<group>"; };
-		8A7395E21F853DC300937D5A /* FetchPlannerGoalsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchPlannerGoalsCommand.swift; path = Source/MiddleTier/Commands/FetchPlannerGoalsCommand.swift; sourceTree = "<group>"; };
+		8A7395DE1F853A2F00937D5A /* SavePlannerGoalCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavePlannerGoalCommand.swift; path = Source/MiddleTier/Commands/SavePlannerGoalCommand.swift; sourceTree = "<group>"; };
+		8A7395E01F853A7E00937D5A /* PlannerGoalDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerGoalDM.swift; path = Source/DomainTier/DomainModels/PlannerGoalDM.swift; sourceTree = "<group>"; };
+		8A7395E21F853DC300937D5A /* FetchPlannerGoalCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchPlannerGoalCommand.swift; path = Source/MiddleTier/Commands/FetchPlannerGoalCommand.swift; sourceTree = "<group>"; };
 		8A7D5E1D1F2BC4FA00089E1F /* AdminSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AdminSettings.storyboard; path = "Resource Files/Storyboards/AdminSettings.storyboard"; sourceTree = "<group>"; };
 		8A7D5E1F1F2BCECD00089E1F /* AdminSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminSettingsVC.swift; path = Source/ViewTier/ViewControllers/AdminSettingsVC.swift; sourceTree = "<group>"; };
 		8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchSignUpRequestsCommand.swift; path = Source/MiddleTier/Commands/FetchSignUpRequestsCommand.swift; sourceTree = "<group>"; };
@@ -298,6 +302,10 @@
 		8A9762C01F2256BE001583EA /* ContactsNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsNavigationControllerDelegate.swift; path = Source/ViewTier/Animators/ContactsNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		8A9762C41F22666D001583EA /* PullDownTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullDownTransitionAnimator.swift; path = Source/ViewTier/Animators/PullDownTransitionAnimator.swift; sourceTree = "<group>"; };
 		8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadMoreActivitiesCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/LoadMoreActivitiesCell.swift; sourceTree = "<group>"; };
+		8AA09C111F90104F00EAE7AC /* ReadingPlannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/ReadingPlannerCell.swift; sourceTree = "<group>"; };
+		8AA09C131F910E5600EAE7AC /* ReadingPlannerVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerVOM.swift; path = Source/ViewTier/ValueObjects/ReadingPlannerVOM.swift; sourceTree = "<group>"; };
+		8AA09C151F9122AF00EAE7AC /* ReadingPlannerDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerDM.swift; path = Source/DomainTier/DomainModels/ReadingPlannerDM.swift; sourceTree = "<group>"; };
+		8AA09C171F914BF000EAE7AC /* FetchReadingPlannersCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchReadingPlannersCommand.swift; path = Source/MiddleTier/Commands/FetchReadingPlannersCommand.swift; sourceTree = "<group>"; };
 		8AA2D2AD1F423B590050DD03 /* AddressDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressDM.swift; path = Source/DomainTier/DomainModels/AddressDM.swift; sourceTree = "<group>"; };
 		8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChurchGroupCell.swift; path = Source/ViewTier/Views/EditContactInfo/ChurchGroupCell.swift; sourceTree = "<group>"; };
 		8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateContactDetailRequest.swift; sourceTree = "<group>"; };
@@ -330,7 +338,7 @@
 		8AC53EFB1F13E0470053DA99 /* LevelDBStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDBStore.swift; path = Source/DomainTier/Data/Storage/LevelDBStore.swift; sourceTree = "<group>"; };
 		8AC53EFD1F1561C70053DA99 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsStore.swift; path = Source/DomainTier/Data/Storage/UserDefaultsStore.swift; sourceTree = "<group>"; };
 		8AC53EFF1F1567DC0053DA99 /* LanguageSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageSettingsVC.swift; path = Source/ViewTier/ViewControllers/LanguageSettingsVC.swift; sourceTree = "<group>"; };
-		8AD120831F85372A00610F30 /* PlannerGoalsVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerGoalsVOM.swift; path = Source/ViewTier/ValueObjects/PlannerGoalsVOM.swift; sourceTree = "<group>"; };
+		8AD120831F85372A00610F30 /* PlannerGoalVOM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlannerGoalVOM.swift; path = Source/ViewTier/ValueObjects/PlannerGoalVOM.swift; sourceTree = "<group>"; };
 		8AE3C2681F8D25520017CD88 /* BibleConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BibleConstants.swift; path = Source/ViewTier/Application/BibleConstants.swift; sourceTree = "<group>"; };
 		8AED41521F79AD210053E09D /* ReadingPlannerSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingPlannerSettingsVC.swift; path = Source/ViewTier/ViewControllers/ReadingPlannerSettingsVC.swift; sourceTree = "<group>"; };
 		8AED41541F79AE990053E09D /* ReadActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadActivityCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/ReadActivityCell.swift; sourceTree = "<group>"; };
@@ -429,8 +437,9 @@
 				2719EA751EC5883E003D6D64 /* ContactVOM.swift */,
 				8A88ECCA1F7D78AD00C46763 /* PlannerActivityVOM.swift */,
 				8A5D5F841F6B118600883D51 /* PlannerDataVOM.swift */,
-				8AD120831F85372A00610F30 /* PlannerGoalsVOM.swift */,
+				8AD120831F85372A00610F30 /* PlannerGoalVOM.swift */,
 				8A7D5E251F2F95F300089E1F /* SignUpRequestVOM.swift */,
+				8AA09C131F910E5600EAE7AC /* ReadingPlannerVOM.swift */,
 			);
 			name = ValueObjects;
 			sourceTree = "<group>";
@@ -659,19 +668,20 @@
 				274A83501ED39C4E002DA226 /* FetchContactsCommand.swift */,
 				8AF1421E1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift */,
 				274A83561ED39FB8002DA226 /* FetchGroupContactsCommand.swift */,
-				8A7395E21F853DC300937D5A /* FetchPlannerGoalsCommand.swift */,
+				8A7395E21F853DC300937D5A /* FetchPlannerGoalCommand.swift */,
 				8A88ECCC1F7D7B4600C46763 /* FetchPlannerMarkActivitiesCommand.swift */,
 				8A7D5E211F2F906100089E1F /* FetchSignUpRequestsCommand.swift */,
 				8A17AE701F3366520085E8D7 /* FetchUserRequestsCountCommand.swift */,
 				8A84E1B31F7DC82D00DCB058 /* HandleSignOutCommand.swift */,
 				8AED415C1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift */,
-				8A7395DE1F853A2F00937D5A /* SavePlannerGoalsCommand.swift */,
+				8A7395DE1F853A2F00937D5A /* SavePlannerGoalCommand.swift */,
 				8A88ECCE1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift */,
 				8A88ECC61F7D72AB00C46763 /* SavePlannerMarkActivityCommand.swift */,
 				275202001EB9997C002C469B /* ScribeCommand.swift */,
 				8AA9A8711F7DAFC300E107C8 /* RemoveBiblePlannerDataCommand.swift */,
 				8AA9A86F1F7DAB5000E107C8 /* RemovePlannerMarkActivityCommand.swift */,
 				8AB9861C1F8D198600291A4D /* FetchPlannerLastMarkActivityCommand.swift */,
+				8AA09C171F914BF000EAE7AC /* FetchReadingPlannersCommand.swift */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -735,6 +745,7 @@
 				8A40670D1F86CE81002026A9 /* BottomPlanTrackerView.swift */,
 				8AB9861A1F8BFDC000291A4D /* TopPlanTrackerView.swift */,
 				8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */,
+				8AA09C111F90104F00EAE7AC /* ReadingPlannerCell.swift */,
 			);
 			name = BibleReadingPlanner;
 			sourceTree = "<group>";
@@ -748,8 +759,9 @@
 				8A2CDAFE1EEB428600DF2E0E /* ContactGroupDM.swift */,
 				8A88ECC81F7D733B00C46763 /* PlannerActivityDM.swift */,
 				8AED415A1F7C38230053E09D /* PlannerDataDM.swift */,
-				8A7395E01F853A7E00937D5A /* PlannerGoalsDM.swift */,
+				8A7395E01F853A7E00937D5A /* PlannerGoalDM.swift */,
 				8A7D5E231F2F918C00089E1F /* SignUpRequestDM.swift */,
+				8AA09C151F9122AF00EAE7AC /* ReadingPlannerDM.swift */,
 			);
 			name = DomainModels;
 			sourceTree = "<group>";
@@ -1204,6 +1216,7 @@
 			files = (
 				8A50DF911F3DFDF0000ACD77 /* UITableViewCell+ScribeAdditions.swift in Sources */,
 				2719EA6F1EC3C6E1003D6D64 /* ContactCell.swift in Sources */,
+				8AA09C161F9122AF00EAE7AC /* ReadingPlannerDM.swift in Sources */,
 				8A54AEFD1F671E7000293C1A /* MarkChapterCell.swift in Sources */,
 				8A301B571F26665500830815 /* ContactSearchBar.swift in Sources */,
 				8A50C4BE1F56121F0076C3A5 /* ChapterHolderCell.swift in Sources */,
@@ -1214,7 +1227,7 @@
 				8AAE32CF1EEFB1D600374794 /* FetchGroupContactsRequest.swift in Sources */,
 				8A7D5E261F2F95F300089E1F /* SignUpRequestVOM.swift in Sources */,
 				8A8BAD0B1EF2EACA006721F8 /* LoginTextField.swift in Sources */,
-				8AD120841F85372A00610F30 /* PlannerGoalsVOM.swift in Sources */,
+				8AD120841F85372A00610F30 /* PlannerGoalVOM.swift in Sources */,
 				8AF1421F1F3CB3D600FC5BDB /* FetchContactsVersionCommand.swift in Sources */,
 				8AED415B1F7C38230053E09D /* PlannerDataDM.swift in Sources */,
 				2719EA811EC66C1A003D6D64 /* ContactGroupCell.swift in Sources */,
@@ -1223,12 +1236,14 @@
 				8AC53EF81F1028150053DA99 /* SettingsVC.swift in Sources */,
 				8AED415D1F7C41C00053E09D /* SaveBiblePlannerDataCommand.swift in Sources */,
 				270F1B021EC0258F00232D2F /* ContactImageCell.swift in Sources */,
+				8AA09C121F90104F00EAE7AC /* ReadingPlannerCell.swift in Sources */,
 				8AAE188B1F3B78230049BC71 /* TopCell.swift in Sources */,
 				275201E91EB991D8002C469B /* AsyncCommand.swift in Sources */,
 				27D191BF1EC03830002C7346 /* ContactInfoCell.swift in Sources */,
 				275202011EB9997C002C469B /* ScribeCommand.swift in Sources */,
 				8AC53EFC1F13E0470053DA99 /* LevelDBStore.swift in Sources */,
 				8AC53EF61F0FF3EA0053DA99 /* ContactDetailVC.swift in Sources */,
+				8AA09C141F910E5600EAE7AC /* ReadingPlannerVOM.swift in Sources */,
 				8AA2D2B01F4396130050DD03 /* ChurchGroupCell.swift in Sources */,
 				275201F81EB99748002C469B /* ContactListVC.swift in Sources */,
 				8AED41551F79AE990053E09D /* ReadActivityCell.swift in Sources */,
@@ -1240,6 +1255,7 @@
 				8A6C73A41F7EEC0B00CCC758 /* Date+Scribe.swift in Sources */,
 				8A7D5E221F2F906100089E1F /* FetchSignUpRequestsCommand.swift in Sources */,
 				8AF142211F3CBA4B00FC5BDB /* ContactDetailVOM.swift in Sources */,
+				8AA09C181F914BF000EAE7AC /* FetchReadingPlannersCommand.swift in Sources */,
 				8A0B83A31F214412004AA24E /* ContactsVC.swift in Sources */,
 				8A88ECCF1F7D96CB00C46763 /* SavePlannerMarkActivitiesCommand.swift in Sources */,
 				275201F11EB991D8002C469B /* SPRViewController.swift in Sources */,
@@ -1267,7 +1283,7 @@
 				8AAE18851F3B670B0049BC71 /* AddressInfoCell.swift in Sources */,
 				8AF142261F3CF7D300FC5BDB /* BirthdayDatePickerCell.swift in Sources */,
 				8A04FE2F1F842B120018CC90 /* GoalPickerCell.swift in Sources */,
-				8A7395E31F853DC300937D5A /* FetchPlannerGoalsCommand.swift in Sources */,
+				8A7395E31F853DC300937D5A /* FetchPlannerGoalCommand.swift in Sources */,
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */,
 				274A83571ED39FB8002DA226 /* FetchGroupContactsCommand.swift in Sources */,
@@ -1279,12 +1295,12 @@
 				8A2B6ECC1EF394E600425B61 /* MainTabBarController.swift in Sources */,
 				275201F01EB991D8002C469B /* SPRTableViewController.swift in Sources */,
 				275201EF1EB991D8002C469B /* SPRCollectionViewController.swift in Sources */,
-				8A7395E11F853A7E00937D5A /* PlannerGoalsDM.swift in Sources */,
+				8A7395E11F853A7E00937D5A /* PlannerGoalDM.swift in Sources */,
 				8A88ECCD1F7D7B4600C46763 /* FetchPlannerMarkActivitiesCommand.swift in Sources */,
 				275201EE1EB991D8002C469B /* ObjectDataSource.swift in Sources */,
 				8A5D5F851F6B118600883D51 /* PlannerDataVOM.swift in Sources */,
 				275201ED1EB991D8002C469B /* MappingObjectDataSource.swift in Sources */,
-				8A7395DF1F853A2F00937D5A /* SavePlannerGoalsCommand.swift in Sources */,
+				8A7395DF1F853A2F00937D5A /* SavePlannerGoalCommand.swift in Sources */,
 				275201FF1EB99879002C469B /* FetchContactGroupCommand.swift in Sources */,
 				8A28F6C41F633BA100EB3F4F /* ChapterHolderView.swift in Sources */,
 				8AF4921B1F560BAE009FCD77 /* BookTitleCell.swift in Sources */,

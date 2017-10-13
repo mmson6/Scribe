@@ -1,5 +1,5 @@
 //
-//  FetchPlannerGoalsCommand.swift
+//  FetchPlannerGoalCommand.swift
 //  Scribe
 //
 //  Created by Mikael Son on 10/4/17.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class FetchPlannerGoalsCommand: ScribeCommand<PlannerGoalsVOM> {
+public class FetchPlannerGoalCommand: ScribeCommand<PlannerGoalVOM> {
     
     public override func main() {
 
-        self.accessor.loadPlannerGoals { result in
+        self.accessor.loadPlannerGoal { result in
             switch result {
             case .success(let dm):
-                let model = PlannerGoalsVOM(from: dm.asJSON())
+                let model = PlannerGoalVOM(from: dm.asJSON())
                 self.completedWith(value: model)
             case .failure(let error):
                 self.completedWith(error: error)

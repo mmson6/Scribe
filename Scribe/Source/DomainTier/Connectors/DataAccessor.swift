@@ -44,7 +44,8 @@ public final class DataAccessor {
             callback(.success(modelArray))
         }
     }
-        internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
+    
+    internal func loadContactDetails(_ request: FetchContactDetailRequest, callback: @escaping DataAccessorDMCallback<ContactInfoDM>) {
         let loadFromDataStore = { (store: LevelDBStore) -> JSONObject? in
             let id = request.id as Any
             return store.loadContact(with: id)
@@ -164,11 +165,28 @@ public final class DataAccessor {
         }
     }
     
-    internal func loadPlannerGoals(callback: @escaping DataAccessorDMCallback<PlannerGoalsDM>) {
+    internal func loadPlannerGoal(callback: @escaping DataAccessorDMCallback<PlannerGoalDM>) {
         let store = self.dataStore
-        if let json = store.loadPlannerGoals() {
-            let dm = PlannerGoalsDM(from: json)
+        if let json = store.loadPlannerGoal() {
+            let dm = PlannerGoalDM(from: json)
             callback(.success(dm))
+        } else {
+            let error = ClientError.FailedToLoadData
+            callback(.failure(error))
+        }
+    }
+    
+    internal func loadReadingPlanners(callback: @escaping DataAccessorDMCallback<[ReadingPlannerDM]>) {
+        let store = self.dataStore
+        // Wipe bible planner data
+        store.save(plannerData: nil)
+        
+        if let jsonArray = store.loadReadingPlanners() {
+            let modelArray = jsonArray.map({ json -> ReadingPlannerDM in
+                let dm = ReadingPlannerDM(from: json)
+                return dm
+            })
+            callback(.success(modelArray))
         } else {
             let error = ClientError.FailedToLoadData
             callback(.failure(error))
@@ -267,35 +285,21 @@ public final class DataAccessor {
         callback(.success(true))
     }
     
-    internal func savePlannerGoals(dm: PlannerGoalsDM, callback: @escaping DataAccessorDMCallback<Bool>) {
+    internal func savePlannerGoal(dm: PlannerGoalDM, callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
         let json = dm.asJSON()
-        store.save(plannerGoals: json)
+        store.save(plannerGoal: json)
         callback(.success(true))
     }
     
-    internal func populateDatabase() {
-//        var ref: reference
-//        var myRootRef = Database
-        //        var myRootRef = Firebase(url: "https://scribe-4ed24.firebaseio.com/Core/")
-        //
-        ////        myRootRef?.setValue("Do you have data? You'll love Firebase.")
-        //
-        ////        myRootRef.observe
-        //
-        //        myRootRef?.child(byAppendingPath: "Contacts/Global_Ver").observeSingleEvent(of: .value, with: { snapshot in
-        //            if let snapshot = snapshot {
-        //                print("\(snapshot)")
-        //            }
-        //
-        //            let value = snapshot?.value as? NSDictionary
-        //            print("\(value)")
-        //        })
-        ////        myRootRef?.observe(.value, with: { snapshot in
-        ////            if let snapshot = snapshot {
-        ////                print("\(snapshot.key) -> \(snapshot.value)")
-        ////            }
-        ////        })
+    internal func saveReadingPlanners(dmArray: [ReadingPlannerDM], callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        let jsonArray = dmArray.map { dm -> JSONObject in
+            let json = dm.asJSON()
+            return json
+        }
+        store.save(readingPlanners: jsonArray)
+        callback(.success(true))
     }
     
     // MARK: Private Helper Funcitons

@@ -18,7 +18,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     var showPlanTrackerDueToUpdate = false
     var bibleDataSource = [BibleVOM]()
     var plannerDataSource = [PlannerDataVOM]()
-    var plannerGoalModel: PlannerGoalsVOM?
+    var plannerGoalModel: PlannerGoalVOM?
     var markChapterWindow: UIWindow?
     var planTrackerTimer: Timer?
     
@@ -111,8 +111,41 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     private func fetchData() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.bibleDataSource = BibleFactory.getAllList()
-            self.fetchPlannerDataSource()
+            self.fetchReadingPlannersDataSource()
+//            self.fetchPlannerDataSource()
         }
+    }
+    
+    private func fetchReadingPlannersDataSource() {
+        let cmd = FetchReadingPlannersCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                for model in array {
+                    if model.selected {
+                        if let modelArray = model.plannerData {
+                            self.plannerDataSource = modelArray
+                        }
+                        self.plannerGoalModel = model.plannerGoal
+                    }
+                }
+                break
+            case .failure(let error):
+                NSLog("FetchReadingPlannersCommand returned with error: \(error)")
+                
+                var fetchingData = [PlannerDataVOM]()
+                for model in self.bibleDataSource {
+                    var json: JSONObject = [:]
+                    for i in 0...model.chapters - 1 {
+                        json["\(i)"] = 0
+                    }
+                    fetchingData.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: json))
+                }
+                self.plannerDataSource = fetchingData
+                self.setPlannerInitialGoal()
+            }
+        }
+        cmd.execute()
     }
     
     private func fetchPlannerDataSource() {
@@ -139,22 +172,22 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
             case .failure:
                 break
             }
-            self.fetchBiblePlannerGoals()
+            self.fetchBiblePlannerGoal()
         }
         cmd.execute()
     }
     
     // Fetch data for PlanTrackerViews
-    private func fetchBiblePlannerGoals() {
-        let cmd = FetchPlannerGoalsCommand()
+    private func fetchBiblePlannerGoal() {
+        let cmd = FetchPlannerGoalCommand()
         cmd.onCompletion { result in
             switch result {
             case .success(let model):
-                NSLog("FetchPlannerGoalsCommand returned with success")
+                NSLog("FetchPlannerGoalCommand returned with success")
                 self.plannerGoalModel = model
                 self.fetchPlanTrackers(with: model)
             case .failure:
-                NSLog("FetchPlannerGoalsCommand returned with failure")
+                NSLog("FetchPlannerGoalCommand returned with failure")
                 self.setPlannerInitialGoal()
             }
             if !self.showPlanTrackerDueToUpdate {
@@ -180,15 +213,15 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         json["OTGoal"] = 1
         json["NTGoal"] = 1
         
-        let model = PlannerGoalsVOM(from: json)
+        let model = PlannerGoalVOM(from: json)
         self.plannerGoalModel = model
-        self.savePlannerGoalsToDB(with: model)
+        self.savePlannerGoalToDB(with: model)
         self.fetchPlanTrackers(with: model)
     }
     
-    private func savePlannerGoalsToDB(with model: PlannerGoalsVOM) {
-        let cmd = SavePlannerGoalsCommand()
-        cmd.plannerGoalsData = model
+    private func savePlannerGoalToDB(with model: PlannerGoalVOM) {
+        let cmd = SavePlannerGoalCommand()
+        cmd.plannerGoalData = model
         cmd.onCompletion { result in
             switch result {
             case .success:
@@ -222,7 +255,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         self.showPlanTrackerDueToUpdate = true
         
         DispatchQueue.global(qos: .default).async {
-            self.fetchPlannerDataSource()
+//            self.fetchPlannerDataSource()
         }
     }
     
@@ -344,7 +377,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         UIView.commitAnimations()
     }
     
-    private func fetchPlanTrackers(with model: PlannerGoalsVOM) {
+    private func fetchPlanTrackers(with model: PlannerGoalVOM) {
         self.topPlanTrackerView.update(with: model, and: self.plannerDataSource)
         self.bottomPlanTrackerView.update(with: model, and: self.plannerDataSource, and: self.bibleDataSource)
     }

@@ -64,14 +64,24 @@ class LevelDBStore {
         self.save(value: plannerActivities, forKey: key)
     }
     
-    internal func loadPlannerGoals() -> JSONObject? {
+    internal func loadPlannerGoal() -> JSONObject? {
         let key = "bible_planner_goals"
         let object = self.loadJSONObject(forKey: key)
         return object
     }
-    internal func save(plannerGoals: JSONObject?) {
+    internal func save(plannerGoal: JSONObject?) {
         let key = "bible_planner_goals"
-        self.save(value: plannerGoals, forKey: key)
+        self.save(value: plannerGoal, forKey: key)
+    }
+    
+    internal func loadReadingPlanners() -> JSONArray? {
+        let key = "bible_reading_planners"
+        let array = self.loadJSONArray(forKey: key)
+        return array
+    }
+    internal func save(readingPlanners: JSONArray?) {
+        let key = "bible_reading_planners"
+        self.save(value: readingPlanners, forKey: key)
     }
     
     // MARK: Contact List Related Functions

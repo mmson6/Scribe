@@ -24,7 +24,7 @@ class TopPlanTrackerView: UIView {
         self.averageLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
     }
     
-    public func update(with model: PlannerGoalsVOM, and plannerDataSource: [PlannerDataVOM]) {
+    public func update(with model: PlannerGoalVOM, and plannerDataSource: [PlannerDataVOM]) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
         guard
@@ -84,7 +84,7 @@ class TopPlanTrackerView: UIView {
                 print(model)
                 self.updateRecentReadingActivity(with: model)
             case .failure:
-                break
+                self.recentLabel.text = "Your word is a lamp to my feet, And a light to my path."
             }
         }
         cmd.execute()

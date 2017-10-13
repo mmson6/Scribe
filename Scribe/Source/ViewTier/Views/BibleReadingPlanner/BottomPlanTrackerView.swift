@@ -105,7 +105,7 @@ class BottomPlanTrackerView: UIView {
         self.verseTrackOuterView.layer.borderWidth = 1
     }
     
-    public func update(with model: PlannerGoalsVOM, and plannerDataSource: [PlannerDataVOM], and bibleDataSource: [BibleVOM]) {
+    public func update(with model: PlannerGoalVOM, and plannerDataSource: [PlannerDataVOM], and bibleDataSource: [BibleVOM]) {
         var startDateString = ""
         var endDateString = ""
         

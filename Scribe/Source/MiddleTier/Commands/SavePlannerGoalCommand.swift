@@ -1,5 +1,5 @@
 //
-//  SavePlannerGoalsCommand.swift
+//  SavePlannerGoalCommand.swift
 //  Scribe
 //
 //  Created by Mikael Son on 10/4/17.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class SavePlannerGoalsCommand: ScribeCommand<Bool> {
+public class SavePlannerGoalCommand: ScribeCommand<Bool> {
     
-    var plannerGoalsData: PlannerGoalsVOM?
+    var plannerGoalData: PlannerGoalVOM?
     
     public override func main() {
-        guard let model = self.plannerGoalsData else { return }
-        let dm = PlannerGoalsDM(from: model.asJSON())
-        self.accessor.savePlannerGoals(dm: dm) { result in
+        guard let model = self.plannerGoalData else { return }
+        let dm = PlannerGoalDM(from: model.asJSON())
+        self.accessor.savePlannerGoal(dm: dm) { result in
             switch result {
             case .success:
                 self.completedWith(value: true)
