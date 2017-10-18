@@ -78,6 +78,24 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 NSLog("FetchPlannerGoalCommand returned with failure")
 //                self.setPlannerInitialGoal()
             }
+            self.fetchReadingPlanners()
+//            DispatchQueue.main.async {
+//                self.hideLoadingIndicator()
+//                self.tableView.reloadData()
+//            }
+        }
+        cmd.execute()
+    }
+    
+    private func fetchReadingPlanners() {
+        let cmd = FetchReadingPlannersCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                self.readingPlannerDataSource = array
+            case .failure(let error):
+                NSLog("FetchReadingPlannersCommand returned with error: \(error)")
+            }
             DispatchQueue.main.async {
                 self.hideLoadingIndicator()
                 self.tableView.reloadData()
@@ -85,29 +103,45 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         }
         cmd.execute()
     }
-//    
-//    private func setPlannerInitialGoal() {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMM dd, yyyy"
-//        
-//        let startDate = dateFormatter.string(from: Date())
-//        var endDate = ""
-//        if let last = Date.lastDayOfYear() {
-//            endDate = dateFormatter.string(from: last)
-//        }
-//        
-//        var json = JSONObject()
-//        json["startDate"] = startDate
-//        json["endDate"] = endDate
-//        json["OTGoal"] = 1
-//        json["NTGoal"] = 1
-//        self.goalJSONData = json
-//        
-//        self.showLoadingIndicator()
-//        let model = PlannerGoalVOM(from: self.goalJSONData)
-//        self.savePlannerGoalToDB(with: model, showToast: false)
-//    }
-//    
+    
+    private func createReadingPlannerSelectionAlert(with indexPath: IndexPath) -> UIAlertController? {
+        
+        let alertController = UIAlertController(
+            title: "Cannot Delete",
+            message: CurrentReadingPlannerSelectedMessage,
+            preferredStyle: .alert
+        )
+        
+        
+//        let undoAction = UIAlertAction(
+//            title: "Undo",
+//            style: .destructive,
+//            handler: { [weak self] action in
+//                guard let strongSelf = self else { return }
+//                strongSelf.showLoadingIndicator()
+//                strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 2))
+//                if strongSelf.activityDataSource.count < 10 {
+//                    strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
+//                } else {
+//                    strongSelf.tableView.reloadSections([0], with: .fade)
+//                }
+//                
+//                strongSelf.removePastActivity()
+//                strongSelf.removeBiblePlannerData(with: model)
+//        })
+        
+        let okayAction = UIAlertAction(
+            title: OK,
+            style: .default,
+            handler: { _ in
+        })
+        
+//        alertController.addAction(cancelAction)
+        alertController.addAction(okayAction)
+        
+        return alertController
+    }
+    
     private func createUndoMarkChaptersAlert(with indexPath: IndexPath) -> UIAlertController? {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? ReadActivityCell,
@@ -169,47 +203,71 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         dateFormatter.dateFormat = "MM-dd-yyyy, HH:mm"
         if let date = dateFormatter.date(from: model.time) {
             if Date.compareYears(from: date) > 0 {
-                let years = Date.compareYears(from: date)
-                if years > 1 {
-                    cell.timeLabel.text = "\(years) years ago"
-                } else {
-                    cell.timeLabel.text = "Last year"
-                }
+                let timeFormatter = DateFormatter()
+                timeFormatter.dateFormat = "MM/dd/yyyy"
+                let dateString = timeFormatter.string(from: date)
+                cell.timeLabel.text = dateString
+//                let years = Date.compareYears(from: date)
+//                if years > 1 {
+//                    cell.timeLabel.text = "\(years)y ago"
+//                } else {
+//                    cell.timeLabel.text = "Last year"
+//                }
             } else if Date.compareMonths(from: date) > 0 {
-                let months = Date.compareMonths(from: date)
-                if months > 1 {
-                    cell.timeLabel.text = "\(months) months ago"
-                } else {
-                    cell.timeLabel.text = "Last month"
-                }
+                let timeFormatter = DateFormatter()
+                timeFormatter.dateFormat = "MM/dd/yyyy"
+                let dateString = timeFormatter.string(from: date)
+                cell.timeLabel.text = dateString
+                
+//                let months = Date.compareMonths(from: date)
+//                if months > 1 {
+//                    cell.timeLabel.text = "\(months) months ago"
+//                } else {
+//                    cell.timeLabel.text = "Last month"
+//                }
             } else if Date.compareWeeks(from: date) > 0 {
-                let weeks = Date.compareWeeks(from: date)
-                if weeks > 1 {
-                    cell.timeLabel.text = "\(weeks) weeks ago"
-                } else {
-                    cell.timeLabel.text = "Last week"
-                }
+                let timeFormatter = DateFormatter()
+                timeFormatter.dateFormat = "EEE, h:mm a"
+                let dateString = timeFormatter.string(from: date)
+                cell.timeLabel.text = dateString
+                
+//                let weeks = Date.compareWeeks(from: date)
+//                if weeks > 1 {
+//                    cell.timeLabel.text = "\(weeks)w ago"
+//                } else {
+//                    cell.timeLabel.text = "Last week"
+//                }
             } else if Date.compareDays(from: date) > 0 {
+                let timeFormatter = DateFormatter()
+                
                 let days = Date.compareDays(from: date)
                 if days > 1 {
-                    cell.timeLabel.text = "\(days) days ago"
+                    timeFormatter.dateFormat = "EEE, h:mm a"
+                    let dateString = timeFormatter.string(from: date)
+                    cell.timeLabel.text = dateString
+//                    cell.timeLabel.text = "\(days)d ago"
                 } else {
-                    cell.timeLabel.text = "Yesterday"
+                    timeFormatter.dateFormat = "'Yesterday', h:mm a"
+                    let dateString = timeFormatter.string(from: date)
+                    cell.timeLabel.text = dateString
+//                    cell.timeLabel.text = "Yesterday"
                 }
             } else if Date.compareHours(from: date) > 0 {
                 let hours = Date.compareHours(from: date)
-                if hours > 1 {
-                    cell.timeLabel.text = "\(hours) hours ago"
-                } else {
-                    cell.timeLabel.text = "\(hours) hour ago"
-                }
+                cell.timeLabel.text = "\(hours)h ago"
+//                if hours > 1 {
+//                    cell.timeLabel.text = "\(hours)h ago"
+//                } else {
+//                    cell.timeLabel.text = "\(hours)h ago"
+//                }
             } else if Date.compareMinutes(from: date) > 0 {
                 let mins = Date.compareMinutes(from: date)
-                if mins > 1 {
-                    cell.timeLabel.text = "\(mins) minutes ago"
-                } else {
-                    cell.timeLabel.text = "\(mins) minute ago"
-                }
+                cell.timeLabel.text = "\(mins)m ago"
+//                if mins > 1 {
+//                    cell.timeLabel.text = "\(mins)m ago"
+//                } else {
+//                    cell.timeLabel.text = "\(mins)m ago"
+//                }
             } else {
                 cell.timeLabel.text = "Just now"
             }
@@ -249,6 +307,30 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             }
         }
     }
+    
+    private func populate(cell: ReadingPlannerCell, with model: ReadingPlannerVOM, at indexPath: IndexPath) {
+        
+//        if indexPath.row == 1 {
+//            cell.titleLabel.text = "Start Date :"
+//            cell.dateRangeLabel.text = "From"
+//            cell.dateLabel.text = model.startDate
+//        } else if indexPath.row == 3 {
+//            cell.titleLabel.text = "End Date :"
+//            cell.dateRangeLabel.text = "To"
+//            cell.dateLabel.text = model.endDate
+//        } else {
+//            cell.titleLabel.text = "Goal :"
+//            cell.dateRangeLabel.text = ""
+//            if model.OTGoal == 0 {
+//                cell.dateLabel.text = "NT \(model.NTGoal) \(NTText)"
+//            } else if model.NTGoal == 0 {
+//                cell.dateLabel.text = "OT \(model.OTGoal) \(OTText)"
+//            } else {
+//                cell.dateLabel.text = "OT \(model.OTGoal) \(OTText) + NT \(model.NTGoal) \(NTText)"
+//            }
+//        }
+    }
+
     
     private func initializeDatePickerView(cell: GoalDatePickerCell, indexPath: IndexPath) {
         // Remove indicator lines
@@ -314,8 +396,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             switch result {
             case .success:
                 NSLog("RemovePlannerMarkActivityCommand returned with success")
-//                self.tableView.beginUpdates()
-//                self.tableView.endUpdates()
             case .failure:
                 break
             }
@@ -391,6 +471,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 }
             }
             return self.activityDataSource.count + 2
+        } else if section == 2 {
+            return self.readingPlannerDataSource.count + 1
         } else {
             return 7
         }
@@ -410,6 +492,9 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             } else if indexPath.section == 1 {
                 cell.titleLabel.text = "PLANNER GOAL"
                 cell.subTextLabel.text = "You need to save the change to apply."
+            } else if indexPath.section == 2 {
+                cell.titleLabel.text = "READING PLANS"
+                cell.subTextLabel.text = "Change or delete reading plans."
             }
             return cell
         }
@@ -464,8 +549,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             } else if indexPath.row == 6 {
                 guard
                     let cell = tableView.dequeueReusableCell(withIdentifier: "GoalPickerCell", for: indexPath) as? GoalPickerCell
-                    else {
-                        return UITableViewCell()
+                else {
+                    return UITableViewCell()
                 }
                 
                 self.initializePickerView(cell: cell, indexPath: indexPath)
@@ -492,6 +577,9 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                     return UITableViewCell()
             }
             UITableViewCell.applyScribeCellAttributes(to: cell)
+            
+            let model = self.readingPlannerDataSource[indexPath.row - 1]
+            self.populate(cell: cell, with: model, at: indexPath)
             
             return cell
         default:
@@ -534,6 +622,13 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             }
             tableView.beginUpdates()
             tableView.endUpdates()
+        } else if indexPath.section == 2 {
+            let model = self.readingPlannerDataSource[indexPath.row - 1]
+            if model.selected {
+                if let alertController = self.createReadingPlannerSelectionAlert(with: indexPath) {
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
     }
     

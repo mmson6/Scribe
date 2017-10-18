@@ -69,7 +69,7 @@ let userLoggedOut = Notification.Name("UserLoggedOut")
 // MARK: Sign Up Alert Constants
 
 // SignUpVC
-public let OK = "Okay"
+public let OK = "OK"
 
 public let InvalidInputTitle = "Invalid Input"
 public let InvalidNameTitle = "Invalid Name"
@@ -99,6 +99,8 @@ public let SnatchedEmailMessage = "This email is already being used for other ac
 public let MarkChaptersMessage = "Mark Chapters"//"There are unselected chapters in between. What do you want to do?"
 public let UndoMarkChaptersMessage = "Undo this activity?"//"There are unselected chapters in between. What do you want to do?"
 
+// ReadingPlannerSettingsVC
+public let CurrentReadingPlannerSelectedMessage = "You cannot delete this plan. Change to other plan or create a new plan first."
 
 
 

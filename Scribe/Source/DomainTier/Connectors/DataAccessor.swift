@@ -176,6 +176,34 @@ public final class DataAccessor {
         }
     }
     
+    internal func loadSelectedReadingPlanner(callback: @escaping DataAccessorDMCallback<ReadingPlannerDM>) {
+        let store = self.dataStore
+        // Wipe bible planner data
+        store.save(plannerData: nil)
+        // Wipe bible planner goal data
+        store.save(plannerGoal: nil)
+        
+        if let plannerArray = store.loadReadingPlanners() {
+            let modelArray = plannerArray.flatMap({ json -> ReadingPlannerDM? in
+                let dm = ReadingPlannerDM(from: json)
+                if dm.selected {
+                    return dm
+                } else {
+                    return nil
+                }
+            })
+            if let selectedModel = modelArray.first {
+                callback(.success(selectedModel))
+            } else {
+                let error = ClientError.FailedToLoadData
+                callback(.failure(error))
+            }
+        } else {
+            let error = ClientError.FailedToLoadData
+            callback(.failure(error))
+        }
+    }
+    
     internal func loadReadingPlanners(callback: @escaping DataAccessorDMCallback<[ReadingPlannerDM]>) {
         let store = self.dataStore
         // Wipe bible planner data
@@ -289,6 +317,29 @@ public final class DataAccessor {
         let store = self.dataStore
         let json = dm.asJSON()
         store.save(plannerGoal: json)
+        callback(.success(true))
+    }
+    
+    internal func saveSelectedReadingPlanner(dm: ReadingPlannerDM, callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        if let plannerArray = store.loadReadingPlanners() {
+            let dmArray = plannerArray.map({ json -> ReadingPlannerDM in
+                let model = ReadingPlannerDM(from: json)
+                if model.plannerID != dm.plannerID {
+                    return model
+                } else {
+                    return dm
+                }
+            })
+            let jsonArray = dmArray.map({ domainModel -> JSONObject in
+                let json = domainModel.asJSON()
+                return json
+            })
+            store.save(readingPlanners: jsonArray)
+        } else {
+            let jsonArray = [dm.asJSON()]
+            store.save(readingPlanners: jsonArray)
+        }
         callback(.success(true))
     }
     

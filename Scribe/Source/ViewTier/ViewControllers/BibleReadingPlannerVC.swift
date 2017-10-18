@@ -15,7 +15,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     @IBOutlet var topPlanTrackerView: TopPlanTrackerView!
     @IBOutlet var bottomPlanTrackerView: BottomPlanTrackerView!
     var planTrackerViewsHidden = false
-    var showPlanTrackerDueToUpdate = false
+    var showPlanTrackerDueToUpdate = true
     var bibleDataSource = [BibleVOM]()
     var plannerDataSource = [PlannerDataVOM]()
     var plannerGoalModel: PlannerGoalVOM?
@@ -66,7 +66,6 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     }
     
     private func commonInit() {
-        
         // Initialize TopPlanTrackerView
         guard
             let navController = self.navigationController,
@@ -111,25 +110,22 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     private func fetchData() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.bibleDataSource = BibleFactory.getAllList()
-            self.fetchReadingPlannersDataSource()
+            self.fetchSelectedReadingPlannerDataSource()
 //            self.fetchPlannerDataSource()
         }
     }
     
-    private func fetchReadingPlannersDataSource() {
-        let cmd = FetchReadingPlannersCommand()
+    private func fetchSelectedReadingPlannerDataSource() {
+        let cmd = FetchSelectedReadingPlannerCommand()
         cmd.onCompletion { result in
             switch result {
-            case .success(let array):
-                for model in array {
-                    if model.selected {
-                        if let modelArray = model.plannerData {
-                            self.plannerDataSource = modelArray
-                        }
-                        self.plannerGoalModel = model.plannerGoal
-                    }
+            case .success(let model):
+                if let array = model.plannerData {
+                    self.plannerDataSource = array
                 }
-                break
+                self.plannerGoalModel = model.plannerGoal
+                self.savePlannerDataSource()
+                self.savePlannerGoalToDB(with: model.plannerGoal)
             case .failure(let error):
                 NSLog("FetchReadingPlannersCommand returned with error: \(error)")
                 
@@ -143,10 +139,46 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
                 }
                 self.plannerDataSource = fetchingData
                 self.setPlannerInitialGoal()
+                self.saveReadingPlannerToDB()
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
         cmd.execute()
     }
+//    private func fetchReadingPlannersDataSource() {
+//        let cmd = FetchReadingPlannersCommand()
+//        cmd.onCompletion { result in
+//            switch result {
+//            case .success(let array):
+//                for model in array {
+//                    if model.selected {
+//                        if let modelArray = model.plannerData {
+//                            self.plannerDataSource = modelArray
+//                        }
+//                        self.plannerGoalModel = model.plannerGoal
+//                    }
+//                }
+//                break
+//            case .failure(let error):
+//                NSLog("FetchReadingPlannersCommand returned with error: \(error)")
+//                
+//                var fetchingData = [PlannerDataVOM]()
+//                for model in self.bibleDataSource {
+//                    var json: JSONObject = [:]
+//                    for i in 0...model.chapters - 1 {
+//                        json["\(i)"] = 0
+//                    }
+//                    fetchingData.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: json))
+//                }
+//                self.plannerDataSource = fetchingData
+//                self.setPlannerInitialGoal()
+//                self.saveInitialPlannerToDB()
+//            }
+//        }
+//        cmd.execute()
+//    }
     
     private func fetchPlannerDataSource() {
         let cmd = FetchBiblePlannerDataCommand()
@@ -190,9 +222,10 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
                 NSLog("FetchPlannerGoalCommand returned with failure")
                 self.setPlannerInitialGoal()
             }
-            if !self.showPlanTrackerDueToUpdate {
-                self.displayPlanTrackerViewsWithTimer()
-            }
+            self.saveReadingPlannerToDB()
+//            if !self.showPlanTrackerDueToUpdate {
+//                self.displayPlanTrackerViewsWithTimer()
+//            }
         }
         cmd.execute()
     }
@@ -217,6 +250,23 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         self.plannerGoalModel = model
         self.savePlannerGoalToDB(with: model)
         self.fetchPlanTrackers(with: model)
+    }
+    
+    private func saveReadingPlannerToDB() {
+        guard let goalModel = self.plannerGoalModel else { return }
+        let model = ReadingPlannerVOM(id: 0, goal: goalModel, data: self.plannerDataSource, selected: true)
+        
+        let cmd = SaveSelectedReadingPlannerCommand()
+        cmd.readingPlannerVOM = model
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
     }
     
     private func savePlannerGoalToDB(with model: PlannerGoalVOM) {
@@ -253,9 +303,9 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
     @objc private func fetchUpdatedBiblePlannerData(notification: Notification) {
         // Show plan tracker views for 5 sec with flag
         self.showPlanTrackerDueToUpdate = true
-        
+        //TODO:: work on this
         DispatchQueue.global(qos: .default).async {
-//            self.fetchPlannerDataSource()
+            self.fetchPlannerDataSource()
         }
     }
     
@@ -282,6 +332,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate 
         plannerDataVOM.chaptersReadCount = json
         self.plannerDataSource[identifier] = plannerDataVOM
         self.savePlannerDataSource()
+        self.saveReadingPlannerToDB()
         
         let indexPath = IndexPath(row: identifier, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: .fade)

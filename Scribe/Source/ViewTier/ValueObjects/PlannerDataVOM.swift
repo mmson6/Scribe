@@ -11,9 +11,10 @@ import Foundation
 import SwiftyJSON
 
 
-public struct PlannerDataVOM {
+public struct PlannerDataVOM: JSONTransformable {
     public let bookName: String
     public var chaptersReadCount: JSONObject
+    
     
     public init(model: PlannerDataDM) {
         self.bookName = model.bookName
@@ -33,5 +34,12 @@ public struct PlannerDataVOM {
         } else {
             self.chaptersReadCount = [:]
         }
+    }
+    
+    func asJSON() -> JSONObject {
+        var json = JSONObject()
+        json["bookName"] = bookName
+        json["chaptersReadCount"] = chaptersReadCount
+        return json
     }
 }
