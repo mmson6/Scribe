@@ -105,7 +105,7 @@ class BottomPlanTrackerView: UIView {
         self.verseTrackOuterView.layer.borderWidth = 1
     }
     
-    public func update(with model: PlannerGoalVOM, and plannerDataSource: [PlannerDataVOM], and bibleDataSource: [BibleVOM]) {
+    public func update(with model: PlannerGoalVOM, and plannerDataSource: [PlannerDataVOM], and bible: [BibleVOM]) {
         var startDateString = ""
         var endDateString = ""
         
@@ -151,7 +151,7 @@ class BottomPlanTrackerView: UIView {
             let isOT = bookIndex < 39
             for (chapter, count) in x.chaptersReadCount {
                 if let intCount = count as? Int {
-                    let bibleVOM = bibleDataSource[bookIndex]
+                    let bibleVOM = bible[bookIndex]
                     guard let intChapter = Int(chapter) else { return }
                     let verseCount = bibleVOM.versesPerChapter[intChapter]
                     

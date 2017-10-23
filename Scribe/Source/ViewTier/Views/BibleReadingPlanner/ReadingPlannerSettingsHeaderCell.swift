@@ -12,9 +12,14 @@ class ReadingPlannerSettingsHeaderCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTextLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        self.separatorView.isHidden = false
     }
 }

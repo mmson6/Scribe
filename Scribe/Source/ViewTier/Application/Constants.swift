@@ -101,6 +101,8 @@ public let UndoMarkChaptersMessage = "Undo this activity?"//"There are unselecte
 
 // ReadingPlannerSettingsVC
 public let CurrentReadingPlannerSelectedMessage = "You cannot delete this plan. Change to other plan or create a new plan first."
+public let CreateNewReadingPlanMessage = "Create a new reading plan?"
+public let YES = "Yes"
 
 
 

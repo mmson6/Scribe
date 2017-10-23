@@ -12,6 +12,18 @@ class UserDefaultsStore {
     
     let store = UserDefaults.standard
     
+    // MARK: Bible Reading Planner Related Functions
+    
+    internal func saveReadingPlannerIndex(_ index: Int) {
+        self.store.setValue(index, forKey: "reading_planner_index")
+        NSLog("ReadingPlannerIndex saved as \(index)")
+    }
+    
+    internal func loadReadingPlannerIndex() -> Int {
+        let index = self.store.integer(forKey: "reading_planner_index")
+        return index
+    }
+    
     // MARK: Contacts Related Functions
     
     internal func saveContactsVer(_ ver: Int64) {

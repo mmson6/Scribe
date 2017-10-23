@@ -17,7 +17,7 @@ struct BibleVOM {
 
 class BibleFactory: NSObject {
     
-    static func getAllList() -> [BibleVOM] {
+    static func getBible() -> [BibleVOM] {
         var chapterList = [BibleVOM]()
         chapterList.append(BibleVOM(engName: "Genesis", korName: "창세기", chapters: 50, versesPerChapter: [31,25,24,26,32,22,24,22,29,32,32,20,18,24,21,16,27,33,38,18,34,24,20,67,34,35,46,22,35,43,54,33,20,31,29,43,36,30,23,23,57,38,34,34,28,34,31,22,33,26]))
         chapterList.append(BibleVOM(engName: "Exodus", korName: "출애굽기", chapters: 40, versesPerChapter: [22,25,22,31,23,30,29,28,35,29,10,51,22,31,27,36,16,27,25,26,37,30,33,18,40,37,21,43,46,38,18,35,23,35,35,38,29,31,43,38]))
@@ -87,5 +87,37 @@ class BibleFactory: NSObject {
         chapterList.append(BibleVOM(engName: "Jude", korName: "유다서", chapters: 1, versesPerChapter: [25]))
         chapterList.append(BibleVOM(engName: "Revelation", korName: "요한계시록", chapters: 22, versesPerChapter: [20,29,22,11,14,17,17,13,21,11,19,17,18,20,8,21,18,24,21,15,27,21]))
         return chapterList
+    }
+    
+    static func getDefaultPDS() -> [PlannerDataVOM] {
+        let bds = self.getBible()
+        var initialPDS = [PlannerDataVOM]()
+        for model in bds {
+            var json: JSONObject = [:]
+            for i in 0...model.chapters - 1 {
+                json["\(i)"] = 0
+            }
+            initialPDS.append(PlannerDataVOM(bookName: model.engName, chaptersReadCount: json))
+        }
+        return initialPDS
+    }
+    
+    static func getDefaultGoal() -> PlannerGoalVOM {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        
+        let startDate = dateFormatter.string(from: Date())
+        var endDate = ""
+        if let last = Date.lastDayOfYear() {
+            endDate = dateFormatter.string(from: last)
+        }
+        
+        var json = JSONObject()
+        json["startDate"] = startDate
+        json["endDate"] = endDate
+        json["OTGoal"] = 1
+        json["NTGoal"] = 1
+        
+        return PlannerGoalVOM(from: json)
     }
 }

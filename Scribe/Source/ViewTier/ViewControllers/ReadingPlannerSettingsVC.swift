@@ -104,6 +104,33 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         cmd.execute()
     }
     
+    private func createNewReadingPlannerAlert() -> UIAlertController? {
+        
+        let alertController = UIAlertController(
+            title: "Confirm",
+            message: CreateNewReadingPlanMessage,
+            preferredStyle: .alert
+        )
+        
+        let yesAction = UIAlertAction(
+            title: YES,
+            style: .default,
+            handler: { action in
+                
+        })
+        
+        let noAction = UIAlertAction(
+            title: "No",
+            style: .cancel,
+            handler: { _ in
+        })
+        
+        alertController.addAction(noAction)
+        alertController.addAction(yesAction)
+        
+        return alertController
+    }
+    
     private func createReadingPlannerSelectionAlert(with indexPath: IndexPath) -> UIAlertController? {
         
         let alertController = UIAlertController(
@@ -112,33 +139,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             preferredStyle: .alert
         )
         
-        
-//        let undoAction = UIAlertAction(
-//            title: "Undo",
-//            style: .destructive,
-//            handler: { [weak self] action in
-//                guard let strongSelf = self else { return }
-//                strongSelf.showLoadingIndicator()
-//                strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 2))
-//                if strongSelf.activityDataSource.count < 10 {
-//                    strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
-//                } else {
-//                    strongSelf.tableView.reloadSections([0], with: .fade)
-//                }
-//                
-//                strongSelf.removePastActivity()
-//                strongSelf.removeBiblePlannerData(with: model)
-//        })
-        
         let okayAction = UIAlertAction(
             title: OK,
             style: .default,
             handler: { _ in
         })
         
-//        alertController.addAction(cancelAction)
         alertController.addAction(okayAction)
-        
+
         return alertController
     }
     
@@ -389,6 +397,27 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         }
     }
     
+    private func createNewReadingPlan() {
+        let goalModel = BibleFactory.getDefaultGoal()
+        let initialPDS = BibleFactory.getDefaultPDS()
+        let defaultsStore = UserDefaultsStore()
+        let index = defaultsStore.loadReadingPlannerIndex()
+        
+        let plannerModel = ReadingPlannerVOM(id: index, goal: goalModel, data: initialPDS, selected: true)
+        
+        let cmd = SaveSelectedReadingPlannerCommand()
+        cmd.readingPlannerVOM = model
+        cmd.onCompletion { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
+        cmd.execute()
+    }
+    
     private func removePastActivity() {
         let cmd = RemovePlannerMarkActivityCommand()
         cmd.plannerActivityDataSource = self.activityDataSource
@@ -456,7 +485,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -473,6 +502,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             return self.activityDataSource.count + 2
         } else if section == 2 {
             return self.readingPlannerDataSource.count + 1
+        } else if section == 3 {
+            return 2
         } else {
             return 7
         }
@@ -495,6 +526,10 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             } else if indexPath.section == 2 {
                 cell.titleLabel.text = "READING PLANS"
                 cell.subTextLabel.text = "Change or delete reading plans."
+            } else if indexPath.section == 3 {
+                cell.separatorView.isHidden = true
+                cell.titleLabel.text = "NEW READING PLAN"
+                cell.subTextLabel.text = "Create a new reading plan."
             }
             return cell
         }
@@ -582,11 +617,25 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             self.populate(cell: cell, with: model, at: indexPath)
             
             return cell
+        case 3:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CreateNewReadingPlanCell", for: indexPath) as? CreateNewReadingPlanCell
+                else {
+                    return UITableViewCell()
+            }
+//            UITableViewCell.applyScribeClearCellAttributes(to: cell)
+            cell.selectionStyle = .none
+            
+//            let model = self.readingPlannerDataSource[indexPath.row - 1]
+//            self.populate(cell: cell, with: model, at: indexPath)
+            let test = UIView()
+            
+            return cell
+            
         default:
             return UITableViewCell()
         }
     }
-
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -629,6 +678,13 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
+        } else if indexPath.section == 3 {
+//            let model = self.readingPlannerDataSource[indexPath.row - 1]
+//            if model.selected {
+                if let alertController = self.createReadingPlannerSelectionAlert(with: indexPath) {
+                    self.present(alertController, animated: true, completion: nil)
+                }
+//            }
         }
     }
     
@@ -792,11 +848,18 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         self.savePlannerGoalToDB(with: model)
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("ha")
-        self.navigationController?.navigationBar.barTintColor = UIColor.scribeDesignTwoBlue
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+    @IBAction func createNewPlanTapped(_ sender: UIButton) {
+        if let alertController = self.createNewReadingPlannerAlert() {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
+    
+    
+    // MARK: - Navigation
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("ha")
+//        self.navigationController?.navigationBar.barTintColor = UIColor.scribeDesignTwoBlue
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+//    }
 }

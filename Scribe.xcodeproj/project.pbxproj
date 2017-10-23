@@ -120,6 +120,7 @@
 		8AA09C181F914BF000EAE7AC /* FetchReadingPlannersCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C171F914BF000EAE7AC /* FetchReadingPlannersCommand.swift */; };
 		8AA09C1A1F9162A700EAE7AC /* FetchSelectedReadingPlannerCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C191F9162A700EAE7AC /* FetchSelectedReadingPlannerCommand.swift */; };
 		8AA09C1E1F91649400EAE7AC /* SaveSelectedReadingPlannerCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C1D1F91649400EAE7AC /* SaveSelectedReadingPlannerCommand.swift */; };
+		8AA09C201F97A31400EAE7AC /* CreateNewReadingPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA09C1F1F97A31400EAE7AC /* CreateNewReadingPlanCell.swift */; };
 		8AA2D2AE1F423B590050DD03 /* AddressDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AD1F423B590050DD03 /* AddressDM.swift */; };
 		8AA2D2B01F4396130050DD03 /* ChurchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */; };
 		8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */; };
@@ -310,6 +311,7 @@
 		8AA09C171F914BF000EAE7AC /* FetchReadingPlannersCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchReadingPlannersCommand.swift; path = Source/MiddleTier/Commands/FetchReadingPlannersCommand.swift; sourceTree = "<group>"; };
 		8AA09C191F9162A700EAE7AC /* FetchSelectedReadingPlannerCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchSelectedReadingPlannerCommand.swift; path = Source/MiddleTier/Commands/FetchSelectedReadingPlannerCommand.swift; sourceTree = "<group>"; };
 		8AA09C1D1F91649400EAE7AC /* SaveSelectedReadingPlannerCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SaveSelectedReadingPlannerCommand.swift; path = Source/MiddleTier/Commands/SaveSelectedReadingPlannerCommand.swift; sourceTree = "<group>"; };
+		8AA09C1F1F97A31400EAE7AC /* CreateNewReadingPlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateNewReadingPlanCell.swift; path = Source/ViewTier/Views/BibleReadingPlanner/CreateNewReadingPlanCell.swift; sourceTree = "<group>"; };
 		8AA2D2AD1F423B590050DD03 /* AddressDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressDM.swift; path = Source/DomainTier/DomainModels/AddressDM.swift; sourceTree = "<group>"; };
 		8AA2D2AF1F4396130050DD03 /* ChurchGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChurchGroupCell.swift; path = Source/ViewTier/Views/EditContactInfo/ChurchGroupCell.swift; sourceTree = "<group>"; };
 		8AA2D2B11F44E75C0050DD03 /* UpdateContactDetailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateContactDetailRequest.swift; sourceTree = "<group>"; };
@@ -752,6 +754,7 @@
 				8AB9861A1F8BFDC000291A4D /* TopPlanTrackerView.swift */,
 				8AA09C0F1F8FDDE800EAE7AC /* LoadMoreActivitiesCell.swift */,
 				8AA09C111F90104F00EAE7AC /* ReadingPlannerCell.swift */,
+				8AA09C1F1F97A31400EAE7AC /* CreateNewReadingPlanCell.swift */,
 			);
 			name = BibleReadingPlanner;
 			sourceTree = "<group>";
@@ -1290,6 +1293,7 @@
 				8AAE18851F3B670B0049BC71 /* AddressInfoCell.swift in Sources */,
 				8AF142261F3CF7D300FC5BDB /* BirthdayDatePickerCell.swift in Sources */,
 				8A04FE2F1F842B120018CC90 /* GoalPickerCell.swift in Sources */,
+				8AA09C201F97A31400EAE7AC /* CreateNewReadingPlanCell.swift in Sources */,
 				8A7395E31F853DC300937D5A /* FetchPlannerGoalCommand.swift in Sources */,
 				274A83551ED39EBF002DA226 /* GroupContactListVC.swift in Sources */,
 				8AA2D2B21F44E75C0050DD03 /* UpdateContactDetailRequest.swift in Sources */,

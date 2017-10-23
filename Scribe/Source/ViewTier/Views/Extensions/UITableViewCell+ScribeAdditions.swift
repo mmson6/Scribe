@@ -10,6 +10,12 @@ import UIKit
 
 extension UITableViewCell {
     
+    static func applyScribeClearCellAttributes(to cell: UITableViewCell) {
+        let view = UIView()
+        view.backgroundColor = .clear
+        cell.selectedBackgroundView = view
+    }
+    
     static func applyScribeCellAttributes(to cell: UITableViewCell) {
         let view = UIView()
         view.backgroundColor = UIColor.rgb(red: 237, green: 241, blue: 244)
