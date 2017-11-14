@@ -44,13 +44,13 @@ class LevelDBStore {
     
     // MARK: Bible Planner Related Functions
     
-    internal func loadBiblePlannerData() -> JSONArray? {
-        let key = "bible_planner_data"
+    internal func loadBiblePlannerData(with ID: Int) -> JSONArray? {
+        let key = "bible_planner_data_\(ID)"
         let array = self.loadJSONArray(forKey: key)
         return array
     }
-    internal func save(plannerData: JSONArray?) {
-        let key = "bible_planner_data"
+    internal func save(plannerData: JSONArray?, with ID: Int) {
+        let key = "bible_planner_data_\(ID)"
         self.save(value: plannerData, forKey: key)
     }
     
