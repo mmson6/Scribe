@@ -31,9 +31,9 @@ public final class DataAccessor {
         self.dataStore.clear()
     }
     
-    internal func loadBiblePlannerData(callback: @escaping DataAccessorDMCallback<[PlannerDataDM]>) {
+    internal func loadBiblePlannerData(with ID: Int, callback: @escaping DataAccessorDMCallback<[PlannerDataDM]>) {
         let store = self.dataStore
-        if let jsonArray = store.loadBiblePlannerData() {
+        if let jsonArray = store.loadBiblePlannerData(with: ID) {
             let modelArray = jsonArray.map({ (json) -> PlannerDataDM in
                 let dm = PlannerDataDM(from: json)
                 return dm
@@ -180,7 +180,7 @@ public final class DataAccessor {
     internal func loadSelectedReadingPlanner(callback: @escaping DataAccessorDMCallback<ReadingPlannerDM>) {
         let store = self.dataStore
         // Wipe bible planner data
-        store.save(plannerData: nil)
+//        store.save(plannerData: nil)
         // Wipe bible planner goal data
 //        store.save(plannerGoal: nil)
         
@@ -208,7 +208,7 @@ public final class DataAccessor {
     internal func loadReadingPlanners(callback: @escaping DataAccessorDMCallback<[ReadingPlannerDM]>) {
         let store = self.dataStore
         // Wipe bible planner data
-        store.save(plannerData: nil)
+//        store.save(plannerData: nil)
         
         if let jsonArray = store.loadReadingPlanners() {
             let modelArray = jsonArray.map({ json -> ReadingPlannerDM in
@@ -246,9 +246,9 @@ public final class DataAccessor {
         }
     }
     
-    internal func removeBiblePlannerData(dm: PlannerActivityDM, callback: @escaping DataAccessorDMCallback<Bool>) {
+    internal func removeBiblePlannerData(dm: PlannerActivityDM, with ID: Int, callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
-        if let jsonArray = store.loadBiblePlannerData() {
+        if let jsonArray = store.loadBiblePlannerData(with: ID) {
             let newArray = jsonArray.map({ (json) -> JSONObject in
                 var plannerDataDM = PlannerDataDM(from: json)
                 if plannerDataDM.bookName == dm.bookName {
@@ -259,7 +259,7 @@ public final class DataAccessor {
                 }
                 return plannerDataDM.asJSON()
             })
-            store.save(plannerData: newArray)
+            store.save(plannerData: newArray, with: ID)
         }
         callback(.success(true))
     }
@@ -285,13 +285,13 @@ public final class DataAccessor {
         callback(.success(true))
     }
     
-    internal func saveBiblePlannerData(dmArray: [PlannerDataDM], callback: @escaping DataAccessorDMCallback<Bool>) {
+    internal func saveBiblePlannerData(dmArray: [PlannerDataDM], with ID: Int, callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
         let jsonArray = dmArray.map { (dm) -> JSONObject in
             let json = dm.asJSON()
             return json
         }
-        store.save(plannerData: jsonArray)
+        store.save(plannerData: jsonArray, with: ID)
         callback(.success(true))
     }
     
@@ -365,6 +365,30 @@ public final class DataAccessor {
         }
         store.save(readingPlanners: jsonArray)
         callback(.success(true))
+    }
+    
+    internal func selectReadingPlanner(dm: ReadingPlannerDM, isNew: Bool, callback: @escaping DataAccessorDMCallback<Bool>) {
+        let store = self.dataStore
+        if let plannerArray = store.loadReadingPlanners() {
+            var JSONArray = plannerArray.map({ json -> JSONObject in
+                var plannerDM = ReadingPlannerDM(from: json)
+                if plannerDM.selected {
+                    plannerDM.selected = false
+                    return plannerDM.asJSON()
+                }
+                if !isNew {
+                    if plannerDM.plannerID == dm.plannerID {
+                        return dm.asJSON()
+                    }
+                }
+                return json
+            })
+            if isNew {
+                JSONArray.append(dm.asJSON())
+            }
+            store.save(readingPlanners: JSONArray)
+            callback(.success(true))
+        }
     }
     
     // MARK: Private Helper Funcitons

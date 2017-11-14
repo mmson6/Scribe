@@ -15,7 +15,7 @@ public struct ReadingPlannerDM: JSONTransformable {
     public let plannerID: Int
     public let plannerGoal: PlannerGoalVOM
     public let plannerData: [PlannerDataVOM]?
-    public let selected: Bool
+    public var selected: Bool
     
     init(from model: ReadingPlannerVOM) {
         self.plannerID = model.plannerID

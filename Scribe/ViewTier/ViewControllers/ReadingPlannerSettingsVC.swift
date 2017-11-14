@@ -24,7 +24,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     var goalToggled = false
     var emptyPastAcitivity = true
     var showLoadMoreCell = true
-    var selectedReadingPlanner: ReadingPlannerVOM?
+//    var selectedReadingPlanner: ReadingPlannerVOM?
     var activitiesLoadAmount = 10
     var selectedPlannerIndexPath = IndexPath()
     
@@ -117,7 +117,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             }
             DispatchQueue.main.async {
                 self.hideLoadingIndicator()
-                self.tableView.reloadData()
+                self.tableView.reloadSections([0,1,2], with: .none)
             }
         }
         cmd.execute()
@@ -182,15 +182,18 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 print("Select this plan")
                 self.showLoadingIndicator()
                 
-                self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = false
-                self.readingPlannerDataSource[indexPath.row - 1].selected = true
+//                self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = false
+//                self.readingPlannerDataSource[indexPath.row - 1].selected = true
 //                self.tableView.reloadRows(at: [self.selectedPlannerIndexPath, indexPath], with: .fade)
+                var plannerModel = model
+                plannerModel.selected = true
                 
-                self.saveReadingPlanners(with: self.readingPlannerDataSource) { result in
+                self.saveReadingPlanners(with: plannerModel, isNew: false) { result in
+//                self.saveReadingPlanners(with: self.readingPlannerDataSource) { result in
                     switch result {
                     case .success:
-                        self.fetchData()
                         self.selectedPlannerID = model.plannerID
+                        self.fetchData()
                         self.delegate?.readingPlanSwitched()
                         self.showPopUpToast(on: self.tableView, text: "Switched \nPlanner")
                     case .failure(let error):
@@ -558,12 +561,13 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         
         let newPlannerModel = ReadingPlannerVOM(id: plannerIndex, goal: goalModel, data: initialPDS, selected: true)
         
-        self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = false
-        self.tableView.reloadRows(at: [self.selectedPlannerIndexPath], with: .fade)
-        self.readingPlannerDataSource.insert(newPlannerModel, at: self.readingPlannerDataSource.count)
+//        self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = false
+//        self.tableView.reloadRows(at: [self.selectedPlannerIndexPath], with: .fade)
+//        self.readingPlannerDataSource.insert(newPlannerModel, at: self.readingPlannerDataSource.count)
         // Mike Todo:: need to save plannerGoal as saving the new planner.
         self.showLoadingIndicator()
-        self.saveReadingPlanners(with: self.readingPlannerDataSource) { result in
+        self.saveReadingPlanners(with: newPlannerModel, isNew: true) { result in
+//        self.saveReadingPlanners(with: self.readingPlannerDataSource) { result in
             switch result {
             case .success:
                 self.selectedPlannerID = plannerIndex
@@ -623,10 +627,12 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     
     private func removeBiblePlannerData(with model: PlannerActivityVOM) {
         let cmd = RemoveBiblePlannerDataCommand()
+        cmd.plannerID = self.selectedPlannerID
         cmd.plannerActivityData = model
         cmd.onCompletion { result in
             switch result {
             case .success:
+                self.fetchData()
                 NSLog("removeBiblePlannerData returned with success")
                 NotificationCenter.default.post(name: biblePlannerDataUpdatedFromSettings, object: nil)
             case .failure:
@@ -696,10 +702,12 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         }
         cmd.execute()
     }
-    
-    private func saveReadingPlanners(with plannerDS: [ReadingPlannerVOM], callback: @escaping (AsyncResult<Bool>) -> Void) {
-        let cmd = SaveReadingPlannersCommand()
-        cmd.readingPlannerDS = plannerDS
+
+    private func saveReadingPlanners(with plannerModel: ReadingPlannerVOM, isNew: Bool, callback: @escaping (AsyncResult<Bool>) -> Void) {
+//    private func saveReadingPlanners(with plannerDS: [ReadingPlannerVOM], isNew: Bool, callback: @escaping (AsyncResult<Bool>) -> Void) {
+        let cmd = SelectReadingPlannerCommand()
+        cmd.new = isNew
+        cmd.readingPlannerModel = plannerModel
         cmd.onCompletion { result in
             switch result {
             case .success:
@@ -709,6 +717,18 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             }
         }
         cmd.execute()
+        
+//        let cmd = SaveReadingPlannersCommand()
+//        cmd.readingPlannerDS = plannerDS
+//        cmd.onCompletion { result in
+//            switch result {
+//            case .success:
+//                callback(.success(true))
+//            case .failure(let error):
+//                callback(.failure(error))
+//            }
+//        }
+//        cmd.execute()
     }
     private func showLoadingIndicator() {
         self.activityIndicatorView.isHidden = false

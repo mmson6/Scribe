@@ -196,6 +196,7 @@
 		DCC934041FBA83D200F7A283 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCC933571FBA83D200F7A283 /* GoogleService-Info.plist */; };
 		DCC934051FBA83D200F7A283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC933581FBA83D200F7A283 /* AppDelegate.swift */; };
 		DCC934061FBA83D200F7A283 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCC933591FBA83D200F7A283 /* Info.plist */; };
+		DCC934081FBACC6700F7A283 /* SelectReadingPlannerCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC934071FBACC6700F7A283 /* SelectReadingPlannerCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -416,6 +417,7 @@
 		DCC933571FBA83D200F7A283 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCC933581FBA83D200F7A283 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC933591FBA83D200F7A283 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCC934071FBACC6700F7A283 /* SelectReadingPlannerCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectReadingPlannerCommand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -860,31 +862,32 @@
 		DCC9331F1FBA83D200F7A283 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
-				DCC933201FBA83D200F7A283 /* FetchSignUpRequestsCommand.swift */,
-				DCC933211FBA83D200F7A283 /* ScribeCommand.swift */,
+				DCC933291FBA83D200F7A283 /* FetchBiblePlannerDataCommand.swift */,
+				DCC933301FBA83D200F7A283 /* FetchContactDetailCommand.swift */,
 				DCC933221FBA83D200F7A283 /* FetchContactDetailEditCommand.swift */,
-				DCC933231FBA83D200F7A283 /* SavePlannerGoalCommand.swift */,
+				DCC9332A1FBA83D200F7A283 /* FetchContactGroupCommand.swift */,
+				DCC933351FBA83D200F7A283 /* FetchContactsCommand.swift */,
+				DCC933341FBA83D200F7A283 /* FetchContactsVersionCommand.swift */,
+				DCC933371FBA83D200F7A283 /* FetchGroupContactsCommand.swift */,
+				DCC9332F1FBA83D200F7A283 /* FetchPlannerGoalCommand.swift */,
 				DCC933241FBA83D200F7A283 /* FetchPlannerLastMarkActivityCommand.swift */,
 				DCC933251FBA83D200F7A283 /* FetchPlannerMarkActivitiesCommand.swift */,
-				DCC933261FBA83D200F7A283 /* HandleSignOutCommand.swift */,
-				DCC933271FBA83D200F7A283 /* SaveReadingPlannersCommand.swift */,
-				DCC933281FBA83D200F7A283 /* RemoveReadingPlannerCommand.swift */,
-				DCC933291FBA83D200F7A283 /* FetchBiblePlannerDataCommand.swift */,
-				DCC9332A1FBA83D200F7A283 /* FetchContactGroupCommand.swift */,
-				DCC9332B1FBA83D200F7A283 /* RemoveBiblePlannerDataCommand.swift */,
-				DCC9332C1FBA83D200F7A283 /* SavePlannerMarkActivitiesCommand.swift */,
-				DCC9332D1FBA83D200F7A283 /* FetchSelectedReadingPlannerCommand.swift */,
 				DCC9332E1FBA83D200F7A283 /* FetchReadingPlannersCommand.swift */,
-				DCC9332F1FBA83D200F7A283 /* FetchPlannerGoalCommand.swift */,
-				DCC933301FBA83D200F7A283 /* FetchContactDetailCommand.swift */,
-				DCC933311FBA83D200F7A283 /* SaveBiblePlannerDataCommand.swift */,
+				DCC9332D1FBA83D200F7A283 /* FetchSelectedReadingPlannerCommand.swift */,
+				DCC933201FBA83D200F7A283 /* FetchSignUpRequestsCommand.swift */,
 				DCC933321FBA83D200F7A283 /* FetchUserRequestsCountCommand.swift */,
+				DCC933261FBA83D200F7A283 /* HandleSignOutCommand.swift */,
+				DCC9332B1FBA83D200F7A283 /* RemoveBiblePlannerDataCommand.swift */,
 				DCC933331FBA83D200F7A283 /* RemovePlannerMarkActivityCommand.swift */,
-				DCC933341FBA83D200F7A283 /* FetchContactsVersionCommand.swift */,
-				DCC933351FBA83D200F7A283 /* FetchContactsCommand.swift */,
+				DCC933281FBA83D200F7A283 /* RemoveReadingPlannerCommand.swift */,
+				DCC933311FBA83D200F7A283 /* SaveBiblePlannerDataCommand.swift */,
+				DCC933231FBA83D200F7A283 /* SavePlannerGoalCommand.swift */,
+				DCC9332C1FBA83D200F7A283 /* SavePlannerMarkActivitiesCommand.swift */,
 				DCC933361FBA83D200F7A283 /* SavePlannerMarkActivityCommand.swift */,
-				DCC933371FBA83D200F7A283 /* FetchGroupContactsCommand.swift */,
+				DCC933271FBA83D200F7A283 /* SaveReadingPlannersCommand.swift */,
 				DCC933381FBA83D200F7A283 /* SaveSelectedReadingPlannerCommand.swift */,
+				DCC933211FBA83D200F7A283 /* ScribeCommand.swift */,
+				DCC934071FBACC6700F7A283 /* SelectReadingPlannerCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1474,6 +1477,7 @@
 				DCC933711FBA83D200F7A283 /* EditContactInfoVC.swift in Sources */,
 				DCC934011FBA83D200F7A283 /* LevelDBStore.swift in Sources */,
 				DCC933C91FBA83D200F7A283 /* ContactImageCell.swift in Sources */,
+				DCC934081FBACC6700F7A283 /* SelectReadingPlannerCommand.swift in Sources */,
 				DCC933DF1FBA83D200F7A283 /* FetchBiblePlannerDataCommand.swift in Sources */,
 				DCC933771FBA83D200F7A283 /* ContactListVC.swift in Sources */,
 				DCC933781FBA83D200F7A283 /* ManageContactInfoVC.swift in Sources */,
