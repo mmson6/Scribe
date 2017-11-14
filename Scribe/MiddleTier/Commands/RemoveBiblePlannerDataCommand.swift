@@ -10,13 +10,19 @@ import Foundation
 
 public class RemoveBiblePlannerDataCommand: ScribeCommand<Bool> {
     
+    var plannerID: Int?
     var plannerActivityData: PlannerActivityVOM?
     
     public override func main() {
-        guard let model = self.plannerActivityData else { return }
+        guard
+            let model = self.plannerActivityData,
+            let ID = self.plannerID
+        else {
+            return
+        }
         
         let dm = PlannerActivityDM(from: model)
-        self.accessor.removeBiblePlannerData(dm: dm) { result in
+        self.accessor.removeBiblePlannerData(dm: dm, with: ID) { result in
             switch result {
             case .success:
                 self.completedWith(value: true)

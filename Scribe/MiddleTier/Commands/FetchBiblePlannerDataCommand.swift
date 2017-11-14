@@ -10,8 +10,12 @@ import Foundation
 
 public class FetchBiblePlannerDataCommand: ScribeCommand<[PlannerDataVOM]> {
     
+    var plannerID: Int?
+    
     public override func main() {
-        self.accessor.loadBiblePlannerData { result in
+        guard let ID = self.plannerID else { return }
+        
+        self.accessor.loadBiblePlannerData(with: ID) { result in
             switch result {
             case .success(let array):
                 let modelArray = array.map({ (dm) -> PlannerDataVOM in
