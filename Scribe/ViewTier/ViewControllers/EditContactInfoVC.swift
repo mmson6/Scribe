@@ -883,7 +883,7 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // MARK: ScrollView Delegate Functions
     
-    func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
         self.editingTextField?.resignFirstResponder()
     }
     

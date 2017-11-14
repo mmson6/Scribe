@@ -44,7 +44,7 @@ class ContactSearchBar: UISearchBar {
     func setPlaceholderTextColor(color: UIColor) {
         
         if let textField = getSearchBarTextField() {
-            textField.attributedPlaceholder = NSAttributedString(string: self.placeholder != nil ? self.placeholder! : "Search by name", attributes: [NSForegroundColorAttributeName: color])
+            textField.attributedPlaceholder = NSAttributedString(string: self.placeholder != nil ? self.placeholder! : "Search by name", attributes: [NSAttributedStringKey.foregroundColor: color])
         }
     }
     

@@ -86,7 +86,7 @@ class ManageContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDat
         cmd.execute()
     }
     
-    func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
         self.customSearchBar.resignFirstResponder()
     }
     

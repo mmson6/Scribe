@@ -65,13 +65,13 @@ class BottomPlanTrackerView: UIView {
         self.dailyReadingLabel.textColor = UIColor(white: 1, alpha: 0.95)
         
         // Set font and size
-        self.targetPeriodLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
-        self.daysElapsedLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
-        self.chaptersReadLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
-        self.versesReadLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
-        self.targetLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
+        self.targetPeriodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(rawValue: 0.3))
+        self.daysElapsedLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(rawValue: 0.3))
+        self.chaptersReadLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(rawValue: 0.3))
+        self.versesReadLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(rawValue: 0.3))
+        self.targetLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(rawValue: 0.3))
         
-        self.dailyReadingLabel.font = UIFont.systemFont(ofSize: 11, weight: 0.3)
+        self.dailyReadingLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight(rawValue: 0.3))
         self.dayTrackLabel.font = UIFont.systemFont(ofSize: 11)
         self.chapterTrackLabel.font = UIFont.systemFont(ofSize: 11)
         self.verseTrackLabel.font = UIFont.systemFont(ofSize: 11)

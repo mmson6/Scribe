@@ -22,8 +22,8 @@ class TopPlanTrackerView: UIView {
 //        self.averageLabel.textColor = UIColor.rgb(red: 211, green: 251, blue: 206)
         self.averageLabel.textColor = UIColor.rgb(red: 203, green: 204, blue: 248)
         
-        self.recentLabel.font = UIFont.systemFont(ofSize: 13, weight: 0.4)
-        self.averageLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
+        self.recentLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(rawValue: 0.4))
+        self.averageLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(rawValue: 0.3))
     }
     
     public func update(with model: PlannerGoalVOM, and plannerDataSource: [PlannerDataVOM]) {

@@ -60,10 +60,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     private func setLayoutAttributes() {
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
+            NSAttributedStringKey.foregroundColor: UIColor(white: 0.8, alpha: 0.5)
             ])
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your password", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
+            NSAttributedStringKey.foregroundColor: UIColor(white: 0.8, alpha: 0.5)
             ])
         
         self.loginButton.layer.cornerRadius = 23

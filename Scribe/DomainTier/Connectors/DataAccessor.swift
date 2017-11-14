@@ -135,6 +135,7 @@ public final class DataAccessor {
         }
     }
     
+    
     internal func loadPlannerActivities(with ID: Int, callback: @escaping DataAccessorDMCallback<[PlannerActivityDM]>) {
         let store = self.dataStore
         if let jsonArray = store.loadPlannerActivities(with: ID) {

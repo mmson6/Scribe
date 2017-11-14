@@ -1718,7 +1718,7 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
-    func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handleScroll(gestureRecognizer: UIPanGestureRecognizer) {
         self.customSearchBar.resignFirstResponder()
     }
     

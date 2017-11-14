@@ -56,16 +56,16 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     private func setLayoutAttributes() {
         self.firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Enter first Name", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
+            NSAttributedStringKey.foregroundColor: UIColor(white: 0.8, alpha: 0.5)
             ])
         self.lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Enter last name", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
+            NSAttributedStringKey.foregroundColor: UIColor(white: 0.8, alpha: 0.5)
             ])
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
+            NSAttributedStringKey.foregroundColor: UIColor(white: 0.8, alpha: 0.5)
             ])
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your password", attributes: [
-            NSForegroundColorAttributeName: UIColor(white: 0.8, alpha: 0.5)
+            NSAttributedStringKey.foregroundColor: UIColor(white: 0.8, alpha: 0.5)
             ])
         
         self.nextButton.layer.cornerRadius = 23

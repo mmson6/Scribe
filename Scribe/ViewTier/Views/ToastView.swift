@@ -25,7 +25,7 @@ extension UIViewController {
         toastLabel.backgroundColor = .clear
         toastLabel.textColor = UIColor.scribeDesignTwoBlue
         toastLabel.textAlignment = .center;
-        toastLabel.font = UIFont.systemFont(ofSize: 15, weight: 0.2)
+        toastLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(rawValue: 0.2))
         toastLabel.text = message
         toastLabel.clipsToBounds  =  true
         toastLabel.lineBreakMode = .byWordWrapping

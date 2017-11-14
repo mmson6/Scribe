@@ -199,7 +199,7 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
  
     }
     
-    func handlePan(pan: UIPanGestureRecognizer) {
+    @objc func handlePan(pan: UIPanGestureRecognizer) {
         if let interactingView = pan.view {
             
             
