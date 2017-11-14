@@ -149,6 +149,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
     
     private func fetchPlannerDataSource() {
         let cmd = FetchBiblePlannerDataCommand()
+        cmd.plannerID = self.selectedPlannerID
         cmd.onCompletion { result in
             switch result {
             case .success(let array):
@@ -229,6 +230,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
     
     private func savePlannerDataSource() {
         let cmd = SaveBiblePlannerDataCommand()
+        cmd.plannerID = self.selectedPlannerID
         cmd.plannerDataSource = self.plannerDataSource
         cmd.onCompletion { result in
             switch result {
