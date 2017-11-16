@@ -222,7 +222,25 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
                 }
             }
             
+            // TODO: Rebuild the whole thing for iOS11
+            var state: UIGestureRecognizerState = .began
             switch pan.state {
+            case .began:
+                state = .began
+            case .changed:
+                state = .changed
+                if !self.preparedToTrack && !transitionStarted {
+                    state = .began
+                }
+            case .cancelled:
+                state = .cancelled
+            case .ended:
+                state = .ended
+            default:
+                break
+            }
+            
+            switch state {
             case .began:
 //                print("check translation: \( pan.velocity(in: interactingView).y)")
 //                if pan.velocity(in: interactingView).y > 0 {
