@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G5y-q2-MA4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G5y-q2-MA4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,7 +32,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="195" height="75"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mikael Son" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sh-A6-idy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="47.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="103" height="47.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <color key="textColor" red="0.14117647058823529" green="0.29411764705882354" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -149,13 +149,14 @@
                         <constraint firstItem="4fX-hZ-s3g" firstAttribute="centerX" secondItem="dbp-Fi-OrY" secondAttribute="centerX" id="Y2g-t6-bzd"/>
                         <constraint firstItem="4fX-hZ-s3g" firstAttribute="centerY" secondItem="dbp-Fi-OrY" secondAttribute="centerY" id="mso-90-JLA"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="ZZK-Q0-5hY"/>
                 </view>
                 <view contentMode="scaleToFill" id="1Uy-K3-u4s" userLabel="No Requests View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Requests Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="In3-w8-GDU">
-                            <rect key="frame" x="87.5" y="322" width="200.5" height="24"/>
+                            <rect key="frame" x="91" y="322" width="194" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" red="0.49210818527918787" green="0.49210818527918787" blue="0.49210818527918787" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -166,6 +167,7 @@
                         <constraint firstItem="In3-w8-GDU" firstAttribute="centerX" secondItem="1Uy-K3-u4s" secondAttribute="centerX" id="Ktc-EU-A86"/>
                         <constraint firstItem="In3-w8-GDU" firstAttribute="centerY" secondItem="1Uy-K3-u4s" secondAttribute="centerY" id="zEC-yX-obn"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="fAl-Nf-IVT"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="292" y="-28.335832083958024"/>

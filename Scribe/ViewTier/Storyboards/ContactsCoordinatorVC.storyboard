@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L3N-MJ-6tV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L3N-MJ-6tV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,19 +20,15 @@
         <scene sceneID="Rc4-tB-rJZ">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="hYR-JO-qqt" customClass="ContactsCoordinatorVC" customModule="Scribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JNH-hv-hXy"/>
-                        <viewControllerLayoutGuide type="bottom" id="ieY-YF-sjN"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cGG-1c-vl6">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T7P-Vy-hzs">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gfs-lu-DiS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" id="f6Z-Tp-upg" customClass="ContactCell" customModule="Scribe" customModuleProvider="target">
@@ -91,7 +87,7 @@
                                         </connections>
                                     </tableView>
                                     <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V5T-XZ-lOK">
-                                        <rect key="frame" x="0.0" y="279.5" width="375" height="279.5"/>
+                                        <rect key="frame" x="0.0" y="-64" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Ji-KS-QIS">
                                             <size key="itemSize" width="100" height="100"/>
@@ -108,14 +104,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2a-K8-m7y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                            <rect key="frame" x="8" y="12" width="100" height="100"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZNZ-rB-HKH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                     <color key="backgroundColor" red="0.60218369959999996" green="0.76922750470000001" blue="0.3332494795" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young Adults" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLq-cT-Ny7">
-                                                                    <rect key="frame" x="15" y="15" width="65" height="41.5"/>
+                                                                    <rect key="frame" x="15" y="15" width="65" height="40"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                                     <color key="textColor" red="0.4068424772" green="0.40487705460000001" blue="0.40880789969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
@@ -124,7 +120,7 @@
                                                                     <rect key="frame" x="0.0" y="55" width="100" height="45"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzM-FB-dJM" userLabel="Member Count">
-                                                                            <rect key="frame" x="35.5" y="10.5" width="54.5" height="24.5"/>
+                                                                            <rect key="frame" x="41" y="11" width="49" height="23.5"/>
                                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -179,11 +175,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ieY-YF-sjN" firstAttribute="top" secondItem="T7P-Vy-hzs" secondAttribute="bottom" id="N2l-dU-9M0"/>
-                            <constraint firstAttribute="trailing" secondItem="T7P-Vy-hzs" secondAttribute="trailing" id="adB-Fn-Gfh"/>
-                            <constraint firstItem="T7P-Vy-hzs" firstAttribute="top" secondItem="JNH-hv-hXy" secondAttribute="bottom" id="hKo-Mq-2me"/>
-                            <constraint firstItem="T7P-Vy-hzs" firstAttribute="leading" secondItem="cGG-1c-vl6" secondAttribute="leading" id="ym1-Q7-1bd"/>
+                            <constraint firstItem="vcX-ih-dKM" firstAttribute="bottom" secondItem="T7P-Vy-hzs" secondAttribute="bottom" id="N2l-dU-9M0"/>
+                            <constraint firstItem="vcX-ih-dKM" firstAttribute="trailing" secondItem="T7P-Vy-hzs" secondAttribute="trailing" id="adB-Fn-Gfh"/>
+                            <constraint firstItem="T7P-Vy-hzs" firstAttribute="top" secondItem="vcX-ih-dKM" secondAttribute="top" id="hKo-Mq-2me"/>
+                            <constraint firstItem="T7P-Vy-hzs" firstAttribute="leading" secondItem="vcX-ih-dKM" secondAttribute="leading" id="ym1-Q7-1bd"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="vcX-ih-dKM"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Contacts" id="Bh5-71-knY">
@@ -215,7 +212,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ecC-gc-uHQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
