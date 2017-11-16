@@ -37,6 +37,10 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.loadDataSource()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     public override func viewWillAppear(_ animated: Bool) {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 300
@@ -162,6 +166,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: Helper Functions
     
     private func commonInit() {
+        self.setNeedsStatusBarAppearanceUpdate()
         self.addObservers()
     }
     
