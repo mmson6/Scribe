@@ -13,14 +13,29 @@ import SwiftyJSON
 
 public struct ReadingPlannerDM: JSONTransformable {
     public let plannerID: Int
-    public let plannerGoal: PlannerGoalVOM
-    public let plannerData: [PlannerDataVOM]?
+    public let plannerGoal: PlannerGoalDM
+    public let plannerData: [PlannerDataDM]?
     public var selected: Bool
+    
+    init(ID: Int, goal: PlannerGoalDM, data: [PlannerDataDM], selected: Bool) {
+        self.plannerID = ID
+        self.plannerGoal = goal
+        self.plannerData = data
+        self.selected = selected
+    }
     
     init(from model: ReadingPlannerVOM) {
         self.plannerID = model.plannerID
-        self.plannerGoal = model.plannerGoal
-        self.plannerData = model.plannerData
+        self.plannerGoal = PlannerGoalDM(from: model.plannerGoal.asJSON())
+        if let plannerDataArray = model.plannerData {
+            let dmArray = plannerDataArray.map({ model -> PlannerDataDM in
+                let dm = PlannerDataDM(from: model.asJSON())
+                return dm
+            })
+            self.plannerData = dmArray
+        } else {
+            self.plannerData = nil
+        }
         self.selected = model.selected
     }
     
@@ -29,15 +44,15 @@ public struct ReadingPlannerDM: JSONTransformable {
         self.plannerID = json["plannerID"].int ?? 0
         
         if let plannerGoalJSON = jsonObj["plannerGoal"] as? JSONObject {
-            self.plannerGoal = PlannerGoalVOM(from: plannerGoalJSON)
+            self.plannerGoal = PlannerGoalDM(from: plannerGoalJSON)
         } else {
-            self.plannerGoal = PlannerGoalVOM(from: [:])
+            self.plannerGoal = PlannerGoalDM(from: [:])
         }
         
         
         if let plannerDataJSONArray = jsonObj["plannerData"] as? JSONArray {
-            let modelArray = plannerDataJSONArray.map({ json -> PlannerDataVOM in
-                let model = PlannerDataVOM(from: json)
+            let modelArray = plannerDataJSONArray.map({ json -> PlannerDataDM in
+                let model = PlannerDataDM(from: json)
                 return model
             })
             self.plannerData = modelArray
