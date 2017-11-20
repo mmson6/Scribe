@@ -10,14 +10,20 @@ import Foundation
 
 public class SavePlannerGoalCommand: ScribeCommand<Bool> {
     
-    var plannerID: Int?
     var plannerGoalData: PlannerGoalVOM?
+    var selectedPlanner: ReadingPlannerVOM?
     
     public override func main() {
-        guard let model = self.plannerGoalData, let ID = self.plannerID else { return }
+        guard
+            let plannerGoalData = self.plannerGoalData,
+            let selectedPlanner = self.selectedPlanner
+        else {
+            return
+        }
         
-        let dm = PlannerGoalDM(from: model.asJSON())
-        self.accessor.savePlannerGoal(dm: dm, with: ID) { result in
+        let dm = PlannerGoalDM(from: plannerGoalData.asJSON())
+        let selectedPlannerDM = ReadingPlannerDM(from: selectedPlanner.asJSON())
+        self.accessor.savePlannerGoal(dm: dm, with: selectedPlannerDM) { result in
             switch result {
             case .success:
                 self.completedWith(value: true)

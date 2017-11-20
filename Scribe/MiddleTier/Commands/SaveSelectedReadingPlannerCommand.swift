@@ -14,9 +14,9 @@ public class SaveSelectedReadingPlannerCommand: ScribeCommand<Bool> {
     var readingPlannerVOM: ReadingPlannerVOM?
     
     public override func main() {
-        guard let model = self.readingPlannerVOM else { return }
+        guard let readingPlannerVOM = self.readingPlannerVOM else { return }
         
-        let dm = ReadingPlannerDM(from: model)
+        let dm = ReadingPlannerDM(from: readingPlannerVOM.asJSON())
         self.accessor.saveSelectedReadingPlanner(dm: dm, callback: { result in
             switch result {
             case .success:
