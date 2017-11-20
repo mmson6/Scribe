@@ -34,8 +34,17 @@ public struct ReadingPlannerVOM {
     
     public init(model: ReadingPlannerDM) {
         self.plannerID = model.plannerID
-        self.plannerGoal = model.plannerGoal
-        self.plannerData = model.plannerData
+        self.plannerGoal = PlannerGoalVOM(from: model.plannerGoal.asJSON())
+        if let plannerDataArray = model.plannerData {
+            let modelArray = plannerDataArray.map({ dm -> PlannerDataVOM in
+                let model = PlannerDataVOM(from: dm.asJSON())
+                return model
+            })
+            self.plannerData = modelArray
+        } else {
+            self.plannerData = nil
+        }
+        
         self.selected = model.selected
         
         var json = JSONObject()
@@ -52,6 +61,14 @@ public struct ReadingPlannerVOM {
     }
     
     func asJSON() -> JSONObject {
-        return self.originalJSON
+        var json = JSONObject()
+        json["plannerID"] = self.plannerID
+        json["plannerGoal"] = self.plannerGoal.asJSON()
+        let plannerDataJSONArray = self.plannerData?.map({ model -> JSONObject in
+            return model.asJSON()
+        })
+        json["plannerData"] = plannerDataJSONArray
+        json["selected"] = self.selected
+        return json
     }
 }
