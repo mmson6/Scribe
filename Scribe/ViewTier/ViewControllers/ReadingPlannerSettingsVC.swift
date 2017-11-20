@@ -24,15 +24,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     var goalToggled = false
     var emptyPastAcitivity = true
     var showLoadMoreCell = true
-//    var selectedReadingPlanner: ReadingPlannerVOM?
+    var selectedReadingPlanner: ReadingPlannerVOM?
     var activitiesLoadAmount = 10
     var selectedPlannerIndexPath = IndexPath()
     
     var delegate: ReadingPlannerSettingsVCDelegate?
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet var activityIndicatorView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,23 +53,37 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30))
         footerView.backgroundColor = self.tableView.backgroundColor
         self.tableView.tableFooterView = footerView
-        
-        // Add activity indicator to the view
-        self.activityIndicatorView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height)
-        self.tableView.addSubview(self.activityIndicatorView)
-        self.activityIndicatorView.isHidden = true
     }
     
     private func fetchData() {
-        self.showLoadingIndicator()
         DispatchQueue.global(qos: .userInitiated).async {
-            self.fetchBiblePlannerActivities()
+            self.fetchAllReadingPlanners()
         }
     }
     
+    private func fetchAllReadingPlanners() {
+        let cmd = FetchReadingPlannersCommand()
+        cmd.onCompletion { result in
+            switch result {
+            case .success(let array):
+                self.readingPlannerDataSource = array
+                for planner in self.readingPlannerDataSource {
+                    if planner.plannerID == self.selectedPlannerID {
+                        self.selectedReadingPlanner = planner
+                        self.goalJSONData = planner.plannerGoal.asJSON()
+                        break
+                    }
+                }
+                self.fetchBiblePlannerActivities()
+            case .failure(let error):
+                NSLog("FetchReadingPlannersCommand returned with error: \(error)")
+            }
+        }
+        cmd.execute()
+    }
+
     private func fetchBiblePlannerActivities() {
         let cmd = FetchPlannerMarkActivitiesCommand()
-        // Mike TODO:: apply planner IDs to planner activity and goal loadings.
         cmd.plannerID = self.selectedPlannerID
         cmd.onCompletion { result in
             switch result {
@@ -80,44 +93,10 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             case .failure:
                 NSLog("FetchPlannerMarkActivitiesCommand returned with failure")
             }
-            self.fetchBiblePlannerGoal()
-        }
-        cmd.execute()
-    }
-    
-    private func fetchBiblePlannerGoal() {
-        let cmd = FetchPlannerGoalCommand()
-        cmd.plannerID = self.selectedPlannerID
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let model):
-                NSLog("FetchPlannerGoalCommand returned with success")
-                self.goalJSONData = model.asJSON()
-            case .failure:
-                NSLog("FetchPlannerGoalCommand returned with failure")
-//                self.setPlannerInitialGoal()
-            }
-            self.fetchReadingPlanners()
-//            DispatchQueue.main.async {
-//                self.hideLoadingIndicator()
-//                self.tableView.reloadData()
-//            }
-        }
-        cmd.execute()
-    }
-    
-    private func fetchReadingPlanners() {
-        let cmd = FetchReadingPlannersCommand()
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let array):
-                self.readingPlannerDataSource = array
-            case .failure(let error):
-                NSLog("FetchReadingPlannersCommand returned with error: \(error)")
-            }
             DispatchQueue.main.async {
-                self.hideLoadingIndicator()
-                self.tableView.reloadSections([0,1,2], with: .none)
+                UIView.performWithoutAnimation {
+                    self.tableView.reloadData()
+                }
             }
         }
         cmd.execute()
@@ -179,35 +158,27 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         let switchPlanAction = UIAlertAction(
             title: "Switch To This Plan",
             style: .default) { action in
-                print("Select this plan")
-                self.showLoadingIndicator()
-                
-//                self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = false
-//                self.readingPlannerDataSource[indexPath.row - 1].selected = true
-//                self.tableView.reloadRows(at: [self.selectedPlannerIndexPath, indexPath], with: .fade)
                 var plannerModel = model
                 plannerModel.selected = true
                 
-                self.saveReadingPlanners(with: plannerModel, isNew: false) { result in
-//                self.saveReadingPlanners(with: self.readingPlannerDataSource) { result in
+                self.saveReadingPlanner(with: plannerModel, isNew: false) { result in
                     switch result {
                     case .success:
                         self.selectedPlannerID = model.plannerID
                         self.fetchData()
                         self.delegate?.readingPlanSwitched()
-                        self.showPopUpToast(on: self.tableView, text: "Switched \nPlanner")
+                        if let window = UIApplication.shared.keyWindow {
+                            self.showPopUpToast(on: window, text: "Switched \nPlan")
+                        }
                     case .failure(let error):
                         NSLog("SaveReadingPlannersCommand returned with error:: \(error)")
                     }
-                    self.hideLoadingIndicator()
                 }
         }
         
         let deletePlanAction = UIAlertAction(
             title: "Delete (with all records)",
             style: .destructive) { action in
-                print("DELETE")
-                self.showLoadingIndicator()
                 self.readingPlannerDataSource.remove(at: indexPath.row - 1)
                 
                 // Reload tableView section to reset selectedPlannerIndexPath variable
@@ -252,7 +223,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             style: .destructive,
             handler: { [weak self] action in
                 guard let strongSelf = self else { return }
-                strongSelf.showLoadingIndicator()
                 strongSelf.activityDataSource.remove(at: (strongSelf.activityDataSource.count - 1) - (indexPath.row - 2))
                 if strongSelf.activityDataSource.count < 10 {
                     strongSelf.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -297,36 +267,16 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 timeFormatter.dateFormat = "MM/dd/yyyy"
                 let dateString = timeFormatter.string(from: date)
                 cell.timeLabel.text = dateString
-//                let years = Date.compareYears(from: date)
-//                if years > 1 {
-//                    cell.timeLabel.text = "\(years)y ago"
-//                } else {
-//                    cell.timeLabel.text = "Last year"
-//                }
             } else if Date.compareMonths(from: date) > 0 {
                 let timeFormatter = DateFormatter()
                 timeFormatter.dateFormat = "MM/dd/yyyy"
                 let dateString = timeFormatter.string(from: date)
                 cell.timeLabel.text = dateString
-                
-//                let months = Date.compareMonths(from: date)
-//                if months > 1 {
-//                    cell.timeLabel.text = "\(months) months ago"
-//                } else {
-//                    cell.timeLabel.text = "Last month"
-//                }
             } else if Date.compareWeeks(from: date) > 0 {
                 let timeFormatter = DateFormatter()
                 timeFormatter.dateFormat = "EEE, h:mm a"
                 let dateString = timeFormatter.string(from: date)
                 cell.timeLabel.text = dateString
-                
-//                let weeks = Date.compareWeeks(from: date)
-//                if weeks > 1 {
-//                    cell.timeLabel.text = "\(weeks)w ago"
-//                } else {
-//                    cell.timeLabel.text = "Last week"
-//                }
             } else if Date.compareDays(from: date) > 0 {
                 let timeFormatter = DateFormatter()
                 
@@ -335,29 +285,17 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                     timeFormatter.dateFormat = "EEE, h:mm a"
                     let dateString = timeFormatter.string(from: date)
                     cell.timeLabel.text = dateString
-//                    cell.timeLabel.text = "\(days)d ago"
                 } else {
                     timeFormatter.dateFormat = "'Yesterday', h:mm a"
                     let dateString = timeFormatter.string(from: date)
                     cell.timeLabel.text = dateString
-//                    cell.timeLabel.text = "Yesterday"
                 }
             } else if Date.compareHours(from: date) > 0 {
                 let hours = Date.compareHours(from: date)
                 cell.timeLabel.text = "\(hours)h ago"
-//                if hours > 1 {
-//                    cell.timeLabel.text = "\(hours)h ago"
-//                } else {
-//                    cell.timeLabel.text = "\(hours)h ago"
-//                }
             } else if Date.compareMinutes(from: date) > 0 {
                 let mins = Date.compareMinutes(from: date)
                 cell.timeLabel.text = "\(mins)m ago"
-//                if mins > 1 {
-//                    cell.timeLabel.text = "\(mins)m ago"
-//                } else {
-//                    cell.timeLabel.text = "\(mins)m ago"
-//                }
             } else {
                 cell.timeLabel.text = "Just now"
             }
@@ -470,26 +408,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             
             cell.progressDetailLabel.text = "Read \(totalChaptersRead) chapters (\(String(format: "%.1f", chapterProportion * 100))%), \(totalVersesRead) verses (\(String(format: "%.1f", verseProportion * 100))%)"
         }
-        
-//        if indexPath.row == 1 {
-//            cell.titleLabel.text = "Start Date :"
-//            cell.dateRangeLabel.text = "From"
-//            cell.dateLabel.text = model.startDate
-//        } else if indexPath.row == 3 {
-//            cell.titleLabel.text = "End Date :"
-//            cell.dateRangeLabel.text = "To"
-//            cell.dateLabel.text = model.endDate
-//        } else {
-//            cell.titleLabel.text = "Goal :"
-//            cell.dateRangeLabel.text = ""
-//            if model.OTGoal == 0 {
-//                cell.dateLabel.text = "NT \(model.NTGoal) \(NTText)"
-//            } else if model.NTGoal == 0 {
-//                cell.dateLabel.text = "OT \(model.OTGoal) \(OTText)"
-//            } else {
-//                cell.dateLabel.text = "OT \(model.OTGoal) \(OTText) + NT \(model.NTGoal) \(NTText)"
-//            }
-//        }
     }
 
     
@@ -555,58 +473,30 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         let initialPDS = BibleFactory.getDefaultPDS()
         let defaultsStore = UserDefaultsStore()
         let plannerIndex = defaultsStore.loadReadingPlannerIndex() + 1
-        // Mike TODO:: Check and account for fresh start case where there is no data in the database. Initialize index to 1.
         // MIke TODO:: When creating new plan, let BibleReadingPlannerVC know that it needs to re-fetch the whole data
         // MIke TODO:: Switching reading plans
         
-        let newPlannerModel = ReadingPlannerVOM(id: plannerIndex, goal: goalModel, data: initialPDS, selected: true)
+        let newReadingPlannerModel = ReadingPlannerVOM(id: plannerIndex, goal: goalModel, data: initialPDS, selected: true)
         
-//        self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = false
-//        self.tableView.reloadRows(at: [self.selectedPlannerIndexPath], with: .fade)
-//        self.readingPlannerDataSource.insert(newPlannerModel, at: self.readingPlannerDataSource.count)
         // Mike Todo:: need to save plannerGoal as saving the new planner.
-        self.showLoadingIndicator()
-        self.saveReadingPlanners(with: newPlannerModel, isNew: true) { result in
-//        self.saveReadingPlanners(with: self.readingPlannerDataSource) { result in
+        self.saveReadingPlanner(with: newReadingPlannerModel, isNew: true) { result in
             switch result {
             case .success:
                 self.selectedPlannerID = plannerIndex
                 let defaultStore = UserDefaultsStore()
                 defaultStore.saveReadingPlannerIndex(plannerIndex)
-                
-                self.saveNewPlannerGoalToDB(with: goalModel) { result in
-                    switch result {
-                    case .success:
-                        self.fetchData()  // Reload all
-                    case .failure:
-                        break
-                    }
-                }
-//                let indexPath = IndexPath(row: self.readingPlannerDataSource.count, section: 2)
-//                self.tableView.insertRows(at: [indexPath], with: .right)
-                
+                self.fetchData()
                 self.delegate?.newReadingPlanCreated()
+                if let window = UIApplication.shared.keyWindow {
+                    self.showPopUpToast(on: window, text: "Switched \nPlan")
+                }
+                
             case .failure(let error):
                 self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = true
                 self.readingPlannerDataSource.remove(at: self.readingPlannerDataSource.count - 1)
                 NSLog("SaveReadingPlannersCommand returned with error:: \(error)")
             }
-            self.hideLoadingIndicator()
         }
-//        let cmd = SaveReadingPlannersCommand()
-//        cmd.readingPlannerDS = self.readingPlannerDataSource
-//        cmd.onCompletion { result in
-//            switch result {
-//            case .success:
-//
-////                self.tableView.reloadSections([2], with: .none)
-//            case .failure(let error):
-//                self.readingPlannerDataSource[self.selectedPlannerIndexPath.row - 1].selected = true
-//                self.readingPlannerDataSource.remove(at: self.readingPlannerDataSource.count - 1)
-//                NSLog("SaveReadingPlannersCommand returned with error:: \(error)")
-//            }
-//        }
-//        cmd.execute()
     }
     
     private func removePastActivity() {
@@ -620,15 +510,14 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             case .failure:
                 break
             }
-            self.hideLoadingIndicator()
         }
         cmd.execute()
     }
     
     private func removeBiblePlannerData(with model: PlannerActivityVOM) {
         let cmd = RemoveBiblePlannerDataCommand()
-        cmd.plannerID = self.selectedPlannerID
         cmd.plannerActivityData = model
+        cmd.selectedPlanner = self.selectedReadingPlanner
         cmd.onCompletion { result in
             switch result {
             case .success:
@@ -648,35 +537,35 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         cmd.onCompletion { result in
             switch result {
             case .success:
-                break
+                self.fetchData()
             case .failure(let error):
                 NSLog("RemoveReadingPlannerCommand returned with erro: \(error)")
             }
-            self.hideLoadingIndicator()
         }
         cmd.execute()
     }
     
     private func savePlannerGoalToDB(with model: PlannerGoalVOM, showToast: Bool = true) {
         let cmd = SavePlannerGoalCommand()
-        cmd.plannerID = self.selectedPlannerID
         cmd.plannerGoalData = model
+        cmd.selectedPlanner = self.selectedReadingPlanner
         cmd.onCompletion { result in
             switch result {
             case .success:
+                self.fetchData()
                 if showToast {
-                    self.showPopUpToast(on: self.tableView, text: "Save \nSuccessful")
+                    if let window = UIApplication.shared.keyWindow {
+                        self.showPopUpToast(on: window, text: "Save \nSuccessful")
+                    }
                 }
                 self.startDateToggled = false
                 self.endDateToggled = false
                 self.goalToggled = false
-                self.tableView.reloadSections([1], with: .fade)
                 NSLog("SavePlannerGoalCommand returned with success")
                 NotificationCenter.default.post(name: biblePlannerDataUpdatedFromSettings, object: nil)
             case .failure:
                 NSLog("SavePlannerGoalCommand returned with failure")
             }
-            self.hideLoadingIndicator()
             self.disableSaveButton()
         }
         cmd.execute()
@@ -684,7 +573,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     
     private func saveNewPlannerGoalToDB(with model: PlannerGoalVOM, callback: @escaping (AsyncResult<Bool>) -> Void) {
         let cmd = SavePlannerGoalCommand()
-        cmd.plannerID = self.selectedPlannerID
+//        cmd.plannerID = self.selectedPlannerID
         cmd.plannerGoalData = model
         cmd.onCompletion { result in
             switch result {
@@ -703,8 +592,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         cmd.execute()
     }
 
-    private func saveReadingPlanners(with plannerModel: ReadingPlannerVOM, isNew: Bool, callback: @escaping (AsyncResult<Bool>) -> Void) {
-//    private func saveReadingPlanners(with plannerDS: [ReadingPlannerVOM], isNew: Bool, callback: @escaping (AsyncResult<Bool>) -> Void) {
+    private func saveReadingPlanner(with plannerModel: ReadingPlannerVOM, isNew: Bool, callback: @escaping (AsyncResult<Bool>) -> Void) {
         let cmd = SelectReadingPlannerCommand()
         cmd.new = isNew
         cmd.readingPlannerModel = plannerModel
@@ -730,15 +618,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
 //        }
 //        cmd.execute()
     }
-    private func showLoadingIndicator() {
-        self.activityIndicatorView.isHidden = false
-        self.activityIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        self.activityIndicatorView.isHidden = true
-        self.activityIndicator.stopAnimating()
-    }
     
     // MARK: - Table view data source
 
@@ -753,7 +632,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
             } else {
                 self.emptyPastAcitivity = false
                 if self.activityDataSource.count > 10 && self.showLoadMoreCell {
-//                    self.showLoadMoreCell = true
                     return self.activitiesLoadAmount + 3
                 }
             }
@@ -1095,7 +973,6 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        self.showLoadingIndicator()
         let model = PlannerGoalVOM(from: self.goalJSONData)
         self.savePlannerGoalToDB(with: model)
     }

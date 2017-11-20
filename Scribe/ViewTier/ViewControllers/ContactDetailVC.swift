@@ -438,8 +438,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if self.animator.transitionStarted {
             scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }
-        
-//        print(scrollView.contentOffset.y)
     }
     
 }
