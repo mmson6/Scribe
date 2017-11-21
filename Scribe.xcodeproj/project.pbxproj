@@ -23,13 +23,13 @@
 		27EB3ED21ECBB45600BB292B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EB3ED11ECBB45600BB292B /* MapKit.framework */; };
 		3C0004ADF0694D326A917AB4 /* Pods_ScribeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */; };
 		9F204964B580F76BFE3C7596 /* Pods_ScribeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AA75D0A9A30059B9619DEF /* Pods_ScribeUITests.framework */; };
+		DC11638A1FC492380079B7EF /* ScriptForPopulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1163891FC492380079B7EF /* ScriptForPopulation.swift */; };
+		DC11638C1FC497050079B7EF /* ContactsSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC11638B1FC497050079B7EF /* ContactsSearchResultsController.swift */; };
 		DCC9335A1FBA83D200F7A283 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932931FBA83D200F7A283 /* LaunchScreen.storyboard */; };
 		DCC9335B1FBA83D200F7A283 /* GroupContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932941FBA83D200F7A283 /* GroupContacts.storyboard */; };
-		DCC9335C1FBA83D200F7A283 /* ContactsCoordinatorVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932951FBA83D200F7A283 /* ContactsCoordinatorVC.storyboard */; };
 		DCC9335D1FBA83D200F7A283 /* BibleReadingPlanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932961FBA83D200F7A283 /* BibleReadingPlanner.storyboard */; };
 		DCC9335E1FBA83D200F7A283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932971FBA83D200F7A283 /* Main.storyboard */; };
 		DCC9335F1FBA83D200F7A283 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932981FBA83D200F7A283 /* Login.storyboard */; };
-		DCC933601FBA83D200F7A283 /* ContactList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC932991FBA83D200F7A283 /* ContactList.storyboard */; };
 		DCC933611FBA83D200F7A283 /* ContactDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9329A1FBA83D200F7A283 /* ContactDetail.storyboard */; };
 		DCC933621FBA83D200F7A283 /* SignUpRequests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9329B1FBA83D200F7A283 /* SignUpRequests.storyboard */; };
 		DCC933631FBA83D200F7A283 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9329C1FBA83D200F7A283 /* SignUp.storyboard */; };
@@ -52,13 +52,11 @@
 		DCC933741FBA83D200F7A283 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932AF1FBA83D200F7A283 /* MoreInfoVC.swift */; };
 		DCC933751FBA83D200F7A283 /* ContactDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B01FBA83D200F7A283 /* ContactDetailVC.swift */; };
 		DCC933761FBA83D200F7A283 /* ContactGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B11FBA83D200F7A283 /* ContactGroupsVC.swift */; };
-		DCC933771FBA83D200F7A283 /* ContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B21FBA83D200F7A283 /* ContactListVC.swift */; };
 		DCC933781FBA83D200F7A283 /* ManageContactInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B31FBA83D200F7A283 /* ManageContactInfoVC.swift */; };
 		DCC933791FBA83D200F7A283 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B41FBA83D200F7A283 /* SettingsVC.swift */; };
 		DCC9337A1FBA83D200F7A283 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B51FBA83D200F7A283 /* SignUpVC.swift */; };
 		DCC9337B1FBA83D200F7A283 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B61FBA83D200F7A283 /* MainTabBarController.swift */; };
 		DCC9337C1FBA83D200F7A283 /* LanguageSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B71FBA83D200F7A283 /* LanguageSettingsVC.swift */; };
-		DCC9337D1FBA83D200F7A283 /* ContactsCoordinatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B81FBA83D200F7A283 /* ContactsCoordinatorVC.swift */; };
 		DCC9337E1FBA83D200F7A283 /* GroupContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932B91FBA83D200F7A283 /* GroupContactListVC.swift */; };
 		DCC9337F1FBA83D200F7A283 /* BibleMarkChaptersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932BA1FBA83D200F7A283 /* BibleMarkChaptersVC.swift */; };
 		DCC933801FBA83D200F7A283 /* AdminSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC932BB1FBA83D200F7A283 /* AdminSettingsVC.swift */; };
@@ -242,13 +240,13 @@
 		A44BD43EEE82EA18600F228B /* Pods_ScribeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScribeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DB000DE59DAAB7767194D2 /* Pods_Scribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1F5D7909FC8D6D4AD27693 /* Pods-ScribeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScribeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScribeUITests/Pods-ScribeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DC1163891FC492380079B7EF /* ScriptForPopulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptForPopulation.swift; sourceTree = "<group>"; };
+		DC11638B1FC497050079B7EF /* ContactsSearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSearchResultsController.swift; sourceTree = "<group>"; };
 		DCC932931FBA83D200F7A283 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCC932941FBA83D200F7A283 /* GroupContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupContacts.storyboard; sourceTree = "<group>"; };
-		DCC932951FBA83D200F7A283 /* ContactsCoordinatorVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContactsCoordinatorVC.storyboard; sourceTree = "<group>"; };
 		DCC932961FBA83D200F7A283 /* BibleReadingPlanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BibleReadingPlanner.storyboard; sourceTree = "<group>"; };
 		DCC932971FBA83D200F7A283 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DCC932981FBA83D200F7A283 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		DCC932991FBA83D200F7A283 /* ContactList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContactList.storyboard; sourceTree = "<group>"; };
 		DCC9329A1FBA83D200F7A283 /* ContactDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContactDetail.storyboard; sourceTree = "<group>"; };
 		DCC9329B1FBA83D200F7A283 /* SignUpRequests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUpRequests.storyboard; sourceTree = "<group>"; };
 		DCC9329C1FBA83D200F7A283 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -271,13 +269,11 @@
 		DCC932AF1FBA83D200F7A283 /* MoreInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
 		DCC932B01FBA83D200F7A283 /* ContactDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailVC.swift; sourceTree = "<group>"; };
 		DCC932B11FBA83D200F7A283 /* ContactGroupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactGroupsVC.swift; sourceTree = "<group>"; };
-		DCC932B21FBA83D200F7A283 /* ContactListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListVC.swift; sourceTree = "<group>"; };
 		DCC932B31FBA83D200F7A283 /* ManageContactInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageContactInfoVC.swift; sourceTree = "<group>"; };
 		DCC932B41FBA83D200F7A283 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		DCC932B51FBA83D200F7A283 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		DCC932B61FBA83D200F7A283 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DCC932B71FBA83D200F7A283 /* LanguageSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSettingsVC.swift; sourceTree = "<group>"; };
-		DCC932B81FBA83D200F7A283 /* ContactsCoordinatorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCoordinatorVC.swift; sourceTree = "<group>"; };
 		DCC932B91FBA83D200F7A283 /* GroupContactListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupContactListVC.swift; sourceTree = "<group>"; };
 		DCC932BA1FBA83D200F7A283 /* BibleMarkChaptersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleMarkChaptersVC.swift; sourceTree = "<group>"; };
 		DCC932BB1FBA83D200F7A283 /* AdminSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsVC.swift; sourceTree = "<group>"; };
@@ -620,9 +616,7 @@
 				DCC932961FBA83D200F7A283 /* BibleReadingPlanner.storyboard */,
 				DCC9329A1FBA83D200F7A283 /* ContactDetail.storyboard */,
 				DCC932A21FBA83D200F7A283 /* ContactGroup.storyboard */,
-				DCC932991FBA83D200F7A283 /* ContactList.storyboard */,
 				DCC9329D1FBA83D200F7A283 /* Contacts.storyboard */,
-				DCC932951FBA83D200F7A283 /* ContactsCoordinatorVC.storyboard */,
 				DCC932941FBA83D200F7A283 /* GroupContacts.storyboard */,
 				DCC932931FBA83D200F7A283 /* LaunchScreen.storyboard */,
 				DCC932A01FBA83D200F7A283 /* Loading.storyboard */,
@@ -656,8 +650,6 @@
 				DCC932B01FBA83D200F7A283 /* ContactDetailVC.swift */,
 				DCC932B11FBA83D200F7A283 /* ContactGroupsVC.swift */,
 				DCC932AD1FBA83D200F7A283 /* ContactGroupVC.swift */,
-				DCC932B21FBA83D200F7A283 /* ContactListVC.swift */,
-				DCC932B81FBA83D200F7A283 /* ContactsCoordinatorVC.swift */,
 				DCC932AB1FBA83D200F7A283 /* ContactsVC.swift */,
 				DCC932AC1FBA83D200F7A283 /* EditContactInfoVC.swift */,
 				DCC932B91FBA83D200F7A283 /* GroupContactListVC.swift */,
@@ -671,6 +663,7 @@
 				DCC932B41FBA83D200F7A283 /* SettingsVC.swift */,
 				DCC932AA1FBA83D200F7A283 /* SignUpRequestsVC.swift */,
 				DCC932B51FBA83D200F7A283 /* SignUpVC.swift */,
+				DC11638B1FC497050079B7EF /* ContactsSearchResultsController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -895,6 +888,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC9333A1FBA83D200F7A283 /* Acknowledgements.html */,
+				DC1163891FC492380079B7EF /* ScriptForPopulation.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1156,7 +1150,6 @@
 				DCC934021FBA83D200F7A283 /* Mothers_Group_Image.jpg in Resources */,
 				DCC9339F1FBA83D200F7A283 /* FallingSkySeBdObl.otf in Resources */,
 				DCC9335B1FBA83D200F7A283 /* GroupContacts.storyboard in Resources */,
-				DCC933601FBA83D200F7A283 /* ContactList.storyboard in Resources */,
 				DCC9339E1FBA83D200F7A283 /* FallingSkyCondObl.otf in Resources */,
 				DCC9338D1FBA83D200F7A283 /* FONTLOG.txt in Resources */,
 				DCC933651FBA83D200F7A283 /* ManageContactInfo.storyboard in Resources */,
@@ -1165,7 +1158,6 @@
 				DCC933881FBA83D200F7A283 /* FallingSkyCondOu.otf in Resources */,
 				DCC933611FBA83D200F7A283 /* ContactDetail.storyboard in Resources */,
 				DCC933661FBA83D200F7A283 /* Settings.storyboard in Resources */,
-				DCC9335C1FBA83D200F7A283 /* ContactsCoordinatorVC.storyboard in Resources */,
 				DCC933861FBA83D200F7A283 /* FallingSkyCondOuObl.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1378,7 +1370,6 @@
 				DCC9336B1FBA83D200F7A283 /* ContactGroupsTransitionAnimator.swift in Sources */,
 				DCC933A61FBA83D200F7A283 /* GradationView.swift in Sources */,
 				DCC933FA1FBA83D200F7A283 /* ContactGroupDM.swift in Sources */,
-				DCC9337D1FBA83D200F7A283 /* ContactsCoordinatorVC.swift in Sources */,
 				DCC933D01FBA83D200F7A283 /* ReadingPlannerVOM.swift in Sources */,
 				275201F11EB991D8002C469B /* SPRViewController.swift in Sources */,
 				DCC933DD1FBA83D200F7A283 /* SaveReadingPlannersCommand.swift in Sources */,
@@ -1419,6 +1410,7 @@
 				DCC933B01FBA83D200F7A283 /* ReadActivityCell.swift in Sources */,
 				DCC933821FBA83D200F7A283 /* BibleReadingPlannerVC.swift in Sources */,
 				DCC933EB1FBA83D200F7A283 /* FetchContactsCommand.swift in Sources */,
+				DC11638A1FC492380079B7EF /* ScriptForPopulation.swift in Sources */,
 				DCC933C71FBA83D200F7A283 /* TopCell.swift in Sources */,
 				DCC933B61FBA83D200F7A283 /* TopPlanTrackerView.swift in Sources */,
 				DCC933AF1FBA83D200F7A283 /* UITableViewCell+ScribeAdditions.swift in Sources */,
@@ -1428,6 +1420,7 @@
 				DCC933791FBA83D200F7A283 /* SettingsVC.swift in Sources */,
 				DCC933F41FBA83D200F7A283 /* PlannerDataDM.swift in Sources */,
 				DCC933B81FBA83D200F7A283 /* MarkChapterCell.swift in Sources */,
+				DC11638C1FC497050079B7EF /* ContactsSearchResultsController.swift in Sources */,
 				DCC9336D1FBA83D200F7A283 /* SlowDissolveTransitionAnimator.swift in Sources */,
 				DCC933B31FBA83D200F7A283 /* GoalPickerCell.swift in Sources */,
 				DCC933AC1FBA83D200F7A283 /* ContactCell.swift in Sources */,
@@ -1477,7 +1470,6 @@
 				DCC933C91FBA83D200F7A283 /* ContactImageCell.swift in Sources */,
 				DCC934081FBACC6700F7A283 /* SelectReadingPlannerCommand.swift in Sources */,
 				DCC933DF1FBA83D200F7A283 /* FetchBiblePlannerDataCommand.swift in Sources */,
-				DCC933771FBA83D200F7A283 /* ContactListVC.swift in Sources */,
 				DCC933781FBA83D200F7A283 /* ManageContactInfoVC.swift in Sources */,
 				DCC933E51FBA83D200F7A283 /* FetchPlannerGoalCommand.swift in Sources */,
 				DCC933841FBA83D200F7A283 /* Date+Scribe.swift in Sources */,

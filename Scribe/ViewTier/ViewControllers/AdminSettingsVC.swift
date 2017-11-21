@@ -47,10 +47,7 @@ class AdminSettingsVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Use iOS 11 large navigationBar title
-        if #available(iOS 11, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         self.signUpRequestBadgeLabel.layer.cornerRadius = self.signUpRequestBadgeLabel.frame.width / 2
         self.signUpRequestBadgeLabel.layer.masksToBounds = true

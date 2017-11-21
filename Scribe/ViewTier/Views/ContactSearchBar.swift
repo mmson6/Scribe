@@ -20,6 +20,16 @@ class ContactSearchBar: UISearchBar {
         return searchTextField
     }
     
+    func initializeLayouts() {
+        self.setSearchImageColor(color: UIColor.scribeDesignTwoLightBlue)
+        self.setTextFieldClearButtonColor(color: UIColor.scribeDesignTwoLightBlue)
+        self.setPlaceholderTextColor(color: UIColor.scribeDesignTwoLightBlue)
+        self.setTextColor(color: UIColor.scribeDesignTwoDarkBlue)
+//        self.setBackgroundColor(color: UIColor.scribeDesignTwoGray)
+        self.tintColor = UIColor.scribeDesignTwoLightBlue
+        
+        self.sizeToFit()
+    }
     func setTextColor(color: UIColor) {
         
         if let textField = getSearchBarTextField() {
@@ -65,6 +75,12 @@ class ContactSearchBar: UISearchBar {
         
         if let imageView = getSearchBarTextField()?.leftView as? UIImageView {
             imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+        }
+    }
+    
+    func setBackgroundColor(color: UIColor) {
+        if let textField = getSearchBarTextField() {
+            textField.backgroundColor = color
         }
     }
 }

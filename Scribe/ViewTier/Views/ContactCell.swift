@@ -10,7 +10,7 @@ import UIKit
 
 import FontAwesomeKit
 
-class ContactCell: UITableViewCell {
+public class ContactCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
 //    @IBOutlet weak var avatarImageView: UIImageView!
@@ -19,7 +19,7 @@ class ContactCell: UITableViewCell {
     
     public var lookupKey: Any?
     
-    override public func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         
 //        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
