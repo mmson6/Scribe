@@ -1120,28 +1120,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="PLS-5v-K4J" id="ePp-cu-Obo"/>
-                        <outlet property="activityIndicatorView" destination="L1k-UP-Yhz" id="Kl9-sE-Pmr"/>
                         <outlet property="saveButton" destination="FDE-h2-wtc" id="kn0-q1-X2D"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Hs-GB-oAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="L1k-UP-Yhz" userLabel="Activity Indicator View">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PLS-5v-K4J">
-                            <rect key="frame" x="110" y="54" width="20" height="20"/>
-                            <color key="color" red="0.14117647059999999" green="0.29411764709999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstItem="PLS-5v-K4J" firstAttribute="centerX" secondItem="L1k-UP-Yhz" secondAttribute="centerX" id="9Na-Sj-tad"/>
-                        <constraint firstItem="PLS-5v-K4J" firstAttribute="centerY" secondItem="L1k-UP-Yhz" secondAttribute="centerY" id="Dw9-XS-Ksm"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="CTk-Ss-jjS"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="3557.5999999999999" y="17.541229385307346"/>
         </scene>
