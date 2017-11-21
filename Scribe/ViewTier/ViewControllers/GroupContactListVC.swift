@@ -91,8 +91,6 @@ class GroupContactListVC: SPRTableViewController {
             self.title = GroupName.Translators_Group
         case .YoungAdults:
             self.title = GroupName.YA_Group
-        default:
-            break
         }
         
     }
@@ -150,9 +148,9 @@ class GroupContactListVC: SPRTableViewController {
         vc.lookupKey = cell.lookupKey
         
         
-        if let destinationViewController = segue.destination as? ContactDetailVC {
+//        if let destinationViewController = segue.destination as? ContactDetailVC {
 //            destinationViewController.transitioningDelegate = self
 //            destinationViewController.interactor = interactor
-        }
+//        }
     }
 }

@@ -96,7 +96,6 @@ class MainTabBarController: UITabBarController {
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
 
-                let index = strongSelf.selectedIndex
                 for vc in strongSelf.viewControllers! {
                     if let vc = vc as? UINavigationController {
                         vc.popToRootViewController(animated: false)

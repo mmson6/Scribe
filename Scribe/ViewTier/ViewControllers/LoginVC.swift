@@ -92,7 +92,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     private func isAdmin(user: User, with email: String, callback: @escaping (AsyncResult<Bool>) -> Void) {
-        let recomposedEmail = self.recomposeEmailForFirebase(email)
+//        let recomposedEmail = self.recomposeEmailForFirebase(email)
         let uid = user.uid
         
         let rootRef = Database.database().reference(fromURL: AppConfiguration.baseURL)

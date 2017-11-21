@@ -439,7 +439,6 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }
         
-        let gestureRecognizer = scrollView.panGestureRecognizer
 //        print(scrollView.contentOffset.y)
     }
     

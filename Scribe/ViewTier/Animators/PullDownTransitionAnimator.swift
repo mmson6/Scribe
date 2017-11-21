@@ -106,8 +106,8 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
         guard
             let fromVC = transitionContext.viewController(forKey: .from) as? ContactDetailVC,
             let fromView = fromVC.tableView,
-            let toView = transitionContext.view(forKey: .to),
-            let toVC = transitionContext.viewController(forKey: .to)
+            let toView = transitionContext.view(forKey: .to)/*,
+            let toVC = transitionContext.viewController(forKey: .to)*/
             else {
                 return
         }
@@ -159,7 +159,7 @@ class PullDownTransitionAnimator: UIPercentDrivenInteractiveTransition, UIViewCo
         
         
         
-        var containerView = transitionContext.containerView
+        let containerView = transitionContext.containerView
         containerView.addSubview(toView)
         containerView.addSubview(fromView)
         
