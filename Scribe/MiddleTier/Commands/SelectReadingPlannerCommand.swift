@@ -14,8 +14,8 @@ public class SelectReadingPlannerCommand: ScribeCommand<Bool> {
     var new: Bool = false
     
     public override func main() {
-        guard let model = self.readingPlannerModel else { return }
-        let dm = ReadingPlannerDM(from: model)
+        guard let readingPlannerModel = self.readingPlannerModel else { return }
+        let dm = ReadingPlannerDM(from: readingPlannerModel.asJSON())
         
         self.accessor.selectReadingPlanner(dm: dm, isNew: self.new) { result in
             switch result {

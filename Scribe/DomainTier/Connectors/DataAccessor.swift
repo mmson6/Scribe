@@ -246,21 +246,44 @@ public final class DataAccessor {
         }
     }
     
-    internal func removeBiblePlannerData(dm: PlannerActivityDM, with ID: Int, callback: @escaping DataAccessorDMCallback<Bool>) {
+    internal func removeBiblePlannerData(dm: PlannerActivityDM, with selectedPlanner: ReadingPlannerDM, callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
-        if let jsonArray = store.loadBiblePlannerData(with: ID) {
-            let newArray = jsonArray.map({ (json) -> JSONObject in
-                var plannerDataDM = PlannerDataDM(from: json)
-                if plannerDataDM.bookName == dm.bookName {
+        if let plannerData = selectedPlanner.plannerData {
+            let newDMArray = plannerData.map({ plannerDataDM -> PlannerDataDM in
+                var newPlannerDataDM = plannerDataDM
+                if newPlannerDataDM.bookName == dm.bookName {
                     for (key, _) in dm.chapterDict {
-                        guard let count = plannerDataDM.chaptersReadCount[key] as? Int else { continue }
-                        plannerDataDM.chaptersReadCount[key] = count - 1
+                        guard let count = newPlannerDataDM.chaptersReadCount[key] as? Int else { continue }
+                        newPlannerDataDM.chaptersReadCount[key] = count - 1
                     }
                 }
-                return plannerDataDM.asJSON()
+                return newPlannerDataDM
             })
-            store.save(plannerData: newArray, with: ID)
+            let newReadingPlanner = ReadingPlannerDM(
+                    ID: selectedPlanner.plannerID,
+                    goal: selectedPlanner.plannerGoal,
+                    data: newDMArray,
+                    selected: selectedPlanner.selected)
+            self.saveSelectedReadingPlanner(dm: newReadingPlanner, callback: { _ in })
+            
+            let jsonArray = newDMArray.map({ newDM -> JSONObject in
+                return newDM.asJSON()
+            })
+            store.save(plannerData: jsonArray, with: selectedPlanner.plannerID)
         }
+//        if let jsonArray = store.loadBiblePlannerData(with: ID) {
+//            let newArray = jsonArray.map({ (json) -> JSONObject in
+//                var plannerDataDM = PlannerDataDM(from: json)
+//                if plannerDataDM.bookName == dm.bookName {
+//                    for (key, _) in dm.chapterDict {
+//                        guard let count = plannerDataDM.chaptersReadCount[key] as? Int else { continue }
+//                        plannerDataDM.chaptersReadCount[key] = count - 1
+//                    }
+//                }
+//                return plannerDataDM.asJSON()
+//            })
+//            store.save(plannerData: newArray, with: ID)
+//        }
         callback(.success(true))
     }
     
@@ -327,10 +350,19 @@ public final class DataAccessor {
         callback(.success(true))
     }
     
-    internal func savePlannerGoal(dm: PlannerGoalDM, with ID: Int, callback: @escaping DataAccessorDMCallback<Bool>) {
+    internal func savePlannerGoal(dm: PlannerGoalDM, with selectedPlanner: ReadingPlannerDM, callback: @escaping DataAccessorDMCallback<Bool>) {
         let store = self.dataStore
+        if let plannerData = selectedPlanner.plannerData {
+            let newReadingPlanner = ReadingPlannerDM(
+                    ID: selectedPlanner.plannerID,
+                    goal: dm,
+                    data: plannerData,
+                    selected: selectedPlanner.selected)
+            self.saveSelectedReadingPlanner(dm: newReadingPlanner, callback: { _ in })
+        }
+        
         let json = dm.asJSON()
-        store.save(plannerGoal: json, with: ID)
+        store.save(plannerGoal: json, with: selectedPlanner.plannerID)
         callback(.success(true))
     }
     

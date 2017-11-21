@@ -296,18 +296,6 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
         
-        //        for (key, _) in sorted {
-        //            guard let chapter = Int(key) else { continue }
-        //            let dict: JSONObject = [key: true]
-        //            let model = PlannerActivityVOM(bookName: bookModel.engName,
-        //                                           isConsecutive: false,
-        //                                           chapterDict: dict,
-        //                                           min: chapter,
-        //                                           max: chapter,
-        //                                           time: time)
-        //            array.append(model)
-        //        }
-        
         let cmd = SavePlannerMarkActivitiesCommand()
         cmd.plannerID = self.plannerID
         cmd.plannerActivityDataSource = array

@@ -15,7 +15,6 @@ public struct PlannerDataVOM: JSONTransformable {
     public let bookName: String
     public var chaptersReadCount: JSONObject
     
-    
     public init(model: PlannerDataDM) {
         self.bookName = model.bookName
         self.chaptersReadCount = model.chaptersReadCount

@@ -18,7 +18,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
     var showPlanTrackerDueToUpdate = true
     var bible = [BibleVOM]()
     var plannerDataSource = [PlannerDataVOM]()
-    var plannerGoalModel: PlannerGoalVOM?
+    var plannerGoalModel = PlannerGoalVOM(from: [:])
     var selectedPlannerID: Int = 0 {
         didSet {
             self.topPlanTrackerView.selectedPlannerID = self.selectedPlannerID
@@ -114,7 +114,9 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
     
     private func fetchData() {
         DispatchQueue.global(qos: .userInitiated).async {
-            self.bible = BibleFactory.getBible()
+            if self.bible.count == 0 {
+                self.bible = BibleFactory.getBible()
+            }
             self.fetchSelectedReadingPlannerDataSource()
         }
     }
@@ -129,15 +131,13 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
                     self.plannerDataSource = array
                 }
                 self.plannerGoalModel = model.plannerGoal
-                self.savePlannerDataSource()
-                self.savePlannerGoalToDB(with: model.plannerGoal)
+                self.fetchPlanTrackers(with: model.plannerGoal)
             case .failure(let error):
                 NSLog("FetchReadingPlannersCommand returned with error: \(error)")
                 self.selectedPlannerID = 0
-                let defaultPDS = BibleFactory.getDefaultPDS()
-                self.plannerDataSource = defaultPDS
-
-                self.setPlannerInitialGoal()
+                self.plannerDataSource = BibleFactory.getDefaultPDS()
+                self.plannerGoalModel = BibleFactory.getDefaultGoal()
+                self.fetchPlanTrackers(with: self.plannerGoalModel)
                 self.saveReadingPlannerToDB()
             }
             DispatchQueue.main.async {
@@ -147,58 +147,8 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
         cmd.execute()
     }
     
-    private func fetchPlannerDataSource() {
-        let cmd = FetchBiblePlannerDataCommand()
-        cmd.plannerID = self.selectedPlannerID
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let array):
-                if array.count > 0 {
-                    self.plannerDataSource = array
-                } else {
-                    let defaultPDS = BibleFactory.getDefaultPDS()
-                    self.plannerDataSource = defaultPDS
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure:
-                break
-            }
-            self.fetchBiblePlannerGoal()
-        }
-        cmd.execute()
-    }
-    
-    // Fetch data for PlanTrackerViews
-    private func fetchBiblePlannerGoal() {
-        let cmd = FetchPlannerGoalCommand()
-        cmd.plannerID = self.selectedPlannerID
-        cmd.onCompletion { result in
-            switch result {
-            case .success(let model):
-                NSLog("FetchPlannerGoalCommand returned with success")
-                self.plannerGoalModel = model
-                self.fetchPlanTrackers(with: model)
-            case .failure:
-                NSLog("FetchPlannerGoalCommand returned with failure")
-                self.setPlannerInitialGoal()
-            }
-            self.saveReadingPlannerToDB()
-        }
-        cmd.execute()
-    }
-    
-    private func setPlannerInitialGoal() {
-        let goalModel = BibleFactory.getDefaultGoal()
-        self.plannerGoalModel = goalModel
-        self.savePlannerGoalToDB(with: goalModel)
-        self.fetchPlanTrackers(with: goalModel)
-    }
-    
     private func saveReadingPlannerToDB() {
-        guard let goalModel = self.plannerGoalModel else { return }
-        let model = ReadingPlannerVOM(id: self.selectedPlannerID, goal: goalModel, data: self.plannerDataSource, selected: true)
+        let model = ReadingPlannerVOM(id: self.selectedPlannerID, goal: self.plannerGoalModel, data: self.plannerDataSource, selected: true)
         
         let cmd = SaveSelectedReadingPlannerCommand()
         cmd.readingPlannerVOM = model
@@ -213,45 +163,12 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
         cmd.execute()
     }
     
-    private func savePlannerGoalToDB(with model: PlannerGoalVOM) {
-        let cmd = SavePlannerGoalCommand()
-        cmd.plannerID = self.selectedPlannerID
-        cmd.plannerGoalData = model
-        cmd.onCompletion { result in
-            switch result {
-            case .success:
-                NSLog("SavePlannerGoalCommand returned with success")
-            case .failure:
-                NSLog("SavePlannerGoalCommand returned with failure")
-            }
-        }
-        cmd.execute()
-    }
-    
-    private func savePlannerDataSource() {
-        let cmd = SaveBiblePlannerDataCommand()
-        cmd.plannerID = self.selectedPlannerID
-        cmd.plannerDataSource = self.plannerDataSource
-        cmd.onCompletion { result in
-            switch result {
-            case .success:
-                NSLog("SaveBiblePlannerDataCommand returned with success")
-                if let goalModel = self.plannerGoalModel {
-                    self.fetchPlanTrackers(with: goalModel)
-                }
-            case .failure:
-                break
-            }
-        }
-        cmd.execute()
-    }
-    
     @objc private func fetchUpdatedBiblePlannerData(notification: Notification) {
         // Show plan tracker views for 5 sec with flag
         self.showPlanTrackerDueToUpdate = true
-        //TODO:: work on this
+        
         DispatchQueue.global(qos: .default).async {
-            self.fetchPlannerDataSource()
+            self.fetchData()
         }
     }
     
@@ -277,7 +194,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
         
         plannerDataVOM.chaptersReadCount = json
         self.plannerDataSource[identifier] = plannerDataVOM
-        self.savePlannerDataSource()
+        self.fetchPlanTrackers(with: self.plannerGoalModel)
         self.saveReadingPlannerToDB()
         
         let indexPath = IndexPath(row: identifier, section: 0)
@@ -436,11 +353,11 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
     // MARK: - ReadingPlannerSettingsVCDelegate Functions
     
     func newReadingPlanCreated() {
-        self.fetchSelectedReadingPlannerDataSource()
+        self.fetchData()
     }
     
     func readingPlanSwitched() {
-        self.fetchSelectedReadingPlannerDataSource()
+        self.fetchData()
     }
     
     // MARK: - Navigation Functions
