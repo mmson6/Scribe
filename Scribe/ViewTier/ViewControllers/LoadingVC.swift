@@ -39,25 +39,6 @@ class LoadingVC: UIViewController {
         self.performSegue(withIdentifier: "loadingToMain", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "loadingToMain" {
-            guard
-                let vc = segue.destination as? MainTabBarController
-                else {
-                    return
-            }
-            guard
-                let navController = vc.viewControllers?[0] as? UINavigationController,
-                let contactVC = navController.topViewController as? ContactsCoordinatorVC
-                else {
-                    return
-            }
-            
-            contactVC.contactDataSource = self.contactDataSource
-        }
-    }
-    
     private func runLifeCycle() {
         if Auth.auth().currentUser != nil {
             self.performSegueToMain()

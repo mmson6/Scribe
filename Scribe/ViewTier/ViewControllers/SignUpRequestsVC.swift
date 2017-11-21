@@ -23,11 +23,7 @@ class SignUpRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // Never use iOS 11 large navigationBar title
-        if #available(iOS 11, *) {
-            self.navigationItem.largeTitleDisplayMode = .never
-        }
-        
+        self.navigationItem.largeTitleDisplayMode = .never
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -25,10 +25,7 @@ class SettingsVC: UITableViewController{
     // MARK: - Helper Functions
     
     private func initializeViewLayout() {
-        // Use iOS 11 large navigationBar title
-        if #available(iOS 11, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - TableViewController Delegate Functions

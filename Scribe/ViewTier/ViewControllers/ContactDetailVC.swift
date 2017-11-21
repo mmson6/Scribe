@@ -201,10 +201,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     private func initializeViews() {
-        // Use iOS 11 large navigationBar title
-        if #available(iOS 11, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         self.initializeAnimator()
         
