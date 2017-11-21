@@ -113,12 +113,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     private func setAppAttributes() {
         
-        let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
-        let navBarAttributes: [String: Any] = [
-//            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.scribeDesignTwoDarkBlue,
-            NSAttributedStringKey.font.rawValue: navBarFont
-        ]
+//        let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
+//        let navBarAttributes: [String: Any] = [
+////            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
+//            NSAttributedStringKey.foregroundColor.rawValue: UIColor.scribeDesignTwoDarkBlue,
+//            NSAttributedStringKey.font.rawValue: navBarFont
+//        ]
         UINavigationBar.appearance().tintColor = UIColor.scribeDesignTwoDarkBlue
 //        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
         UINavigationBar.appearance().barTintColor = UIColor.white

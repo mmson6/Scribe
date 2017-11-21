@@ -1708,7 +1708,7 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         let ref = Database.database().reference(fromURL: AppConfiguration.baseURL)
         
-        for (index, object) in ctd.enumerated() {
+        for (_, object) in ctd.enumerated() {
             print("hahaha")
             let key = ref.child(contactsChicago).childByAutoId().key
             let storeRef = ref.child(contactsChicago).child("contacts").child(key)

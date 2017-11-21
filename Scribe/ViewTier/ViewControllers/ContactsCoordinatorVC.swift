@@ -100,8 +100,6 @@ class ContactsCoordinatorVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func initializeTabBarItems() {
-        let settingsIcon = FAKMaterialIcons.settingsIcon(withSize: 27)
-        let contactIcon = FAKIonIcons.iosContactIcon(withSize: 30)
         if let tabBarItems = self.tabBarController?.tabBar.items {
             tabBarItems[1].image = UIImage.init(named: "test_avatar")
 //            tabBarItems[0].image = contactIcon?.image(with: CGSize(width: 30, height: 30))

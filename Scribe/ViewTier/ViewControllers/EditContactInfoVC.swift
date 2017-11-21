@@ -412,7 +412,7 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.selectionStyle = .none
         if let text = self.tableView.dataSource?.tableView!(tableView, titleForHeaderInSection: indexPath.section) {
             cell.sectionTitle.text = text
-            if text.characters.count == 0 {
+            if text.count == 0 {
                 cell.heightConstraint.constant = 0
             } else {
                 cell.heightConstraint.constant = 25
@@ -914,7 +914,7 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         if textField.tag == 33 {
             guard let text = textField.text else { return true }
-            let newLength = text.characters.count + string.characters.count - range.length
+            let newLength = text.count + string.count - range.length
             return newLength <= 2
         }
         return true

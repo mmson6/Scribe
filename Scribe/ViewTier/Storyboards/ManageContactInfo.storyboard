@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -597,29 +596,13 @@
                                                                 <constraint firstItem="Q2P-uD-W0e" firstAttribute="leading" secondItem="mvo-vS-BLI" secondAttribute="leading" id="nLT-0s-dkZ"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Mikael Son" placeholder="Enter Address" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EO6-Sc-vGE">
-                                                            <rect key="frame" x="18" y="13" width="339" height="34"/>
-                                                            <color key="textColor" red="0.28627450980000002" green="0.53333333329999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                        </textField>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="mvo-vS-BLI" secondAttribute="bottom" id="07m-w7-YqR"/>
                                                         <constraint firstItem="mvo-vS-BLI" firstAttribute="leading" secondItem="Jlw-Gu-Ln3" secondAttribute="leading" id="LhG-tU-Vta"/>
                                                         <constraint firstAttribute="trailing" secondItem="mvo-vS-BLI" secondAttribute="trailing" id="Uht-5d-dy0"/>
                                                         <constraint firstItem="mvo-vS-BLI" firstAttribute="top" secondItem="Jlw-Gu-Ln3" secondAttribute="top" id="dYw-2i-105"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="EO6-Sc-vGE" secondAttribute="bottom" constant="5" id="gjE-FE-pkI"/>
-                                                        <constraint firstItem="EO6-Sc-vGE" firstAttribute="top" secondItem="Jlw-Gu-Ln3" secondAttribute="topMargin" constant="5" id="jqT-6Y-wg3"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="EO6-Sc-vGE" secondAttribute="trailing" constant="10" id="lAe-Ta-QpE"/>
-                                                        <constraint firstItem="EO6-Sc-vGE" firstAttribute="centerY" secondItem="Jlw-Gu-Ln3" secondAttribute="centerY" id="orc-LA-26j"/>
-                                                        <constraint firstItem="EO6-Sc-vGE" firstAttribute="leading" secondItem="Jlw-Gu-Ln3" secondAttribute="leadingMargin" constant="10" id="slk-Ef-gp4"/>
                                                     </constraints>
-                                                    <variation key="default">
-                                                        <mask key="subviews">
-                                                            <exclude reference="EO6-Sc-vGE"/>
-                                                        </mask>
-                                                    </variation>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="cityTextField" destination="8vr-p5-8SD" id="qUM-bL-dSP"/>

@@ -37,7 +37,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if self.firstNameTextField.text?.characters.count == 0 {
+        if self.firstNameTextField.text?.count == 0 {
             self.firstNameTextField.becomeFirstResponder()
         }
     }
@@ -121,7 +121,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         var message: String
         
         if let firstName = self.firstNameTextField.text {
-            if firstName.characters.count <= 0 {
+            if firstName.count <= 0 {
                 title = InvalidNameTitle
                 message = EmptyFirstNameMessage
                 self.presentAlert(with: title, and: message, for: self.firstNameTextField)
@@ -134,7 +134,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             }
         }
         if let lastName = self.lastNameTextField.text {
-            if lastName.characters.count <= 0 {
+            if lastName.count <= 0 {
                 title = InvalidNameTitle
                 message = EmptyLastNameMessage
                 self.presentAlert(with: title, and: message, for: self.lastNameTextField)
@@ -147,7 +147,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             }
         }
         if let email = self.emailTextField.text {
-            if email.characters.count <= 0 {
+            if email.count <= 0 {
                 title = InvalidEmailTitle
                 message = EmptyEmailMessage
                 self.presentAlert(with: title, and: message, for: self.emailTextField)
@@ -179,7 +179,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
         func validatePassword() {
             if let password = self.passwordTextField.text {
-                if password.characters.count <= 5 {
+                if password.count <= 5 {
                     let title = InvalidPasswordTitle
                     let message = InvalidPasswordMessage
                     self.presentAlert(with: title, and: message, for: self.passwordTextField)
@@ -229,7 +229,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             title = InvalidNameTitle
             message = EmptyLastNameMessage
         case 2: // Email address
-            if (textField.text?.characters.count)! > 0 {
+            if (textField.text?.count)! > 0 {
                 title = InvalidEmailTitle
                 message = InvalidEmailMessage
             } else {

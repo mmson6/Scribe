@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dFq-3i-Y5d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dFq-3i-Y5d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Montserrat-Regular.ttf">
-            <string>Montserrat-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--LoadingVC-->
         <scene sceneID="VJf-ff-CpC">
@@ -30,64 +23,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_image" translatesAutoresizingMaskIntoConstraints="NO" id="HfZ-l6-SY4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-se-odl">
-                                <rect key="frame" x="22.5" y="443" width="330" height="175"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CT9-ed-Ckx" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="330" height="47"/>
-                                        <color key="backgroundColor" red="0.79647842639999999" green="0.79647842639999999" blue="0.79647842639999999" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="N5D-1a-d1y" customClass="LoginTextField" customModule="Scribe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="330" height="47"/>
-                                        <color key="backgroundColor" red="0.79647842639999999" green="0.79647842639999999" blue="0.79647842639999999" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2E-dv-r7C">
-                                        <rect key="frame" x="0.0" y="128" width="330" height="47"/>
-                                        <color key="backgroundColor" red="0.90744233129999996" green="0.4256729782" blue="0.2548387647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="47" id="fRP-ce-ecv"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
-                                        <state key="normal" title="Login">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="j2E-dv-r7C" firstAttribute="leading" secondItem="bcU-se-odl" secondAttribute="leading" id="8A1-6f-NS4"/>
-                                    <constraint firstAttribute="trailing" secondItem="j2E-dv-r7C" secondAttribute="trailing" id="D6Q-gA-mn4"/>
-                                    <constraint firstItem="CT9-ed-Ckx" firstAttribute="height" secondItem="j2E-dv-r7C" secondAttribute="height" id="DHM-L3-Ls4"/>
-                                    <constraint firstItem="N5D-1a-d1y" firstAttribute="width" secondItem="j2E-dv-r7C" secondAttribute="width" id="F5H-6a-2OR"/>
-                                    <constraint firstItem="N5D-1a-d1y" firstAttribute="height" secondItem="j2E-dv-r7C" secondAttribute="height" id="OlA-8G-kUZ"/>
-                                    <constraint firstItem="CT9-ed-Ckx" firstAttribute="width" secondItem="j2E-dv-r7C" secondAttribute="width" id="hwQ-kJ-Gi9"/>
-                                    <constraint firstItem="CT9-ed-Ckx" firstAttribute="height" secondItem="N5D-1a-d1y" secondAttribute="height" id="nq0-Wk-V3u"/>
-                                    <constraint firstItem="CT9-ed-Ckx" firstAttribute="width" secondItem="N5D-1a-d1y" secondAttribute="width" id="yle-jM-Duc"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="HfZ-l6-SY4" secondAttribute="trailing" id="1OU-3T-gon"/>
-                            <constraint firstItem="bcU-se-odl" firstAttribute="width" secondItem="mt2-kV-9f1" secondAttribute="width" multiplier="88%" id="2hs-Va-64i"/>
-                            <constraint firstItem="bcU-se-odl" firstAttribute="centerX" secondItem="mt2-kV-9f1" secondAttribute="centerX" id="3Xs-qg-lkz"/>
                             <constraint firstItem="l8u-J1-kCw" firstAttribute="top" secondItem="HfZ-l6-SY4" secondAttribute="bottom" id="8BL-hy-HdA"/>
                             <constraint firstItem="HfZ-l6-SY4" firstAttribute="top" secondItem="mt2-kV-9f1" secondAttribute="top" id="OpN-zt-qBa"/>
-                            <constraint firstItem="l8u-J1-kCw" firstAttribute="top" secondItem="bcU-se-odl" secondAttribute="bottom" constant="49" id="a9V-ka-7jl"/>
                             <constraint firstItem="HfZ-l6-SY4" firstAttribute="leading" secondItem="mt2-kV-9f1" secondAttribute="leading" id="pqs-eI-CW5"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="bcU-se-odl"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <segue destination="GXf-B0-MWz" kind="presentation" identifier="loadingToMain" modalTransitionStyle="crossDissolve" id="nR5-VU-LPT"/>

@@ -881,12 +881,8 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
                 else {
                     return UITableViewCell()
             }
-//            UITableViewCell.applyScribeClearCellAttributes(to: cell)
-            cell.selectionStyle = .none
             
-//            let model = self.readingPlannerDataSource[indexPath.row - 1]
-//            self.populate(cell: cell, with: model, at: indexPath)
-            let test = UIView()
+            cell.selectionStyle = .none
             
             return cell
             
