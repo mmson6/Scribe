@@ -96,8 +96,8 @@ DEPENDENCIES:
   - Firebase/Messaging (~> 4.0)
   - FontAwesomeKit (~> 2.2)
   - Objective-LevelDB (~> 2.1)
-  - PhoneNumberKit
-  - SwiftyJSON
+  - PhoneNumberKit (~> 2.0)
+  - SwiftyJSON (~> 4.0)
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -118,6 +118,6 @@ SPEC CHECKSUMS:
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 285bd541b6a838e1d44ae4b9756a15c0829adb2e
+PODFILE CHECKSUM: c26cb36b7ddcc863a2fd1404ba2b3ac3987cf8ce
 
 COCOAPODS: 1.3.1
