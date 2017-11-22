@@ -55,7 +55,7 @@ class MoreInfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         let image = UIImage(named: "back_arrow5")?.withRenderingMode(.alwaysTemplate)
         self.backButton.setImage(image, for: .normal)
-        self.backButton.tintColor = UIColor.scribeDesignTwoDarkBlue
+        self.backButton.tintColor = UIColor.Scribe.Design2.darkBlue
     }
     
     private func setShadowEffect() {

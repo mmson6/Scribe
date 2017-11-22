@@ -33,7 +33,7 @@ public class ContactImageCell: UITableViewCell {
     
     private func commonInit() {
 //        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
-        self.backgroundColor = UIColor.scribeColorCDCellBackground
+        self.backgroundColor = UIColor.Scribe.ContactDetail.cellBackground
         self.contactAvatarView.backgroundColor = UIColor.black
         self.contactAvatarView.backgroundColor = UIColor.white
         self.contactAvatarView.layer.cornerRadius = 70

@@ -28,9 +28,9 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
     
     private func commonInit() {
         self.mapCoverView.isUserInteractionEnabled = false
-        self.titleLabel.textColor = UIColor.scribePintInfoTitleColor
-        self.backgroundColor = UIColor.scribeColorCDCellBackground
-        self.iconLabel.textColor = UIColor.scribePintInfoTitleColor
+        self.titleLabel.textColor = UIColor.Scribe.Design1.infoTitleColor
+        self.backgroundColor = UIColor.Scribe.ContactDetail.cellBackground
+        self.iconLabel.textColor = UIColor.Scribe.Design1.infoTitleColor
     }
     
     public func setShadowEffect() {
@@ -82,7 +82,7 @@ class ContactInfoCell: UITableViewCell, CLLocationManagerDelegate {
             
             self.mapView.layer.cornerRadius = 5
             self.mapView.layer.borderWidth = 1
-            self.mapView.layer.borderColor = UIColor.scribeDesignTwoBlue.cgColor
+            self.mapView.layer.borderColor = UIColor.Scribe.Design2.blue.cgColor
         } else {
             self.mapCoverView.isHidden = true
         }

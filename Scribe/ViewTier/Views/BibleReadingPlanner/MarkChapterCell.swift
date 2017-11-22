@@ -22,7 +22,7 @@ class MarkChapterCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         self.selectionStatus = false
-        self.chapterNumberLabel.textColor = .bookChapterTextColor
+        self.chapterNumberLabel.textColor = UIColor.Scribe.ReadingPlanner.bookChapterTextColor
     }
     
     func commonInit() {
@@ -88,22 +88,22 @@ class MarkChapterCell: UICollectionViewCell {
             self.didSelect()
         } else {
             if index > min && index < max {
-                self.selectBackgroundView.backgroundColor = .bookChapterPossiblySelectedGreenColor
-                self.chapterNumberLabel.textColor = .bookChapterTextColor
+                self.selectBackgroundView.backgroundColor = UIColor.Scribe.ReadingPlanner.bookChapterPossiblySelectedGreenColor
+                self.chapterNumberLabel.textColor = UIColor.Scribe.ReadingPlanner.bookChapterTextColor
             } else {
                 self.selectBackgroundView.backgroundColor = .white
-                self.chapterNumberLabel.textColor = .bookChapterTextColor
+                self.chapterNumberLabel.textColor = UIColor.Scribe.ReadingPlanner.bookChapterTextColor
             }
         }
     }
     
     func didDeselect() {
         self.selectBackgroundView.backgroundColor = .white
-        self.chapterNumberLabel.textColor = .bookChapterTextColor
+        self.chapterNumberLabel.textColor = UIColor.Scribe.ReadingPlanner.bookChapterTextColor
     }
     
     func didSelect() {
-        self.selectBackgroundView.backgroundColor = .bookChapterSelectedGreenColor
+        self.selectBackgroundView.backgroundColor = UIColor.Scribe.ReadingPlanner.bookChapterSelectedGreenColor
         self.chapterNumberLabel.textColor = .white
     }
     

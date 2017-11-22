@@ -17,7 +17,7 @@ final class LoginTextField: UITextField {
         
     private func updateAttributes() {
 //        self.layer.cornerRadius = 25
-        self.tintColor = UIColor.scribeDesignTwoBlue
+        self.tintColor = UIColor.Scribe.Design2.blue
 //        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 0));
         self.leftViewMode = .always
 
@@ -37,7 +37,7 @@ final class LoginTextField: UITextField {
     private func drawBottomLine() {
         let border = CALayer()
         let borderWidth: CGFloat = 1
-        border.borderColor = UIColor.scribeDesignTwoBlue.cgColor
+        border.borderColor = UIColor.Scribe.Design2.blue.cgColor
         print("-------width check -------  \(self.frame.width)")
         border.frame = CGRect(x: 0, y: self.frame.height - borderWidth, width: self.frame.width+200, height: 1)
         border.borderWidth = borderWidth

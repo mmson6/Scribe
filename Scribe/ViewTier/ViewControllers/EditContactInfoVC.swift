@@ -730,7 +730,7 @@ class EditContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDataS
             tableView.beginUpdates()
             tableView.endUpdates()
         })
-        deleteAction.backgroundColor = UIColor.scribeDesignTwoRed
+        deleteAction.backgroundColor = UIColor.Scribe.Design2.red
         return [deleteAction]
     }
     

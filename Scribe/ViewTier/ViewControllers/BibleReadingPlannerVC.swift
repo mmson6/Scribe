@@ -106,7 +106,7 @@ class BibleReadingPlannerVC: UITableViewController, BibleMarkChaptersVCDelegate,
         let bottomView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 33))
         bottomView.backgroundColor = UIColor.rgb(red: 223, green: 223, blue: 223)
         let bottomViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: bottomView.frame.width, height: 1))
-        bottomViewSeparator.backgroundColor = UIColor.bookCellSeparatorColor
+        bottomViewSeparator.backgroundColor = UIColor.Scribe.ReadingPlanner.bookCellSeparatorColor
         bottomView.addSubview(bottomViewSeparator)
         bottomViewSeparator.topAnchor.constraint(equalTo: bottomViewSeparator.topAnchor).isActive = true
         self.tableView.tableFooterView = bottomView

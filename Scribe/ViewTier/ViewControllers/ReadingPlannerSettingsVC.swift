@@ -248,12 +248,12 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
     
     private func disableSaveButton() {
         self.saveButton.isEnabled = false
-        self.saveButton.tintColor = UIColor.scribeDesignTwoDarkBlueDisabled
+        self.saveButton.tintColor = UIColor.Scribe.Design2.darkBlueDisabled
     }
     
     private func enableSaveButton() {
         self.saveButton.isEnabled = true
-        self.saveButton.tintColor = UIColor.scribeDesignTwoDarkBlue
+        self.saveButton.tintColor = UIColor.Scribe.Design2.darkBlue
     }
     
     private func populate(cell: ReadActivityCell, with model: PlannerActivityVOM, at indexPath: IndexPath) {
@@ -340,7 +340,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
         print("selected check = \(model.selected)")
         if model.selected {
             cell.accessoryType = .checkmark
-            cell.backgroundColor = UIColor.scribeDesignTwoReadingPlannerSelectionBlue
+            cell.backgroundColor = UIColor.Scribe.Design2.readingPlannerSelectionBlue
             self.selectedPlannerIndexPath = indexPath
         } else {
             cell.accessoryType = .none
@@ -988,7 +988,7 @@ class ReadingPlannerSettingsVC: UITableViewController, UIPickerViewDelegate, UIP
 //    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        print("ha")
-//        self.navigationController?.navigationBar.barTintColor = UIColor.scribeDesignTwoBlue
+//        self.navigationController?.navigationBar.barTintColor = UIColor.Scribe.Design2.blue
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 //    }
 }

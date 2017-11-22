@@ -22,6 +22,6 @@ class AddBirthdayCell: UITableViewCell {
     private func commonInit() {
         let image = self.addIconImageView.image?.withRenderingMode(.alwaysTemplate)
         self.addIconImageView.image = image
-        self.addIconImageView.tintColor = UIColor.scribeDesignTwoGreen
+        self.addIconImageView.tintColor = UIColor.Scribe.Design2.green
     }
 }

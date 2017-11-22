@@ -121,11 +121,11 @@ class BibleMarkChaptersVC: UIViewController, UICollectionViewDelegate, UICollect
                                 cell.didSelect()
                             } else {
                                 if i > self.min && i < self.max {
-                                    cell.selectBackgroundView.backgroundColor = .bookChapterPossiblySelectedGreenColor
-                                    cell.chapterNumberLabel.textColor = .bookChapterTextColor
+                                    cell.selectBackgroundView.backgroundColor = UIColor.Scribe.ReadingPlanner.bookChapterPossiblySelectedGreenColor
+                                    cell.chapterNumberLabel.textColor = UIColor.Scribe.ReadingPlanner.bookChapterTextColor
                                 } else {
                                     cell.selectBackgroundView.backgroundColor = .white
-                                    cell.chapterNumberLabel.textColor = .bookChapterTextColor
+                                    cell.chapterNumberLabel.textColor = UIColor.Scribe.ReadingPlanner.bookChapterTextColor
                                 }
                             }
                         }

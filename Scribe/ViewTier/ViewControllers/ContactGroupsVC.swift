@@ -83,8 +83,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
         print(model.type)
         switch model.type {
         case .Fathers:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup1
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.green
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.Fathers_Group
             
             let filtered = contacts.filter({ (vom) -> Bool in
@@ -98,8 +98,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
             cell.contacts = filtered
             break
         case .YoungAdults:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup5
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.red
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.YA_Group
             //            cell.cellBackgroundImage.image = UIImage(named: "YA_Group_Image")
             
@@ -114,8 +114,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
             cell.contacts = filtered
             break
         case .Mothers:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup4
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.yellow
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.Mothers_Group
             //            cell.cellBackgroundImage.image = UIImage(named: "Mothers_Group_Image")
             
@@ -130,8 +130,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
             cell.contacts = filtered
             break
         case .Teachers:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup2
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.blueGreen
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.Teachers_Group
             
             let filtered = contacts.filter({ (vom) -> Bool in
@@ -142,8 +142,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
             cell.contacts = filtered
             break
         case .Choir:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup6
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.purple
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.Choir_Group
             
             let filtered = contacts.filter({ (vom) -> Bool in
@@ -154,8 +154,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
             cell.contacts = filtered
             break
         case .ChurchSchool:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup3
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.blue
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.Church_School
             
             let filtered = contacts.filter({ (vom) -> Bool in
@@ -169,8 +169,8 @@ class ContactGroupsVC: UIViewController, UICollectionViewDataSource, UICollectio
             cell.contacts = filtered
             break
         case .Translators:
-            cell.cellBackgroundImage.backgroundColor = UIColor.scribeColorGroup7
-            cell.groupNameLabel.textColor = UIColor.scribeGray
+            cell.cellBackgroundImage.backgroundColor = UIColor.Scribe.ContactGroup.orange
+            cell.groupNameLabel.textColor = UIColor.Scribe.gray
             cell.groupNameLabel.text = GroupName.Translators_Group
             
             let filtered = contacts.filter({ (vom) -> Bool in
