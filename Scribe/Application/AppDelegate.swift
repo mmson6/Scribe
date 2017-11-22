@@ -116,10 +116,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        let navBarFont = UIFont(name: "Montserrat-Bold", size: 17.0) ?? UIFont.boldSystemFont(ofSize: 17.0)
 //        let navBarAttributes: [String: Any] = [
 ////            NSForegroundColorAttributeName: UIColor.scribeColorNavigationBlue,
-//            NSAttributedStringKey.foregroundColor.rawValue: UIColor.scribeDesignTwoDarkBlue,
+//            NSAttributedStringKey.foregroundColor.rawValue: UIColor.Scribe.Design2.darkBlue,
 //            NSAttributedStringKey.font.rawValue: navBarFont
 //        ]
-        UINavigationBar.appearance().tintColor = UIColor.scribeDesignTwoDarkBlue
+        UINavigationBar.appearance().tintColor = UIColor.Scribe.Design2.darkBlue
 //        UINavigationBar.appearance().titleTextAttributes = navBarAttributes
         UINavigationBar.appearance().barTintColor = UIColor.white
         
@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
 //        UITabBar.appearance().titleTextAttributes = navBarAttributes
 //
-        UITabBar.appearance().tintColor = UIColor.scribeDesignTwoDarkBlue
+        UITabBar.appearance().tintColor = UIColor.Scribe.Design2.darkBlue
         UITabBar.appearance().unselectedItemTintColor = .lightGray
         UITabBar.appearance().barTintColor = UIColor.white
         

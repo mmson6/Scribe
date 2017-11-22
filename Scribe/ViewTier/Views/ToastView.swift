@@ -23,7 +23,7 @@ extension UIViewController {
         toastBackgroundView.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240, alpha: 0.8)
         
         toastLabel.backgroundColor = .clear
-        toastLabel.textColor = UIColor.scribeDesignTwoBlue
+        toastLabel.textColor = UIColor.Scribe.Design2.blue
         toastLabel.textAlignment = .center;
         toastLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(rawValue: 0.2))
         toastLabel.text = message
@@ -98,7 +98,7 @@ extension UIViewController {
 //        toastBackgroundView.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240, alpha: 1)
 //        
 //        toastLabel.backgroundColor = .clear
-//        toastLabel.textColor = UIColor.scribeDesignTwoBlue
+//        toastLabel.textColor = UIColor.Scribe.Design2.blue
 //        toastLabel.textAlignment = .center;
 //        toastLabel.font = UIFont.systemFont(ofSize: 15, weight: 0.2)
 //        toastLabel.text = message

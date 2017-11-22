@@ -196,12 +196,12 @@ class MainTabBarController: UITabBarController {
             // Notify AdminSettingsVC to update the badge since the vc only update on ViewWillAppear()
             NotificationCenter.default.post(name: userRequestsCountChanged, object: nil)
         } else {
-            tabItem.badgeColor = UIColor.scribeDesignTwoRed
+            tabItem.badgeColor = UIColor.Scribe.Design2.red
         }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        self.lastSelectedTabBarItem?.badgeColor = UIColor.scribeDesignTwoRed
+        self.lastSelectedTabBarItem?.badgeColor = UIColor.Scribe.Design2.red
         
         item.badgeColor = .clear
         self.lastSelectedTabBarItem = item

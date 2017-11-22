@@ -40,10 +40,10 @@ class SignUpRequestCell: UITableViewCell {
     }
     
     private func setButtonLayout() {
-        self.acceptButton.layer.borderColor = UIColor.scribeDesignTwoBlue.cgColor
+        self.acceptButton.layer.borderColor = UIColor.Scribe.Design2.blue.cgColor
         self.acceptButton.layer.borderWidth = 1
         self.acceptButton.layer.cornerRadius = 3
-        self.denyButton.layer.borderColor = UIColor.scribeDesignTwoRed.cgColor
+        self.denyButton.layer.borderColor = UIColor.Scribe.Design2.red.cgColor
         self.denyButton.layer.borderWidth = 1
         self.denyButton.layer.cornerRadius = 3
     }

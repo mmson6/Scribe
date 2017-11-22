@@ -263,7 +263,7 @@
                                                     <color key="backgroundColor" red="0.60218369959999996" green="0.76922750470000001" blue="0.3332494795" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young Adults" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0t-k5-qID">
-                                                    <rect key="frame" x="15" y="14.999999999999996" width="65.666666666666671" height="39.666666666666657"/>
+                                                    <rect key="frame" x="15" y="14.999999999999996" width="65.666666666666671" height="41.666666666666657"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                     <color key="textColor" red="0.4068424772" green="0.40487705460000001" blue="0.40880789969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -272,7 +272,7 @@
                                                     <rect key="frame" x="0.0" y="55" width="100" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvI-Gi-L2Z" userLabel="Member Count">
-                                                            <rect key="frame" x="41" y="10.66666666666667" width="49" height="24.333333333333329"/>
+                                                            <rect key="frame" x="35.333333333333343" y="10.66666666666667" width="54.666666666666657" height="24.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>

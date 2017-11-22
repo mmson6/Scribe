@@ -143,11 +143,11 @@ class ManageContactInfoVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     private func initializeSearchController() {
         self.customSearchBar.delegate = self
-        self.customSearchBar.setSearchImageColor(color: UIColor.scribeDesignTwoLightBlue)
-        self.customSearchBar.setTextFieldClearButtonColor(color: UIColor.scribeDesignTwoLightBlue)
-        self.customSearchBar.setPlaceholderTextColor(color: UIColor.scribeDesignTwoLightBlue)
-        self.customSearchBar.setTextColor(color: UIColor.scribeDesignTwoDarkBlue)
-        self.customSearchBar.tintColor = UIColor.scribeDesignTwoLightBlue
+        self.customSearchBar.setSearchImageColor(color: UIColor.Scribe.Design2.lightBlue)
+        self.customSearchBar.setTextFieldClearButtonColor(color: UIColor.Scribe.Design2.lightBlue)
+        self.customSearchBar.setPlaceholderTextColor(color: UIColor.Scribe.Design2.lightBlue)
+        self.customSearchBar.setTextColor(color: UIColor.Scribe.Design2.darkBlue)
+        self.customSearchBar.tintColor = UIColor.Scribe.Design2.lightBlue
         
         self.customSearchBar.sizeToFit()
         self.navigationItem.titleView = customSearchBar

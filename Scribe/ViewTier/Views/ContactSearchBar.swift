@@ -21,12 +21,12 @@ class ContactSearchBar: UISearchBar {
     }
     
     func initializeLayouts() {
-        self.setSearchImageColor(color: UIColor.scribeDesignTwoLightBlue)
-        self.setTextFieldClearButtonColor(color: UIColor.scribeDesignTwoLightBlue)
-        self.setPlaceholderTextColor(color: UIColor.scribeDesignTwoLightBlue)
-        self.setTextColor(color: UIColor.scribeDesignTwoDarkBlue)
+        self.setSearchImageColor(color: UIColor.Scribe.Design2.lightBlue)
+        self.setTextFieldClearButtonColor(color: UIColor.Scribe.Design2.lightBlue)
+        self.setPlaceholderTextColor(color: UIColor.Scribe.Design2.lightBlue)
+        self.setTextColor(color: UIColor.Scribe.Design2.darkBlue)
 //        self.setBackgroundColor(color: UIColor.scribeDesignTwoGray)
-        self.tintColor = UIColor.scribeDesignTwoLightBlue
+        self.tintColor = UIColor.Scribe.Design2.lightBlue
         
         self.sizeToFit()
     }

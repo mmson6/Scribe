@@ -30,7 +30,7 @@ class ContactGroupCell: UICollectionViewCell {
     public func commonInit() {
         self.layer.cornerRadius = 3
         self.layer.borderWidth = 0.0
-        self.layer.borderColor = UIColor.scribeGrey1.cgColor
+        self.layer.borderColor = UIColor.Scribe.grey1.cgColor
         
         self.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         self.layer.shadowColor = UIColor.black.cgColor

@@ -153,7 +153,7 @@ class ContactDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let sectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
         headerView.addSubview(sectionLabel)
         sectionLabel.text = "GENERAL INFO"
-        sectionLabel.textColor = .scribeDesignTwoDarkBlue
+        sectionLabel.textColor = UIColor.Scribe.Design2.darkBlue
         sectionLabel.font = UIFont.boldSystemFont(ofSize: 13)
         sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         

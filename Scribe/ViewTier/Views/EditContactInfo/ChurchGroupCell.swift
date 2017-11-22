@@ -40,7 +40,7 @@ class ChurchGroupCell: UITableViewCell {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.7, options: .curveEaseIn, animations: {
                 self.checkButton.transform = scaleGrow
-                self.checkButton.tintColor = UIColor.scribeDesignTwoGreen
+                self.checkButton.tintColor = UIColor.Scribe.Design2.green
             }, completion: { (_) in
                 UIView.animate(withDuration: 0.15, animations: {
                     self.checkButton.transform = CGAffineTransform.identity
@@ -68,7 +68,7 @@ class ChurchGroupCell: UITableViewCell {
     func setSelectedLayerAttributes() {
         let image = UIImage(named: "check_icon_filled_500")?.withRenderingMode(.alwaysTemplate)
         self.checkButton.setImage(image, for: .normal)
-        self.checkButton.tintColor = UIColor.scribeDesignTwoGreen
+        self.checkButton.tintColor = UIColor.Scribe.Design2.green
         self.checkButton.layer.borderWidth = 0
     }
     

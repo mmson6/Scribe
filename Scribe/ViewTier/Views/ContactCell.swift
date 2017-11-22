@@ -29,7 +29,7 @@ public class ContactCell: UITableViewCell {
     internal func commonInit() {
         self.avatarImageView.layer.cornerRadius = 22.5
         self.nameLabel.isHidden = false
-        self.nameLabel.textColor = UIColor.scribeDesignTwoDarkBlue
+        self.nameLabel.textColor = UIColor.Scribe.Design2.darkBlue
 //        self.avatarImageView.layer.cornerRadius = 25
         self.subNameLabel.isHidden = false
 //        self.layer.backgroundColor = UIColor.scribePintNavBarColor.cgColor

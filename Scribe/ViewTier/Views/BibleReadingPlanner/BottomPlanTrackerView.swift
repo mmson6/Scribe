@@ -93,7 +93,7 @@ class BottomPlanTrackerView: UIView {
         self.chapterTrackOuterView.backgroundColor = UIColor.rgb(red: 40, green: 40, blue: 40)
         self.verseTrackOuterView.backgroundColor = UIColor.rgb(red: 40, green: 40, blue: 40)
         self.dayTrackInnerView.backgroundColor = UIColor(white: 1, alpha: 0.95)
-        self.chapterTrackInnerView.backgroundColor = UIColor.scribeDesignTwoBlue
+        self.chapterTrackInnerView.backgroundColor = UIColor.Scribe.Design2.blue
         self.verseTrackInnerView.backgroundColor = UIColor(white: 1, alpha: 0.95)
         
         self.dayTrackOuterView.layer.borderColor = UIColor.black.cgColor
@@ -190,9 +190,9 @@ class BottomPlanTrackerView: UIView {
         
         // Update Chapter tracker label color
         if totalChaptersRead >= (totalChapters / totalDays) * (daysElapsed + 1) {
-            self.chapterTrackLabel.textColor = UIColor.bottomPlanTrackerChapterBlueColor
+            self.chapterTrackLabel.textColor = UIColor.Scribe.ReadingPlanner.bottomPlanTrackerChapterBlueColor
         } else {
-            self.chapterTrackLabel.textColor = UIColor.bottomPlanTrackerChapterGreenColor
+            self.chapterTrackLabel.textColor = UIColor.Scribe.ReadingPlanner.bottomPlanTrackerChapterGreenColor
         }
         
         // Update chapter percentage

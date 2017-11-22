@@ -181,11 +181,17 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             searchResultsController.delegate = self
             self.navigationItem.searchController = searchController
             self.navigationItem.hidesSearchBarWhenScrolling = false
-            self.searchController.hidesNavigationBarDuringPresentation = true
             self.definesPresentationContext = true
+            self.searchController.hidesNavigationBarDuringPresentation = true
             self.searchController.searchBar.placeholder = "Search by name"
-            self.searchController.searchBar.tintColor = UIColor.scribeDesignTwoDarkBlue
+            self.searchController.searchBar.tintColor = UIColor.Scribe.Design2.darkBlue
             self.searchController.searchResultsUpdater = searchResultsController
+
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.Scribe.Design2.blue]
+            
+//            if let searchTextField = self.searchController.searchBar.value(forKey: "searchField") as? UITextField {
+//                searchTextField.textColor = .red
+//            }
         }
     }
     
