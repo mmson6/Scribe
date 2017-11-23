@@ -13,7 +13,6 @@ import FontAwesomeKit
 public class ContactCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
-//    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subNameLabel: UILabel!
     
@@ -21,9 +20,7 @@ public class ContactCell: UITableViewCell {
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-        
-//        let contactImage = FAKIonIcons.iosContactIcon(withSize: 100 )
-//        self.avatarImageView.image = contactImage?.image(with: CGSize(width: 100, height: 100))
+        self.preservesSuperviewLayoutMargins = false
     }
     
     internal func commonInit() {

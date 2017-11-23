@@ -53,10 +53,11 @@ class ContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     private func commonInit() {
         self.title = "Contacts"
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.hidesSearchBarWhenScrolling = true
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 74
+        self.tableView.estimatedRowHeight = 70
         
         self.tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleScroll(gestureRecognizer:)))
     }
